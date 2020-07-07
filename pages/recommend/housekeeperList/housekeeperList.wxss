@@ -1,0 +1,90 @@
+/*筛选条件*/
+
+.checkbox {
+  line-height: 42rpx;
+  font-size: 28rpx;
+  color: #888;
+  /*border: 1rpx solid #cecece;
+  border-radius: 20rpx;*/
+  /* display: initial; */
+  /* margin: 10rpx 0rpx 20rpx 0rpx; */
+  position: relative;
+  /* padding: 10rpx; */
+}
+
+.checked {
+  color: #ff7f27;
+}
+
+.checkbox checkbox {
+  display: none;
+}
+/*
+  问题：浮动引起的高度塌陷
+  引起原因：子元素全是float元素 且 父元素没有设置高度。
+*/
+.section-header::before, .section-header::after {
+  display: table;
+  content: "";
+}
+.section-header::after {
+  clear: both;
+}
+
+/*广告*/
+
+.header {
+  height: 281rpx;
+  width: 750rpx;
+  background-color: bisque;
+  margin-bottom: 10rpx;
+}
+
+/*吸顶效果*/
+.section-header{
+  width: 100%;
+  margin-top:30rpx;
+  /* padding-left:20rpx; */
+  background-color: rgb(255, 255, 255);
+}
+.section-placeholder {
+  background-color: rgb(255, 255, 255);
+}
+
+.section-fixed {
+  /* display: block; */
+  position: fixed;
+  top: 0;
+}
+
+.section-fixedHide {
+  display: none;
+}
+
+/*列表*/
+
+.templet {
+  margin:40rpx 25rpx; 
+  border-radius: 20rpx; 
+  box-shadow: 0rpx 2rpx 4rpx 5rpx #eeeeee;
+}
+.headImg{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 40rpx 30rpx;
+  border-radius: 100%;
+}
+
+.status{
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  left:-2rpx;
+  top:-2rpx;
+}
+.text{
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    width:200rpx;
+}

@@ -1,0 +1,120 @@
+<view style='padding-bottom:60rpx;'>
+  <!--代办介绍-->
+  <view>
+    <view>
+      <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/commission/img-commission-01.png?{{random}}' style="width:750rpx; height:2038rpx;"></image>
+    </view>
+    <view>
+      <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/commission/img-commission-02.png?{{random}}' style="width:750rpx; height:2131rpx;"></image>
+    </view>
+    <view>
+      <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/commission/img-commission-03.png?{{random}}' style="width:750rpx; height:1130rpx;"></image>
+    </view>
+    <view>
+      <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/commission/img-commission-04.png?{{random}}' style="width:750rpx; height:1986rpx;"></image>
+    </view>
+    <!-- <view>
+      <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/commission/entrust.png?{{random}}' bindtap='toDetailImg' style="width:750rpx; height:181rpx;"></image>
+    </view> -->
+    <!--代办评价-->
+    <!-- <view class='font-28' style='width:100%;height:90rpx;'>
+      <view class='font-36' style='float:left;font-36;position:absolute;left:30rpx; margin: 20rpx 20rpx 30rpx 20rpx;border-left: 5px solid #ff7f27;padding-left:10px;'>用户评价</view>
+      <view class='font-32' style='float:left ;font-36;position:absolute;right:50rpx;color:gray; margin: 20rpx 0rpx 30rpx 0rpx;'>综合评价：{{commentsList.averageScore==null?'0':commentsList.averageScore}}</view>
+    </view>
+    <view style='position: relative;'>
+      <view class='swiper-parent' bindtap="handleOpen">
+        <swiper class="tab-right" vertical="true" autoplay="{{ !visible }}" circular="{{true}}" interval="3000" display-multiple-items='1'>
+          <view class="right-item">
+            <block wx:for-index="idx" wx:for='{{commentsList.commentDtos}}' wx:key="key">
+              <swiper-item>
+                <view class='font-28' style='line-height:50rpx; padding:20rpx 0;'>
+                  <view class='tem'>
+                    <view style='height:100rpx'>
+                      <view style='float:left;'>
+                        <image src="{{item.headPic==null?imgUrl:item.headPic}}" class="headImg" />
+                      </view>
+                      <view style='float:left;line-height:40rpx;margin-top:10rpx;color:gray;'>
+                        <view class='font-26' style=''>{{item.name==null?'-':item.name}}</view>
+                        <view class='font-26' style=''>{{item.commentTime==null?'-':item.commentTime}}</view>
+                      </view>
+                      <view style='position: relative;color:gray;'>
+                        <view style='position:absolute;right:20rpx;top:10rpx;'>
+                          <i-rate count="{{5}}" value="{{item.score==null?'0':item.score}}"></i-rate>
+                        </view>
+                      </view>
+                    </view>
+                    <view class='font-28' style=' word-break: break-all;padding: 15rpx 30rpx 30rpx 30rpx;color:gray;'>
+                      {{item.comment==null?'-':item.comment}}
+                    </view>
+                  </view>
+                </view>
+              </swiper-item>
+            </block>
+          </view>
+        </swiper>
+      </view>
+    </view>
+-->
+  </view>
+  <!--查看更多评论-->
+  <view catchtouchmove="ture">
+    <i-action-sheet visible="{{ visible }}" bind:cancel="handleCancel">
+      <view slot="header">
+        <view class='font-28' style='width:100%;height:90rpx;'>
+          <view class='font-36' style='float:left;position:absolute;left:30rpx; margin: 20rpx 20rpx 30rpx 20rpx;color:black;'>用户评价</view>
+          <view class='font-32' style='float:left;position:absolute;right:100rpx;color:gray; margin: 30rpx 0rpx 30rpx 0rpx;'>综合评价：{{commentsList.averageScore==null?'0':commentsList.averageScore}}</view>
+          <view bindtap="handleCancel" style='float:left;position:absolute;right:10rpx;color:gray; margin: 10rpx 0rpx 0rpx 0rpx;'>
+            <image style='width:60rpx;height:60rpx;' src='/image/close.png'></image>
+          </view>
+        </view>
+        <scroll-view class="" scroll-y style="width: 100%;height:700rpx;">
+          <view wx:for='{{commentMore}}' wx:key="key">
+            <view class='font-28' style='line-height:50rpx; '>
+              <view class='tem'>
+                <view style='height:100rpx;'>
+                  <view style='float:left;'>
+                    <image src="{{item.headPic==null?imgUrl:item.headPic}}" class="headImg" />
+                  </view>
+                  <view style='float:left;line-height:40rpx;margin-top:10rpx;color:gray;text-align:left;'>
+                    <view class='font-26' style=''>{{item.name==null?'-':item.name}}</view>
+                    <view class='font-26' style=''>{{item.commentTime==null?'-':item.commentTime}}</view>
+                  </view>
+                  <view style='position: relative;color:gray;'>
+                    <view style='position:absolute;right:20rpx;top:10rpx;'>
+                      <i-rate count="{{5}}" value="{{item.score==null?'0':item.score}}"></i-rate>
+                    </view>
+                  </view>
+                </view>
+                <view class='font-28' style=' word-break: break-all;padding: 15rpx 30rpx 30rpx 30rpx;color:gray;text-align:left;'>
+                  {{item.comment==null?'-':item.comment}}
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </i-action-sheet>
+  </view>
+</view>
+<!--办理按钮-->
+<view class='add_btn flex-center' bindtap="toOrder">
+  立即办理
+</view>
+
+<!-- 登录 -->
+<view catchtouchmove="ture">
+  <i-modal visible="{{ visibleLogin }}" bind:click="handleCloseLogin" show-ok="{{false}}" show-cancel="{{false}}">
+    <view style='position: relative;height:320rpx;'>
+      <view style='position: absolute;right:30rpx;top:-20rpx;' bindtap='handleCloseLogin'>
+        <image style='width:60rpx;height:60rpx;' src='/image/close.png'></image>
+      </view>
+      <view style='margin-top:20rpx;'>
+        <image style='height:100rpx;width:100rpx;' src='/image/login-log.png'></image>
+      </view>
+      <view class='font-36' style='color:#1c2438'>Hi~请您登录</view>
+      <view>
+        <button style='margin:30rpx;background:#ff7f27;color:#fff' open-type='getUserInfo' bindgetuserinfo='getUnionId'>授权登录</button>
+      </view>
+    </view>
+  </i-modal>
+</view>

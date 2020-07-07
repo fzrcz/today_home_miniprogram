@@ -1,0 +1,6 @@
+.cell{
+  margin-left:40rpx; 
+  padding:30rpx 0; 
+  border-bottom:2rpx #ddd solid; 
+  font-size:32rpx;
+}

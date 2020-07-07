@@ -1,0 +1,60 @@
+<!--pages/mine/myClient/myInvitation/myInvitation.wxml-->
+<view class="invitation-box">
+  <view class="my-invitation">
+    <view class="invi-title">
+      <!-- <view class="h-line"></view> -->
+      <text>分佣明细列表</text>
+    </view>
+    <scroll-view scroll-y="true" scroll-with-animation="true">
+
+      <!-- 没有数据 -->
+      <view class="no-data" wx:if='{{myClientList.length == 0}}'>
+        <image src="/image/no-data1.png"></image>
+      </view>
+
+      <!-- 有数据 -->
+      <!-- <view wx:else class="invi-content">
+        <view wx:for='{{myClientList}}' wx:key class="invitation-list flex-between">
+          <view class="flex-center-y">
+            <view class="head-img">
+              <image wx:if='{{item.headPic == null || item.headPic == "" || item.headPic == undefined}}' src="暂无"></image>
+              <image wx:else src="{{item.headPic}}"></image>
+            </view>
+            <view wx:if='{{item.agentName == null || item.agentName == "" || item.agentName == undefined}}' class="font-28 nick-name">暂无</view>
+            <view wx:else class="font-28 nick-name">{{item.agentName}}</view>
+          </view>
+          <view wx:if='{{item.createTime == null || item.createTime == "" || item.createTime == undefined}}' class="font-28">暂无</view>
+          <view wx:else class="font-28">{{item.createTime}}</view>
+        </view>
+        <i-divider>没有更多数据了</i-divider>
+      </view> -->
+      <view wx:else class="invi-content">
+        <view wx:for='{{myClientList}}' wx:key class="order-wrap">
+          <view class="order-item">
+            <view class="head">
+              <text>订单号：{{item.orderNo}}</text>
+              <text wx:if="{{item.status == 0}}" style="color:#FC3D42">失败</text>
+              <text wx:elif="{{item.status == 1}}" style="color:#43AF63">成功</text>
+              <text wx:elif="{{item.status == 2}}">冻结</text>
+              <text wx:elif="{{item.status == 3}}">退款流失</text>
+            </view>
+            <view class="item">
+              <image src="{{item.headPic}}"></image>
+              <view class="money">
+                <text>{{item.nickname}}</text>
+                <text>订单金额：<text style="color:#43AF63">¥ {{item.orderMoney}}</text></text>
+
+              </view>
+              <view class="date">
+                <text>佣金：<text style="color:#43AF63;font-size:30rpx">¥ {{item.commission}}</text></text>
+                <text>{{item.createTime}}</text>
+              </view>
+            </view>
+          </view>
+        <!-- <i-divider>没有更多数据了</i-divider> -->
+      </view>
+    </view>
+    </scroll-view>
+
+  </view>
+</view>

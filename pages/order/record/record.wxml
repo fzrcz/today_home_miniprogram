@@ -1,0 +1,23 @@
+<block wx:for="{{dataList}}" wx:key=''>
+  <view class='font-32' style='padding:30rpx 30rpx 30rpx 45rpx; line-height:60rpx; border-bottom:2rpx #888 dashed' bindtap='toEdit' data-id='{{item.id}}'>
+    <view class='record-cell-left'>时间：</view>
+    <view>{{item.writeTime}}</view>
+    <view class='record-cell-left'>角色：</view>
+    <view wx:if='{{item.discussRole=="housekeeper"}}'>阿姨</view>
+    <view wx:if='{{item.discussRole=="employer"}}'>雇主</view>
+    <view class='record-cell-left'>方式：</view>
+    <view wx:if='{{item.serveType=="phone"}}'>电话</view>
+    <view wx:if='{{item.serveType=="face"}}'>面聊</view>
+    <view class='record-cell-left'>地址：</view>
+    <view>{{item.address}}</view>
+    <view class='flex-x'>
+      <view style='width:100rpx;'>内容：</view>
+      <view style='width:560rpx;'>{{item.record}}</view>
+    </view>
+  </view>
+</block>
+<!-- <view class='btn-style font-32' bindtap='toAdd' style='padding:20rpx; position: fixed; bottom:40rpx; width:650rpx;'>+ 新建地址</view> -->
+<!-- <view class='add_btn flex-center font-28' bindtap='toAdd'>
+  <i-icon i-class='icon' type="add" size="28" color='#fff'/>
+</view> -->
+

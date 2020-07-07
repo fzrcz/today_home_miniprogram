@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "保险",
+  "usingComponents": {
+    "i-load-more": "/iview/load-more/index"
+  }
+}

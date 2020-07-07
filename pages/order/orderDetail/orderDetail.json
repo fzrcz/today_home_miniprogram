@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "订单详情",
+  "usingComponents": {
+    "i-steps": "/iview/steps/index",
+    "i-step": "/iview/step/index",
+    "i-collapse": "/iview/collapse/index",
+    "i-collapse-item": "/iview/collapse-item/index",
+    "i-icon": "/iview/icon/index"
+  }
+}

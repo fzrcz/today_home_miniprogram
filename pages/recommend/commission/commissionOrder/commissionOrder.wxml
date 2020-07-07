@@ -1,0 +1,212 @@
+<!--确认订单-->
+<view>
+  <view class='breakline'></view>
+  <view wx:if='{{!address}}' style='text-align:center; padding:40rpx;' class='flex-y flex-center'>
+    <view class='font-32'>我们需要知道您的地址哦</view>
+    <view class='btn-style font-28' style='padding:10rpx; margin-top:30rpx; width:150rpx;' bindtap='toAddress'>选择地址</view>
+  </view>
+  <!--联系地址-->
+  <view class='flex-x flex-center-y' style='padding:30rpx 40rpx;' wx:if='{{address}}' bindtap='toAddress'>
+    <view class='flex-y' style='width:90%; line-height:70rpx;'>
+      <view class='font-36'>
+        <view style='width:150rpx; float:left;'>{{address.name==null?'-':address.name}}</view>
+        <text>{{address.tell==null?'-':address.tell}}</text>
+        <!-- <text style='font-size:20rpx; border:2rpx #FF7F27 solid; color:#FF7F27; padding:0 4rpx; margin-left:20rpx;'>默认</text> -->
+      </view>
+      <view class='font-32'>{{region}}{{address.address==null?'-':address.address}}</view>
+    </view>
+    <i-icon type="enter" i-class='theme-color' bindtap='toAddress' data-addrid='{{item.addrId}}' size='28' />
+  </view>
+</view>
+<view class='breakline'></view>
+<!--代办服务-->
+<view>
+  <view class='font-36' style='height:50rpx;padding:30rpx 30rpx 0rpx 45rpx;'>
+    <view style='float:left'>签约保障服务</view>
+    <view style='float:left;position: absolute;right:40rpx;'>￥{{basicsPrice}}</view>
+  </view>
+  <block wx:for="{{basicsList}}" wx:key="key" style='pad'>
+    <view class='font-28' style='height:40rpx;padding:15rpx 30rpx 0rpx 45rpx;color: gray;'>
+      <view style='float:left'>{{item.name}}</view>
+    </view>
+  </block>
+
+  <!--
+    <view class='font-28' style='height:40rpx;padding:15rpx 30rpx 0rpx 45rpx;color: gray;'>
+      <view style='float:left'>阿姨背景调查</view>
+      <view style='float:left;position: absolute;right:40rpx;'>￥200</view>
+    </view>
+    <view class='font-28' style='height:40rpx;padding:15rpx 30rpx 0rpx 45rpx;color: gray;'>
+      <view style='float:left'>阿姨陪同体检</view>
+      <view style='float:left;position: absolute;right:40rpx;'>￥200</view>
+    </view>
+    <view class='font-28' style='height:40rpx;padding:15rpx 30rpx 0rpx 45rpx;color: gray;'>
+      <view style='float:left'>律师顾问服务</view>
+      <view style='float:left;position: absolute;right:40rpx;'>￥0</view>
+    </view>
+    <view class='font-28' style='height:40rpx;padding:15rpx 30rpx 0rpx 45rpx;color: gray;'>
+      <view style='float:left'>合同服务</view>
+      <view style='float:left;position: absolute;right:40rpx;'>￥99</view>
+    </view>
+    <view class='font-28' style='height:40rpx;padding:15rpx 30rpx 0rpx 45rpx;color: gray;'>
+      <view style='float:left'>阿姨基础体检</view>
+      <view style='float:left;position: absolute;right:40rpx;'>￥100</view>
+    </view>
+    <view class='font-28' style='height:50rpx;padding:15rpx 30rpx 20rpx 45rpx;color: gray;'>
+      <view style='float:left'>雇主责任险</view>
+      <view style='float:left;position: absolute;right:40rpx;'>￥100</view>
+    </view>
+  </view>-->
+  <!--是否购买其他服务-->
+  <view wx:if="{{healthList.length==0?false:true}}" class='font-36' style='height:50rpx;padding:30rpx 30rpx 0rpx 45rpx;'>
+    <view style='float:left'>购买其他服务</view>
+    <view style='float:left;position: absolute;right:40rpx;'>{{otherPrice==0?'':'￥'+otherPrice}}</view>
+  </view>
+  <!--阿姨体检项-->
+  <view wx:if="{{healthList.length==0?false:true}}">
+    <!-- <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 10rpx 45rpx;'>体检项</view> -->
+    <block wx:for="{{healthList}}" wx:key="key" style='pad'>
+      <view class='font-32' style='height:40rpx;padding:15rpx 30rpx 10rpx 45rpx;color: gray;'>
+        <view style='float:left'>{{item.name}}</view>
+        <view style='float:left;position: absolute;right:40rpx;'>
+          <text class='font-28' style='padding:0rpx 30rpx 0rpx 0rpx;'>￥{{item.preferentialPrice}}</text>
+          <switch checked="{{item.check}}" bindchange="healthChange" data-index="{{index}}" wx:key="item.id" color='#ff7f27' />
+        </view>
+      </view>
+    </block>
+  </view>
+  <!--阿姨保险项-->
+  <view wx:if="{{insuranceList.length==0?false:true}}">
+    <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 10rpx 45rpx;'>保险项</view>
+    <block wx:for="{{insuranceList}}" wx:key="key" style='pad'>
+      <view class='font-28' style='height:40rpx;padding:15rpx 30rpx 10rpx 45rpx;color: gray;'>
+        <view style='float:left'>{{item.name}}</view>
+        <view style='float:left;position: absolute;right:40rpx;'>
+          <text class='font-28' style='padding:0rpx 30rpx 0rpx 0rpx;'>￥{{item.preferentialPrice}}</text>
+          <switch checked="{{item.check}}" bindchange="insuranceChange" data-index="{{index}}" wx:key="item.id" color='#ff7f27' />
+        </view>
+      </view>
+    </block>
+  </view>
+  <!--阿姨增值服务项-->
+  <view wx:if="{{appreciationList.length==0?false:true}}">
+    <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 10rpx 45rpx;'>增值服务项</view>
+    <block wx:for="{{appreciationList}}" wx:key="key" style='pad'>
+      <view class='font-28' style='height:40rpx;padding:15rpx 30rpx 10rpx 45rpx;color: gray;'>
+        <view style='float:left'>{{item.name}}</view>
+        <view style='float:left;position: absolute;right:40rpx;'>
+          <text class='font-28' style='padding:0rpx 30rpx 0rpx 0rpx;'>￥{{item.preferentialPrice}}</text>
+          <switch checked="{{item.check}}" bindchange="appreciationChange" data-index="{{index}}" wx:key="item.id" color='#ff7f27' />
+        </view>
+      </view>
+    </block>
+  </view>
+  <view style='height:30rpx;'></view>
+  <!--阿姨选择-->
+  <view class='breakline font-36' style='width:690rpx; height:50rpx;padding:30rpx 30rpx 30rpx 30rpx;color: gray;'>阿姨选择</view>
+  <view wx:if="{{housekeepersData.length==0}}" style='padding:50rpx; text-align:center; font-size:32rpx; line-height:60rpx;'>
+    您还没预约阿姨呢
+    <view class='theme-color' bindtap='toList'>去预约</view>
+  </view>
+  <view wx:if="{{housekeepersData.length==0?false:true}}">
+    <view class='font-32 flex-center' style='height:50rpx;padding:30rpx 30rpx 30rpx 30rpx;color: gray;'>我的预约</view>
+    <view class="info_text" style=''>
+      <scroll-view class="scroll-view_H" scroll-x style="width: 690rpx">
+        <view wx:for="{{housekeepersData}}" wx:key="item.id" wx:for-index="tabindex" data-index="{{tabindex}}" class="{{tabindex == selectTab ? 'scroll-view-item_H-select' : 'scroll-view-item_H'}}" bindtap="myChange" style='border:1rpx solid #ff7f27;height:320rpx;'>
+          <view class='flex-center' style='margin:20rpx;'>
+            <image src='{{item.headPic}}' style="width:120rpx;height:120rpx;border-radius:100%;"></image>
+          </view>
+          <view class="flex-center {{tabindex == selectTab ? 'view-style-select' : ''}}" style="margin-bottom:10rpx;">{{item.name}}</view>
+          <view class="flex-center {{tabindex == selectTab ? 'view-style-select' : ''}}" style="margin-bottom:10rpx;">{{item.workType==null?'-':item.workType}} | {{item.workYears ==null?'-':item.workYears+'年'}}</view>
+          <view class="flex-center {{tabindex == selectTab ? 'view-style-select' : ''}}" style='margin-bottom:10rpx;'>
+            <view class="flex-center {{tabindex == selectTab ? 'btn-style-select' : 'btn-style'}}" bindtap="toDetail" style="margin-top:10rpx;">查看</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='breakline' style='height:100rpx'></view>
+  </view>
+</view>
+<!--办理按钮-->
+<view class='add_btn flex-center' style='z-index:1000;'>
+  <text class='font-36' style='color: #ff7f27;width:300rpx; margin-left:10rpx;'>￥<text class='font-bold'>{{priceAll}}</text></text>
+  <!-- <text class='font-24 flex-center' style='color: gray;width:95rpx;' bindtap="handleOpen">明细</text>
+  <view style='width:35rpx;position: relative;right:20rpx;' bindtap="handleOpen">
+    <i-icon wx:if='{{visible}}' type="unfold" size='18' color='gray' />
+    <i-icon wx:if='{{!visible}}' type="packup" size='18' color='gray' />
+  </view> -->
+  <text class='font-36 flex-center' bindtap="toPay" style='height: 100rpx;color:white;background-color:#ff7f27;width:450rpx;'>去付款</text>
+</view>
+
+<!--价格明细-->
+<i-action-sheet visible="{{ visible }}" bind:cancel="handleCancel">
+  <view slot="header">
+    <view class='font-28' style='width:100%;height:90rpx;'>
+      <view class='font-36' style='float:left;position:absolute;left:300rpx; margin: 20rpx 20rpx 30rpx 20rpx;color:black;'>价格明细</view>
+      <view bindtap="handleCancel" style='float:left;position:absolute;right:10rpx;color:gray; margin: 10rpx 0rpx 0rpx 0rpx;'>
+        <image style='width:60rpx;height:60rpx;' src='/image/close.png'></image>
+      </view>
+    </view>
+    <!--基础项-->
+    <view>
+      <view class='breakline' style='height:10rpx;padding:0rpx 100rpx 0rpx 100rpx;width:50%;margin-left:80rpx;'></view>
+      <view class='font-32' style='height:50rpx;padding:30rpx 100rpx 10rpx 100rpx;text-align:left;color:black;'>基础项</view>
+      <block wx:for="{{basicsList}}" wx:key="key" style='pad'>
+        <view class='font-28' style='height:30rpx;padding:10rpx 100rpx 10rpx 100rpx;color: gray;'>
+          <view style='float:left'>{{item.name}}</view>
+          <view style='float:left;position: absolute;right:40rpx;'>
+            <text class='font-28' style='padding:0rpx 100rpx 0rpx 100rpx;'>￥{{item.price}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!--阿姨体检项-->
+    <view wx:if="{{healthVisible}}">
+      <view class='breakline' style='height:10rpx;padding:0rpx 100rpx 0rpx 100rpx;width:50%;margin-left:80rpx;margin-top:20rpx;'></view>
+      <view class='font-32' style='height:50rpx;padding:30rpx 100rpx 10rpx 100rpx;text-align:left;color:black;'>体检项</view>
+      <block wx:for="{{healthList}}" wx:key="key" style='pad'>
+        <view wx:if="{{item.check}}" class='font-28' style='height:30rpx;padding:10rpx 100rpx 10rpx 100rpx;color: gray;'>
+          <view style='float:left'>{{item.name}}</view>
+          <view style='float:left;position: absolute;right:40rpx;'>
+            <text class='font-28' style='padding:0rpx 100rpx 0rpx 100rpx;'>￥{{item.price}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!--保险项项-->
+    <view wx:if="{{insuranceVisible}}">
+      <view class='breakline' style='height:10rpx;padding:0rpx 100rpx 0rpx 100rpx;width:50%;margin-left:80rpx;margin-top:20rpx;'></view>
+      <view class='font-32' style='height:50rpx;padding:30rpx 100rpx 10rpx 100rpx;text-align:left;color:black;'>保险项</view>
+      <block wx:for="{{insuranceList}}" wx:key="key" style='pad'>
+        <view wx:if="{{item.check}}" class='font-28' style='height:30rpx;padding:10rpx 100rpx 10rpx 100rpx;color: gray;'>
+          <view style='float:left'>{{item.name}}</view>
+          <view style='float:left;position: absolute;right:40rpx;'>
+            <text class='font-28' style='padding:0rpx 100rpx 20rpx 100rpx;'>￥{{item.price}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!--增值服务项-->
+    <view wx:if="{{appreciationVisible}}">
+      <view class='breakline' style='height:10rpx;padding:0rpx 100rpx 0rpx 100rpx;width:50%;margin-left:80rpx;margin-top:20rpx;'></view>
+      <view class='font-32' style='height:50rpx;padding:30rpx 100rpx 10rpx 100rpx;text-align:left;'>增值服务项</view>
+      <block wx:for="{{appreciationList}}" wx:key="key" style='pad'>
+        <view wx:if="{{item.check}}" class='font-28' style='height:30rpx;padding:10rpx 100rpx 10rpx 100rpx;color: gray;'>
+          <view style='float:left'>{{item.name}}</view>
+          <view style='float:left;position: absolute;right:40rpx;'>
+            <text class='font-28' style='padding:0rpx 100rpx 0rpx 100rpx;'>￥{{item.price}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view style='margin:40rpx 0rpx 0rpx 100rpx;background-color:white;width:100%;height:70rpx;'>
+      <text class='font-28'>优惠费用：</text>
+      <text class='font-28' style='text-decoration:line-through;'>￥{{primeCost}}</text><text class='font-36' style='margin-left:10rpx;'>￥{{priceAll}}</text>
+    </view>
+    <!-- <view style='margin:40rpx 0rpx 0rpx 100rpx;background-color:white;width:100%;height:70rpx;'>
+      <text class='font-28' style=''>优惠费用：</text>
+      <text class='font-36' style=''>￥{{priceAll}}</text>
+    </view> -->
+    <view style='width:100%;height:100rpx;'></view>
+  </view>
+</i-action-sheet>

@@ -1,0 +1,342 @@
+.add_btn {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0px;
+}
+
+.imagePathBox {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.shengcheng {
+  width: 80%;
+  height: 80%;
+  position: fixed;
+  top: 50rpx;
+  left: 50%;
+  margin-left: -40%;
+  z-index: 10;
+}
+
+.baocun {
+  display: block;
+  width: 80%;
+  height: 80rpx;
+  padding: 0;
+  line-height: 80rpx;
+  text-align: center;
+  position: fixed;
+  bottom: 50rpx;
+  left: 10%;
+  background: #ff7f27;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 44rpx;
+}
+
+.open-rule {
+  border: 2rpx #d3d3d3 solid;
+  box-sizing: border-box;
+  width: 524rpx;
+  font-size: 24rpx;
+  margin: 60rpx auto;
+  text-align: center;
+  line-height: 46rpx;
+  border-radius: 40rpx;
+}
+
+.rule-list {
+  margin-top: 30rpx;
+}
+
+.rule-list:last-child {
+  margin-bottom: 60rpx;
+}
+
+.rule-title {
+  font-size: 28rpx;
+}
+
+.rule-content {
+  font-size: 24rpx;
+}
+
+.on {
+  transform: rotate(180deg);
+}
+/* 温馨提示 */
+.warntip{
+  color: #000000;
+  border-radius:20rpx;
+  padding: 20rpx; 
+  margin: 5rpx;
+  background-color: #fff1e5;
+  border: 2rpx solid#fff1e5;
+}
+/* 弹出框 */
+
+.modal {
+  z-index: 101;
+  /* height: 558rpx; *//* width: 100%; *//* background-color: #fff; */
+  position: fixed;
+  bottom: 27%;
+  left: -6%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+/* 遮罩 */
+
+.mask {
+  z-index: 100;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  position: fixed;
+  bottom: 0;
+}
+
+.modal-cou {
+  width: 850rpx;
+  position: relative;
+}
+
+.coupon-bg {
+  width: 100%;
+}
+
+.coupon-list-box {
+  position: absolute;
+  left: 0%;
+  right: 0;
+  top: 39%;
+  max-height: 450rpx;
+  background: transparent;
+}
+
+.wrapper {
+  margin: 0 0 20rpx 11%;
+  width: 73%;
+  display: flex;
+  background: #fff;
+  border-radius: 6rpx;
+  /* background:linear-gradient(-90deg,#ff7206,#faad52); *//*实现颜色渐变 */
+}
+
+/*前半部分样式*/
+
+.flex-content {
+  position: relative;
+  /* flex: 1; *//* padding: 20rpx 30rpx; */
+  text-align: center;
+  width: 168rpx;
+}
+
+/*后半部分样式*/
+
+.tip {
+  position: relative;
+  padding: 20rpx 20rpx 10rpx 30rpx;
+  flex: 40 0 100rpx;
+}
+
+/*中间竖直虚线样式*/
+
+.split-line {
+  position: relative;
+  flex: 0 0 0;
+  margin: 0 0rpx 0 6rpx;
+  border-left: 2rpx dashed #bababa;
+}
+
+/*给虚线加两个伪类，基本样式如下*/
+
+.split-line:before, .split-line:after {
+  content: '';
+  position: absolute;
+  width: 32rpx;
+  height: 16rpx;
+  background: #ff5a00;
+  left: -18rpx;
+  z-index: 1;
+}
+
+/*给前半部分加两个伪类，基本样式如下*/
+
+.content:before, .content:after {
+  content: '';
+  position: absolute;
+  /* width: 32rpx; */
+  height: 16rpx;
+  background: #fff;
+  left: -16rpx;
+  z-index: 1;
+}
+
+/*给前半部分加两个伪类，基本样式如下*/
+
+.tip:before, .tip:after {
+  content: '';
+  position: absolute;
+  /* width: 32rpx; */
+  height: 16rpx;
+  background: #fff;
+  right: -16rpx;
+  z-index: 1;
+}
+
+.content:before, .tip:before, .split-line:before {
+  border-radius: 0 0 16rpx 16rpx;
+  top: 0;
+}
+
+.content:after, .tip:after, .split-line:after {
+  border-radius: 16rpx 16rpx 0 0;
+  bottom: 0;
+}
+
+.money {
+  font-size: 60rpx;
+  color: #f02d2d;
+}
+
+.money text {
+  font-size: 40rpx;
+  /* padding-right: 20rpx;  */
+}
+
+.title {
+  color: #f02d2d;
+}
+
+.conditions {
+  color: #707070;
+  padding: 15rpx 0;
+}
+
+.off-btn {
+  width: 52rpx;
+  height: 52rpx;
+  margin: 20rpx auto 0 auto;
+}
+
+/* 登录提示弹出框 */
+
+.modal-login {
+  z-index: 101;
+  /* height: 558rpx; *//* width: 100%; *//* background-color: #fff; */
+  position: fixed;
+  bottom: 35%;
+  left: 7%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.modal-login-bg {
+  width: 650rpx;
+  position: relative;
+}
+
+.login-prompt {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+}
+
+.login-title {
+  text-align: center;
+  color: #ff5400;
+  letter-spacing: 6rpx;
+  padding: 50rpx 0;
+}
+
+.login-min-t {
+  text-align: center;
+  color: #333;
+}
+
+.col-mm-r {
+  color: #ff0404;
+}
+
+.fun-btn {
+  padding: 50rpx 0 0 0;
+}
+
+.refuse-btn {
+  width: 200rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border: 2rpx solid #f5f1f0;
+  color: #757372;
+  border-radius: 40rpx;
+  letter-spacing: 4rpx;
+  margin: 0 20rpx 0 0;
+}
+
+.sign-btn {
+  width: 200rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  /* background: #ff8a00; */
+  background: -webkit-linear-gradient(left, #ff8a00, #fc7817, #fc7122);
+  box-shadow: 0 6rpx 8rpx 0 #ff9d64;
+  color: #fff;
+  border-radius: 40rpx;
+  letter-spacing: 4rpx;
+  margin: 0 0 0 20rpx;
+}
+
+image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.user-evaluation {
+  padding: 20rpx;
+}
+
+.user-eval-t {
+  padding: 0 0 20rpx 0;
+}
+
+.to-personal {
+  padding: 0 0 0 10rpx;
+}
+
+.user-pic {
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+  border-radius: 50%;
+}
+
+.user-eval-cont {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  padding: 20rpx 0 0 0;
+}
+
+.user-eval-list{
+  padding: 0 0 20rpx 0;
+}
+
+.perSize{
+  font-size: 40rpx;
+}

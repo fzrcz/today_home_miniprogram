@@ -1,0 +1,39 @@
+<view style='padding-left:60rpx; padding-top:20rpx; font-weight:bold; font-size:40rpx;'>
+  工作意向
+</view> 
+<view class='font-28' style='padding:30rpx 60rpx 0;'>
+  选择您的工作意向，能让雇主精准的找到您！
+</view> 
+<view style='padding:50rpx 25rpx;'>
+  <radio-group bindchange="radioChange">
+    <block wx:for="{{dataList}}">  
+        <label class="box-style {{item.checked?'shadow':''}}" style=' line-height:100rpx;' data-id='{{item.id}}' data-checked='{{item.checked}}'>  
+          <radio value="{{item.id}}" checked="{{item.checked}}" hidden="false" />
+          <view class='flex-x flex-center-y'>
+            <image src='{{item.icon}}' style='width:80rpx;height:80rpx; margin-left:20rpx; margin-right:20rpx;' />
+            <view class='font-32'>{{item.name}}</view>  
+          </view>
+          
+        </label> 
+    </block>
+  </radio-group>
+</view>
+<view class='font-28' wx:if='{{subDataList}}' style='padding-left:60rpx;'>选择您想工作的内容</view>
+<view style='padding:50rpx 25rpx;padding-bottom:200rpx;'>
+  <checkbox-group bindchange="switchSelect">
+    <block wx:for="{{subDataList}}">  
+        <label class="box-style {{item.checked?'shadow':''}}" style=' line-height:100rpx;' data-id='{{item.id}}' data-checked='{{item.checked}}'>  
+          <checkbox value="{{item.id}}" checked="{{item.checked}}" hidden="false" />
+          <view class='flex-x flex-center-y'>
+            <image src='{{item.icon}}' style='width:80rpx;height:80rpx; margin-left:20rpx; margin-right:20rpx;' />
+            <view class='font-32'>{{item.name}}</view>  
+          </view>
+          
+        </label> 
+    </block>
+  </checkbox-group>
+</view>
+<view style='position: fixed; bottom:0rpx;background:#fff;'>
+  <view class='btn-style font-32 font-bold' bindtap='confirm' style='margin:55rpx; padding:20rpx; bottom:40rpx; width:600rpx;'>确定</view>
+</view>
+<!-- <view class='btn-style font-32 font-bold' bindtap='confirm' style='margin:55rpx; padding:20rpx; position: fixed; bottom:40rpx; width:600rpx;'>确定</view> -->

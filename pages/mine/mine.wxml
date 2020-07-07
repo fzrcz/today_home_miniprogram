@@ -1,0 +1,235 @@
+<view>
+  <view style='height:300rpx;'>
+    <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/main.jpg' style='width:750rpx; height:329rpx;'></image>
+    <view class="flex-x flex-center-y" style='position:absolute; top:114rpx; left:50rpx; width:700rpx;'>
+      <view class="flex-center" wx:if='{{loginStatus == "login"}}' style='width:140rpx; height:140rpx; border-radius: 50%; background:#fff;' bindtap='toBaseInfo'>
+        <image src='{{headPic}}' mode='aspectFill' style='width:120rpx; height:120rpx; border-radius: 50%;' />
+      </view>
+      <image wx:if='{{loginStatus == "logout"}}' src='/image/icon-person.png' style='width:120rpx; height:120rpx; border-radius: 50%;' />
+
+      <!-- 已登录 -->
+      <view class='flex-y' wx:if='{{loginStatus == "login"}}'>
+        <view style='font-weight:bold; color:#36312b; width:360rpx; padding-left:40rpx;' bindtap='toBaseInfo'>{{nickname}}
+        <view class="certification" catchtap='toAuth'>{{auth?'已实名':'未实名'}}</view>
+        </view>
+        <!-- <view style='color:#36312b; width:360rpx; padding-left:40rpx;padding-top:10rpx; font-size:28rpx;' bindtap='toAuth'>{{auth?'实名认证:':'未实名认证'}} {{auth?name:''}}
+        </view> -->
+        <view style='color:#36312b; width:360rpx; padding-left:40rpx;padding-top:10rpx; font-size:24rpx;'>我的积分：{{accountPoint}}
+        </view>
+        <i-icon type="enter" bindtap='toBaseInfo' size="22" class="to-personal" />
+      </view>
+      <!-- 未登录 -->
+      <view class='flex-y' wx:if='{{loginStatus != "login"}}'>
+        <view style='font-weight:bold; color:#36312b; width:360rpx; padding-left:40rpx;' bindtap='login'>授权登录
+        </view>
+      </view>
+
+      <!-- <image wx:if='{{loginStatus == "login"}}' src='/image/icon-qrcode.png' style='width:100rpx; height:100rpx;' bindtap='toQrcode' /> -->
+    </view>
+  </view>
+
+  <view style="width: 100%;position: absolute;top: 282rpx;">
+    <!-- 提现 -->
+    <view class="account-balance">
+      <view class="account">
+        <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/mine-bg.png"></image>
+        <view class="account-money flex-between">
+          <view class="money-l">
+            <!-- <view class="flex-center-y">
+              <view class="font-28">账户余额</view>
+              <view class="show-real">
+                <image bindtap="openCloseEye" src="{{isOpenEye}}"></image>
+              </view>
+            </view> -->
+            <view class="flex-center-y">
+              <view class="font-28">账户余额</view>
+              <view class="show-real">
+                <image bindtap="openCloseEye" src="{{isOpenEye}}"></image>
+              </view>
+            </view>
+
+            <view wx:if='{{loginStatus != "login"}}' class="font-40 font-bold">---</view>
+            <view wx:else>
+              <view wx:if='{{eyeStatus == 1}}' class="font-40 font-bold">{{balance}}</view>
+              <view wx:if='{{eyeStatus == 0}}' class="font-40 font-bold">****</view>
+            </view>
+          </view>
+          <!-- <view class="monry-c font-26">
+            <view>可提现：100</view>
+            <view>不可提现：100</view>
+          </view> -->
+          <view bindtap="income" class="money-r font-28 flex-between">
+            <view class="icon-cash">
+              <image src="/image/wallet.png"></image>
+            </view>
+            <view>储值/提现</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- 我的订单 -->
+    <view class="order-all">
+      <view class="order-t">我的订单</view>
+      <view class="order-b flex-between">
+
+        <view bindtap="toPay" class="icon-list">
+          <view class="order-icon">
+            <image src="/image/wallet-1.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">待付款</view>
+          <view wx:if='{{toPayNum != 0 && loginStatus == "login"}}' class="{{toPayNum == 0 || loginStatus != 'login'?'':'round'}}">{{toPayNum == 0 ?'':toPayNum}}</view>
+        </view>
+
+        <view bindtap="inService" class="icon-list">
+          <view class="order-icon">
+            <image src="/image/time.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">进行中</view>
+          <view wx:if='{{inServiceNum != 0 && loginStatus == "login"}}' class="{{inServiceNum == 0 || loginStatus != 'login'?'':'round'}}">{{inServiceNum == 0 ?'':inServiceNum}}</view>
+        </view>
+
+        <view bindtap="toEvaluate" class="icon-list">
+          <view class="order-icon">
+            <image src="/image/evaluate.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">待评价</view>
+          <view wx:if='{{toEvaluateNum != 0 && loginStatus == "login"}}' class="{{toEvaluateNum == 0 || loginStatus != 'login'?'':'round'}}">{{toEvaluateNum == 0 ?'':toEvaluateNum}}</view>
+        </view>
+        <view bindtap="finished" class="icon-list">
+          <view class="order-icon">
+            <image src="/image/order.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">已完成</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 工具类 -->
+    <view class="tools-all">
+      <view class="tools flex-y flex-x flex-between-x" style="flex-wrap: wrap;">
+        <view class="tools-list new-list" bindtap="toAgent">
+          <view class="tools-icon">
+            <image src="/image/certification.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">代理商</view>
+          <!-- <view class="new-coupon font-20" wx:if='{{couponList.length != 0 && loginStatus == "login"}}'>{{couponList.length}}</view> -->
+        </view>
+        <view class="tools-list new-list" bindtap="toMyCoupon">
+          <view class="tools-icon">
+            <image src="/image/release.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">优惠券</view>
+          <view class="new-coupon font-20" wx:if='{{couponList.length != 0 && loginStatus == "login"}}'>{{couponList.length}}</view>
+        </view>
+        <!-- <view class="tools-list" bindtap="releaseRequire">
+          <view class="tools-icon">
+            <image src="/image/release.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">发布需求</view>
+        </view> -->
+        <view class="tools-list" bindtap="toShare">
+          <view class="tools-icon">
+            <image src="/image/gift.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">
+            <view>分享有礼</view>
+            <!-- <view class="col-c-r">5%的返利</view> -->
+          </view>
+        </view>
+        <view class="tools-list" bindtap="address">
+          <view class="tools-icon">
+            <image src="/image/address.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">常用地址</view>
+        </view>
+        <view class="tools-list" bindtap="myClient">
+          <view class="tools-icon">
+            <image src="/image/customer.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">我的客户</view>
+        </view>
+        <view class="tools-list" bindtap='toCashCoupon'>
+          <view class="tools-icon">
+            <image src="/image/cash-icon.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-26">现金券兑换</view>
+        </view>
+        <view class="tools-list" bindtap='toCall'>
+          <view class="tools-icon">
+            <image src="/image/kf-lan.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-26">联系客服</view>
+        </view>
+        <view class="tools-list" bindtap="releaseRequire">
+          <view class="tools-icon">
+            <image src="/image/complaint.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-26">常见问题</view>
+        </view>
+        <view class="tools-list" bindtap="complaintCenter">
+          <view class="tools-icon">
+            <image src="/image/opinion.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-26">意见反馈</view>
+        </view>
+
+      </view>
+      <view class="tools flex-y flex-x flex-between-x">
+        <!-- <view class="tools-list" bindtap='toCashCoupon'>
+          <view class="tools-icon">
+            <image src="/image/cash-icon.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-26">现金券兑换</view>
+        </view>
+        <view class="tools-list" bindtap='toCall'>
+          <view class="tools-icon">
+            <image src="/image/kf-lan.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-26">联系客服</view>
+        </view>
+        <view class="tools-list" bindtap="releaseRequire">
+          <view class="tools-icon">
+            <image src="/image/complaint.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-26">常见问题</view>
+        </view>
+        <view class="tools-list" bindtap="complaintCenter">
+          <view class="tools-icon">
+            <image src="/image/opinion.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-26">意见反馈</view>
+        </view> -->
+        <!-- <view class="tools-list" bindtap="toQrcode">
+          <view class="tools-icon">
+            <image src="/image/follow.png" mode='aspectFit'></image>
+          </view>
+          <view class="font-28">关注我们</view>
+        </view> -->
+      </view>
+    </view>
+    <view wx:if='{{loginStatus == "login"}}' class="logout" bindtap='logout'>退出登录</view>
+  </view>
+
+</view>
+<!-- 新增 -->
+
+
+<!-- 弹窗登录 -->
+<!-- <view catchtouchmove="ture">
+  <i-modal visible="{{ visible }}" bind:click="handleCloseLogin" show-ok="{{false}}" show-cancel="{{false}}">
+    <view style='position: relative;height:320rpx;'>
+      <view style='position: absolute;right:30rpx;top:-20rpx;' bindtap='handleCloseLogin'>
+        <image style='width:60rpx;height:60rpx;' src='/image/close.png'></image>
+      </view>
+      <view style='margin-top:20rpx;' class="flex-center">
+        <image style='height:100rpx;width:100rpx;' src='/image/login-log.png'></image>
+      </view>
+      <view class='font-36' style='color:#1c2438'>Hi~请您登录</view>
+      <view>
+        <button style='margin:30rpx;background:#ff7f27;color:#fff' open-type='getUserInfo' bindgetuserinfo='getUnionId'>授权登录</button>
+      </view>
+    </view>
+  </i-modal>
+</view> -->

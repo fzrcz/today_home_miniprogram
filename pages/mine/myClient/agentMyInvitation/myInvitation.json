@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-divider": "../../../../iview/divider/index"
+  },
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle":"dark"
+}

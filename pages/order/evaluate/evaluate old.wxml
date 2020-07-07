@@ -1,0 +1,93 @@
+<!--pages/order/evaluate/evaluate.wxml-->
+<view>
+  <view class='evaluate-t'>
+    <view class='evaluate-t-t'>
+      <view class='evaluate-t-t-l'>
+        <image src='{{product.productFile[0].filePath}}'></image>
+      </view>
+      <view class='evaluate-t-t-r'>
+        <view class='font-size-30'>评价：</view>
+
+        <!-- <view class='star-box' bindtap="chooseicon">
+          <image src='{{tabArr.curHdIndex >"0" ? "/image/star-1.png" : "/image/star.png"}}' data-id="1"></image>
+          <image src='{{tabArr.curHdIndex >"1" ? "/image/star-1.png" : "/image/star.png"}}' data-id="2"></image>
+          <image src='{{tabArr.curHdIndex >"2" ? "/image/star-1.png" : "/image/star.png"}}' data-id="3"></image>
+          <image src='{{tabArr.curHdIndex >"3" ? "/image/star-1.png" : "/image/star.png"}}' data-id="4"></image>
+          <image src='{{tabArr.curHdIndex >"4" ? "/image/star-1.png" : "/image/star.png"}}' data-id="5"></image>
+        </view> -->
+
+        <view wx:if='{{status == "完成"}}' class='star-box'>
+          <image src='{{tabArr.curHdIndex >"0" ? "/image/star-1.png" : "/image/star.png"}}' data-id="1"></image>
+          <image src='{{tabArr.curHdIndex >"1" ? "/image/star-1.png" : "/image/star.png"}}' data-id="2"></image>
+          <image src='{{tabArr.curHdIndex >"2" ? "/image/star-1.png" : "/image/star.png"}}' data-id="3"></image>
+          <image src='{{tabArr.curHdIndex >"3" ? "/image/star-1.png" : "/image/star.png"}}' data-id="4"></image>
+          <image src='{{tabArr.curHdIndex >"4" ? "/image/star-1.png" : "/image/star.png"}}' data-id="5"></image>
+        </view>
+        <view wx:else class='star-box' bindtap="chooseicon">
+          <image src='{{tabArr.curHdIndex >"0" ? "/image/star-1.png" : "/image/star.png"}}' data-id="1"></image>
+          <image src='{{tabArr.curHdIndex >"1" ? "/image/star-1.png" : "/image/star.png"}}' data-id="2"></image>
+          <image src='{{tabArr.curHdIndex >"2" ? "/image/star-1.png" : "/image/star.png"}}' data-id="3"></image>
+          <image src='{{tabArr.curHdIndex >"3" ? "/image/star-1.png" : "/image/star.png"}}' data-id="4"></image>
+          <image src='{{tabArr.curHdIndex >"4" ? "/image/star-1.png" : "/image/star.png"}}' data-id="5"></image>
+        </view>
+
+      </view>
+    </view>
+    <view class='evaluate-t-c'>
+      <view wx:if='{{status == "完成"}}' class='font-26'>
+        <textarea value='{{concent}}' placeholder-style='color:#bfbfbf'style="color:black" disabled="disabled">
+        </textarea>
+      </view>
+      <view wx:else='{{status == "客户已确认"}}' class='font-26'>
+        <textarea value='{{concent}}' bindinput="contentInput" placeholder-style='color:#bfbfbf' placeholder="写下您对我们服务的评价，以便我们继续改进，更好的为您服务!">
+        </textarea>
+      </view>
+      <view class='font-26 evaluate-t-c-p'>美好生活，今日到家！</view>
+    </view>
+    <view>
+      <view wx:if='{{status == "完成"}}'>
+        <checkbox-group bindchange="switchSelect">
+          <block wx:for="{{subDataList}}" wx:key>
+            <label class="box-style1 {{item.check?'shadow1':''}}" bindtap='' data-index="{{index}}" data-checked='{{item.check}}'>
+              <checkbox value="{{item.id}}" checked="{{item.check}}" hidden="false" />
+              <view>
+                <view class='font-28' style="text-align: center;">{{item.name}}</view>
+              </view>
+            </label>
+          </block>
+        </checkbox-group>
+      </view>
+      <view wx:else>
+        <checkbox-group bindchange="switchSelect">
+          <block wx:for="{{subDataList}}" wx:key>
+            <label class="box-style1 {{item.check?'shadow1':''}}" bindtap='checkbox' data-index="{{index}}" data-checked='{{item.check}}'>
+              <checkbox value="{{item.id}}" checked="{{item.check}}" hidden="false" />
+              <view>
+                <view class='font-28' style="text-align: center;">{{item.name}}</view>
+              </view>
+            </label>
+          </block>
+        </checkbox-group>
+      </view>
+    </view>
+    <view class='evaluate-t-b'>
+      <view class="imgList" style="float:left" wx:for="{{imgUrls}}" wx:for-item="item" wx:key="{{index}}">
+        <image src="{{item}}" mode="aspectFill"></image>
+      </view>
+      <view wx:if='{{status == "完成"}}' style="float:left">
+        <!-- <image src='/image/phone.png' bindtap="eveluateImg"></image> -->
+      </view>
+      <view wx:else style="float:left">
+        <image src='/image/phone.png' bindtap="eveluateImg"></image>
+      </view>
+    </view>
+  </view>
+  <view wx:if='{{status == "完成"}}'>
+  </view>
+  <view wx:else>
+    <button class='evaluate-b font-28' bindtap="confirm">
+      <text decode="{{true}}">发&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表</text>
+    </button>
+  </view>
+
+</view>

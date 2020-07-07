@@ -1,0 +1,19 @@
+
+<view>
+  <block wx:for="{{dataList}}" wx:for-index='index'>
+    <view style='margin:40rpx 25rpx; padding:10rpx 25rpx; border-radius: 20rpx; box-shadow: 0rpx 0rpx 2rpx  #888888;' bindtap='read' data-url='{{item.url}}' data-id='{{item.id}}' data-index='{{index}}' data-isread='{{item.lookOver}}'>
+      <view class='list-time'>
+        <text style='float:right' class="{{item.lookOver?'':'theme-color'}}">{{item.lookOver?'已读':'未读'}}</text>
+        <!-- <text>{{item.sendTime}}</text> -->
+      </view>
+      <view class='font-32' style='line-height:50rpx; margin-bottom:10rpx;'><text class='theme-color'>《{{item.messageType}}》</text>{{item.message}}</view>
+      <view class='font-28' style='text-align:right; margin-bottom:10rpx;'>{{item.sendTime}}</view>
+      <!-- <view class='font-28' style='text-align:right; margin-bottom:10rpx;'>查看详情<i-icon type="enter" /></view> -->
+    </view>
+  </block>  
+  <!--加载更多提示-->
+  <view wx:if="{{showType}}">
+    <i-load-more tip="{{ loadMoreTip }}" loading="{{loadType}}"/>
+  </view>
+</view>
+  

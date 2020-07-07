@@ -1,0 +1,52 @@
+/* pages/recommend/lookingNanny/lookingNanny.wxss */
+
+.looking-box {
+  margin: 0 0 190rpx 0;
+}
+
+.looking-bottom {
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.looking-btn {
+  width: 50%;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.col-m-o {
+  background: -webkit-linear-gradient(left, #fe9215, #fc7021);
+  color: #fff;
+}
+
+.looking-c {
+  position: relative;
+  margin-top: 90rpx;
+}
+
+.nanny-btn-box image {
+  width:466rpx;
+  height:84rpx
+}
+
+.nanny-btn-box {
+  position: absolute;
+  left: 18.8%;
+  top: 46%;
+}
+
+.nanny-btn-text {
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 20%;
+  right: 0;
+  text-align: center;
+}

@@ -1,0 +1,30 @@
+<view style="padding-bottom:150rpx;">
+  <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/image-recruit.jpg?{{random}}' bindload="imageLoad" style='width:{{viewWidth}}rpx; height:{{viewHeight}}rpx;'></image>
+</view>
+
+<!-- <view wx:if='{{!isSuccess}}' style='position: fixed; bottom:0rpx; background:#888; opacity:0.8; width:750rpx; height:310rpx;'></view> -->
+<view wx:if='{{!isSuccess}}' style='padding:40rpx 50rpx; position: fixed; bottom:0rpx; width:650rpx;'>
+  <!-- <view class='btn-style-fill'>微信获取手机号码</view> -->
+  <!-- <view class='phone-input' wx:if='{{!isSuccess}}'>
+    <view class="flex-x flex-center-y">
+      <input type="number" style='height:90rpx;width:460rpx;font-size:32rpx;' placeholder="请输入手机" value="{{phoneVal}}" bindinput="phoneInput" cursor-spacing='130rpx' /> -->
+      <!-- <button class='btn-style font-28' style='padding:0rpx 20rpx; background:#fff;' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>获取手机</button> -->
+    <!-- </view>
+  </view> -->
+  <button wx:if='{{!isSuccess}}' class='btn-style-fill' style='padding:0; margin-top:40rpx;' open-type='getUserInfo' bindgetuserinfo='getUnionId'>立即加入</button>
+  
+  <!-- <view wx:if='{{isSuccess}}' class='flex-x flex-center font-32' style='margin-top:40rpx;'>
+    <view class='btn-style' style='padding:20rpx; width:200rpx;' bindtap='toHelp'>客服协助</view>
+    <view class='btn-style-fill' style='padding:20rpx; margin-left:40rpx; width:360rpx;' bindtap='toComplement'>自行完善</view>
+  </view> -->
+</view>
+<view wx:if='{{isSuccess}}' class='btn-style-fill' style='box-shadow: 0rpx 2rpx 8rpx 2rpx #cfcfcf; padding:20rpx; position: fixed; bottom:40rpx; left:50rpx; width:610rpx;' bindtap='toComplement'>完善个人资料</view>
+
+<view style='position: absolute; top:{{viewHeight-220}}rpx; left:80rpx; width:180rpx; height:180rpx;' bindtap='previewPic'></view>
+<view style='position: absolute; top:{{viewHeight-220}}rpx; left:300rpx; width:360rpx; height:180rpx;' bindtap='toHelp'></view>
+
+<view catchtouchmove="ture">
+  <i-modal title="" visible="{{ visible }}" actions="{{ actions }}" bind:click="handleClick">
+    <view class='font-32' style='padding:0 20rpx;'>您的申请我们已收到，您的资料还需要完善，以便更快的找到合适的工作。</view>
+  </i-modal>
+</view>

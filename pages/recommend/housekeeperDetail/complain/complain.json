@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-icon": "/iview/icon/index",
+    "i-radio-group": "/iview/radio-group/index",
+    "i-radio": "/iview/radio/index"
+  }
+}

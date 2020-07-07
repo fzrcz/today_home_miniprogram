@@ -1,0 +1,79 @@
+.pro-list-l{
+  width:200rpx; 
+  height:200rpx;
+  position: relative;
+}
+.pro-list-l-img{
+  width: 200rpx;
+  height: 100%;
+  display: block;
+}
+.double-lo{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60rpx;
+}
+.swiper {
+  position: relative;
+  /* height: 340rpx; */
+  z-index: 1;
+}
+
+.swiper-panel {
+  height: 276rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 8rpx #e9e9e9;
+}
+
+.swiper-panel swiper {
+  height: 276rpx;
+  border-radius: 20rpx;
+}
+
+.swiper-panel image {
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+
+.swiper-item {
+  border-radius: 20rpx;
+}
+.swiper-list {
+  overflow: hidden;
+}
+.content {
+  padding: 0 30rpx;
+}
+.content:before, .content:after {
+  content: '';
+  position: absolute;
+  /* width: 32rpx; */
+  height: 16rpx;
+  background: #fff;
+  left: -16rpx;
+  z-index: 1;
+}
+
+/*给前半部分加两个伪类，基本样式如下*/
+
+.tip:before, .tip:after {
+  content: '';
+  position: absolute;
+  /* width: 32rpx; */
+  height: 16rpx;
+  background: #fff;
+  right: -16rpx;
+  z-index: 1;
+}
+
+.content:before, .tip:before, .split-line:before {
+  border-radius: 0 0 16rpx 16rpx;
+  top: 0;
+}
+
+.content:after, .tip:after, .split-line:after {
+  border-radius: 16rpx 16rpx 0 0;
+  bottom: 0;
+}

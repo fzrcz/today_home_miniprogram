@@ -1,0 +1,62 @@
+<i-cell-group>
+  <i-cell title="姓名" is-link url='/pages/mine/auth/auth'>
+    <view slot="footer">
+      <block wx:if='{{auth}}'>
+        <text style="margin-right:10rpx;">{{name}}</text>
+        <i-tag class="i-tags" type="border" color="theme">已实名</i-tag>
+      </block>
+      <block wx:else>
+        未实名认证
+      </block>
+    </view>
+  </i-cell>
+  <i-cell title="昵称" is-link url='editNick/editNick?nickname={{nickname}}'>
+    <view slot="footer">{{nickname}}</view>
+  </i-cell>
+  <i-cell title="性别" >
+    <view slot="footer">{{sex}}</view>
+  </i-cell>
+  <i-cell title="出生年月" >
+    <view slot="footer">{{birthMonth}}</view>
+  </i-cell>
+  <!-- <i-cell title="生肖" >
+    <view slot="footer">龙</view>
+  </i-cell>
+  <i-cell title="民族" >
+    <view slot="footer">汉</view>
+  </i-cell> -->
+  <picker mode="region" bindchange="changeNative" value="{{native}}" >
+    <i-cell title="籍贯" is-link>
+      <view slot="footer">
+        {{native[0]}} {{native[1]}} {{native[2]}}
+      </view>
+    </i-cell>
+  </picker>
+  <i-cell title="手机号码" >
+    <view slot="footer">{{phone}}</view>
+  </i-cell>
+  
+  <i-cell title="信仰" is-link bindtap='chooseBelief'>
+    <view slot="footer" bindtap='chooseBelief'>{{belief==null?'未知':belief}}</view>
+  </i-cell>
+  <i-cell title="学历" is-link bindtap='chooseEdu'>
+    <view slot="footer" bindtap='chooseEdu'>{{edu==null?'未知':edu}}</view>
+  </i-cell>
+  <picker bindchange="changeExp" value="{{expIndex}}" range="{{expArr}}">
+    <i-cell title="工作年限" is-link >
+      <view slot="footer">{{expArr[expIndex]}}</view>
+    </i-cell>
+  </picker>
+  <picker bindchange="changeSalary" value="{{salaryIndex}}" range="{{salaryArr}}">
+    <i-cell title="期望薪资" is-link>
+      <view slot="footer">{{salaryArr[salaryIndex]}}</view>
+    </i-cell>
+  </picker>
+  <!-- <picker mode="region" bindchange="changeLive" value="{{serviceArea}}" >
+    <i-cell title="服务区域" is-link>
+      <view slot="footer">
+        {{serviceArea[0]}} {{serviceArea[1]}} {{serviceArea[2]}}
+      </view>
+    </i-cell>
+  </picker> -->
+</i-cell-group>

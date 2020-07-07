@@ -1,0 +1,148 @@
+<!--pages/recommend/lookingNanny/onlineBooking/onlineBooking.wxml-->
+<view class="content">
+  <view class="booking-t">
+    <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/nanny-form.png"></image>
+    <view class="booking-content" wx:if="{{clickId==0}}">
+      <view class="font-40">{{housekeeperType}}需求</view>
+      <view class="font-24">完善您的需求，我们将为您匹配最适合的保姆</view>
+    </view>
+    <view class="booking-content" wx:if="{{clickId!=0}}">
+      <view class="font-40">{{housekeeperType}}需求</view>
+      <view class="font-24">完善您的需求，我们将为您匹配最适合的服务人员</view>
+    </view>
+  </view>
+  <view class="booking-c">
+    <view class="form-box">
+      <view class="form-list-box">
+        <!-- 循环体 -->
+        <!-- <view wx:for='{{requestList}}' wx:for-index="waiIndex" wx:for-item="waiItem" wx:key>
+          <view class="form-list">
+            <view class="form-list-title font-36">{{waiItem.key}}？</view>
+            <view class="form-list-choose">
+              <view wx:for='{{waiItem.dictionaryMapList}}' wx:for-index="neiIndex" wx:for-item="neiItem" wx:key data-bigindex="{{waiIndex}}" data-smallindex="{{neiIndex}}" bindtap="selectValue" class="choose-list {{neiIndex == bigIndexArr[waiIndex]?'choose-list-on':''}}">{{neiItem.value}}</view>
+            </view>
+          </view>
+        </view> -->
+        <view wx:for='{{itemList}}' wx:for-index="waiIndex" wx:for-item="waiItem" wx:key="waiIndex">
+          <view wx:if='{{waiItem != ""}}' class="form-list">
+            <view class="form-list-title font-36">{{waiItem}}？</view>
+            <view class="form-list-choose">
+              <view wx:for='{{valueList[waiIndex]}}' wx:for-index="neiIndex" wx:for-item="neiItem" wx:key="neiIndex" data-bigindex="{{waiIndex}}" data-smallindex="{{neiIndex}}" bindtap="selectValue" class="choose-list {{neiIndex == bigIndexArr[waiIndex]?'choose-list-on':''}}">{{neiItem.value}}</view>
+            </view>
+          </view>
+        </view>
+
+
+        <view class="form-list" wx:if="{{clickId==1}}">
+          <view class="form-list-title font-36">您家中孕妇的预产期为？</view>
+          <view class="form-list-choose">
+            <view class="choose-time">
+              <picker class="time-picker" mode="date" value="{{date}}" bindchange="bindDateChange">
+                <view class="time-box flex-between">
+                  <view class="year">{{year}}年</view>
+                  <view class="month">{{month}}月</view>
+                  <view class="day">{{day}}日</view>
+                </view>
+              </picker>
+            </view>
+          </view>
+        </view>
+
+        <input name='areaId'value='{{areaId}}' hidden='true'></input>
+        <view class='form-list'>
+          <view class="form-list-title font-36">留下您的服务地址</view>
+          姓名:<textarea bindinput="getEmployerName" class="inputadd" name='' auto-height='true' placeholder="请输入姓名"></textarea>
+          详细地址:<input class="inputadd" name='address' placeholder="请选择地址" value='{{address}}' disabled='true' bindtap='toSearch'></input>
+        
+        <!-- </view>
+        <view class='form-list'>
+          <view style='width:180rpx;'>门牌号</view> -->
+          门牌号:<textarea bindinput="doorNum" class="inputadd" name='houseNumber' auto-height='true' placeholder="请输入门牌号"></textarea>
+        </view>
+
+        <!-- <view class="form-list">
+          <view class="form-list-title font-36">服务地址？</view>
+          <view class="form-list-choose input-address">
+            <view class="flex-between address-list">
+              <view>福建省</view>
+              <view>福州市</view>
+              <picker bindchange="bindPickerArea" value="{{index}}" range="{{areaArr[0]}}" range-key="fullname">
+                <view class="flex-center-y">
+                  <view class="picker">
+                    {{areaArr[0][index].fullname}}
+                  </view>
+                  <image class="down" src="/image/down-1.png"></image>
+                </view>
+              </picker>
+              <picker bindchange="bindPickerTown" value="{{townIndex}}" range="{{townArr[0]}}" range-key="fullname">
+                <view class="flex-center-y">
+                  <view class="picker">
+                    {{townArr[0][townIndex].fullname}}
+                  </view>
+                  <image class="down" src="/image/down-1.png"></image>
+                </view>
+              </picker>
+            </view>
+            <view class="address-details-box">
+              <view>请输入地址：</view>
+              <textarea class="address-details" bindinput="detailAddress" placeholder="请输入详细地址"></textarea>
+            </view>
+          </view>
+        </view> -->
+
+        <view class="form-list">
+          <view class="form-list-title font-36">请留下您的联系方式</view>
+          <view class="form-list-choose input-call">
+            <input class="input-call-s" type="number" maxlength="11" bindinput="getPhone" placeholder-class="input-text" placeholder="请输入您的手机号码" />
+          </view>
+        </view>
+
+        <!-- 网龙购物凭证 -->
+        <view class='form-list' wx:if='{{shopVoucher}}'>
+          <view class="form-list-title font-36">网龙凭证</view>
+          <image src='{{imgUrl1}}' bindtap="chooseImg1" class="shopvoucher"></image>
+          <!-- <image wx:if='{{isUploadPic}}' bindtap="closePic" src="/image/x.png" mode="aspectFit" class="imgclear"></image> -->
+
+        </view>
+
+        <!-- 选择商家 -->
+        <!-- <view class='form-list'>
+          <view class='flex-between font-36'>
+            <view>服务商家选择</view> -->
+            
+            <!-- 注释 <view class="flex-between">
+              <view class="font-28 no-coupon">更多</view>
+              <i-icon type="enter" size='18' />
+            </view> -->
+            
+          <!-- </view>
+          <view style="margin: 40rpx 0;" wx:for="{{storeList}}" wx:key='id' data-index="{{index}}" data-storeid="{{item.id}}" data-storeno="{{item.storeNO}}" bindtap="chooseStore">
+            <view class="serbus-box {{item.selected?'serbuscheck':''}}" >
+              <image wx:if="{{!item.selected}}" class="serbusimg" src="/image/busnessimg.png"></image>
+              <image wx:else class="serbusimg" src="/image/buscheck.png"></image>
+              <view class="serbusti">{{item.name}}</view>
+              <view class="serbus-right">
+                <view class="serbusgap">距您 {{item.distance}}km
+                  <text style="margin:0 10rpx;">|</text>
+                  <text wx:if="{{!item.selected}}">选 择</text>
+                  <image wx:else style="height:20rpx;width:34rpx;margin-left:16rpx;" src="/image/check.png"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view> -->
+
+        <view class="form-list">
+          <view class="form-list-title font-36">备注</view>
+          <view class="form-list-choose input-call">
+            <textarea class="remarks" bindinput="memo" placeholder="(选填)"></textarea>
+          </view>
+        </view>
+
+      </view>
+      <view class="confirm-sub" bindtap="confirmSubmit">确认提交</view>
+
+    </view>
+
+  </view>
+</view>

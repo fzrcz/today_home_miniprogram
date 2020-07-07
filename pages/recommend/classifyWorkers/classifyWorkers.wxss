@@ -1,0 +1,29 @@
+/* pages/recommend/classifyWorkers/classifyWorkers.wxss */
+page{
+  background: #e6e6e6;
+}
+.classfy-list{
+  width: 92%;
+  margin: 30rpx auto 0 auto;
+  background: #fff;
+  border-radius: 10rpx;
+}
+.classfy-list-item{
+  padding: 36rpx 20rpx;
+}
+.worker-content{
+  width: 75%;
+}
+.worker-icon image {
+  width: 103rpx;
+  height: 103rpx;
+  display: block;
+  border-radius: 50%;
+}
+.title-b{
+  font-size: 36rpx;
+  padding: 0 0 8rpx 0;
+}
+.col-mm-s{
+  color: #787878;
+}

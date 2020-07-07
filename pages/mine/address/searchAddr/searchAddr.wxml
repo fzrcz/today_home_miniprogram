@@ -1,0 +1,31 @@
+<view>
+  <!-- 搜索框 -->
+  <view class='serach-view-head-hide'>
+    <view class='flex-x' style=''>
+      <view class="flex-x flex-center-y">
+        <input type="text" name="loginid" style='height:80rpx;width:510rpx;font-size:32rpx;' placeholder="小区/写字楼/公司等" value="{{searchVal}}" bindinput="serachInput" />
+
+      </view>
+    </view>
+  </view>
+
+  <!-- <view class='search'>
+    <view class='search_box'>
+      <image src='../../../images/search.png' class='search_image'></image>
+      <input type='text' confirm-type="search" class='search_input' placeholder='搜索地点' placeholder-class='input_placeholder' bindinput="bindInputSchool"></input>
+    </view>
+  </view> -->
+  <view class='panel font-28'>当前地址</view>
+  <view class='theme-color font-28' style='padding:20rpx 30rpx;' bindtap='BackTap' data-area='{{address}}' data-address='{{address}}'>{{address}}</view>
+
+  <view class='panel font-28'>{{nearby?'附近地址':'搜索地址'}}</view>
+  <block wx:for="{{pois}}" wx:key>
+      <view class='flex-y' style='line-height:50rpx;padding:20rpx 30rpx; border-bottom:2rpx #ddd solid;' bindtap='BackTap' data-lat="{{item.location.lat}}" data-lng="{{item.location.lng}}" data-areaid='{{item.address}}' data-area='{{item.ad_info.province+item.ad_info.city+item.ad_info.district}}' data-address='{{item.title}}'>
+        <view class='font-32'>{{item.title}}</view>
+        <view class='font-28' style='color:#888'>{{item.address}}</view>
+      </view>
+  </block>
+
+</view>
+<i-modal visible="{{ visible }}" title='定位失败，请打开手机wifi来获取准确位置' bind:ok="handleClose" show-cancel='{{false}}' ok-text='知道了'>
+</i-modal>

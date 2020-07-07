@@ -1,0 +1,9 @@
+
+page{  height: 100%;
+}
+
+.backImg{
+  background-image: url("https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/back.jpg");  
+  background-size:100%;  
+
+}

@@ -1,0 +1,25 @@
+<!--pages/mine/income/confirmGetCash/confirmGetCash.wxml-->
+<view class='change-box'>
+  <view class='change-t'>
+    <image class="wx-pay" src="/image/wx-pay.png"></image>
+    <text>微信零钱</text>
+  </view>
+  <view class='change-b'>
+    <view class='cash-t'>提现金额：</view>
+    <view class='cash-input'>
+      <text class='font-36' style='pagging:0 0 0 10rpx;'>￥</text>
+      <input class='list-input' disabled="{{disabled}}" value="{{balance}}" bindinput="getInputMoney" />
+    </view>
+    <view class='cash-change'>
+      <text class="font-24">账户余额：￥{{balance}}</text>
+      <view class="font-24 tip">提示：最低提现金额{{startAmount}}元</view>
+      <!-- <text class="font-size-24" style="color:#82a7ce;padding:0 0 0 30rpx">全部提现</text> -->
+    </view>
+
+    <!-- <button wx:if='{{freezeBalance != 0}}' class="flex-r-w font-28" bindtap="confirmGetCash">审核中</button> -->
+    <button wx:if='{{!canGetCash}}' class="flex-r-w font-28" bindtap="confirmGetCash">审核中</button>
+    <button wx:else class="flex-r-w font-30" bindtap="confirmGetCash">提现</button>
+
+    <view class="font-26 flex-get" bindtap="getCashRecord">提现记录</view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<view style='padding-left:60rpx; padding-top:20rpx; font-weight:bold; font-size:40rpx;'>
+  形象照
+</view>
+<view class='font-32' style='padding:30rpx 60rpx;'>
+  把您最好的照片展示给雇主
+</view>
+<view class="flex-center font-28">
+  <view>
+    <view style='padding:20rpx; text-align:center;'>
+      <view style='width:600rpx; height:600rpx; margin-bottom:20rpx;'>
+        <view bindtap="chooseImageFace">
+          <image src="/image/icon-addImg.png" mode='aspectFill' style='width:600rpx; height:600rpx;position:absolute; z-index:-1;'></image>
+          <image src="{{faceSrc}}" mode='aspectFill' style='width:600rpx; height:600rpx;'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+<!-- <view class='flex-x flex-center font-32' style='margin:20rpx 70rpx;'>
+  <view class='btn-style' style='padding:20rpx 40rpx;' bindtap='toSkip'>跳过</view>
+  <view class='btn-style-fill' style='padding:20rpx 160rpx; margin-left:40rpx;' bindtap='toSkip'>下一步</view>
+</view> -->
+<view class='font-32' style='position: fixed; bottom:20rpx; margin:55rpx;'>
+  <!-- <view class='btn-style' style='padding:20rpx 40rpx;' bindtap='toSkip'>跳过</view> -->
+  <view class='btn-style-fill' style='padding:20rpx; width:600rpx;' bindtap='toSkip'>下一步</view>
+</view>

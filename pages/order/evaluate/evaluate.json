@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "i-drawer": "/iview/drawer/index",
+    "i-notice-bar": "/iview/notice-bar/index",
+    "i-row": "/iview/row/index",
+    "i-col": "/iview/col/index",
+    "i-rate": "/iview/rate/index",
+    "i-icon": "/iview/icon/index"
+  },
+  "navigationBarTitleText": "发表评价"
+}

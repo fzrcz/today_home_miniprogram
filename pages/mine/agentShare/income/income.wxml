@@ -1,0 +1,168 @@
+<!--pages/mime/income/income.wxml-->
+<wxs src="../../../../utils/subutil.wxs" module="tools" />
+
+<view class="content">
+  <view class="in-come">
+
+    <!-- <view class="in-come-t" style="background-image:url('/common/image/mingxi.png');background-size:100% 100%;"> -->
+    <view class="in-come-t" style="background-image:url('https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-worker/mingxi.png');background-size:100% 100%;">
+      <view class="flex-t">
+        <!-- <view class="understand">
+          <image src="/common/image/question.png"></image>
+        </view> -->
+        <view class="fl col-c-white">
+          <view class="flex-t-list flex-between">
+            <view>
+              <view class="font-26">可提现金额</view>
+              <view style="padding:20rpx 0;">
+                <text class="font-46 font-bold">{{avaliableCommission}}</text>
+                <text class="font-24"> 元</text>
+              </view>
+            </view>
+
+            <!-- <view>
+              <view class="font-26">不可提现</view>
+              <view style="padding:20rpx 0;">
+                <text class="font-46 font-bold">{{canNotBalance}}</text>
+                <text class="font-24"> 元</text>
+              </view>
+            </view> -->
+
+            <!-- <view>
+              <view class="font-26">我的推广（单）</view>
+              <view style="padding:20rpx 0;">
+                <text class="font-46 font-bold">{{count}}</text>
+                <text class="font-24"> 单</text>
+              </view>
+            </view> -->
+
+          </view>
+          <view class="flex-b flex-l">
+            <view class="flex-b-list">
+              <view class="font-24">今日佣金：</view>
+              <view class="font-24">
+                <text>{{todayCommission}}</text>
+                <text> 元</text>
+              </view>
+            </view>
+            <view class="flex-b-list">
+              <view class="font-24">本月佣金：</view>
+              <view class="font-24">
+                <text>{{monthCommission}}</text>
+                <text> 元</text>
+              </view>
+            </view>
+            <view class="flex-b-list">
+              <view class="font-24">累计佣金：</view>
+              <view class="font-24">
+                <text>{{totalCommission}}</text>
+                <text> 元</text>
+              </view>
+            </view>
+            <view class="flex-b-list">
+              <view class="font-24">冻结佣金：</view>
+              <view class="font-24">
+                <text>{{frozenCommission}}</text>
+                <text> 元</text>
+              </view>
+            </view>
+            <view class="flex-b-list">
+              <view class="font-24">退单流失佣金：</view>
+              <view class="font-24">
+                <text>{{refuseCommission}}</text>
+                <text> 元</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="flex-r fr">
+          <view class="flex-r-w font-28 cash" bindtap="getCash">提现</view>
+          <view class="flex-r-w font-24 account" bindtap="balanceDetails">账户明细</view>
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class="in-come-b col-b-d">
+      <view class="flex-tab" bindtap="">
+      <!-- <view class="flex-tab" bindtap="onTabsItemTap"> -->
+        <!-- <view class="item-tap {{currentTab==0 ? 'onTab' : ''}}" data-current="0" bindtap="swichTab">
+          <image class="riank-list" src="{{currentTab==0 ? '/image/riank-list.png' : '/image/riank-list-on.png'}}"></image>
+          总收入排行
+        </view>
+        <view class="item-tap {{currentTab==1 ? 'onTab' : ''}}" data-current="1" bindtap="swichTab">
+          <image class="sleep" src="{{currentTab==1 ? '/image/sleep-on.png' : '/image/sleep.png'}}"></image>
+          睡后收入排行
+        </view> -->
+        <view class="item-tap">
+          <!-- <image class="sleep" src="/image/sleep.png"></image> -->
+          推广佣金排行
+        </view>
+      </view>
+
+      <!-- 睡后收入排行 -->
+
+      <view>
+        <view wx:if='{{sleepIncomeRangeListNoData.length == 0}}' class="ranking-box no-ranking">
+          <image class='no-data' src='/image/no-data.png'></image>
+        </view>
+        <view wx:else class="ranking-box">
+          <view class="first-three">
+            <view wx:for="{{sleepIncomeRangeListTop3}}" wx:key='headPic'>
+              <view class="tab-list">
+                <view class="flex-tab-l">
+                  <view class="ranking-in">
+                    <view wx:if='{{index == 0}}'>
+                      <image src="/image/first.png"></image>
+                    </view>
+                    <view wx:if='{{index == 1}}'>
+                      <image src="/image/second.png"></image>
+                    </view>
+                    <view wx:if='{{index == 2}}'>
+                      <image src="/image/third.png"></image>
+                    </view>
+                  </view>
+                  <view class="flex-tab-i">
+                    <view wx:if='{{item.headPic == null}}'>
+                      <image src="/image/mine.png"></image>
+                    </view>
+                    <image wx:else src="{{item.headPic}}"></image>
+                  </view>
+                  <view wx:if='{{item.name != null}}' class="flex-tab-p">
+                    {{tools.getStrTop2(item.name)}}**
+                  </view>
+                  <view wx:else>*****</view>
+                </view>
+                <view class="flex-tab-r col-c-r font-36">￥{{item.totalCommission}}</view>
+              </view>
+            </view>
+          </view>
+          <!-- 第四名及以后 -->
+          <view class="four-late">
+            <view wx:for="{{sleepIncomeRangeListLater4}}" wx:key='headPic'>
+              <view class="tab-list tab-list-1">
+                <view class="flex-tab-l">
+                  <view class="ranking-in">
+                    <text class='font-40 col-c-ba'>{{index+4}}</text>
+                  </view>
+                  <view class="flex-tab-i flex-tab-ii">
+                    <image src="/image/mine.png"></image>
+                  </view>
+                  <view wx:if='{{item.name != null}}' class="flex-tab-p">
+                    {{tools.getStrTop2(item.name)}}**
+                  </view>
+                  <view wx:else>*****</view>
+                </view>
+                <view class="flex-tab-r col-c-ba">￥{{item.totalCommission}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view style="padding-bottom: 50rpx"></view>
+  </view>
+</view>

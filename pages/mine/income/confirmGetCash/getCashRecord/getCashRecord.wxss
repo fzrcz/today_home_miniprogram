@@ -1,0 +1,97 @@
+/* pages/mine/income/confirmGetCash/getCashRecord/getCashRecord.wxss */
+
+page {
+  background: #fff;
+}
+
+.flex-tab {
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: space-between;
+  align-items: center;
+  height: 120rpx;
+  padding: 0 30rpx;
+}
+
+.item-tap {
+  color: #8b8b8b;
+  font-size: 30rpx;
+}
+
+.onTab {
+  color: #373737;
+}
+
+/* 明细列表 */
+
+.details-box {
+  padding: 0 30rpx;
+}
+
+.details-list {
+  border-bottom: 2rpx #d5d5d5 solid;
+  padding: 40rpx 0;
+}
+
+/* .details-list:first-child{
+  border-bottom: 2rpx #d5d5d5 solid;
+  padding: 0 0 40rpx 0;
+} */
+
+.details-list-t {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 10rpx 0;
+}
+
+.pay-method {
+  font-size: 26rpx;
+}
+
+.pay-method-time {
+  width: 40%;
+  text-align: center;
+}
+
+.pay-method-go {
+  width: 20%;
+  text-align: center;
+}
+
+.pay-time {
+  font-size: 26rpx;
+  color: #8b8b8b;
+}
+
+.blance {
+  font-size: 26rpx;
+}
+
+.pay-price {
+  font-size: 36rpx;
+}
+
+.no-data {
+  width: 276rpx;
+  height: 288rpx;
+  display: block;
+}
+
+.no-data-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40%;
+}
+
+.no-data-more {
+  text-align: center;
+  padding: 30rpx 0;
+}
+.content-detail{
+  /* width: 90%; */
+  background: #fff;
+  /* margin: 40rpx auto;
+  border-radius: 10rpx; */
+}

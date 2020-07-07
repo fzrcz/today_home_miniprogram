@@ -1,0 +1,6 @@
+page{
+  margin: 40rpx 30rpx;
+}
+.problem_box{
+  padding: 18rpx 40rpx 18rpx 6rpx;
+}

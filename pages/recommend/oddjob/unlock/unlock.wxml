@@ -1,0 +1,21 @@
+<view style='padding:30rpx;'>
+  <block wx:for="{{productList}}" wx:key="">
+    <view class='flex-x flex-center-y font-28' style='border-bottom:1px solid #eee; margin-top:20rpx; padding-bottom:20rpx;' data-productid='{{item.id}}' data-activityid='{{item.activityId}}' bindtap='toDetail'>
+      <view>
+        <image src="{{item.productFile[0].filePath}}" mode='aspectFill' style='width:200rpx; height:200rpx;' />
+      </view>
+      <view class='flex-y' style='padding:20rpx 0 20rpx 20rpx; line-height:50rpx; width:470rpx;'>
+        <view wx:if='{{item.activityId}}' class='font-bold font-32'>
+          <text style='background:#FF7F27; color:#FFF; padding:10rpx; font-size:24rpx; margin-right:10rpx; font-weight:bold;'>{{item.activityTypeName}}</text>{{item.activityRemark}}</view>
+        <view wx:else class='font-bold font-32'>{{item.description}}</view>
+        <view class='flex-between' style='align-items:flex-end; margin-top:20rpx;'>
+          <view wx:if='{{item.price == item.originalPrice}}' class='font-bold theme-color font-40'>￥{{item.originalPrice}}</view>
+          <view wx:else class='font-bold theme-color font-40'>￥{{item.price}}
+            <text wx:if='{{item.originalPrice != null && item.originalPrice != ""}}' style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥{{item.originalPrice}}</text>
+          </view>
+          <view style='padding:10rpx 20rpx; background-color: #FF7F27; color:#FFF; text-align: center;' >立即抢购 ></view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,8 @@
+<view class="PA_box" wx:for="{{problemlist}}" wx:key="index">
+  <view class="question">Q{{index+1}}:   {{item.question}}</view>
+  <view class="answer">{{item.answer}}</view>
+</view>
+<!-- <view class="PA_box">
+  <view class="question">活动/规则说明</view>
+  <view class="answer">11111111</view>
+</view> -->

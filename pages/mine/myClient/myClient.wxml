@@ -1,0 +1,60 @@
+<!--pages/mine/myClient/myClient.wxml-->
+<!-- 引入wxs脚本 -->
+<wxs module="subutil" src="../../../utils/subutil.wxs"></wxs>
+
+<view class="content">
+  <view class="my-client">
+    <view class="client-box">
+      <view class="client-t">
+        <image class="client-bg" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/my-kh.png"></image>
+        <view class="user-infor">
+          <!-- <view class="question">
+            <image src="/common/image/question.png"></image>
+          </view> -->
+          <view class="my-client-t" bindtap="myInvitation">
+            <text class="col-c-white">我的邀请人共：</text>
+            <text class="font-40 col-c-y font-bold">{{myClientNum.length}}</text>
+            <text class="col-c-white" decode="{{true}}">&emsp;人</text>
+          </view>
+          <view class="my-client-t">
+            <text class="col-c-white">我的分润收益：</text>
+            <text class="font-40 col-c-y font-bold">{{myClientList.length}}</text>
+            <text class="col-c-white" decode="{{true}}">&emsp;笔</text>
+          </view>
+          <view class="my-client-t">
+            <text class="col-c-white">客户累计收入：</text>
+            <text class="font-40 col-c-white font-bold">{{allIncome}}</text>
+            <text class="col-c-white" decode="{{true}}">&emsp;元</text>
+          </view>
+        </view>
+      </view>
+      <view class="client-b">
+        <!-- 循环体 -->
+        <view class="no-data-box" wx:if='{{myClientList.length == 0}}'>
+          <image class='no-data' src='/image/no-data1.png'></image>
+        </view>
+        <view>
+          <view wx:for="{{myClientList}}" wx:key>
+            <view class="client-b-list">
+              <view class="client-b-l">
+                <image class="client-b-l-l" src="/image/moren-1.png"></image>
+                <view class="client-b-l-r">
+                  <!-- 注释 对名字的前两位进行截取 -->
+                  <view wx:if='{{item.invitee != null}}' class="font-26" style="color:#808080;line-height:40rpx;">{{subutil.getStrTop2(item.invitee)}}***</view>
+                  <view wx:else class="font-26" style="color:#808080;line-height:40rpx;">无</view>
+                  <view wx:if='{{item.productName != null}}' class="font-24" style="color:#808080">{{item.productName}}</view>
+                  <view wx:else class="font-24" style="color:#808080">无</view>
+                </view>
+              </view>
+              <view class="client-b-r col-c-r">+
+                <text class="font-32">{{item.traceMoney}}元</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <view class='invitation font-34' bindtap="share">立即邀请</view>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+{
+  "navigationBarTitleText": "今日到家",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "i-panel": "/iview/panel/index",
+    "i-cell": "/iview/cell/index",
+    "i-avatar": "/iview/avatar/index",
+    "i-row": "/iview/row/index",
+    "i-col": "/iview/col/index",
+    "i-load-more": "/iview/load-more/index",
+    "i-spin": "/iview/spin/index",
+    "i-icon": "/iview/icon/index",
+    "i-notice-bar": "/iview/notice-bar/index",
+    "maskModal": "/common/maskModal/maskModal"
+  }
+}

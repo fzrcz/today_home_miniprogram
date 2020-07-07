@@ -1,0 +1,15 @@
+<!--pages/recommend/classifyWorkers/classifyWorkers.wxml-->
+<view wx:for="{{classifyList}}" wx:key='index'>
+  <view class="classfy-list"  bindtap="lookingNanny" data-id="{{index}}">
+    <view class="flex-between classfy-list-item">
+      <view class="worker-icon">
+        <image src="{{item.imgIcon}}"></image>
+      </view>
+      <view class="worker-content">
+        <view class="title-b">{{item.name}}</view>
+        <view class="font-26 col-mm-s">{{item.content}}</view>
+      </view>
+      <view class="to-detail"><i-icon type="enter" size="18" class="to-personal"/></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,50 @@
+<!--pages/recommend/searchPage/searchPage.wxml-->
+<view>
+  <!-- 搜索框 -->
+  <view class="input-box flex-around">
+    <input bindinput="searchContent" value="{{historyContent}}" class="input-text" placeholder="保洁"></input>
+    <text bindtap="search" class="font-30">搜索</text>
+  </view>
+  <!-- 历史搜索 -->
+  <view class="his-box" wx:if='{{showHistory && productList.length != 0}}'>
+    <view class="flex-between">
+      <text class="font-30 font-bold">历史搜索</text>
+      <image bindtap="deleteHistory" class="delete" src="/image/delete.png"></image>
+    </view>
+    <view class="his-list-box">
+      <view wx:for='{{searchContentList}}' wx:key wx:if='{{index < 9}}'>
+        <view bindtap="historySearch" data-content='{{item}}' class="font-30 his-list flex-center">{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 搜索商品列表 -->
+  <!-- 有数据 -->
+
+  <view class="his-box">
+    <view wx:for='{{productList}}' wx:key>
+      <view bindtap="toDetail" data-productid='{{item.id}}' data-activityid='{{item.activityId}}' class="product-list">
+        <view class="pro-list-l">
+          <image src="{{item.productFile[0].filePath}}"></image>
+        </view>
+        <view class="pro-list-r">
+          <view class="pro-list-r-t">
+            <view class="font-30">{{item.NAME}}</view>
+          </view>
+          <view class="pro-list-r-b">
+            <view>
+              <text class="font-26 col-mm-r">￥</text>
+              <text class="font-30 col-mm-r">{{item.price}}</text>
+            </view>
+            <!-- <view class="font-24 col-mm-g">560人付款</view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 搜索不到商品时 -->
+  <view class="no-data" wx:if='{{productList.length == 0}}'>
+    <i-load-more tip="搜索不到该服务" loading="{{ false }}" />
+  </view>
+</view>

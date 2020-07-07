@@ -1,0 +1,449 @@
+<wxs src="../../utils/subutil.wxs" module="tools" />
+
+<scroll-view scroll-y="true">
+  <view class="content">
+    <!-- 搜索 -->
+    <!-- <view class="servieamin">已服务3600+名用户</view> -->
+    <view class="flex-between search-box">
+      <view class="flex-center-y">
+        <image class="address-icon" src="/image/location.png"></image>
+        <view class="city font-32">{{tools.sub(city)}}</view>
+      </view>
+      <view class="font-26 flex-center"style="color:#a6a6a6">已服务13870+名用户</view>
+      <!-- <view class="search flex-center" bindtap="toSearchPage">
+        <view class="search-btn-1 flex-center">
+          <image src="/image/search-1.png"></image>
+        </view>
+        <view class="search-input">请输入您要的服务</view>
+      </view> -->
+    </view>
+
+    <!--轮播图 style="height:{{scrollH}}px"-->
+    <view class='swiper'>
+      <view class="swiper-panel">
+        <swiper autoplay indicator-dots circular indicator-active-color="#ff7f27" interval="5000">
+          <block>
+            <swiper-item wx:for='{{rollPicList}}' wx:key='id'>
+              <image mode="widthFix" src="{{item.path}}" data-jumppath="{{item.jumpPath}}" bindtap="clickBanner"/>
+            </swiper-item>
+            <!-- <swiper-item>
+              <image mode="widthFix" src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20191114/19183.jpg" bindtap="fourFourHourCleaning"/>
+            </swiper-item> -->
+            <!-- <swiper-item>
+              <image mode="widthFix" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/banner_20190830213415.jpg?v=1" bindtap="classifyWorkers" />
+            </swiper-item>
+            <swiper-item>
+              <image mode="widthFix" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/banner_20190830213419.jpg?v=1" bindtap="twoCleaningAcarid" />
+            </swiper-item>
+             <swiper-item>
+              <image mode="widthFix" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/banner_20191122165248.png?v=1" bindtap="petcleaner" />
+            </swiper-item> -->
+          </block>
+        </swiper>
+        <!-- <image data-url="/pages/recommend/oddjob/oddjob" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/banner/banner-oddjob-ad.png"></image> -->
+      </view>
+      <!-- <view class="tklbo {{strtime==1?'leavein':''}}">{{str}}</view> -->
+      <!-- 搜索按钮 -->
+      <!-- <view class='search-btn flex-center' bindtap="toSearch">
+        <image style='width:50rpx;height:50rpx;' src="/image/search.png"></image>
+      </view> -->
+    </view>
+    <!-- <view class="serviemain">已服务3600+名用户</view> -->
+    <view class="search flex-center" bindtap="toSearchPage">
+        <view class="search-btn-1 flex-center">
+          <image src="/image/search-1.png"></image>
+        </view>
+        <view class="search-input">请输入您要的服务</view>
+      </view>
+    <view style="position:relative">
+        <image class="larrow" wx:if="{{current==1}}" bindtap="tapswip" mode="widthFix" src="/image/Left-2.png"></image>
+        <image class="rarrow" wx:if="{{current==0}}" bindtap="tapswip" mode="widthFix" src="/image/Right-2.png"></image>
+      <swiper class="nav-swiper" easing-function="linear	" current="{{current}}" autoplay="{{autoplay}}" bindchange="changeswip" indicator-dots="true" indicator-active-color="#ff7f27" interval="3000">
+        <!--功能导航功能-->
+        <swiper-item>
+          <view class="services">
+            <view class="wraper">
+              <block wx:for="{{serverlist}}" wx:key="imageUrl">
+                <view class="list" bindtap="goServer" data-url='{{item.url}}' data-index="{{index}}">
+                  <image src="{{item.imageUrl}}" mode='aspectFit' style='width:60rpx; height:60rpx;' />
+                  <text class="desc">{{item.description}}</text>
+                </view>
+              </block>
+            </view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="services">
+            <view class="wraper">
+              <view class="list"wx:for="{{serverlist2}}" wx:key="imageUrl" data-url='{{item.url}}' data-index="{{index}}"  bindtap="goServer">
+                <image src="{{item.imageUrl}}" mode='aspectFit' style='width:60rpx; height:60rpx;' />
+                <text class="desc">{{item.description}}</text>
+              </view>
+              <!-- <view class="list" bindtap="toDredgePipeline">
+                <image src="/image/dredgePipeline.png" mode='aspectFit' style='width:60rpx; height:60rpx;' />
+                <text class="desc">管道疏通</text>
+              </view>
+              <view class="list" bindtap="toremoveHCHO">
+                <image src="/image/removeHCHO.png" mode='aspectFit' style='width:60rpx; height:60rpx;' />
+                <text class="desc">甲醛治理</text>
+              </view> -->
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <view class="find-per" bindtap="classifyWorkers">
+      <image mode="widthFix" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/nanny-1.png"></image>
+    </view>
+    <view class="tkl-box {{strtime==1?'leavein':''}}">{{str}}</view>
+    <!-- 今日特价 图片尺寸为 302*240 -->
+    <view>
+      <view class="h-title font-40 font-bold">今日特价</view>
+      <!-- 循环体 -->
+      <view wx:for='{{hotProductList}}' wx:key='id'>
+        <view wx:if='{{index < 3}}'>
+          <view class="flex-between product-ad" data-detailurl='{{item.detailUrl}}' bindtap="externalLinks">
+            <view class="product-l">
+              <view class="product-l-text">
+                <view class="font-bold product-title">{{item.NAME}}</view>
+                <view class="font-26">
+                  <!-- <text class="per-text">首单特惠</text> -->
+                  <!-- <text class="per-text" wx:if='{{item.id == 49}}'>品质不减,服务到家</text>
+                  <text class="per-text" wx:if='{{item.id == 51}}'>单次低至179元</text>
+                  <text class="per-text" wx:if='{{item.id == 53}}'>单次低至99.5元</text> -->
+                </view>
+                <view class="flex-end product-r-b">
+                  <view class="col-m-l">
+
+                    <!-- 只显示现价 -->
+                    <!-- <text class="font-28 font-bold">￥</text>
+                    <text class="price-ad font-42 font-bold">{{item.price}}</text> -->
+
+                    <!-- 折后价，原价后边加横线 -->
+                    <view wx:if='{{item.price == item.originalPrice}}' class='font-bold theme-color font-40'>￥{{item.price}}</view>
+                    <view wx:else class='font-bold theme-color font-40'>￥{{item.price}}
+                      <text wx:if='{{item.originalPrice != null && item.originalPrice != ""}}' style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥{{item.originalPrice}}</text>
+                    </view>
+
+                    <!-- <text class="font-24"> /次</text> -->
+                  </view>
+                  <!-- <view class="font-24 col-m-p">500人已付款</view> -->
+                </view>
+              </view>
+            </view>
+            <view class="product-r">
+              <view class="product-r-img">
+                <image src="{{item.productFileH5[0].filePath}}"></image>
+              </view>
+              <!-- <view class="icon-size act-blue">
+                <text class="activity-status">首单</text>
+              </view>
+              <view class="icon-size act-org">
+                <text class="activity-status">特惠</text>
+              </view>
+              <view class="triangle tri-blue"></view> -->
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- 为您推荐 -->
+    <view>
+      <view class="h-title font-40 font-bold">为您推荐</view>
+      <view class="flex-around rec-nav font-28">
+        <view class="nav-list {{currentTab==0 ? 'nav-on' : ''}}" data-current="0" bindtap="swichNav">钟点保洁</view>
+        <view class="nav-list {{currentTab==1 ? 'nav-on' : ''}}" data-current="1" bindtap="swichNav">除尘除螨</view>
+        <view class="nav-list {{currentTab==2 ? 'nav-on' : ''}}" data-current="2" bindtap="swichNav">清洗家电</view>
+        <view class="nav-list {{currentTab==3 ? 'nav-on' : ''}}" data-current="3" bindtap="swichNav">甲醛治理</view>
+      </view>
+      <view class="product-box">
+        <swiper class="product-box" current="{{currentTab}}" duration="300" bindchange="bindChange" style="height:{{sHeight}}">
+          <!-- 钟点保洁 -->
+          <swiper-item>
+            <!-- 循环体 -->
+            <view class="swiper-list" id="swiper-0">
+              <view wx:for='{{productList}}' wx:key='id' wx:if='{{index <= 3}}' bindtap="newToDetail" data-productid='{{item.id}}' data-activityid='{{item.activityId}}' class="product-list">
+                <view class="product-list-con">
+                  <view class="list-on-img">
+                    <image src="{{item.productFile[0].filePath}}" mode="aspectFill"></image>
+                  </view>
+                  <view class="list-on-b">
+                    <view>
+                      <view class="font-30 col-m-t more-hide">{{item.NAME}}</view>
+                      <!-- <view class="font-24 col-m-b">{{item.description}}</view> -->
+                    </view>
+                    <view class="flex-end price-padding">
+                      <view class="col-m-r">
+                        <text wx:if='{{item.price == item.originalPrice}}'>
+                          <text class="font-26">￥</text>{{item.originalPrice}}
+                        </text>
+                        <text wx:else>
+                          <text class="font-26">￥</text>
+                        <text>{{item.price}}</text>
+                        <text wx:if='{{item.originalPrice != null && item.originalPrice != ""}}' style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥{{item.originalPrice}}</text>
+                        </text>
+                      </view>
+                      <!-- <view class="font-26 col-m-e">560人付款</view> -->
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </swiper-item>
+          <!-- 除尘除螨 -->
+          <swiper-item>
+            <!-- 循环体 -->
+            <view class="swiper-list" id="swiper-1">
+              <view wx:for='{{productList}}' wx:key='id' wx:if='{{index <= 3}}' bindtap="newToDetail" data-productid='{{item.id}}' data-activityid='{{item.activityId}}' class="product-list">
+                <view class="product-list-con">
+                  <view class="list-on-img">
+                    <image src="{{item.productFile[0].filePath}}" mode="aspectFill"></image>
+                  </view>
+                  <view class="list-on-b">
+                    <view>
+                      <view class="font-30 col-m-t more-hide">{{item.NAME}}</view>
+                      <!-- <view class="font-24 col-m-b">{{item.description}}</view> -->
+                    </view>
+                    <view class="flex-end price-padding">
+                      <view class="col-m-r">
+
+                        <text wx:if='{{item.price == item.originalPrice}}'>
+                          <text class="font-26">￥</text>{{item.originalPrice}}
+                        </text>
+                        <text wx:else>
+                          <text class="font-26">￥</text>
+                        <text>{{item.price}}</text>
+                        <text wx:if='{{item.originalPrice != null && item.originalPrice != ""}}' style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥{{item.originalPrice}}</text>
+                        </text>
+
+                        <!-- <text class="font-26">￥</text>
+                        <text>{{item.price}}</text> -->
+                      </view>
+                      <!-- <view class="font-26 col-m-e">560人付款</view> -->
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+          </swiper-item>
+          <!-- 清洗家电 -->
+          <swiper-item>
+            <!-- 循环体 -->
+            <view class="swiper-list" id="swiper-2">
+              <view wx:for='{{productList}}' wx:key='id' wx:if='{{index <= 3}}' bindtap="newToDetail" data-productid='{{item.id}}' data-activityid='{{item.activityId}}' class="product-list">
+                <view class="product-list-con">
+                  <view class="list-on-img">
+                    <image src="{{item.productFile[0].filePath}}" mode="aspectFill"></image>
+                  </view>
+                  <view class="list-on-b">
+                    <view>
+                      <view class="font-30 col-m-t more-hide">{{item.NAME}}</view>
+                      <!-- <view class="font-24 col-m-b">{{item.description}}</view> -->
+                    </view>
+                    <view class="flex-end price-padding">
+                      <view class="col-m-r">
+
+                        <text wx:if='{{item.price == item.originalPrice}}'>
+                          <text class="font-26">￥</text>{{item.originalPrice}}
+                        </text>
+                        <text wx:else>
+                          <text class="font-26">￥</text>
+                        <text>{{item.price}}</text>
+                        <text wx:if='{{item.originalPrice != null && item.originalPrice != ""}}' style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥{{item.originalPrice}}</text>
+                        </text>
+
+                        <!-- <text class="font-26">￥</text>
+                        <text>{{item.price}}</text> -->
+                      </view>
+                      <!-- <view class="font-26 col-m-e">560人付款</view> -->
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+          </swiper-item>
+          <!-- 甲醛治理 -->
+          <swiper-item>
+            <!-- 循环体 -->
+            <view class="swiper-list" id="swiper-3">
+              <view wx:for='{{productList}}' wx:key='id' wx:if='{{index <= 3}}' bindtap="newToDetail" data-productid='{{item.id}}' data-activityid='{{item.activityId}}' class="product-list">
+                <view class="product-list-con">
+                  <view class="list-on-img">
+                    <image src="{{item.productFile[0].filePath}}" mode="aspectFill"></image>
+                  </view>
+                  <view class="list-on-b">
+                    <view>
+                      <view class="font-30 col-m-t more-hide">{{item.NAME}}</view>
+                      <!-- <view class="font-24 col-m-b">{{item.description}}</view> -->
+                    </view>
+                    <view class="flex-end price-padding">
+                      <view class="col-m-r">
+
+                        <text wx:if='{{item.price == item.originalPrice}}'>
+                          <text class="font-26">￥</text>{{item.originalPrice}}
+                        </text>
+                        <text wx:else>
+                          <text class="font-26">￥</text>
+                        <text>{{item.price}}</text>
+                        <text wx:if='{{item.originalPrice != null && item.originalPrice != ""}}' style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥{{item.originalPrice}}</text>
+                        </text>
+
+                        <!-- <text class="font-26">￥</text>
+                        <text>{{item.price}}</text> -->
+                      </view>
+                      <!-- <view class="font-26 col-m-e">560人付款</view> -->
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+
+
+    <!-- 活动 -->
+    <!-- <view class="activity" bindtap="hourCleaning">
+      <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/activity.png"></image>
+    </view> -->
+
+    <!-- 今日到家logo -->
+    <view class="logo-3">
+      <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/logo3.png"></image>
+    </view>
+    <view class="sign-t">
+      <image src="/image/sign-t.png"></image>
+    </view>
+    <view class="qr-code" bindtap="previewImage">
+      <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/qr-code.png" data-src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/qr-code.png"></image>
+    </view>
+    <view class="hot-line">
+      <view>咨询热线：400-600-6580</view>
+    </view>
+  </view>
+
+  <!-- 右下角红包 -->
+  <!-- <view bindtap="toGetCoupons">
+    <image style="width:200rpx;position:fixed;bottom:50rpx;right:0;z-index:2" mode="widthFix" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/gif/con-gif.gif"></image>
+  </view> -->
+
+
+  <!--轮播图 style="height:{{scrollH}}px"-->
+  <!-- <view class='swiper'>
+    <view class="swiper-panel">
+      <swiper autoplay="true" indicator-dots="true" indicator-active-color="#ff7f27" interval="3000">
+        <block wx:for="{{bannerList}}" wx:key="">
+          <swiper-item>
+            <image style='width:{{item.width}}rpx;height:{{item.height}}rpx;' src="{{item.path}}" bindtap='toDetailPic' data-url='{{item.type}}' data-id='{{item.id}}' />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class='search-btn flex-center' bindtap="toSearch">
+      <image style='width:50rpx;height:50rpx;' src="/image/search.png"></image>
+    </view>
+  </view> -->
+
+</scroll-view>
+
+<!--顶部搜索-->
+<!-- <view class='top-search' style='display:{{ topSearch }}' bindtap="toSearch"> -->
+<view class='top-search' style='display:{{ topSearch }}' bindtap="toSearchPage">
+  <view class='search-input'>
+    <text>请输入您要的服务</text>
+    <i-icon i-class='searcj-icon' type="search" size='28' color='#ff7f27' />
+  </view>
+</view>
+
+<!--加载提示-->
+<view class="container" style='display:{{ spinShow }}'>
+  <i-spin fix size="large"></i-spin>
+</view>
+<!--消息通知-->
+<view wx:if="{{msgCount!=0}}" class='notice-top'>
+  <i-notice-bar icon="systemprompt" bind:handleClick="handleClick" closable loop>
+    温馨提示：您有 {{msgCount}} 条未读消息，点击可查看消息！
+  </i-notice-bar>
+</view>
+
+<!-- 优惠券及登录的组件 -->
+<maskModal></maskModal>
+
+<!-- 优惠券弹窗 -->
+<!-- <view> -->
+  <!-- 弹窗 -->
+  <!-- <view class='modal' animation="{{animationData}}" wx:if="{{showModalStatus}}" catchtouchmove="true">
+    <view class="modal-cou">
+      <view class="coupon-bg" bindtap='hideModal'>
+        <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/coupon-btn.png" mode="widthFix"></image>
+      </view> -->
+
+      <!-- 注释开始 <scroll-view class="coupon-list-box" scroll-y="true">
+        <view wx:for='{{couponsList}}' wx:key class="wrapper">
+          <view class="flex-center-y">
+            <view class="flex-content">
+              <view class="money">
+                <text>¥</text>{{item.couponsLimit}}
+              </view>
+              <view class="font-24 title">满{{item.targetAmount}}元使用</view>
+            </view>
+          </view>
+          <view class="split-line"></view>
+          <view class="tip">
+            <view class="flex-between">
+              <view class="font-32">{{item.name}}</view>
+            </view>
+            <view class="conditions font-24">
+              <view>{{item.couponsTypeName}}</view>
+              <view>有效期天数：{{item.validTime}}天</view>
+            </view>
+          </view>
+        </view>
+
+      </scroll-view> -->
+
+      <!-- <view class="off-btn" bindtap='hideModal'>
+        <image src="/image/close01.png"></image>
+      </view>注释 结束 -->
+
+    <!-- </view>
+  </view> -->
+  <!-- 遮罩 -->
+  <!-- <view class='mask' catchtouchmove="true" wx:if="{{showModalStatus}}" style='height:{{banseHeight}}px'>
+  </view>
+</view> -->
+
+<!-- 登录提示弹窗 -->
+<!-- <view> -->
+  <!-- 弹窗 -->
+  <!-- <view class='modal-login' animation="{{animationData}}" wx:if="{{showModalLogin}}" catchtouchmove="true">
+    <view class="modal-login-bg">
+      <view class="login-bg">
+        <image src="/image/login-prompt-bg.png" mode="widthFix"></image>
+      </view>
+      <view class="login-prompt">
+        <view class="font-36 login-title">登录享优惠</view>
+        <view class="font-26 login-min-t">双十一特惠来袭，登入即可瓜分
+          <text class="col-mm-r font-bold">百万现金红包</text>
+        </view>
+        <view class="flex-center fun-btn">
+          <view class="refuse-btn font-24" bindtap="hideModalLogin">残忍拒绝</view>
+          <view class="sign-btn font-26" catchtap="goEempower">
+            去登录
+          </view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <!-- 遮罩 -->
+  <!-- <view class='mask' bindtap='hideModalLogin' catchtouchmove="true" wx:if="{{showModalLogin}}" style='height:{{banseHeight}}px'>
+  </view>
+</view> -->
+

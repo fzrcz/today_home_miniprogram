@@ -1,0 +1,215 @@
+<view class='font-32' style='padding-bottom:40rpx;padding:20rpx;'>
+  <!-- 订单信息 -->
+  <view style="padding:10rpx 30rpx; line-height:60rpx; background:#fff;font-weight:700;">
+    预约信息
+  </view>
+  <view class='breakline' style='height:2rpx;'></view>
+  <view style="padding:10rpx 30rpx; line-height:60rpx;background:#fff;border-bottom-left-radius:20rpx;border-bottom-right-radius:20rpx;">
+    <view style='float:right;'>{{orderNo?orderNo:'-'}}</view>
+    <view>订单编号</view>
+    <view style='float:right;'>
+      <text wx:if='{{orderStatus==41}}'>等待确认</text>
+      <text wx:if='{{orderStatus==43}}'>阿姨已同意</text>
+      <text wx:if='{{orderStatus==42}}'>阿姨拒绝</text>
+      <text wx:if='{{orderStatus==44}}'>阿姨申请取消</text>
+      <text wx:if='{{orderStatus==45}}'>雇主申请取消</text>
+      <text wx:if='{{orderStatus==46}}'>已完成</text>
+      <text wx:if='{{orderStatus==47}}'>雇主违约</text>
+      <text wx:if='{{orderStatus==48}}'>阿姨违约</text>
+      <text wx:if='{{orderStatus==49}}'>申请取消成功 </text>
+      <text wx:if='{{orderStatus==410}}'>申请取消失败</text>
+      <text wx:if='{{orderStatus==411}}'>取消订单成功</text>
+      <text wx:if='{{orderStatus==412}}'>锁定订单</text>
+      <text wx:if='{{orderStatus==413}}'>更换阿姨</text>
+    </view>
+    <view>预约状态</view>
+    <view style='float:right;'>{{money==null?'-':'￥'+money}}</view>
+    <view>诚信金额</view>
+    <view style='float:right;'>{{appointTime?appointTime:'-'}}</view>
+    <view>预约时间</view>
+    <view style='float:right;'>{{orderTime?orderTime:'-'}}</view>
+    <view>发起时间</view>
+  </view>
+  <view class='breakline' style='height:2rpx;'></view>
+  <view style="padding: 30rpx; line-height:60rpx; background:#fff;border-radius:20rpx;">
+    <view style='float:right;'>{{employerName?employerName:'-'}}</view>
+    <view>雇主姓名</view>
+    <view style='float:right;'>{{employerPhone?employerPhone:'-'}}</view>
+    <view>雇主电话</view>
+  </view>
+  <view class='breakline' style='height:2rpx;'></view>
+  <view style="padding: 30rpx; line-height:60rpx; background:#fff;border-top-left-radius:20rpx;border-top-right-radius:20rpx;">
+    <view style='float:right;'>{{housekeeperName?housekeeperName:'-'}}</view>
+    <view>阿姨姓名</view>
+    <view style='float:right;'>{{housekeeperPhone?housekeeperPhone:'-'}}</view>
+    <view>阿姨电话</view>
+  </view>
+  <!-- 仲裁信息 -->
+  <view wx:if='{{disposeReason?true:false}}'>
+    <view class='breakline'></view>
+    <view style="padding:10rpx 30rpx; line-height:60rpx; background:#fff;font-weight:700;">
+      仲裁信息
+    </view>
+    <view class='breakline' style='height:2rpx;'></view>
+    <view style="padding: 30rpx; line-height:60rpx; background:#fff;">
+      <view style='float:right;'>{{disposeAccountName?disposeAccountName:'-'}}</view>
+      <view>仲裁人员</view>
+      <view style='float:right;'>{{disposeAccountPhone?disposeAccountPhone:'-'}}</view>
+      <view>仲裁人员电话</view>
+      <view style='float:right;'>{{disposeReason?disposeReason:'-'}}</view>
+      <view>仲裁原因</view>
+      <view style='float:right;'>
+        <text wx:if="{{interflowType=='face'}}">面谈</text>
+        <text wx:if="{{interflowType=='phone'}}">电话沟通</text>
+      </view>
+      <view>沟通方式</view>
+      <view style='float:right;'>{{interflowAddress?interflowAddress:'-'}}</view>
+      <view>沟通地点</view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 新增 -->
+<view class="order-details">
+  <view class="order-status">
+    <view class="order-bg">
+      <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/order-bg.png"></image>
+    </view>
+    <view class="order-title">服务·未开始</view>
+  </view>
+  <view class="order-content">
+    <view class="order-main">
+      <view class="order-main-wid">
+        <view class="order-main-pad">
+          <view class="flex-center-y order-main-title">
+            <view class='list-title-span'></view>
+            <text class='list-title-text'>订单信息</text>
+          </view>
+          <view class="flex-center-y font-28 order-main-list">
+            <view>
+              <text decode="{{true}}">订单编号：</text>
+            </view>
+            <view>
+              <text>{{orderNo?orderNo:'-'}}</text>
+            </view>
+          </view>
+          <view class="flex-center-y font-28 order-main-list">
+            <view>
+              <text decode="{{true}}">创建时间：</text>
+            </view>
+            <view>
+              <text>{{orderTime?orderTime:'-'}}</text>
+            </view>
+          </view>
+          <view class="flex-center-y font-28 order-main-list">
+            <view>
+              <text decode="{{true}}">诚信金额：</text>
+            </view>
+            <view>
+              <text>{{money==null?'-':'￥'+money}}</text>
+            </view>
+          </view>
+          <view class="flex-center-y font-28 order-main-list">
+            <view>
+              <text decode="{{true}}">订单状态：</text>
+            </view>
+            <view>
+              <text wx:if='{{orderStatus==41}}'>等待确认</text>
+              <text wx:if='{{orderStatus==43}}'>阿姨已同意</text>
+              <text wx:if='{{orderStatus==42}}'>阿姨拒绝</text>
+              <text wx:if='{{orderStatus==44}}'>阿姨申请取消</text>
+              <text wx:if='{{orderStatus==45}}'>雇主申请取消</text>
+              <text wx:if='{{orderStatus==46}}'>已完成</text>
+              <text wx:if='{{orderStatus==47}}'>雇主违约</text>
+              <text wx:if='{{orderStatus==48}}'>阿姨违约</text>
+              <text wx:if='{{orderStatus==49}}'>申请取消成功 </text>
+              <text wx:if='{{orderStatus==410}}'>申请取消失败</text>
+              <text wx:if='{{orderStatus==411}}'>取消订单成功</text>
+              <text wx:if='{{orderStatus==412}}'>锁定订单</text>
+              <text wx:if='{{orderStatus==413}}'>更换阿姨</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="order-main-wid">
+        <view class="order-main-pad flex-center-y">
+          <view class="type-b-l">
+            <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/mine-bg.png"></image>
+          </view>
+          <view class="type-b-r">
+            <view class='type-b-t font-30'>
+              <text>4小时深度居家保洁服务</text>
+              <text class='font-24'>(首单)</text>
+            </view>
+            <view class='type-b-c'>
+              <text class='font-24'>x</text>
+              <text class='font-26'>2次</text>
+            </view>
+            <view class='type-b-b'>
+              <text class="font-26">¥</text>
+              <text class="font-30">258</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="order-main-wid">
+        <view class="order-main-pad">
+          <view class="flex-between order-main-title">
+            <view class="flex-center-y">
+              <view class='list-title-span'></view>
+              <text class='list-title-text'>服务信息</text>
+            </view>
+            <view class='list-title-r' bindtap="phoneCall">
+              <image src="/image/kf-hui.png"></image>
+            </view>
+          </view>
+          <view class='infor-list font-28 flex-center-y'>
+            <!-- <view class='identity'>
+              <text class='surname' decode="{{true}}">{{employerName?employerName:'-'}}</text>
+            </view>
+            <view class='list-ad-r'>{{employerPhone?employerPhone:'-'}}</view> -->
+            <view class='list-ad-l'>
+              <text decode="{{true}}">雇主姓名：</text>
+            </view>
+            <view class='list-ad-r'>
+              <text>{{employerName?employerName:'-'}}</text>
+            </view>
+          </view>
+          <view class='infor-list font-28 flex-center-y'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">雇主电话：</text>
+            </view>
+            <view class='list-ad-r'>
+              <text>{{employerPhone?employerPhone:'-'}}</text>
+            </view>
+          </view>
+          <view class='infor-list font-28 flex-center-y'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">阿姨姓名：</text>
+            </view>
+            <view class='list-ad-r'>
+              <text>{{housekeeperName?housekeeperName:'-'}}</text>
+            </view>
+          </view>
+          <view class='infor-list font-28 flex-center-y'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">阿姨电话：</text>
+            </view>
+            <view class='list-ad-r'>
+              <text>{{housekeeperPhone?housekeeperPhone:'-'}}</text>
+            </view>
+          </view>
+          <view class='infor-list font-28 flex-center-y'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">预约时间：</text>
+            </view>
+            <view class='list-ad-r'>
+              <text>{{appointTime?appointTime:'-'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

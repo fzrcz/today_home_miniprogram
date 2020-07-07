@@ -1,0 +1,26 @@
+
+<view>
+
+
+  <view style="background-color: #fff;text-align: center;margin-top: 10%;">
+    <image style="width: 200px; height:200px" src="/image/success.png"></image>
+  </view>
+  <view style="background-color: #fff;text-align: center; margin-top: 0px; margin-bottom: 20px; color: rgb(255, 127, 39); font-size:28px; font-weight:bold;">
+    下单成功
+  </view>
+
+  <view style="background-color: #fff; font-size:18px; padding:0 30px; margin-top: 10px; line-height:10xp; ">
+    搜索并关注微信公众号<text style='color: rgb(255, 127, 39); font-size:22px;'>“今日到家”</text>。订单情况将通过公众号实时推送至您，同时平台会定期在公众号上推出各种家庭服务优惠。
+  </view>
+
+
+
+  <view class='flex-center' style='height:90rpx;padding:60rpx 40rpx 20rpx 40rpx;'>
+    <view class='flex-center font-28 btn-style' style='float:left;height:50rpx;width:120rpx;margin-right:20rpx;border: 2rpx grey solid;color:grey;' bindtap="toOrderDetail">
+      查看订单
+    </view>
+    <view class='flex-center font-28 btn-style' style='float:left;height:50rpx;width:120rpx;margin-left:20rpx;' bindtap="toRecommend">
+      返回首页
+    </view>
+  </view>
+</view>

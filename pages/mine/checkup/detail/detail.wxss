@@ -1,0 +1,19 @@
+page{
+  background-color: #eee;
+}
+.info_text {
+  /* color: gray; */
+  word-break: break-all;
+  padding: 30rpx 30rpx 30rpx 40rpx;
+  background:#fff;
+}
+/* 证件、工作风采、为你推荐*/
+.scroll-view_H{
+  width: 100%;
+  white-space: nowrap; 
+}
+.scroll-view-item_H{
+  width:200rpx;
+  display: inline-block;
+  margin: 12rpx;
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-icon": "/iview/icon/index",
+    "i-panel": "/iview/panel/index",
+    "i-modal": "/iview/modal/index"
+  }
+}

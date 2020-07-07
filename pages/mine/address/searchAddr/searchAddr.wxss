@@ -1,0 +1,19 @@
+.serach-view-head-hide {
+  margin-left:40rpx;
+  margin-bottom:20rpx;
+  width: 650rpx;
+  height: 80rpx;
+  padding-left:20rpx;
+  border-radius: 10rpx;
+  outline: none;
+  color: #9e9c9c;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+
+.panel{
+  background:#eee; 
+  padding:10rpx 20rpx;   
+}

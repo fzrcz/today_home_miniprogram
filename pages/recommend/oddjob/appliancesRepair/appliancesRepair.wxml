@@ -1,0 +1,3 @@
+<view>
+  <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/no-dev.png' style='width:750rpx; height:1062rpx;' bindtap='toBack'></image>
+</view>

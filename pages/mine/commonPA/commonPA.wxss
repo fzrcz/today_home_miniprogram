@@ -1,0 +1,11 @@
+.PA_box{
+  margin: 30rpx;
+}
+.question{
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.answer{
+  padding: 18rpx 4rpx;
+  font-size: 26rpx;
+}

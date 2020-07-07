@@ -1,0 +1,37 @@
+<view style='padding-left:60rpx; padding-top:20rpx; font-weight:bold; font-size:40rpx;'>
+  身份证
+</view>
+<view class='font-28' style='padding:30rpx 60rpx;'>
+  上门服务，需要上传您真实的身份证。
+</view>
+<view class="flex-center font-28">
+  <view>
+    <view style='padding:20rpx; text-align:center;'>
+      <view style='width:600rpx; height:350rpx; margin-bottom:20rpx;'>
+        <view bindtap="chooseImageFace">
+          <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/image-faceIdCard.png" mode='aspectFill' style='width:600rpx; height:350rpx;position:absolute; z-index:-1;'></image>
+          <image src="{{faceSrc}}" style='width:600rpx; height:350rpx;'></image>
+        </view>
+      </view>
+      <text style='color:red'>*</text> 上传身份证正面（个人）
+    </view>
+
+    <view style='padding:20rpx; text-align:center;'>
+      <view style='width:600rpx; height:350rpx; margin-bottom:20rpx;'>
+        <view bindtap="chooseImageOther">
+          <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/image-backIdCard.png" mode='aspectFill' style='width:600rpx; height:350rpx;position:absolute; z-index:-1;'></image>
+          <image src="{{otherSrc}}" style='width:600rpx; height:350rpx;'></image>
+        </view>
+      </view>
+      <text style='color:red'>*</text> 上传身份证反面（国徽）
+    </view>
+    <!-- <view class='btn-style font-32' style='margin-top:20rpx; padding:20rpx 0;' bindtap='uploadImg'>
+{{auth?'已认证':'去认证'}}
+    </view> -->
+  </view>
+
+</view>
+<view class='flex-x flex-center font-32' style='margin:20rpx 70rpx;'>
+  <view class='btn-style' style='padding:20rpx 40rpx;' bindtap='toSkip'>跳过</view>
+  <view class='btn-style-fill' style='padding:20rpx 160rpx; margin-left:40rpx;' bindtap='uploadImg'>下一步</view>
+</view>

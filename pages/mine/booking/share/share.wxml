@@ -1,0 +1,37 @@
+<view class='font-32' style='padding-bottom:40rpx;'>
+  <view style='height:600rpx; background: #ff7f27;border-bottom-left-radius: 50%;border-bottom-right-radius: 50%'>
+    <view  style='color:#fff;padding-top:100rpx;padding-left:100rpx;font-size:46rpx;font-weight:bold;padding-bottom:10rpx;'>{{orderStatus==1?'等待支付...':'已支付完成'}}</view>
+    <view style='color:#fff;padding-left:100rpx;'>请确认预约订单信息</view>
+  </view>
+  <view class='info'>
+    <view style='float:right;padding-right:20rpx;'>{{orderNo?orderNo:'-'}}</view>
+      <view style='padding-left:20rpx;'>订单编号</view>
+      <view style='float:right;padding-right:20rpx;'>{{employerName?employerName:'-'}}</view>
+      <view style='padding-left:20rpx;'>雇主姓名</view>
+      <view style='float:right;padding-right:20rpx;'>{{employerPhone?employerPhone:'-'}}</view>
+      <view style='padding-left:20rpx;'>雇主电话</view>
+      <view style='float:right;padding-right:20rpx;'>{{housekeeperName?housekeeperName:'-'}}</view>
+      <view style='padding-left:20rpx;'>阿姨姓名</view>
+      <view style='float:right;padding-right:20rpx;'>{{housekeeperPhone?housekeeperPhone:'-'}}</view>
+      <view style='padding-left:20rpx;'>阿姨电话</view>
+      <view style='float:right;padding-right:20rpx;'><text wx:if='{{orderStatus==1}}'>等待确认</text><text wx:if='{{orderStatus==3}}'>阿姨已同意</text><text wx:if='{{orderStatus==2}}'>阿姨拒绝</text><text wx:if='{{orderStatus==4}}'>阿姨申请取消</text><text wx:if='{{orderStatus==5}}'>雇主申请取消</text><text wx:if='{{orderStatus==6}}'>已完成</text><text wx:if='{{orderStatus==7}}'>雇主违约</text><text wx:if='{{orderStatus==8}}'>阿姨违约</text><text wx:if='{{orderStatus==9}}'>申请取消成功 </text><text wx:if='{{orderStatus==10}}'>申请取消失败</text><text wx:if='{{orderStatus==11}}'>取消订单成功</text><text wx:if='{{orderStatus==12}}'>锁定订单</text><text wx:if='{{orderStatus==13}}'>更换阿姨</text></view>
+      <view style='padding-left:20rpx;'>预约状态</view>
+      <view style='float:right;padding-right:20rpx;'>{{money?money+'￥':'-'}}</view>
+      <view style='padding-left:20rpx;'>诚信金额</view>
+      <view style='float:right;padding-right:20rpx;'>{{appointTime?appointTime:'-'}}</view>
+      <view style='padding-left:20rpx;'>预约时间</view>
+      <view style='float:right;padding-right:20rpx;'>{{orderTime?orderTime:'-'}}</view>
+      <view style='padding-left:20rpx;'>发起时间</view>
+      <view class='breakline' style='margin-top:20rpx;'></view>
+      <view class='font-36' style='float:right;padding-right:20rpx;padding-top:20rpx;'>{{money?money+'￥':'-'}}</view>
+      <view class='font-36' style='padding-left:20rpx;padding-top:20rpx;'>支付金额</view>
+      <view class='btn-style-fill font-36' style='margin:10rpx;margin-top:30rpx;'  bindtap='toPay' data-id='{{id}}'  data-money='{{money}}' wx:if='{{orderStatus == 1}}' >同意并支付</view>
+      <view class='btn-style-grey font-36' style='margin:10rpx;margin-top:30rpx;padding:20rpx 38rpx;'  wx:if='{{orderStatus != 1}}' >已支付</view>
+  </view> 
+</view>
+<!--返回首页悬浮-->
+  <view style='position: fixed;height:80rpx;top:20rpx;z-index: 3;right:20rpx;background-color:rgba(255, 125, 39, 0.247);; border: 1rpx solid rgba(255, 125, 39, 0.247);;border-radius: 50%;padding:10rpx;'>
+    <view bindtap='toRecommend'>
+      <image style='width:80rpx;height:80rpx;' src='/image/index.png'></image>
+    </view>
+  </view>

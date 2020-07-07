@@ -1,0 +1,23 @@
+ <view>
+  <block wx:for="{{dataList}}">
+
+    <view style="padding: 30rpx 30rpx 110rpx 30rpx; line-height:60rpx; border-bottom:2rpx #ddd solid;" class='font-32'>
+      <view>合同编号：{{item.contractNo}}</view>
+      <view>签约雇主：{{item.employerName}}</view>
+      <view>签约阿姨：{{item.housekeeperName}}</view>
+      <view>客户经理：{{item.staffName}}</view>
+      <view>合同状态：{{item.status=='sign'?'履约中':'已失效'}}</view>
+      <view>合同时间：{{item.effectTime?item.effectTime:'-'}} 至 {{item.efficacyTime?item.efficacyTime:'-'}}</view>
+      <view>签约时间：{{item.signTime}}</view>
+      <view style='float:right;'>
+        <view class='btn-style font-28' style='margin:10rpx;' data-id='{{item.id}}' bindtap='toDetail'>查看详情</view>
+      </view>
+    </view>
+    
+  </block>
+</view>
+<!--加载更多提示-->
+<view wx:if="{{showType}}">
+	<i-load-more tip="{{ loadMoreTip }}" loading="{{loadType}}"/>
+</view>
+

@@ -1,0 +1,26 @@
+<view style='padding:30rpx 60rpx; border-bottom:2rpx #ddd solid;'>
+  <view class='font-28'>账户余额（元）</view>
+  <view style='font-size:80rpx; color:#FF7F27; margin-top:20rpx;' data-money='{{balance}}' bindtap='toWithdraw'>{{balance}}<text class='font-28' style='color:black; margin-left:20rpx;'>提现</text></view>
+</view>
+
+<view>
+  <view class='flex-center-y' style='padding:20rpx; background-color: #eee;'>
+    <view class='flex-y font-28' style='width:700rpx; line-height:50rpx;'>
+      <view>{{totalDate}}</view>
+      <view style='color:#888;'>收入：￥{{income}}</view>
+    </view>  
+    <i-icon type="time" size='24' color='#FF7F27;' bindtap='changeDate'/>
+  </view>
+  <view style='padding:0 30rpx;'>
+    <block wx:for="{{items}}">
+      <view class='flex-center-y' style='padding:40rpx 0rpx; border-bottom:2rpx #ddd solid;'>
+        <image src='{{item.headPic}}' style='width:80rpx; height:80rpx; border-radius: 50%; margin-right:30rpx;' />
+        <view class='flex-y' style='width:450rpx; line-height:50rpx;'>
+          <view class='font-32'>{{item.remark}}</view>
+          <view class='font-28' style='color:#888'>{{item.dealTime}}</view>
+        </view>
+        <view class='font-36 theme-color'>{{item.salary}}</view>
+      </view>
+    </block>
+  </view>
+</view>

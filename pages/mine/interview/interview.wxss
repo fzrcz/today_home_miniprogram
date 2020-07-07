@@ -1,0 +1,13 @@
+.templet {
+  margin:40rpx 25rpx; 
+  padding:10rpx 10rpx; 
+  border-radius: 20rpx; 
+  box-shadow: 1rpx 1rpx 1rpx 1rpx #ddd;
+}
+
+.headImg{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 40rpx 30rpx;
+  border-radius: 100%;
+}

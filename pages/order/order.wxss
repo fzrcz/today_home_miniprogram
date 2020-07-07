@@ -1,0 +1,158 @@
+page{
+  background-color: #f6f6f7;
+}
+.order-mbox{
+  background-color: #fff;
+  margin: 20rpx 10rpx;
+  border-radius: 16rpx;
+}
+.orderimg{
+  width:100rpx;
+  height:100rpx;
+  display:block;
+  border-radius: 4rpx;
+}
+.orderbtn{
+  margin: 0 28rpx 18rpx 0; 
+  padding:0 18rpx;
+  float:right;
+}
+.orderbtn1{
+  margin-top: 20rpx;
+  padding:0 18rpx;
+  float:right;
+}
+/*订单 */
+.info{
+  padding:10rpx 40rpx 10rpx 40rpx;
+}
+.info-text{
+  color:grey;
+  padding:0rpx 0rpx 0rpx 40rpx;
+}
+.yhwdl{
+  position: fixed;
+  top: 20%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.yhwdl{
+position: fixed;
+top: 10%;
+left: 0;
+right: 0;
+text-align: center;
+padding-top: 180rpx;
+}
+/* 我的预约 */
+.info_text {
+  font-size: 0.7em;
+  color: gray;
+  word-break: break-all;
+  padding: 5rpx 30rpx 30rpx 45rpx;
+}
+.scroll-view_H{
+  width: 100%;
+  height:500rpx;
+}
+.scroll-view-item_H{
+  display: inline-block;
+  margin: 12rpx;
+  border:1rpx solid #ff7f27;
+  height:320rpx;
+  width:200rpx;
+}
+.scroll-view-item_H-select{
+  display: inline-block;
+  margin: 12rpx;
+  border:1rpx solid #ff7f27;
+  height:320rpx;
+  width:200rpx;
+  background-color:#ff7f27;
+}
+.btn-style-select{
+  padding:6rpx 38rpx;
+  border: 2rpx #fff solid;
+  border-radius: 10rpx;
+  color:#fff;
+}
+.view-style-select{
+  color:white;
+}
+/*
+  问题：浮动引起的高度塌陷
+  引起原因：子元素全是float元素 且 父元素没有设置高度。
+*/
+.section-header::before, .section-header::after {
+  display: table;
+  content: "";
+}
+.section-header::after {
+  clear: both;
+}
+
+.cell-left{
+  float:left;
+  width:160rpx;
+}
+
+.businessType{
+  background-color:#FF7F27;
+  color:#fff;
+  border-radius:10rpx;
+  font-weight:700;
+  padding:5rpx 10rpx;
+  margin-right:10rpx;
+}
+
+.number-times{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* 新增 */
+.order-box{
+  padding: 0 30rpx;
+  height: 80rpx;
+  color: #333;
+}
+.order_status{
+  font-size: 28rpx;
+  text-align: center;
+  width: 140rpx;
+  border-bottom: 2rpx solid#f6f6f7;
+}
+.order_status text{
+  font-size: 20rpx!important;
+}
+.order_on{
+  line-height: 58rpx;
+  color: #ff7f27;
+  border-bottom: 2rpx solid#ff7f27;
+}
+
+.swiper-box {
+  display: block;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+swiper-item {
+  overflow: scroll;
+}
+
+/*隐藏滚动条*/
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.no-data-more {
+  text-align: center;
+  padding: 30rpx 0;
+}

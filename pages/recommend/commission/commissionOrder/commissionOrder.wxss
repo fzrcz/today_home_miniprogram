@@ -1,0 +1,61 @@
+/* 确认订单 */
+/* 我的预约 */
+.info_text {
+  font-size: 24rpx;
+  color: gray;
+  word-break: break-all;
+  padding: 5rpx 30rpx 30rpx 30rpx;
+}
+.scroll-view_H{
+  width: 100%;
+  white-space: nowrap; 
+}
+.scroll-view-item_H{
+  width:200rpx;
+  display: inline-block;
+  margin: 12rpx;
+}
+/* 底部按钮  */
+.add_btn{
+    width: 100%;
+    height: 100rpx;
+    position: fixed;
+    bottom: 0rpx;
+    color:white;
+    background-color:white;
+}
+/* 阿姨选择-选中  */
+.btn-style-select{
+  padding:6rpx 38rpx;
+  border: 2rpx #fff solid;
+  border-radius: 10rpx;
+  color:#fff;
+}
+.view-style-select{
+  color:white;
+}
+.scroll-view-item_H-select{
+  width:200rpx;
+  display: inline-block;
+  margin: 12rpx;
+  background-color:#ff7f27;
+}
+/*
+价格明细
+*/
+.price-detail-title{
+  height:40rpx;
+  padding:15rpx 30rpx 0rpx 0rpx;
+  color: gray;
+}
+.price-detail-info{
+  height:30rpx;
+  padding:5rpx 30rpx 5rpx 0rpx;
+  color: gray;
+}
+/*
+开关选择器样式调整
+*/
+.wx-switch-input{width:80rpx !important;height:40rpx !important;}
+.wx-switch-input::before{width:80rpx !important;height: 40rpx !important; background: gray !important;}
+.wx-switch-input::after{width: 36rpx !important;height: 36rpx !important;}

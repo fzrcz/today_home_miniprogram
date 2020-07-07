@@ -1,0 +1,17 @@
+<view class='flex-center flex-y' style='padding:60rpx; padding-top:200rpx; font-weight:bold; font-size:60rpx; height:600rpx; letter-spacing: 10rpx;'>
+  <view>为了推荐工作给您</view>
+  <view style='margin-top:20rpx;'>请提供您的手机</view>
+</view>
+
+<view style='padding:40rpx 50rpx; position: fixed; bottom:0rpx; width:650rpx;'>
+  <view class='font-32 flex-x flex-center-y' style='height:36rpx; margin-top:20rpx;'>
+    <view bindtap='checkbox'>
+      <checkbox style='transform: scale(0.7,0.7);' value="1" checked="{{checkboxVal}}" />
+    </view>
+    <view style='text-align:left;'>
+      同意并遵守<text style='color:#ff7f27' bindtap='toRule'>《今日到家服务条款》</text>
+    </view>
+  </view>
+  <button class='btn-style-fill' style='padding:0; margin-top:40rpx;' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>提供手机</button>
+  
+</view>

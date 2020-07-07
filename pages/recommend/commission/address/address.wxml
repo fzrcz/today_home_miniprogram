@@ -1,0 +1,21 @@
+<view class='container'>
+  <view class="address-list">
+    <block wx:for="{{dataList}}" wx:key style='pad'>
+      <view class='flex-x flex-center-y' style='padding:30rpx 20rpx; border-bottom:2rpx #888 dashed'>
+        <view class='flex-y' style='width:90%; line-height:70rpx;' bindtap='chooseAddr' data-addrid='{{item.id}}'>
+          <view class='font-36'>
+            <view style='width:150rpx; float:left;'>{{item.name}}</view>
+            <text>{{item.tell}}</text>
+            <text wx:if='{{item.check}}' style='font-size:20rpx; border:2rpx #FF7F27 solid; color:#FF7F27; padding:0 4rpx; margin-left:20rpx;'>默认</text>
+          </view>
+          <view class='font-32'>{{item.address}}{{item.houseNumber}}</view>
+        </view>
+        <i-icon type="brush_fill" i-class='theme-color' bindtap='toEdit' data-addrid='{{item.id}}' size='28' />
+      </view>
+    </block>
+  </view>
+  <view class="add-new-btn">
+    <view class='btn-style font-32' bindtap='toAdd' style='padding:20rpx; width:650rpx;'>+ 新建地址</view>
+  </view>
+
+</view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-icon": "/iview/icon/index",
+    "i-action-sheet": "/iview/action-sheet/index",
+    "i-modal": "/iview/modal/index"
+  }
+}

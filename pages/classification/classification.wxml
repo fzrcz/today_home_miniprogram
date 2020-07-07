@@ -1,0 +1,87 @@
+<!--pages/classification/classification.wxml-->
+<view class="content">
+  <view class="border-top"></view>
+  <view class="sidebar-box" style="height:{{windowHeight}}px">
+    <scroll-view class="sidebar" style="height:{{windowHeight-1}}px" scroll-y="false">
+      <view>
+        <block wx:for="{{serverlist}}" wx:key="id">
+          <view class="list" bindtap="goServer" data-url='{{item.url}}' data-id="{{item.id}}" data-description="{{item.description}}">
+            <text class="desc {{curNav == item.id ? 'desc-on' : ''}}" bindtap="switchRightTab" data-index="{{index}}">{{item.description}}</text>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+
+    <view class="sidebar-r">
+      <view class="adver" style="height:0" bindtap="hourCleaning">
+        <!-- <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/activity.png"></image> -->
+      </view>
+      <view class="product-box">
+        <!-- 循环体 -->
+        <view wx:if='{{productList.length == 0}}' class="no-data-box">
+          <image src='/image/no-data1.png' class="no-data"></image>
+        </view>
+        <view wx:else>
+          <view wx:for='{{productList}}' wx:key='id'>
+            <view bindtap="toDetail" data-productid='{{item.id}}' data-activityid='{{item.activityId}}' class="product-list">
+              <view class="pro-list-l">
+                <image class="pro-list-l-img" src="{{item.productFile[0].filePath}}" mode="aspectFill"></image>
+                <!-- <image class="double-lo" src="/image/double-lo.png" mode="widthFix"></image> -->
+              </view>
+              <view class="pro-list-r">
+                <view class="pro-list-r-t">
+                  <view class="font-30">{{item.NAME}}</view>
+                  <!-- <view class="font-20 col-mm-t">{{item.description}}</view> -->
+                </view>
+                <view class="pro-list-r-b">
+                  <view>
+
+                    <!-- <text wx:if='{{item.price == item.originalPrice}}'>
+                    <text class="font-24 col-mm-r">价格￥</text>
+                    <text class="font-24 col-mm-r">{{item.originalPrice}}</text>
+                    </text> -->
+                    <!-- <text wx:else> -->
+                    <text class="font-26 col-mm-r" style="color:red">价格￥</text>
+                    <text class="font-30 col-mm-r" style="color:red">{{item.price}}</text>
+                    <text class="font-30 col-mm-r" style="color:red" wx:if='{{item.id == 69 || item.id == 65 || item.id == 66}}'> /㎡</text>
+                    <text wx:if='{{item.price != item.originalPrice && item.originalPrice}}' style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥{{item.originalPrice}}</text>
+                    <!-- <text wx:for='{{afterPriceList}}' wx:key wx:for-item="afterItem" wx:if='{{afterItem.id == item.id}}' style='margin-left:20rpx; color:red; font-size:28rpx;'>券后价￥{{afterItem.afterPrice}}</text> -->
+
+                    <!-- </text> -->
+
+                  </view>
+                  <!-- 把优惠价去掉 -->
+                  <!-- <view wx:for='{{afterPriceList}}' wx:key='id' wx:for-item="afterItem" wx:if='{{afterItem.id == item.id}}' class="font-28" style='color:red;'>活动价￥{{afterItem.afterPrice}}</view> -->
+
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- <view class="product-list">
+        <view class="pro-list-l">
+          <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/pro-img.png"></image>
+        </view>
+        <view class="pro-list-r">
+          <view class="pro-list-r-t">
+            <view class="font-24">4次4小时保洁·月卡</view>
+            <view class="font-20 col-mm-t">深度保洁初体验，品质到家</view>
+          </view>
+          <view class="pro-list-r-b">
+            <view>
+              <text class="font-26 col-mm-r">￥</text>
+              <text class="font-30 col-mm-r">679</text>
+            </view>
+            <view class="font-24 col-mm-g">560人付款</view>
+          </view>
+        </view>
+      </view> -->
+
+
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<maskModal></maskModal>

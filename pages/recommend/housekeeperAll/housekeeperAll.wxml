@@ -1,0 +1,104 @@
+<!--查询所有阿姨-->
+ <scroll-view scroll-top="0" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad"  bindscroll="scroll">
+  <view class='header'>
+    <image  mode="aspectFill" style="width:750rpx; height:300rpx;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/ad/img-commission-ad02.png" bindtap='toCommission'></image>
+  </view>
+  <view class='section-header'>
+    <i-tabs current="{{ current }}" color="#FF7F27" bindchange="handleChange" i-class='tabs'>
+      <block wx:for="{{parentWorkType}}" wx:key="item.id">
+         <i-tab key="{{item.id}}" title="{{item.name}}"></i-tab>
+      </block>  
+    </i-tabs>
+  <!--
+    <radio-group bindchange="radioChange">
+        <label class="{{item.checked?'checkbox checked':'checkbox'}}" wx:for="{{typeList}}" data-index="{{index}}" wx:key="item.id">
+          <radio style='' value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
+        </label>
+    </radio-group>
+    -->
+    <!--保姆-->
+    <view hidden='{{fixedBm}}' class='flex-x flex-center'>
+      <view class="{{item.checked?'checkbox checked':'checkbox'}} flex-center-y" wx:for="{{bmArr}}" bindtap='checkboxBm' data-index="{{index}}" wx:key="item.id" style='margin:0;padding-top:20rpx;'>
+        <view wx:if="{{index!=0}}" style='width:2rpx;height:20rpx;background:#cecece;margin:0 18rpx;'></view>
+        <checkbox value="{{item.id}}" checked="{{item.checked}}"/>{{item.name}}
+      </view>
+    </view>
+     <!--月嫂-->
+    <view hidden='{{fixedYs}}' class='flex-x flex-center'>
+      <view class="{{item.checked?'checkbox checked':'checkbox'}} flex-center-y" wx:for="{{ysArr}}" bindtap='checkboxYs' data-index="{{index}}" wx:key="item.id" style='margin:0;padding-top:20rpx;'>
+          <view wx:if="{{index!=0}}" style='width:2rpx;height:20rpx;background:#cecece;margin:0 18rpx;'></view>
+          <checkbox value="{{item.id}}" checked="{{item.checked}}"/>{{item.name}}
+      </view>
+    </view>
+  </view>
+  <!--列表展示-->
+  <view>
+    <view wx:for="{{searchData}}" data-index="{{item.id}}" wx:key="item.id" class='templet' bindtap='toDetail'>
+        <view class="flex-x flex-center-y" style=' position:relative'>
+          <view class='status'>
+            <image style='width: 80rpx;height: 80rpx;' src="/image/{{item.personStatus==null?'unknown':item.personStatus}}.png"></image>
+          </view>
+          <image src='{{item.visualizePicDto.visualizePicUrl}}' class="headImg" mode='aspectFill' />
+          <view class='flex-y'>
+            <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+            </view>
+            <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+          </view>
+          <view class='theme-color' style='width:125px; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+        </view>
+        <view class='breakline' style='height:4rpx;'></view>
+
+        <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+          <i-row style="color:#888">
+            <i-col span="8">期望服务</i-col>
+            <i-col span="8">服务区域</i-col>
+            <i-col span="8">发布时间</i-col>
+          </i-row>
+          <i-row>
+            <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+            <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+            <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+          </i-row>
+        </view>
+      </view>
+  </view>
+  <!--数据为空提示-->
+  <view style='margin-top:50rpx;height:100rpx' wx:if="{{isShow}}">
+    <i-load-more tip="{{loadMsg}}" loading="{{loadType}}" />
+  </view>
+  <view class='{{fixed ? "section-header section-fixed": "section-header section-fixedHide"}}'>
+    <i-tabs current="{{ current }}" color="#FF7F27" bindchange="handleChange">
+      <block wx:for="{{parentWorkType}}" wx:key="item.id">
+         <i-tab key="{{item.id}}" title="{{item.name}}"></i-tab>
+      </block> 
+    </i-tabs>
+    <!--
+    <radio-group bindchange="radioChange">
+        <label class="{{item.checked?'checkbox checked':'checkbox'}}" wx:for="{{typeList}}" data-index="{{index}}" wx:key="item.id">
+          <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
+        </label>
+    </radio-group>-->
+    <!--保姆-->
+     <view hidden='{{fixedBm}}' class='flex-x flex-center'>
+      <view class="{{item.checked?'checkbox checked':'checkbox'}} flex-center-y" wx:for="{{bmArr}}" bindtap='checkboxBm' data-index="{{index}}" wx:key="item.id"  style='margin:0;padding:20rpx 0;'>
+          <view wx:if="{{index!=0}}" style='width:2rpx;height:20rpx;background:#cecece;margin:0 18rpx;'></view>
+          <checkbox value="{{item.id}}" checked="{{item.checked}}"/>{{item.name}}
+      </view>
+     </view>
+     <!--月嫂-->
+    <view hidden='{{fixedYs}}' class='flex-x flex-center'>
+      <view class="{{item.checked?'checkbox checked':'checkbox'}} flex-center-y" wx:for="{{ysArr}}" bindtap='checkboxYs' data-index="{{index}}" wx:key="item.id" style='margin:0;padding:20rpx 0;'>
+          <view wx:if="{{index!=0}}" style='width:2rpx;height:20rpx;background:#cecece;margin:0 18rpx;'></view>
+          <checkbox value="{{item.id}}" checked="{{item.checked}}"/>{{item.name}}
+      </view>
+    </view>
+  </view>
+  <view hidden='{{!fixed}}' class="section-header section-placeholder"></view>
+</scroll-view>
+
+<!--加载提示-->
+<view class="container" style='display:{{ spinShow }}'>
+    <i-spin fix size="large"></i-spin>
+</view>
+
+

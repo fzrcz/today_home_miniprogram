@@ -1,0 +1,10 @@
+.phone-input {
+  width: 630rpx;
+  height: 90rpx;
+  padding-left:20rpx;
+  border-radius: 10rpx;
+  outline: none;
+  color: #9e9c9c;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}

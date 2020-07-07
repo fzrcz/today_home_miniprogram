@@ -1,0 +1,640 @@
+<!--订单-->
+
+<view style="height:{{windowHeight}}px;">
+	<!-- tab切换 -->
+	<view class="flex-around font-30 order-box">
+		<view class="order-status {{currentTab==0 ? 'order-status-on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
+		<view class="order-status {{currentTab==1 ? 'order-status-on' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
+		<view class="order-status {{currentTab==2 ? 'order-status-on' : ''}}" data-current="2" bindtap="swichNav">进行中</view>
+		<view class="order-status {{currentTab==3 ? 'order-status-on' : ''}}" data-current="3" bindtap="swichNav">待评价</view>
+		<view class="order-status {{currentTab==4 ? 'order-status-on' : ''}}" data-current="4" bindtap="swichNav">已完成</view>
+	</view>
+	<!-- 订单列表 -->
+	<swiper wx:if='{{!noLogin}}' current="{{currentTab}}" class="swiper-box" bindchange="bindChange" style='height:{{windowHeight-50}}px'>
+		<!-- <scroll-view class="swiper-box" style='height:{{windowHeight-50}}px'> -->
+
+		<!-- 全部 -->
+		<!-- 只有登录之后才会去显示页面信息 noLogin：true代表没登录，false代表登录 -->
+		<swiper-item>
+			<view wx:if='{{!isShow && dataList.length == 0}}' class='flex-center'>
+				<image src='/image/no-data.png' style='width:361rpx; height:443rpx; margin-top:300rpx;' mode='widthFix' bindtap='toHome'></image>
+			</view>
+			<scroll-view wx:else bindscrolltolower='lower' data-method="全部" scroll-y="{{scrollStatus0}}" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+				<view wx:for="{{dataList}}" data-index="{{index}}" wx:for-item="item" wx:key="id" class="order-mbox">
+					<!-- 家维订单 -->
+					<view wx:if='{{item.businessTypeId == "7" || item.businessTypeId == "8" || item.businessTypeId == "9" || item.businessTypeId == "10" || item.businessTypeId == "11" || item.businessTypeId == "12" || item.businessTypeId == "13" || item.businessTypeId == "14"}}'>
+						<view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:32rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view>
+						<view style=" line-height:60rpx; color:#333 " class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+
+								<view>购买服务：{{item.productName}}</view>
+								<view>购买数量：{{item.orderQuantity}}</view>
+								<view>
+									<text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+								</view>
+								<view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+								<view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+								<view wx:if='{{item.oddJobOrders[0].orderStatus == null}}'>订单状态：暂无</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "预约时间"}}'>订单状态：已预约，暂未分配</view>
+								<view wx:else>订单状态：{{item.oddJobOrders[0].orderStatus}}</view>
+								<view>预约时间：{{item.oddJobOrders[0].appointTime==null?'暂未预约时间':item.oddJobOrders[0].appointTime}}</view>
+								<view>服务区域：{{item.oddJobOrders[0].area==null?'暂无':item.oddJobOrders[0].area}}</view>
+								<view>详细地址：{{item.oddJobOrders[0].address==null?'暂无':item.oddJobOrders[0].address}}{{item.oddJobOrders[0].houseNumber==null?'':item.oddJobOrders[0].houseNumber}}</view>
+								<view>下单时间：{{item.orderTime == null?'暂无':item.orderTime}}</view>
+							</view>
+							<view class='breakline' style='height:2rpx;'></view>
+							<view class="flex-x" style="float:right;">
+								<!-- <view wx:if='{{item.activityId != "3" && item.activityId != "5" && item.activityId != ""}}' class='font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}'></view> -->
+								<view wx:if='{{item.oddJobOrders[0].orderStatus == "待付款" && (item.activityId == "3" || item.activityId == "5" || item.activityId == "")}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-productname='{{item.productName}}'>付款</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "工作完成"}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-index="{{index}}" data-orderdetailid='{{item.oddJobOrders[0].id}}' data-businesstypeid='{{item.businessTypeId}}'>确认完成</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "客户已确认"}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' data-serveIndex="{{index}}" bindtap='evaluate' data-orderdetailid='{{item.oddJobOrders[0].id}}' data-orderid='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{item.hourlyWorkersServe}}">立即评价</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "取消订单"}}' class="btn-style-grey font-28" style="margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;">取消成功</view>
+								<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+							</view>
+						</view>
+						<view class='breakline'></view>
+					</view>
+					<!-- 家务订单 -->
+					<view wx:if='{{item.businessTypeId == "6"}}'>
+						<!-- <view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:30rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view> -->
+						<view style="line-height:50rpx; color:#333; overflow: auto;" class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 0 30rpx 10rpx ;'>
+								<view class="font-26 flex-between" style="height:80rpx;">
+									<view>
+										<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+										<text>{{item.orderTime == null?'-':item.orderTime}}</text>
+									</view>
+									<view style="color:red">{{item.hourlyWorkersOrder[0].orderStatus==null?'-':item.hourlyWorkersOrder[0].orderStatus}}</view>
+								</view>
+								<view style="align-items: flex-start" class="flex-between font-28">
+									<image src="{{item.product[0].productFile[0].filePath}}" mode='scaleToFill' class="orderimg"></image>
+									<view style="width:390rpx;">
+										<view class="font-30">{{item.productName}}</view>
+										<view class="font-24" style="color:#999;">{{item.hourlyWorkersOrder[0].address==null?'':item.hourlyWorkersOrder[0].address}}{{item.hourlyWorkersOrder[0].houseNumber==null?'':item.hourlyWorkersOrder[0].houseNumber}}</view>
+									</view>
+									<view style="text-align:center;">
+										<view>￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+										<view style="color:#999;">x{{item.orderQuantity}}</view>
+									</view>
+								</view>
+								<view class="font-26" style="text-align:right;color:#999;">{{item.hourlyWorkersOrder[0].appointTime==null?'暂未预约时间':item.hourlyWorkersOrder[0].appointTime}}</view>
+
+								<!-- <view>购买服务：{{item.productName}}</view>
+                <view>购买数量：{{item.orderQuantity}}</view>
+                <view>
+                  <text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+                </view>
+                <view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+                <view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+                <view>订单状态：{{item.hourlyWorkersOrder[0].orderStatus==null?'-':item.hourlyWorkersOrder[0].orderStatus}}</view>
+                <view>预约时间：{{item.hourlyWorkersOrder[0].appointTime==null?'暂未预约时间':item.hourlyWorkersOrder[0].appointTime}}</view>
+                <view>服务区域：{{item.hourlyWorkersOrder[0].area==null?'-':item.hourlyWorkersOrder[0].area}}</view>
+                <view>详细地址：{{item.hourlyWorkersOrder[0].address==null?'':item.hourlyWorkersOrder[0].address}}{{item.hourlyWorkersOrder[0].houseNumber==null?'':item.hourlyWorkersOrder[0].houseNumber}}</view>
+                <view>下单时间：{{item.orderTime == null?'-':item.orderTime}}</view> -->
+							</view>
+							<!-- <view class='breakline' style='height:2rpx;'></view> -->
+							<view class="flex-x" style="float:right;">
+								<!-- <view wx:if='{{item.activityId != "3" && item.activityId != "5" && item.activityId != ""}}' class='font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right'></view> -->
+								<view wx:if='{{item.orderStatusName == "待付款" && (item.activityId == "3" || item.activityId == "5" || item.activityId == "")}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}' data-productname='{{item.productName}}'>付款</view>
+
+								<view wx:else>
+									<view wx:for="{{item.hourlyWorkersServe}}" wx:for-index="serveIndex" wx:for-item="serveItem" wx:key='id'>
+										<view wx:if="{{serveItem.orderStatus=='工作完成'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-orderdetailid='{{serveItem.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{serveItem.orderStatus}}">确认完成</view>
+										</view>
+										<view wx:if="{{serveItem.orderStatus=='客户已确认'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx; padding:0 20rpx;float:right' bindtap='evaluate' data-serveIndex="{{serveIndex}}" data-orderid="{{item.id}}" data-orderdetailid="{{serveItem.id}}" data-businesstypeid='{{item.businessTypeId}}'>立即评价</view>
+										</view>
+										<!-- <view class='breakline' style="height:1px;"></view> -->
+									</view>
+								</view>
+							</view>
+							<view class='btn-style font-24' style='margin: 0 28rpx 18rpx 0; padding:0 18rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+						</view>
+						<!-- <view class='breakline'></view> -->
+					</view>
+				</view>
+				<view wx:if='{{dataList != 0 && noDataList0 == 0}}' class="no-data-more">没有更多数据啦...</view>
+			</scroll-view>
+		</swiper-item>
+
+		<!-- 待付款 -->
+		<swiper-item>
+			<view wx:if='{{!isShow && dataList.length == 0}}' class='flex-center'>
+				<image src='/image/no-data.png' style='width:361rpx; height:443rpx; margin-top:300rpx;' mode='widthFix' bindtap='toHome'></image>
+			</view>
+			<scroll-view wx:else bindscrolltolower='lower' scroll-y="{{scrollStatus1}}" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+				<view wx:for="{{dataList}}" data-index="{{index}}" wx:for-item="item" wx:key="id">
+					<!-- 家维订单 -->
+					<view wx:if='{{item.businessTypeId == "7" || item.businessTypeId == "8" || item.businessTypeId == "9" || item.businessTypeId == "10" || item.businessTypeId == "11" || item.businessTypeId == "12" || item.businessTypeId == "13" || item.businessTypeId == "14" || item.businessTypeId == "15" || item.businessTypeId == "16" || item.businessTypeId == "17" || item.businessTypeId == "18" || item.businessTypeId == "19" || item.businessTypeId == "20"}}'>
+						<view style="line-height:50rpx; color:#333; overflow: auto;" class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 0 30rpx 10rpx ;'>
+								<view class="font-26 flex-between" style="height:80rpx;">
+									<view>
+										<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+										<text>{{item.orderTime == null?'-':item.orderTime}}</text>
+									</view>
+									<view style="color:red">{{item.hourlyWorkersOrder[0].orderStatus==null?'-':item.hourlyWorkersOrder[0].orderStatus}}</view>
+								</view>
+								<view style="align-items: flex-start" class="flex-between font-28">
+									<image src="{{item.product[0].productFile[0].filePath}}" mode='scaleToFill' class="orderimg"></image>
+									<view style="width:390rpx;">
+										<view class="font-30">{{item.productName}}</view>
+										<view class="font-24" style="color:#999;">{{item.oddJobOrders[0].address==null?'暂无':item.oddJobOrders[0].address}}{{item.oddJobOrders[0].houseNumber==null?'':item.oddJobOrders[0].houseNumber}}</view>
+									</view>
+									<view style="text-align:center;">
+										<view>￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+										<view style="color:#999;">x{{item.orderQuantity}}</view>
+									</view>
+								</view>
+								<view class="font-26" style="text-align:right;color:#999;">{{item.hourlyWorkersOrder[0].appointTime==null?'暂未预约时间':item.hourlyWorkersOrder[0].appointTime}}</view>
+							</view>
+							<view class="flex-x" style="float:right;">
+								<view wx:if='{{item.oddJobOrders[0].orderStatus == "待付款" && (item.activityId == "3" || item.activityId == "5" || item.activityId == "")}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-productname='{{item.productName}}'>付款</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "工作完成"}}' class='btn-style font-28' style='margin:20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-index="{{index}}" data-orderdetailid='{{item.oddJobOrders[0].id}}' data-businesstypeid='{{item.businessTypeId}}'>确认完成</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "客户已确认"}}' class='btn-style font-28' style='margin:20rpx; padding:0 20rpx;float:right' data-serveIndex="{{index}}" bindtap='evaluate' data-orderdetailid='{{item.oddJobOrders[0].id}}' data-orderid='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{item.hourlyWorkersServe}}">立即评价</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "取消订单"}}' class="btn-style-grey font-28" style="margin:20rpx; padding:0 20rpx;">取消成功</view>
+								<view class='btn-style font-28' style='margin:20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+							</view>
+						</view>
+
+						<!-- <view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:32rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view>
+						<view style=" line-height:60rpx; color:#333 " class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+								<view>购买服务：{{item.productName}}</view>
+								<view>购买数量：{{item.orderQuantity}}</view>
+								<view>
+									<text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+								</view>
+								<view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+								<view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+								<view wx:if='{{item.oddJobOrders[0].orderStatus == null}}'>订单状态：暂无</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "预约时间"}}'>订单状态：已预约，暂未分配</view>
+								<view wx:else>订单状态：{{item.oddJobOrders[0].orderStatus}}</view>
+								<view>预约时间：{{item.oddJobOrders[0].appointTime==null?'暂未预约时间':item.oddJobOrders[0].appointTime}}</view>
+								<view>服务区域：{{item.oddJobOrders[0].area==null?'暂无':item.oddJobOrders[0].area}}</view>
+								<view>详细地址：{{item.oddJobOrders[0].address==null?'暂无':item.oddJobOrders[0].address}}{{item.oddJobOrders[0].houseNumber==null?'':item.oddJobOrders[0].houseNumber}}</view>
+								<view>下单时间：{{item.orderTime == null?'暂无':item.orderTime}}</view>
+							</view>
+							<view class='breakline' style='height:2rpx;'></view>
+							<view class="flex-x" style="float:right;">
+								<view wx:if='{{item.oddJobOrders[0].orderStatus == "待付款" && (item.activityId == "3" || item.activityId == "5" || item.activityId == "")}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-productname='{{item.productName}}'>付款</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "工作完成"}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-index="{{index}}" data-orderdetailid='{{item.oddJobOrders[0].id}}' data-businesstypeid='{{item.businessTypeId}}'>确认完成</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "客户已确认"}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' data-serveIndex="{{index}}" bindtap='evaluate' data-orderdetailid='{{item.oddJobOrders[0].id}}' data-orderid='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{item.hourlyWorkersServe}}">立即评价</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "取消订单"}}' class="btn-style-grey font-28" style="margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;">取消成功</view>
+								<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+							</view>
+						</view>
+						<view class='breakline'></view> -->
+					</view>
+					<!-- 家务订单 -->
+					<view wx:if='{{item.businessTypeId == "6"}}'>
+						<view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:32rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view>
+						<view style=" line-height:60rpx; color:#333 " class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+								<view>购买服务：{{item.productName}}</view>
+								<view>购买数量：{{item.orderQuantity}}</view>
+								<view>
+									<text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+								</view>
+								<view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+								<view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+								<view>订单状态：{{item.hourlyWorkersOrder[0].orderStatus==null?'-':item.hourlyWorkersOrder[0].orderStatus}}</view>
+								<view>预约时间：{{item.hourlyWorkersOrder[0].appointTime==null?'暂未预约时间':item.hourlyWorkersOrder[0].appointTime}}</view>
+								<view>服务区域：{{item.hourlyWorkersOrder[0].area==null?'-':item.hourlyWorkersOrder[0].area}}</view>
+								<view>详细地址：{{item.hourlyWorkersOrder[0].address==null?'':item.hourlyWorkersOrder[0].address}}{{item.hourlyWorkersOrder[0].houseNumber==null?'':item.hourlyWorkersOrder[0].houseNumber}}</view>
+								<view>下单时间：{{item.orderTime == null?'-':item.orderTime}}</view>
+							</view>
+							<view class='breakline' style='height:2rpx;'></view>
+							<view class="flex-x" style="float:right;">
+								<!-- <view wx:if='{{item.activityId != "3" && item.activityId != "5" && item.activityId != ""}}' class='font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right'></view> -->
+								<view wx:if='{{item.orderStatusName == "待付款" && (item.activityId == "3" || item.activityId == "5" || item.activityId == "")}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}' data-productname='{{item.productName}}'>付款</view>
+
+								<view wx:else>
+									<view wx:for="{{item.hourlyWorkersServe}}" wx:for-index="serveIndex" wx:for-item="serveItem" wx:key='id'>
+										<view wx:if="{{serveItem.orderStatus=='工作完成'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-orderdetailid='{{serveItem.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{serveItem.orderStatus}}">确认完成</view>
+										</view>
+										<view wx:if="{{serveItem.orderStatus=='客户已确认'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='evaluate' data-serveIndex="{{serveIndex}}" data-orderid="{{item.id}}" data-orderdetailid="{{serveItem.id}}" data-businesstypeid='{{item.businessTypeId}}'>立即评价</view>
+										</view>
+										<view class='breakline' style="height:1px;"></view>
+									</view>
+								</view>
+								<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+
+								<!-- <view wx:for="{{item.hourlyWorkersServe}}" wx:for-index="serveIndex" wx:for-item="serveItem" wx:key>
+                <view wx:if="{{serveItem.orderStatus=='工作完成'}}" class="number-times" style="padding: 0 0 0 15px;">
+                  <view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+                  <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-orderdetailid='{{serveItem.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{serveItem.orderStatus}}">确认完成</view>
+                </view>
+                <view wx:if="{{serveItem.orderStatus=='客户已确认'}}" class="number-times" style="padding: 0 0 0 15px;">
+                  <view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+                  <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='evaluate' data-serveIndex="{{serveIndex}}" data-orderid="{{item.id}}" data-orderdetailid="{{serveItem.id}}" data-businesstypeid='{{item.businessTypeId}}'>立即评价</view>
+                </view>
+                <view class='breakline' style="height:1px;"></view>
+              </view>
+              <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view> -->
+
+							</view>
+						</view>
+						<view class='breakline'></view>
+					</view>
+				</view>
+				<view wx:if='{{dataList != 0 && noDataList1 == 0}}' class="no-data-more">没有更多数据啦...</view>
+			</scroll-view>
+		</swiper-item>
+
+		<!-- 进行中 -->
+		<swiper-item>
+			<view wx:if='{{!isShow && dataList.length == 0}}' class='flex-center'>
+				<image src='/image/no-data.png' style='width:361rpx; height:443rpx; margin-top:300rpx;' mode='widthFix' bindtap='toHome'></image>
+			</view>
+			<scroll-view wx:else bindscrolltolower='lower' data-method="进行中" scroll-y="{{scrollStatus2}}" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+				<view wx:for="{{dataList}}" data-index="{{index}}" wx:for-item="item" wx:key="id">
+
+					<!-- 家维订单 -->
+					<view wx:if='{{item.businessTypeId == "7" || item.businessTypeId == "8" || item.businessTypeId == "9" || item.businessTypeId == "10" || item.businessTypeId == "11" || item.businessTypeId == "12" || item.businessTypeId == "13" || item.businessTypeId == "14" || item.businessTypeId == "15" || item.businessTypeId == "16" || item.businessTypeId == "17" || item.businessTypeId == "18" || item.businessTypeId == "19" || item.businessTypeId == "20"}}'>
+						<view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:32rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view>
+						<view style=" line-height:60rpx; color:#333 " class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+								<view>购买服务：{{item.productName}}</view>
+								<view>购买数量：{{item.orderQuantity}}</view>
+								<view>
+									<text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+								</view>
+								<view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+								<view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+								<view wx:if='{{item.oddJobOrders[0].orderStatus == null}}'>订单状态：暂无</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "预约时间"}}'>订单状态：已预约，暂未分配</view>
+								<view wx:else>订单状态：{{item.oddJobOrders[0].orderStatus}}</view>
+								<view>预约时间：{{item.oddJobOrders[0].appointTime==null?'暂未预约时间':item.oddJobOrders[0].appointTime}}</view>
+								<view>服务区域：{{item.oddJobOrders[0].area==null?'暂无':item.oddJobOrders[0].area}}</view>
+								<view>详细地址：{{item.oddJobOrders[0].address==null?'暂无':item.oddJobOrders[0].address}}{{item.oddJobOrders[0].houseNumber==null?'':item.oddJobOrders[0].houseNumber}}</view>
+								<view>下单时间：{{item.orderTime == null?'暂无':item.orderTime}}</view>
+							</view>
+							<view class='breakline' style='height:2rpx;'></view>
+							<view class="flex-x" style="float:right;">
+								<!-- <view wx:if='{{item.oddJobOrders[0].orderStatus == "客户已确认"}}' class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' data-serveIndex="{{index}}" bindtap='evaluate' data-orderdetailid='{{item.oddJobOrders[0].id}}'
+                data-orderid='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{item.hourlyWorkersServe}}">立即评价</view>
+              <view wx:elif='{{item.oddJobOrders[0].orderStatus == "取消订单"}}' class="btn-style-grey font-28" style="margin:8px 17px 8px 8px; padding:0 8px;">取消成功</view>
+              <view wx:elif='{{item.oddJobOrders[0].orderStatus == "工作完成"}}' class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-index="{{index}}" data-orderdetailid='{{item.oddJobOrders[0].id}}'
+                data-businesstypeid='{{item.businessTypeId}}'>确认完成</view> -->
+								<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+							</view>
+						</view>
+						<view class='breakline'></view>
+					</view>
+					<!-- 家务订单 -->
+					<view wx:if='{{item.businessTypeId == "6"}}'>
+						<view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:32rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view>
+						<view style=" line-height:60rpx; color:#333 " class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+								<view>购买服务：{{item.productName}}</view>
+								<view>购买数量：{{item.orderQuantity}}</view>
+								<view>
+									<text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+								</view>
+								<view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+								<view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+								<view>订单状态：{{item.orderStatusName==null?'-':item.orderStatusName}}</view>
+								<view>预约时间：{{item.hourlyWorkersOrder[0].appointTime==null?'暂未预约时间':item.hourlyWorkersOrder[0].appointTime}}</view>
+								<view>服务区域：{{item.hourlyWorkersOrder[0].area==null?'-':item.hourlyWorkersOrder[0].area}}</view>
+								<view>详细地址：{{item.hourlyWorkersOrder[0].address==null?'':item.hourlyWorkersOrder[0].address}}{{item.hourlyWorkersOrder[0].houseNumber==null?'':item.hourlyWorkersOrder[0].houseNumber}}</view>
+								<view>下单时间：{{item.orderTime == null?'-':item.orderTime}}</view>
+							</view>
+							<view class='breakline' style='height:2rpx;'></view>
+							<view class="flex-x" style="float:right;">
+								<view wx:if='{{item.orderStatusName == "待付款"}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}'>付款</view>
+								<view wx:else>
+									<view wx:for="{{item.hourlyWorkersServe}}" wx:for-index="serveIndex" wx:for-item="serveItem" wx:key='id'>
+										<view wx:if="{{serveItem.orderStatus=='工作完成'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-orderdetailid='{{serveItem.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{serveItem.orderStatus}}">确认完成</view>
+										</view>
+										<view wx:if="{{serveItem.orderStatus=='客户已确认'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='evaluate' data-serveIndex="{{serveIndex}}" data-orderid="{{item.id}}" data-orderdetailid="{{serveItem.id}}" data-businesstypeid='{{item.businessTypeId}}'>立即评价</view>
+										</view>
+										<view class='breakline' style="height:1px;"></view>
+									</view>
+								</view>
+							</view>
+							<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+
+						</view>
+						<view class='breakline'></view>
+					</view>
+				</view>
+				<view wx:if='{{dataList != 0 && noDataList2 == 0}}' class="no-data-more">没有更多数据啦...</view>
+			</scroll-view>
+		</swiper-item>
+
+		<!-- 待评价 -->
+		<swiper-item>
+			<view wx:if='{{!isShow && dataList.length == 0}}' class='flex-center'>
+				<image src='/image/no-data.png' style='width:361rpx; height:443rpx; margin-top:300rpx;' mode='widthFix' bindtap='toHome'></image>
+			</view>
+			<scroll-view wx:else bindscrolltolower='lower' scroll-y="{{scrollStatus3}}" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+				<view wx:for="{{dataList}}" data-index="{{index}}" wx:for-item="item" wx:key="id">
+
+					<!-- 家维订单 -->
+					<view wx:if='{{item.businessTypeId == "7" || item.businessTypeId == "8" || item.businessTypeId == "9" || item.businessTypeId == "10" || item.businessTypeId == "11" || item.businessTypeId == "12" || item.businessTypeId == "13" || item.businessTypeId == "14" || item.businessTypeId == "15" || item.businessTypeId == "16" || item.businessTypeId == "17" || item.businessTypeId == "18" || item.businessTypeId == "19" || item.businessTypeId == "20"}}'>
+
+						<view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:32rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view>
+						<view style=" line-height:60rpx; color:#333 " class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+								<view>购买服务：{{item.productName}}</view>
+								<view>购买数量：{{item.orderQuantity}}</view>
+								<view>
+									<text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+								</view>
+								<view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+								<view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+								<view wx:if='{{item.oddJobOrders[0].orderStatus == null}}'>订单状态：暂无</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "预约时间"}}'>订单状态：已预约，暂未分配</view>
+								<view wx:else>订单状态：{{item.oddJobOrders[0].orderStatus}}</view>
+								<view>预约时间：{{item.oddJobOrders[0].appointTime==null?'暂未预约时间':item.oddJobOrders[0].appointTime}}</view>
+								<view>服务区域：{{item.oddJobOrders[0].area==null?'暂无':item.oddJobOrders[0].area}}</view>
+								<view>详细地址：{{item.oddJobOrders[0].address==null?'暂无':item.oddJobOrders[0].address}}{{item.oddJobOrders[0].houseNumber==null?'':item.oddJobOrders[0].houseNumber}}</view>
+								<view>下单时间：{{item.orderTime == null?'暂无':item.orderTime}}</view>
+							</view>
+							<view class='breakline' style='height:2rpx;'></view>
+							<view class="flex-x" style="float:right;">
+								<view wx:if='{{item.oddJobOrders[0].orderStatus == "客户已确认"}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' data-serveIndex="{{index}}" bindtap='evaluate' data-orderdetailid='{{item.oddJobOrders[0].id}}' data-orderid='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{item.hourlyWorkersServe}}">立即评价</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "取消订单"}}' class="btn-style-grey font-28" style="margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;">取消成功</view>
+								<!-- <view wx:elif='{{item.oddJobOrders[0].orderStatus == "工作完成"}}' class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-index="{{index}}" data-orderdetailid='{{item.oddJobOrders[0].id}}' -->
+								<!-- data-businesstypeid='{{item.businessTypeId}}'>确认完成</view> -->
+								<view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+							</view>
+						</view>
+						<view class='breakline'></view>
+					</view>
+					<!-- 家务订单 -->
+					<view wx:if='{{item.businessTypeId == "6"}}'>
+						<view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:32rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view>
+						<view style=" line-height:60rpx; color:#333 " class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+								<view>购买服务：{{item.productName}}</view>
+								<view>购买数量：{{item.orderQuantity}}</view>
+								<view>
+									<text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+								</view>
+								<view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+								<view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+								<view>订单状态：{{item.orderStatusName==null?'-':item.orderStatusName}}</view>
+								<view>预约时间：{{item.hourlyWorkersOrder[0].appointTime==null?'暂未预约时间':item.hourlyWorkersOrder[0].appointTime}}</view>
+								<view>服务区域：{{item.hourlyWorkersOrder[0].area==null?'-':item.hourlyWorkersOrder[0].area}}</view>
+								<view>详细地址：{{item.hourlyWorkersOrder[0].address==null?'':item.hourlyWorkersOrder[0].address}}{{item.hourlyWorkersOrder[0].houseNumber==null?'':item.hourlyWorkersOrder[0].houseNumber}}</view>
+								<view>下单时间：{{item.orderTime == null?'-':item.orderTime}}</view>
+							</view>
+							<view class='breakline' style='height:2rpx;'></view>
+							<view class="flex-x" style="float:right;">
+								<view wx:if='{{item.orderStatusName == "待付款"}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}'>付款</view>
+								<view wx:else>
+									<view wx:for="{{item.hourlyWorkersServe}}" wx:for-index="serveIndex" wx:for-item="serveItem" wx:key='id'>
+										<view wx:if="{{serveItem.orderStatus=='工作完成'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-orderdetailid='{{serveItem.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{serveItem.orderStatus}}">确认完成</view>
+										</view>
+										<view wx:if="{{serveItem.orderStatus=='客户已确认'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='evaluate' data-serveIndex="{{serveIndex}}" data-orderid="{{item.id}}" data-orderdetailid="{{serveItem.id}}" data-businesstypeid='{{item.businessTypeId}}'>立即评价</view>
+										</view>
+										<view class='breakline' style="height:1px;"></view>
+									</view>
+								</view>
+								<!-- <view wx:for="{{item.hourlyWorkersServe}}" wx:for-index="serveIndex" wx:for-item="serveItem" wx:key>
+                <view wx:if="{{serveItem.orderStatus=='工作完成'}}" class="number-times" style="padding: 0 0 0 15px;">
+                  <view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+                  <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-orderdetailid='{{serveItem.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{serveItem.orderStatus}}">确认完成</view>
+                </view>
+                <view wx:if="{{serveItem.orderStatus=='客户已确认'}}" class="number-times" style="padding: 0 0 0 15px;">
+                  <view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+                  <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='evaluate' data-serveIndex="{{serveIndex}}" data-orderid="{{item.id}}" data-orderdetailid="{{serveItem.id}}" data-businesstypeid='{{item.businessTypeId}}'>立即评价</view>
+                </view>
+                <view class='breakline' style="height:1px;"></view>
+              </view>
+              <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view> -->
+
+							</view>
+						</view>
+						<view class='breakline'></view>
+					</view>
+				</view>
+				<view wx:if='{{dataList != 0 && noDataList3 == 0}}' class="no-data-more">没有更多数据啦...</view>
+			</scroll-view>
+		</swiper-item>
+
+		<!-- 已完成 -->
+		<swiper-item>
+			<view wx:if='{{!isShow && dataList.length == 0}}' class='flex-center'>
+				<image src='/image/no-data.png' style='width:361rpx; height:443rpx; margin-top:300rpx;' mode='widthFix' bindtap='toHome'></image>
+			</view>
+			<scroll-view wx:else bindscrolltolower='lower' scroll-y="{{scrollStatus4}}" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+				<view wx:for="{{dataList}}" data-index="{{index}}" wx:for-item="item" wx:key="id">
+
+					<!-- 家维订单 -->
+					<view wx:if='{{item.businessTypeId == "7" || item.businessTypeId == "8" || item.businessTypeId == "9" || item.businessTypeId == "10" || item.businessTypeId == "11" || item.businessTypeId == "12" || item.businessTypeId == "13" || item.businessTypeId == "14" || item.businessTypeId == "15" || item.businessTypeId == "16" || item.businessTypeId == "17" || item.businessTypeId == "18" || item.businessTypeId == "19" || item.businessTypeId == "20"}}'>
+
+						<view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:32rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view>
+						<view style=" line-height:60rpx; color:#333 " class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+								<view>购买服务：{{item.productName}}</view>
+								<view>购买数量：{{item.orderQuantity}}</view>
+								<view>
+									<text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+								</view>
+								<view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+								<view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+								<view wx:if='{{item.oddJobOrders[0].orderStatus == null}}'>订单状态：暂无</view>
+								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "预约时间"}}'>订单状态：已预约，暂未分配</view>
+								<view wx:else>订单状态：{{item.oddJobOrders[0].orderStatus}}</view>
+								<view>预约时间：{{item.oddJobOrders[0].appointTime==null?'暂未预约时间':item.oddJobOrders[0].appointTime}}</view>
+								<view>服务区域：{{item.oddJobOrders[0].area==null?'暂无':item.oddJobOrders[0].area}}</view>
+								<view>详细地址：{{item.oddJobOrders[0].address==null?'暂无':item.oddJobOrders[0].address}}{{item.oddJobOrders[0].houseNumber==null?'':item.oddJobOrders[0].houseNumber}}</view>
+								<view>下单时间：{{item.orderTime == null?'暂无':item.orderTime}}</view>
+							</view>
+							<view class='breakline' style='height:2rpx;'></view>
+							<view class="flex-x" style="float:right;">
+								<!-- <view wx:if='{{item.oddJobOrders[0].orderStatus == "客户已确认"}}' class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' data-serveIndex="{{index}}" bindtap='evaluate' data-orderdetailid='{{item.oddJobOrders[0].id}}'
+                data-orderid='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{item.hourlyWorkersServe}}">立即评价</view>
+              <view wx:elif='{{item.oddJobOrders[0].orderStatus == "取消订单"}}' class="btn-style-grey font-28" style="margin:8px 17px 8px 8px; padding:0 8px;">取消成功</view>
+              <view wx:elif='{{item.oddJobOrders[0].orderStatus == "工作完成"}}' class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-index="{{index}}" data-orderdetailid='{{item.oddJobOrders[0].id}}'
+                data-businesstypeid='{{item.businessTypeId}}'>确认完成</view> -->
+								<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+							</view>
+						</view>
+						<view class='breakline'></view>
+					</view>
+					<!-- 家务订单 -->
+					<view wx:if='{{item.businessTypeId == "6"}}'>
+						<view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+						<view style='font-size:32rpx;padding:20rpx;'>
+							<text class='businessType'>{{item.businessTypeName==null?'-':item.businessTypeName}}</text>
+						</view>
+						<view class='breakline' style='height:2rpx;'></view>
+						<view style=" line-height:60rpx; color:#333 " class='font-32'>
+							<view bindtap='toOddJobDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+								<view>购买服务：{{item.productName}}</view>
+								<view>购买数量：{{item.orderQuantity}}</view>
+								<view>
+									<text decode="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：￥{{item.orderPrice==null?'0':item.orderPrice}}</text>
+								</view>
+								<view>优惠金额：￥{{item.reducedPrice==null?'0':item.reducedPrice}}</view>
+								<view>支付金额：￥{{item.realityPrice==null?'0':item.realityPrice}}</view>
+								<view>订单状态：{{item.orderStatusName==null?'-':item.orderStatusName}}</view>
+								<view>预约时间：{{item.hourlyWorkersOrder[0].appointTime==null?'暂未预约时间':item.hourlyWorkersOrder[0].appointTime}}</view>
+								<view>服务区域：{{item.hourlyWorkersOrder[0].area==null?'-':item.hourlyWorkersOrder[0].area}}</view>
+								<view>详细地址：{{item.hourlyWorkersOrder[0].address==null?'':item.hourlyWorkersOrder[0].address}}{{item.hourlyWorkersOrder[0].houseNumber==null?'':item.hourlyWorkersOrder[0].houseNumber}}</view>
+								<view>下单时间：{{item.orderTime == null?'-':item.orderTime}}</view>
+							</view>
+							<view class='breakline' style='height:2rpx;'></view>
+							<view class="flex-x" style="float:right;">
+								<view wx:if='{{item.orderStatusName == "待付款"}}' class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}'>付款</view>
+								<view wx:else>
+									<view wx:for="{{item.hourlyWorkersServe}}" wx:for-index="serveIndex" wx:for-item="serveItem" wx:key='id'>
+										<view wx:if="{{serveItem.orderStatus=='工作完成'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-orderdetailid='{{serveItem.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{serveItem.orderStatus}}">确认完成</view>
+										</view>
+										<view wx:if="{{serveItem.orderStatus=='客户已确认'}}" class="number-times" style="padding: 0 0 0 15px;">
+											<view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+											<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='evaluate' data-serveIndex="{{serveIndex}}" data-orderid="{{item.id}}" data-orderdetailid="{{serveItem.id}}" data-businesstypeid='{{item.businessTypeId}}'>立即评价</view>
+										</view>
+										<view class='breakline' style="height:1px;"></view>
+									</view>
+								</view>
+								<!-- <view wx:for="{{item.hourlyWorkersServe}}" wx:for-index="serveIndex" wx:for-item="serveItem" wx:key>
+                <view wx:if="{{serveItem.orderStatus=='工作完成'}}" class="number-times" style="padding: 0 0 0 15px;">
+                  <view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+                  <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-orderdetailid='{{serveItem.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{serveItem.orderStatus}}">确认完成</view>
+                </view>
+                <view wx:if="{{serveItem.orderStatus=='客户已确认'}}" class="number-times" style="padding: 0 0 0 15px;">
+                  <view>第{{serveIndex+1}}次服务：{{serveItem.appointTime ? serveItem.appointTime : '暂未预约'}}</view>
+                  <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='evaluate' data-serveIndex="{{serveIndex}}" data-orderid="{{item.id}}" data-orderdetailid="{{serveItem.id}}" data-businesstypeid='{{item.businessTypeId}}'>立即评价</view>
+                </view>
+                <view class='breakline' style="height:1px;"></view>
+              </view> -->
+							</view>
+							<view class='btn-style font-28' style='margin:20rpx 20rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+						</view>
+						<view class='breakline'></view>
+					</view>
+				</view>
+				<view wx:if='{{dataList != 0 && noDataList4 == 0}}' class="no-data-more">没有更多数据啦...</view>
+			</scroll-view>
+		</swiper-item>
+
+	</swiper>
+
+</view>
+
+
+<!-- <view catchtouchmove="ture" class="yhwdl">
+  <view>
+    <image src="/image/login-log.png"></image>
+  </view>
+</view> -->
+
+
+<view wx:if='{{noLogin}}' catchtouchmove="ture" class="yhwdl" bindtap="goLogin">
+	<image style="width:400rpx;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/miniapp/toLogin.jpg" mode='widthFix'></image>
+</view>
+
+
+<!-- 登录 -->
+<!-- <view catchtouchmove="ture">
+  <i-modal visible="{{ visibleLogin }}" bind:click="handleCloseLogin" show-ok="{{false}}" show-cancel="{{false}}">
+    <view style='position: relative;height:320rpx;'>
+      <view style='position: absolute;right:30rpx;top:-20rpx;' bindtap='handleCloseLogin'>
+        <image style='width:60rpx;height:60rpx;' src='/image/close.png'></image>
+      </view>
+      <view style='margin-top:20rpx;'>
+        <image style='height:100rpx;width:100rpx;' src='/image/login-log.png'></image>
+      </view>
+      <view class='font-36' style='color:#1c2438'>Hi~请您登录</view>
+      <view>
+        <button style='margin:30rpx;background:#ff7f27;color:#fff' open-type='getUserInfo' bindgetuserinfo='getUnionId'>授权登录</button>
+      </view>
+    </view>
+  </i-modal>
+</view> -->
+
+
+<!--注释 更换阿姨-->
+<!-- <i-action-sheet visible="{{ visible }}" bind:cancel="handleCancel">
+  <view slot="header"> -->
+<!--注释 头部-->
+<!-- <view class='font-28' style='width:100%;height:90rpx;'>
+      <view class='font-36' style='float:left;position:absolute;left:300rpx; margin: 20rpx 20rpx 30rpx 20rpx;color:black;'>选择阿姨</view>
+      <view bindtap="handleCancel" style='float:left;position:absolute;right:10rpx;color:gray; margin: 10rpx 0rpx 0rpx 0rpx;'>
+        <image style='width:60rpx;height:60rpx;' src='/image/close.png'></image>
+      </view>
+    </view> -->
+<!-- 注释 body-->
+<!-- <view style='width:710rpx;height:500rpx;margin:0rpx 20rpx 15rpx 20rpx;'>
+      <view style='text-align:left'>
+        <scroll-view class="scroll-view_H" scroll-y="true" style="width: 100%;height:500rpx;">
+          <view wx:if="{{housekeepersData.length==0}}" style='padding:50rpx; text-align:center; font-size:32rpx; line-height:60rpx;'>
+            您还没预约其他阿姨呢
+            <view class='theme-color' bindtap='toList'>去预约</view>
+          </view>
+
+          <view wx:for="{{housekeepersData}}" wx:key="item.id" wx:for-index="tabindex" class="{{tabindex == selectTab ? 'scroll-view-item_H-select' : 'scroll-view-item_H'}}">
+            <view bindtap="myChange" data-index="{{tabindex}}">
+              <view class='flex-center' style='margin:20rpx;'>
+                <image src='{{item.headPic}}' style="width:120rpx;height:120rpx;border-radius:100%;"></image>
+              </view>
+              <view class="flex-center {{tabindex == selectTab ? 'view-style-select' : ''}}" style="margin-bottom:10rpx;color:black;">{{item.name==null?'-':item.name}}</view>
+              <view class="flex-center {{tabindex == selectTab ? 'view-style-select' : ''}}" style="margin-bottom:10rpx;color:black;">{{item.workType==null?'-':item.workType}} | {{item.workYears==null?'0':item.workYears}}年</view>
+            </view>
+            <view class="flex-center {{tabindex == selectTab ? 'view-style-select' : ''}}" style='margin-bottom:10rpx;'>
+              <view class="flex-center {{tabindex == selectTab ? 'btn-style-select' : 'btn-style'}}" bindtap="toHousekeeperDetail" data-id='{{item.id}}' style="margin-top:10rpx;">查看</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</i-action-sheet> -->

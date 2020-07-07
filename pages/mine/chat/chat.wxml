@@ -1,0 +1,23 @@
+<view style="position: relative">
+  <scroll-view style="height:{{windowHeight-input_height-20}}px" scroll-y='{{true}}'>
+    <view class="chat_box" wx:for="{{chatrecordlist}}" wx:key="index">
+      <view class="chat_time">{{item.time}}</view>
+      <view class="chat_content {{item.sendid==thisId?'right':''}}">{{item.content}}</view>
+    </view>
+  </scroll-view>
+  <view class="chat_input" style="height:{{input_height}}px">
+    <view class="input">
+      <input class="{{input_value==''?'input_before':'inputing'}}" focus="{{focus}}" bindinput="change" bindblur="blur" value="{{input_value}}"></input>
+      <image src="/image/emoticon.png" bindtap="toemoticon"></image>
+      <image wx:if="{{input_value==''}}" src="/image/funct.png" bindtap="addfunct"></image>
+      <button wx:else bindtap="sendout">发送</button>
+    </view>
+    <view class="funct flex-center" wx:if="{{add==1}}">
+      <image src="/image/funct_camera.png" bindtap="toalbum"></image>
+      <image src="/image/funct_phone.png" bindtap="tocall"></image>
+    </view>
+    <view class="funct" wx:if="{{add==2}}">
+      <view wx:for="{{emojiChar}}" wx:key="index" class='pane' bindtap='emojiClick' data-item="{{item}}">{{item}}</view>
+    </view>
+  </view>
+</view>

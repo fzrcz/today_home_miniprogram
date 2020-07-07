@@ -1,0 +1,25 @@
+<!--pages/mine/times/times.wxml-->
+<!-- <text>广告图，分享能永久获得次数</text>
+<view class='page backImg' style='height:100%;'>
+  <button open-type="share" style='position:absolute;top:920rpx;margin:0 30rpx;width:90%;opacity:0;'>
+    邀请
+  </button>
+  
+</view>
+ -->
+ <view style='padding:0 30rpx;'>
+  <block wx:for="{{dataList}}" wx:key>
+    <view class='flex-center-y' style='padding:40rpx 0rpx; border-bottom:2rpx #ddd solid;'>
+      <image src='{{item.headPic}}' style='width:80rpx; height:80rpx; border-radius: 50%; margin-right:30rpx;' />
+      <view class='flex-y' style='width:450rpx; line-height:50rpx;' data-index="{{item.id}}" bindtap='toDetail'>
+        <view class='font-32'>{{item.name ==null?'-':item.name}}</view>
+        <view class='font-28' style='color:#888'>{{item.interviewTime==null?'-':item.interviewTime}}</view>
+      </view>
+      <view class='font-36 theme-color' bindtap='toCall' data-phone='{{item.phone}}'><i-icon type="mobilephone_fill" size='36'/></view>
+    </view>
+  </block>
+  <!--加载更多提示-->
+  <view wx:if="{{showType}}">
+    <i-load-more tip="{{ loadMoreTip }}" loading="{{loadType}}"/>
+  </view>
+</view>

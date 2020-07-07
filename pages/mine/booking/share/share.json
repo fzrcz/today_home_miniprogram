@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "同意预约",
+  "usingComponents": {
+    "i-panel": "/iview/panel/index"
+  }
+}

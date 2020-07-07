@@ -1,0 +1,8 @@
+<!--pages/mine/recommend/recommend.wxml-->
+<!-- <text>推荐活动广告页，带有小程序码，雇主可保存下来发给朋友或朋友圈。识别小程序码进入平台宣传页</text> -->
+<view class='page backImg' style='height:100%;'>
+  <button open-type="share" style='position:absolute;top:920rpx;margin:0 30rpx;width:90%;opacity:0;'>
+    邀请
+  </button>
+  
+</view>

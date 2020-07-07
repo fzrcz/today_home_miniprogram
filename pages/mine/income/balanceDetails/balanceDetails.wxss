@@ -1,0 +1,89 @@
+/* pages/mine/income/balanceDetails/balanceDetails.wxss */
+
+page {
+  background: #fff;
+}
+.tucuui{
+  background: #fff;
+  z-index: 55;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.flex-tab {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 120rpx;
+}
+
+.item-tap {
+  width: 200rpx;
+  text-align: center;
+  color: #8b8b8b;
+  font-size: 30rpx;
+}
+
+.onTab {
+  color: #373737;
+  line-height: 60rpx;
+  border-bottom: 2rpx solid#373737;
+}
+
+/* 明细列表 */
+
+.details-box {
+  padding: 0 30rpx;
+}
+
+.details-list {
+  border-bottom: 2rpx #d5d5d5 solid;
+  padding: 40rpx 0;
+}
+
+/* .details-list:first-child{
+  border-bottom: 2rpx #d5d5d5 solid; 
+  padding: 0 0 40rpx 0;
+} */
+
+.details-list-t {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 10rpx 0;
+}
+
+.pay-method {
+  font-size: 28rpx;
+}
+
+.pay-time {
+  font-size: 26rpx;
+  color: #8b8b8b;
+}
+
+.blance {
+  font-size: 26rpx;
+}
+
+.pay-price {
+  font-size: 36rpx;
+}
+
+.no-data {
+  width: 276rpx;
+  height: 288rpx;
+  display: block;
+}
+.no-data-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40%;
+}
+.no-data-more{
+  text-align: center;
+  padding: 30rpx 0;
+}

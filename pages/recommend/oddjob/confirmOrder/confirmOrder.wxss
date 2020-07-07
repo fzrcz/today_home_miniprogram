@@ -1,0 +1,259 @@
+page {
+  min-height: 100%;
+  background-color: #f6f6f7;
+}
+
+.add_btn {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0px;
+}
+
+.pet-name, .birthday, .pet-weight, .pet-type, .pet-variety, .get-home, .pet-food,
+.pet-sterilization, .pet-insect, .pet-vaccine {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+.choose-list {
+  width: 150rpx;
+  height: 50rpx;
+  background: #efefef;
+  border-radius: 4rpx;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 50rpx;
+  margin: 0 0 0 20rpx;
+}
+
+.choose-list-on {
+  padding: -2rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #ff7200;
+  color: #ff7200;
+  background: #fff8f2;
+  border-radius: 4rpx;
+}
+
+.common-list {
+  padding: 30rpx 30rpx;
+  border-radius: 6px;
+  margin: 20rpx;
+  background: #fff;
+}
+
+.picker {
+  border: 2rpx solid #ccc;
+  border-radius: 10rpx;
+  padding: 0 30rpx;
+  width: 68%;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #9c9898;
+}
+
+.item-list {
+  padding: 0 0 40rpx 0;
+}
+.remarks {
+  width: 68%;
+  height: 220rpx;
+  border: 2rpx solid #ccc;
+  margin: 0 0 0 20rpx;
+  padding: 20rpx;
+  border-radius: 4rpx;
+}
+
+.content {
+  margin: 0 0 100rpx 0;
+}
+
+.no-coupon {
+  color: #89898b;
+  padding: 4% 0 0 0;
+}
+
+.color-red {
+  color: #fff;
+  background: #ff7200;
+  padding: 0 10rpx;
+}
+
+.crowd-red {
+  color: #ff7200;
+  font-weight: 1000;
+}
+
+.crowd-green {
+  color: #5eff00;
+  font-weight: 1000;
+}
+
+.shopvoucher {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 30rpx auto;
+  position: relative;
+}
+.shopvoucher>image{
+  height: 100%;
+  width: 100%;
+}
+.shopvoucher .imgclear{
+  position: absolute;
+  top: -26rpx;
+  right: -26rpx;
+  height: 44rpx;
+  width: 44rpx;
+}
+slider{
+  width: 380rpx; 
+  display:inline-block; 
+  margin:0;
+  vertical-align: bottom;
+}
+.otheareas{
+  width:240rpx;
+  border:2rpx solid#ccc;
+  font-size:24rpx;
+  padding:2rpx 10rpx;
+}
+.areaunit{
+  position: absolute;
+  top: 4rpx;
+  right: 20rpx;
+}
+/* 选择支付方式 */
+
+.gree{
+  background:#c9c8c7!important;
+  pointer-events: none;
+}
+
+/* 选择支付方式 */
+.modal-pay{
+  z-index: 101;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20rpx 20rpx 0 0;
+  background: #fff;
+  width: 100%;
+  min-height: 490rpx;
+}
+
+/* 遮罩 */
+
+.mask {
+  z-index: 100;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  position: fixed;
+  bottom: 0;
+}
+
+.pay-group {
+  padding: 40rpx;
+}
+
+.choose-payment {
+  padding: 30rpx;
+  text-align: center;
+  border-bottom: 2rpx solid #eaeaea;
+}
+
+.pay-group-list {
+  padding: 0 0 40rpx 0;
+}
+
+/* 未选中的 背景样式 */
+
+radio .wx-radio-input {
+  border-radius: 50%;
+  width: 46rpx;
+  height: 46rpx;
+}
+
+radio .wx-radio-input.wx-radio-input-checked {
+  border-color: #ff7206;
+  background: #ff7206;
+}
+
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%;
+  width: 46rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+/* 选择服务商家 */
+.serbus-box {
+  margin: 14rpx 0;
+  height: 90rpx;
+  background: #f7f7f7;
+}
+
+.serbusimg {
+  vertical-align: middle;
+  margin: 0 10rpx;
+  height: 80rpx;
+  width: 80rpx;
+  float: left;
+}
+
+.serbusti {
+  letter-spacing: 4rpx;
+  float: left;
+  color: #a9a9a9;
+  margin: 22rpx 0;
+  font-size: 32rpx;
+  font-weight: 700;
+  text-overflow:ellipsis;
+}
+
+.serbus-right {
+  line-height: 54rpx;
+  width: 250rpx;
+  height: 54rpx;
+  margin-top: 18rpx;
+  margin-right: 26rpx;
+  float: right;
+  background: #acacac;
+  color: #fff;
+  border-radius: 10rpx;
+}
+
+.serbusgap {
+  font-size: 26rpx;
+  float: left;
+  margin: 0 16rpx;
+}
+
+.serbuscheck {
+  background: #fef5ee;
+  border: 2rpx solid#ffe0bf;
+  height: 86rpx;
+}
+.serbuscheck .serbusimg{
+  margin-left: 8rpx
+}
+.serbuscheck .serbusti {
+  color: #ff7f03;
+}
+
+.serbuscheck .serbus-right {
+  background: #ff7f03;
+  margin-right: 24rpx;
+}

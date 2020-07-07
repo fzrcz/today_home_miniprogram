@@ -1,0 +1,273 @@
+/* pages/recommend/lookingNanny/onlineBooking/onlineBooking.wxss */
+
+page {
+  background: #f2f2f2;
+}
+
+.content {
+  position: relative;
+}
+
+.booking-t {
+  width: 100%;
+  height: 190rpx;
+  position: relative;
+}
+
+.booking-t image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.booking-content {
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 40rpx 0 0 40rpx;
+}
+
+.booking-c {
+  width: 100%;
+  position: absolute;
+  top: 168rpx;
+}
+
+.form-box {
+  width: 92%;
+  background: #fff;
+  margin: 0 auto 40rpx auto;
+  padding: 0 0 80rpx 0;
+}
+
+.form-list-box {
+  padding: 30rpx;
+}
+
+.form-list {
+  padding: 0 0 70rpx 0;
+}
+
+.form-list-title {
+  margin: 0 0 40rpx 0;
+}
+
+.form-list-choose {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.choose-list {
+  width: 180rpx;
+  height: 50rpx;
+  background: #f8f8f8;
+  border-radius: 4rpx;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 50rpx;
+  margin: 0 45rpx 10rpx 0;
+}
+
+.choose-list:nth-child(3n) {
+  margin: 0 0 10rpx 0;
+}
+
+.choose-list-on {
+  box-sizing: border-box;
+  border: 2rpx solid #ff7200;
+  color: #ff7200;
+  background: #fff8f2;
+  border-radius: 4rpx;
+}
+
+.input-address {
+  background: #f8f8f8;
+  font-size: 26rpx;
+  padding: 32rpx 20rpx;
+  /* margin: 40rpx 0 0 0; */
+}
+
+.address-details-box {
+  width: 100%;
+}
+
+.address-details {
+  width: 100%;
+  height: 60rpx;
+  margin: 20rpx 0 0 0;
+}
+
+.choose-time {
+  background: #f8f8f8;
+  width: 100%;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.time-box {
+  height: 60rpx;
+  padding: 0 30rpx;
+  line-height: 60rpx;
+}
+.time-picker{
+  width: 100%;
+  display: block;
+}
+.year{
+  width: 40%;
+  text-align: right;
+}
+.month{
+  width: 30%;
+  text-align: right;
+}
+.day{
+  width: 30%;
+  text-align: right;
+}
+
+.input-call {
+  background: #f8f8f8;
+  /* height: 60rpx; */
+  width: 100%;
+  color: #333;
+  font-size: 28rpx;
+  /* margin: 40rpx 0 0 0; */
+}
+
+input.input-call-s {
+  width: 100%;
+  height: 60rpx;
+  padding: 0 30rpx;
+  line-height: 60rpx;
+}
+
+.input-text {
+  font-size: 28rpx;
+  text-align: center;
+  color: #333;
+  line-height: 60rpx;
+}
+
+textarea.remarks {
+  width: 100%;
+  padding: 30rpx;
+  min-height: 160rpx;
+  height: 160rpx;
+}
+
+.confirm-sub {
+  width: 569rpx;
+  height: 63rpx;
+  color: #fff;
+  background: -webkit-repeating-linear-gradient(left, #ff8a00, #fc7122);
+  border-radius: 63rpx;
+  text-align: center;
+  line-height: 63rpx;
+  margin: 0 auto;
+  font-size: 30rpx;
+  box-shadow: 0 4rpx 12rpx #ffa336;
+}
+
+.down {
+  width: 15rpx;
+  height: 8rpx;
+  margin: 0 0 0 10rpx;
+  display: block;
+}
+
+.address-list {
+  width: 100%;
+  margin: 0 0 30rpx 0;
+}
+
+
+.shopvoucher{
+  width: 120rpx;
+  height: 120rpx;
+  margin: 30rpx auto;
+  display: block;
+}
+
+.cell{
+  margin-left:40rpx; 
+  padding:30rpx 0; 
+  border-bottom:2rpx #ddd solid; 
+  font-size:32rpx;
+}
+
+
+.serbus-box {
+  margin: 14rpx 0;
+  height: 90rpx;
+  background: #f7f7f7;
+}
+
+.serbusimg {
+  vertical-align: middle;
+  margin: 0 10rpx;
+  height: 80rpx;
+  width: 80rpx;
+  float: left;
+}
+
+.serbuscheck .serbusimg{
+  margin-left: 8rpx
+}
+
+.serbuscheck .serbusti {
+  color: #ff7f03;
+}
+
+.serbusti {
+  letter-spacing: 4rpx;
+  float: left;
+  color: #a9a9a9;
+  margin: 22rpx 0;
+  font-size: 32rpx;
+  font-weight: 700;
+  text-overflow:ellipsis;
+}
+
+.serbuscheck .serbus-right {
+  background: #ff7f03;
+  margin-right: 24rpx;
+}
+.inputadd{
+  margin:20rpx 0;
+  background: #f8f8f8;
+}
+.serbus-right {
+  line-height: 54rpx;
+  width: 280rpx;
+  height: 54rpx;
+  margin-top: 18rpx;
+  margin-right: 26rpx;
+  float: right;
+  background: #acacac;
+  color: #fff;
+  border-radius: 10rpx;
+}
+
+.serbusgap {
+  font-size: 26rpx;
+  float: left;
+  margin: 0 16rpx;
+}
+
+.serbuscheck {
+  background: #fef5ee;
+  border: 2rpx solid#ffe0bf;
+  height: 86rpx;
+}
+
+.shopvoucher .imgclear{
+  position: absolute;
+  top: -26rpx;
+right: -26rpx;
+height: 44rpx;
+width: 44rpx;
+
+
+}

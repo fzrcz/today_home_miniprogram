@@ -1,0 +1,46 @@
+<view class='font-32'>
+  <view style="padding: 30rpx; line-height:60rpx; border-bottom:2rpx #ddd solid; background:#fff;" >
+    <view>合同编号：{{contractNo}}</view>
+    <!-- <view>合同状态：{{status==0?'履约中':'签约完成'}}</view> -->
+    <view>合同时间：{{startTime?startTime:'-'}} 至 {{endTime?endTime:'-'}}</view>
+    <view wx:if="{{salary}}">雇佣工资：{{salary}}</view>
+    <view>备注信息：{{remark?remark:'-'}}</view>
+  </view>
+  <i-panel title="雇主信息">
+    <view style="padding: 30rpx; line-height:60rpx; background:#fff;">
+      <view>雇主姓名：{{employerName?employerName:'-'}}</view>
+      <view>联系方式：{{employerTel}}</view>
+      <!-- <view>联系地址：{{employerAddr?employerAddr:'-'}}</view> -->
+      <!-- <view>身份证号：{{employerIdcard?employerIdcard:'-'}}</view> -->
+    </view>
+  </i-panel>  
+  <i-panel title="阿姨信息">
+    <view style="padding: 30rpx; line-height:60rpx; background:#fff;">
+      <view>阿姨姓名：{{housekeeperName?housekeeperName:'-'}}</view>
+      <view>联系方式：{{housekeeperTel}}</view>
+      <!-- <view>联系地址：{{housekeeperAddr?housekeeperAddr:'-'}}</view> -->
+      <!-- <view>身份证号：{{housekeeperIdcard?housekeeperIdcard:'-'}}</view> -->
+    </view>
+  </i-panel>  
+  <i-panel title="经纪人信息">
+    <view style="padding: 30rpx; line-height:60rpx; background:#fff;">
+      <view>经纪人姓名：{{brokerName}}</view>
+      <view>联系方式：{{brokerTel}}</view>
+      <!-- <view>联系地址：{{brokerAddr?brokerAddr:'-'}}</view> -->
+    </view>
+  </i-panel>  
+  <!-- 图片详情 -->
+  <view wx:if="{{imgList.length==0?false:true}}">
+    <i-panel title="图片详情">
+      <view class="info_text">
+        <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+          <view wx:for="{{imgList}}" wx:key="item.id" class="scroll-view-item_H" style='height:200rpx;width:30%;'>
+            <image src='{{item}}' mode='aspectFit' bindtap='previewheadPic' data-src='{{item}}' style="width:100%;height:100%;"></image>
+          </view>
+        </scroll-view>
+      </view>
+    </i-panel> 
+  </view> 
+</view>
+    
+

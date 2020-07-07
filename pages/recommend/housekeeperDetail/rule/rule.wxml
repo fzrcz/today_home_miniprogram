@@ -1,0 +1,3 @@
+<view>
+  <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/image-faith-rule.jpg?{{random}}' bindload="imageLoad" style='width:{{viewWidth}}rpx; height:{{viewHeight}}rpx;'></image>
+</view>

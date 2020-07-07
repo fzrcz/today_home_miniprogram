@@ -1,0 +1,33 @@
+<!--pages/recommend/classifyWorkers/serviceContract/serviceContract.wxml-->
+<view class="contract">
+  <view class="contract-number">
+    <view class="contract-number-t flex-center-y">
+      <view>合同编号：</view>
+      <view class="contract-input">
+        <input class="input-number" placeholder="请输入合同编号" bindinput='contractInput' value='{{contractNumber}}' />
+      </view>
+    </view>
+
+  </view>
+  <view class="contract-number">
+    <radio-group class="radio-group" bindchange="radioChange" bindtap="">
+      <label class="price-list flex-between" wx:for="{{serviceTime}}" wx:key>
+        <view class="font-28">
+          {{item.name}}
+        </view>
+        <radio class="service-radio" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+        </radio>
+      </label>
+    </radio-group>
+    <view class="other-amount flex-between font-28" wx:if="{{showView}}">
+      <view>金额：</view>
+      <input placeholder="请输入金额" type="digit" bindinput='priceInput' bindblur="priceOnBlur" value='{{priceNumber}}' />
+    </view>
+  </view>
+</view>
+<view class='add_btn flex-x' style=' line-height:100rpx;'>
+  <view style='width:60%; background:#fff; padding-left:20px;'>合计：
+    <text>￥{{totalPrice}}</text>
+  </view>
+  <view style='width:40%; background:#ff7f27; color:white; font-size:40rpx; text-align:center; font-weight: bold;' bindtap='toPay'>立即支付</view>
+</view>

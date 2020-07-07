@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "i-icon": "/iview/icon/index",
+    "i-tabs": "/iview/tabs/index",
+    "i-tab": "/iview/tab/index",
+    "i-load-more": "/iview/load-more/index",
+    "i-spin": "/iview/spin/index",
+    "i-drawer": "/iview/drawer/index",
+    "i-action-sheet": "/iview/action-sheet/index",
+    "i-modal": "/iview/modal/index"
+  }
+}

@@ -1,0 +1,84 @@
+<!--common/maskModal.wxml-->
+<!-- 优惠券弹窗 -->
+<view>
+
+  <!-- 弹窗 -->
+  <view class="{{onBtn==0?'modal-on':'modal'}}" animation="{{animationData}}" wx:if="{{showModalStatus}}" catchtouchmove="false">
+    <view class="{{onBtn==0?'modal-cou':'modal-cou-on'}}">
+      <view class="coupon-bg">
+        <image wx:if="{{onBtn==0}}" bindtap='hideModal' src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/coupon-btn.png" mode="widthFix"></image>
+        <image wx:else src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/coupon/collectCoupons.jpg" mode="widthFix"></image>
+        <image class="off-btn-b" bindtap='closeHideModal' src="/image/off-03.png"></image>
+      </view>
+      <view class="receive-btn" wx:if="{{onBtn!=0}}">
+        <image bindtap='hideModal' wx:if='{{isFlag}}' src="/image/receive.png" mode="widthFix"></image>
+        <image wx:else src="/image/receive-on.png" mode="widthFix"></image>
+      </view>
+      <view class="off-btn" bindtap='hideModal' id="close" wx:if="{{onBtn!=0}}">
+        <image src="/image/off-03.png"></image>
+      </view>
+    </view>
+
+  </view>
+
+
+
+  <!-- 遮罩 -->
+  <view class='mask' catchtouchmove="false" wx:if="{{showModalStatus}}" style='height:{{windowHeight}}px'>
+
+  </view>
+
+</view>
+
+<!-- 广告弹窗 -->
+<view class="modal-on" catchtouchmove="false" wx:if='{{path && haveJump == 1}}'>
+  <view class="modal-cou">
+    <view class="coupon-bg">
+      <image class="size" src="{{path}}" mode="widthFix" bindtap="toDetail"></image>
+      <image class="off-btn-bb" bindtap='closeAdver' src="/image/off-03.png"></image>
+    </view>
+  </view>
+
+    <!-- 遮罩 -->
+  <view class='maskNew' catchtouchmove="false" wx:if="{{path && haveJump == 1}}" style='height:{{windowHeight}}px'>
+
+  </view>
+</view>
+
+
+<!-- 登录提示弹窗 -->
+<view>
+
+  <!-- 弹窗 -->
+  <view class='modal-login' animation="{{animationData}}" wx:if="{{showModalLogin}}" catchtouchmove="false">
+    <view class="modal-login-bg">
+      <view class="login-bg">
+        <!-- <image src="/image/login-prompt-bg.png" mode="widthFix"></image> -->
+        <image src="/image/login-prompt-bg2.png" mode="widthFix" class="loginPrompt"></image>
+      </view>
+      <view class="login-prompt">
+        <view class="font-36 login-title">登录享更多优惠</view>
+        <!-- <view class="font-26 login-min-t">双十一特惠来袭，登入即可瓜分
+          <text class="col-mm-r font-bold">百万现金红包</text>
+        </view> -->
+        <view class="flex-center fun-btn">
+          <view class="refuse-btn font-24" bindtap="hideModalLogin">残忍拒绝</view>
+          <view class="sign-btn font-26" catchtap="goEempower">
+            去登录
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+
+
+  <!-- 遮罩 -->
+  <!-- <view class='mask' bindtap='hideModalLogin' catchtouchmove="true" wx:if="{{showModalLogin}}" style='height:{{windowHeight}}px'> -->
+  <!-- 去掉bindtap，不让点击阴影就关掉登录弹窗 -->
+  <view class='mask' bindtap='' catchtouchmove="false" wx:if="{{showModalLogin}}" style='height:{{windowHeight}}px'>
+
+  </view>
+
+</view>

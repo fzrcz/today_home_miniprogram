@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "新建地址",
+  "usingComponents": {
+    "i-switch": "/iview/switch/index"
+  }
+}

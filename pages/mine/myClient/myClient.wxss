@@ -1,0 +1,124 @@
+/* pages/mine/myClient/myClient.wxss */
+page{
+  background: #e6e6e6;
+  font-size: 28rpx;
+}
+.my-client {
+  width: 86%;
+  margin: 0 auto;
+}
+.col-c-white{
+  color: #fff;
+}
+.col-c-y{
+  color: #fcfe00;
+}
+.col-c-r {
+  color: #ff461f;
+}
+
+.client-box {
+  margin: 30rpx 0;
+  box-shadow: 0 10rpx 20rpx 4rpx #d5d5d5;
+  border-radius: 20rpx;
+  background: #fff;
+}
+
+.client-t {
+  position: relative;
+}
+
+.client-bg {
+  width: 100%;
+  height: 220rpx;
+  border-radius: 20rpx;
+  /* box-shadow: 0 2rpx 4rpx 4rpx #d5d5d5; */
+}
+
+.user-infor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  padding: 10rpx 50rpx;
+}
+
+.my-client-t:first-child {
+  /* padding: 0 0 20rpx 0; */
+}
+
+.question {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 16rpx;
+  top: 16rpx;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question image {
+  width: 14rpx;
+  height: 20rpx;
+}
+
+/* 我的客户 */
+
+.client-b {
+  padding: 40rpx 30rpx;
+  height: 700rpx;
+  overflow-y: scroll;
+}
+
+.client-b-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 30rpx 0;
+}
+
+.client-b-l {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.client-b-l-l {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.client-b-l-r {
+  padding: 0 0 0 30rpx;
+}
+
+.invitation {
+  width: 100%;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  background: linear-gradient(-65deg, rgba(252, 113, 34, 1) 0%, rgba(255, 138, 0, 1) 100%);
+  box-shadow: 0px 5px 25px 0px rgba(255, 90, 0, 0.3);
+  border-radius: 70rpx;
+  color: #fff;
+  letter-spacing: 6rpx;
+  margin-top: 50rpx;
+}
+
+
+.no-data {
+  width: 276rpx;
+  height: 288rpx;
+}
+
+.no-data-box {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 40%;
+
+}

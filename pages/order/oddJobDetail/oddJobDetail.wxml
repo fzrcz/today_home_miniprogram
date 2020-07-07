@@ -1,0 +1,351 @@
+<!-- 新增 -->
+<view class="order-details">
+  <view class="order-status">
+    <view class="order-bg">
+      <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/order-bg.png"></image>
+    </view>
+    <view wx:if='{{info[0].businessTypeId != "6"}}' class="order-title">
+      服务·{{info[0].oddJobOrders[0].orderStatus}}
+    </view>
+    <!-- 未付款 -->
+    <view wx:if='{{info[0].businessTypeId == "6" && info[0].hourlyWorkersServe.length == 0}}' class="order-title">
+      服务·{{info[0].hourlyWorkersOrder[0].orderStatus}}
+    </view>
+    <!-- 已付款 -->
+    <view wx:if='{{info[0].businessTypeId == "6" && info[0].hourlyWorkersServe.length != 0 && nextService < info[0].hourlyWorkersServe.length}}' class="order-title">
+      服务·{{info[0].hourlyWorkersServe[nextService].orderStatus != '预约时间'?info[0].hourlyWorkersServe[nextService].orderStatus:'未分配'}}
+      <text wx:if='{{info[0].businessTypeId == "6"}}'>({{nextService}}/{{info[0].hourlyWorkersServe.length}})</text>
+    </view>
+    <!-- 订单全部完成 -->
+    <view wx:if='{{info[0].businessTypeId == "6" && info[0].hourlyWorkersServe.length != 0 && nextService == info[0].hourlyWorkersServe.length}}' class="order-title">
+      服务·完成
+      <text wx:if='{{info[0].businessTypeId == "6"}}'>({{nextService}}/{{info[0].hourlyWorkersServe.length}})</text>
+    </view>
+  </view>
+  <view class="order-content">
+    <view class="order-main">
+      <view class="order-main-wid">
+        <view class="order-main-pad">
+          <view class="flex-center-y order-main-title">
+            <view class='list-title-span'></view>
+            <text class='list-title-text'>订单信息</text>
+          </view>
+          <view class="flex-center-y font-28 order-main-list">
+            <view>
+              <text decode="{{true}}">订单编号：</text>
+            </view>
+            <view>
+              <text>{{info[0].orderNo?info[0].orderNo:'暂无'}}</text>
+            </view>
+          </view>
+          <view class="flex-center-y font-28 order-main-list">
+            <view>
+              <text decode="{{true}}">创建时间：</text>
+            </view>
+            <view>
+              <text>{{info[0].orderTime?info[0].orderTime:'暂无'}}</text>
+            </view>
+          </view>
+          <view class="flex-center-y font-28 order-main-list">
+            <view>
+              <text decode="{{true}}">订单状态：</text>
+              <text>{{info[0].orderStatusName?info[0].orderStatusName:'暂无'}}</text>
+            </view>
+            <!-- <view wx:if='{{info[0].businessTypeId != "6"}}'>
+              <text>{{info[0].oddJobOrders[0].orderStatus?info[0].oddJobOrders[0].orderStatus:'暂无'}}</text>
+            </view>
+            <view wx:if='{{info[0].businessTypeId == "6" && info[0].hourlyWorkersServe.length == 0}}'>
+              <text>{{info[0].hourlyWorkersOrder[0].orderStatus?info[0].hourlyWorkersOrder[0].orderStatus:'暂无'}}</text>
+            </view>
+            <view wx:if='{{info[0].businessTypeId == "6" && info[0].hourlyWorkersServe.length != 0}}'>
+              <text>{{info[0].hourlyWorkersServe[0].orderStatus?info[0].hourlyWorkersServe[0].orderStatus:'暂无'}}</text>
+            </view> -->
+          </view>
+        </view>
+      </view>
+      <view class="order-main-wid order-margin">
+        <view class="order-main-pad flex-center-y">
+          <view class="type-b-l">
+            <image src="{{info[0].product[0].productFile[0].filePath}}"></image>
+          </view>
+          <view class="type-b-r">
+            <view class='type-b-t font-30'>
+              <text>{{info[0].productName?info[0].productName:'-'}}</text>
+              <!-- <text class='font-24'>(首单)</text> -->
+            </view>
+            <view class='type-b-c' wx:if='{{info[0].businessTypeId == "6" && info[0].hourlyWorkersServe.length != 0}}'>
+              <text class='font-24'>x</text>
+              <text class='font-26'>{{info[0].hourlyWorkersServe.length}}次</text>
+              <text class='font-26'>（当前{{nextService}}/{{info[0].hourlyWorkersServe.length}}）</text>
+            </view>
+            <view class='type-b-b'>
+              <text class="font-26">¥</text>
+              <text class="font-30">{{info[0].realityPrice? info[0].realityPrice:'-'}}</text>
+            </view>
+            <!-- 如果优惠金额为0的话，是否展示 -->
+            <!-- <view class='type-b-b' wx:if='{{info[0].reducedPrice != 0 && info[0].reducedPrice != null && info[0].reducedPrice != undefined}}'> -->
+            <view class='type-b-b'>
+              <text class='font-26'>(原价¥{{info[0].orderPrice? info[0].orderPrice:'0'}}，已优惠¥{{info[0].reducedPrice? info[0].reducedPrice:'0'}}）</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 家维订单-服务信息 -->
+      <view class="order-main-wid order-margin" wx:if='{{info[0].businessTypeId != "6"}}'>
+        <view class="order-main-pad">
+          <view class="flex-between order-main-title">
+            <view class="flex-center-y">
+              <view class='list-title-span'></view>
+              <text class='list-title-text'>服务信息</text>
+            </view>
+            <view class='list-title-r' data-phone='{{"400-600-6580"}}' bindtap="phoneCall">
+              <image src="/image/kf-hui.png"></image>
+            </view>
+          </view>
+          <view class='infor-list font-28'>
+            <view class='identity'>
+              <text class='surname' decode="{{true}}">{{info[0].oddJobOrders[0].linkman?info[0].oddJobOrders[0].linkman:'-'}}</text>
+            </view>
+            <view class='list-ad-r'>{{info[0].oddJobOrders[0].phone?info[0].oddJobOrders[0].phone:'-'}}</view>
+          </view>
+          <view class='infor-list font-28'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">地&emsp;&emsp;址：</text>
+            </view>
+            <view class='list-ad-r'>
+              <text>{{info[0].oddJobOrders[0].area?info[0].oddJobOrders[0].area:''}}{{info[0].oddJobOrders[0].address?info[0].oddJobOrders[0].address:''}}{{info[0].oddJobOrders[0].houseNumber?info[0].oddJobOrders[0].houseNumber:''}}</text>
+            </view>
+          </view>
+          <view class='infor-list font-28'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">预约时间：</text>
+            </view>
+            <view class='list-ad-r'>
+            <!-- {{info[0].oddJobOrders[0]}}啊啊啊啊 -->
+              <text>{{info[0].oddJobOrders[0].appointTime?info[0].oddJobOrders[0].appointTime:'暂无'}}</text>
+              <!-- <text> （1/2）</text> -->
+            </view>
+          </view>
+          <view class='infor-list font-28'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">备&emsp;&emsp;注：</text>
+            </view>
+            <view class='list-ad-r'>
+              <text>{{info[0].oddJobOrders[0].remark?info[0].oddJobOrders[0].remark:'无'}}</text>
+            </view>
+          </view>
+
+        </view>
+      </view>
+      <!-- 家务订单-服务信息 -->
+      <view class="order-main-wid order-margin" wx:if='{{info[0].businessTypeId == "6"}}'>
+        <view class="order-main-pad">
+          <view class="flex-between order-main-title">
+            <view class="flex-center-y">
+              <view class='list-title-span'></view>
+              <text class='list-title-text'>服务信息</text>
+            </view>
+            <view class='list-title-r' data-phone='{{"400-600-6580"}}' bindtap="phoneCall">
+              <image src="/image/kf-hui.png"></image>
+            </view>
+          </view>
+          <view class='infor-list font-28'>
+            <view class='identity'>
+              <text class='surname' decode="{{true}}">{{info[0].hourlyWorkersOrder[0].linkman?info[0].hourlyWorkersOrder[0].linkman:'-'}}</text>
+            </view>
+            <view class='list-ad-r'>{{info[0].hourlyWorkersOrder[0].phone?info[0].hourlyWorkersOrder[0].phone:'-'}}</view>
+          </view>
+          <view class='infor-list font-28'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">地&emsp;&emsp;址：</text>
+            </view>
+            <view class='list-ad-r'>
+              <text>{{info[0].hourlyWorkersOrder[0].area?info[0].hourlyWorkersOrder[0].area:''}}{{info[0].hourlyWorkersOrder[0].address?info[0].hourlyWorkersOrder[0].address:''}}{{info[0].hourlyWorkersOrder[0].houseNumber?info[0].hourlyWorkersOrder[0].houseNumber:''}}</text>
+            </view>
+          </view>
+          <view class='infor-list font-28'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">预约时间：</text>
+            </view>
+            <view wx:if='{{info[0].businessTypeId != "6"}}' class='list-ad-r'>
+              <text>{{info[0].oddJobOrders[0].appointTime?info[0].oddJobOrders[0].appointTime:'暂无'}}</text>
+            </view>
+            <view wx:if='{{info[0].businessTypeId == "6" && info[0].hourlyWorkersServe.length == 0}}' class='list-ad-r'>
+              <text>{{info[0].hourlyWorkersServe[0].appointTime?info[0].hourlyWorkersServe[0].appointTime:'暂无'}}</text>
+            </view>
+            <view wx:if='{{info[0].businessTypeId == "6" && info[0].hourlyWorkersServe.length != 0}}' class='list-ad-r'>
+              <text>{{info[0].hourlyWorkersServe[nextService].appointTime?info[0].hourlyWorkersServe[nextService].appointTime:'暂无'}}</text>
+              <!-- <text>（{{nextService}}/{{info[0].hourlyWorkersServe.length}}）</text> -->
+            </view>
+          </view>
+          <view class='infor-list font-28'>
+            <view class='list-ad-l'>
+              <text decode="{{true}}">备&emsp;&emsp;注：</text>
+            </view>
+            <view class='list-ad-r'>
+              <text>{{info[0].hourlyWorkersServe[nextService].remark?info[0].hourlyWorkersServe[nextService].remark:'无'}}</text>
+            </view>
+          </view>
+
+        </view>
+      </view>
+      <!-- 服务记录 家务有 -->
+      <view wx:if='{{info[0].businessTypeId == "6"}}' class="order-main-wid order-margin">
+        <view class="order-main-pad">
+          <view class="flex-center-y order-main-title">
+            <view class='list-title-span'></view>
+            <text class='list-title-text'>服务记录</text>
+          </view>
+          <view wx:if="{{info[0].hourlyWorkersServe[0].orderStatus=='下单成功' || info[0].hourlyWorkersOrder[0].orderStatus=='待付款' || info[0].orderStatusName=='取消订单'}}" class="no-record font-30">暂无服务记录</view>
+          <view class="record-box" wx:else>
+            <view wx:for='{{info[0].hourlyWorkersServe}}' wx:key wx:if="{{item.orderStatus!='下单成功'}}" class="font-28 flex-between record-list">
+              <view>第{{index + 1}}次服务</view>
+              <view>{{item.appointTime?item.appointTime:'暂无'}}</view>
+              <view class="btn-off" wx:if="{{item.orderStatus=='预约时间'}}">未分配</view>
+              <view class="btn-off" wx:if="{{item.orderStatus=='安排上门'}}">安排上门</view>
+              <view class="btn-off" wx:if="{{item.orderStatus=='准备服务'}}">准备服务</view>
+              <view class="btn-off" wx:if="{{item.orderStatus=='服务中'}}">服务中</view>
+              <view class="sure-btn" wx:if="{{item.orderStatus=='工作完成'}}" data-orderdetailid="{{item.id}}" bindtap="confirmComplete">确认完成</view>
+              <view class="sure-btn" wx:if="{{item.orderStatus=='客户已确认'}}" data-index='{{index}}' data-orderdetailid="{{item.id}}" bindtap="toCommentPage">立即评价</view>
+              <!-- <view class="eval-btn" wx:if="{{item.orderStatus=='完成'}}" data-index='{{index}}' data-orderdetailid="{{item.id}}" bindtap="toCommentPage">已评价</view> -->
+              <view class="sure-btn" wx:if="{{item.orderStatus=='完成'}}" wx:if='{{star == 5}}' data-index='{{index}}' data-orderdetailid="{{item.id}}" bindtap="toCommentPage">5星好评</view>
+              <view class="sure-btn" wx:if="{{item.orderStatus=='完成'}}" wx:if='{{star == 4 || star == 3}}' data-index='{{index}}' data-orderdetailid="{{item.id}}" bindtap="toCommentPage">3星评价</view>
+              <view class="sure-btn" wx:if="{{item.orderStatus=='完成'}}" wx:if='{{star == 2 || star == 1}}' data-index='{{index}}' data-orderdetailid="{{item.id}}" bindtap="toCommentPage">1星差评</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+    </view>
+  </view>
+</view>
+
+<view wx:if='{{info[0].businessTypeId !="6" && info[0].oddJobOrders[0].orderStatus!="下单成功" && info[0].oddJobOrders[0].orderStatus!="预约时间" && info[0].oddJobOrders[0].orderStatus!="安排上门" && info[0].oddJobOrders[0].orderStatus!="服务中"}}'>
+  <view class="function-btn">
+    <view wx:if='{{info[0].oddJobOrders[0].orderStatus=="待付款" && (info[0].activityId == "3" || info[0].activityId == "5" || info[0].activityId == "" || info[0].activityId == undefined)}}' data-productname="{{info[0].productName}}" class="completion font-30" bindtap='toPay'>付款</view>
+    <!-- <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='下单成功 '}}" class="completion font-30">下单成功</view>
+    <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='预约时间 '}}" class="completion font-30">已预约时间</view>
+    <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='安排上门 '}}" class="completion font-30">安排上门</view>
+    <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='服务中 '}}" class="completion font-30">服务中</view> -->
+    <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='工作完成'}}" data-orderdetailid="{{info[0].oddJobOrders[0].id}}" bindtap="confirmComplete" class="completion font-30">确认完成</view>
+    <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='客户已确认'}}" bindtap="toCommentPage" class="completion font-30">立即评价</view>
+    <!-- <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='完成'}}" bindtap="toCommentPage" class="completion font-30">已评价</view> -->
+    <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='完成'}}" wx:if='{{star == 5}}' bindtap="toCommentPage" class="completion font-30">5星好评</view>
+    <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='完成'}}" wx:if='{{star == 4 || star == 3}}' bindtap="toCommentPage" class="completion font-30">3星评价</view>
+    <view wx:if="{{info[0].oddJobOrders[0].orderStatus=='完成'}}" wx:if='{{star == 2 || star == 1}}' bindtap="toCommentPage" class="completion font-30">1星差评</view>
+  </view>
+</view>
+
+<view wx:if='{{info[0].businessTypeId =="6" && info[0].hourlyWorkersServe.length == 0 && info[0].orderStatusName!="取消订单"}}'>
+  <view class="function-btn">
+    <view wx:if="{{info[0].hourlyWorkersOrder[0].orderStatus=='待付款'}}" data-productname="{{info[0].productName}}" class="completion font-30" bindtap='toPay'>付款</view>
+  </view>
+</view>
+
+<!-- 旧版 -->
+<!-- <view class='font-32 ' style='padding-bottom:40rpx;padding:20rpx; '> -->
+<!-- 订单信息 -->
+<!-- <view style="padding:10rpx 30rpx; line-height:60rpx; background:#fff;font-weight:700;">
+    订单信息
+  </view>
+  <view class='breakline ' style='height:2rpx; '></view>
+  <view style="padding:10rpx 30rpx; line-height:60rpx;background:#fff;border-bottom-left-radius:20rpx;border-bottom-right-radius:20rpx;">
+    <view style='float:right; '>{{info[0].orderNo?info[0].orderNo:'- '}}</view>
+    <view>订单编号</view>
+    <view wx:if='{{info[0].businessTypeId=="7" || info[0].businessTypeId=="9" || info[0].businessTypeId=="10" || info[0].businessTypeId=="11" }} ' style='float:right; '>{{info[0].oddJobOrders[0].orderStatus?info[0].oddJobOrders[0].orderStatus:'- '}}</view>
+    <view wx:if='{{info[0].businessTypeId=="6" }} ' style='float:right; '>{{info[0].orderStatusName?info[0].orderStatusName:'- '}}</view>
+    <view>订单状态</view>
+    <view style='float:right; '>{{info[0].realityPrice?'￥ '+info[0].realityPrice:'- '}}</view>
+    <view>订单金额</view>
+    <view style='float:right; '>{{info[0].oddJobOrders[0].appointTime?info[0].oddJobOrders[0].appointTime:'- '}}</view>
+    <view>预约时间</view>
+    <view style='float:right; '>{{info[0].orderTime?info[0].orderTime:'- '}}</view>
+    <view>下单时间</view>
+  </view>
+  <view class='breakline ' style='height:2rpx; '></view>
+  <view style="padding: 30rpx; line-height:60rpx; background:#fff;border-top-left-radius:20rpx;border-top-right-radius:20rpx;">
+    <view style='float:right; '>{{info[0].productName?info[0].productName:'- '}}</view>
+    <view>购买服务</view>
+    <view style='float:right; '>{{info[0].orderQuantity?info[0].orderQuantity:'- '}}</view>
+    <view>购买数量</view>
+  </view> -->
+<!-- 家维订单-服务信息 -->
+<!-- <view wx:if='{{info[0].businessTypeId=="7" || info[0].businessTypeId=="9" || info[0].businessTypeId=="10" || info[0].businessTypeId=="11" }} '>
+    <view class='breakline '></view>
+    <view style="padding:10rpx 30rpx; line-height:60rpx; background:#fff;font-weight:700;">
+      服务信息
+    </view>
+    <view class='breakline ' style='height:2rpx; '></view>
+    <view style="padding: 30rpx; line-height:60rpx; background:#fff;">
+      <view style='float:right; '>{{info[0].oddJobOrders[0].linkman?info[0].oddJobOrders[0].linkman:'- '}}</view>
+      <view>联系人姓名</view>
+      <view style='float:right; '>{{info[0].oddJobOrders[0].phone?info[0].oddJobOrders[0].phone:'- '}}</view>
+      <view>联系人电话</view>
+      <view style='float:right; '>{{info[0].oddJobOrders[0].area?info[0].oddJobOrders[0].area:'- '}}</view>
+      <view>服务区域</view>
+      <view style='float:right; '>{{info[0].oddJobOrders[0].address?info[0].oddJobOrders[0].address:' '}}{{info[0].oddJobOrders[0].houseNumber?info[0].oddJobOrders[0].houseNumber:' '}}</view>
+      <view>详细地址</view>
+    </view>
+    <view wx:for="{{info[0].oddJobOrders}}" wx:key>
+      <view style="padding: 30rpx; line-height:60rpx; background:#fff;">
+        <view style='float:right; ' wx:if="{{item.orderStatus=='下单成功 '}}" bindtap="">待预约</view>
+        <view style='float:right; ' wx:if="{{item.orderStatus=='安排上门 '}}" bindtap="">安排上门</view>
+        <view style='float:right; ' wx:if="{{item.orderStatus=='预约时间 '}}" bindtap="">已预约</view>
+        <view style='float:right; ' wx:if="{{item.orderStatus=='准备服务 '}}" bindtap="">准备服务</view>
+        <view style='float:right; ' wx:if="{{item.orderStatus=='服务中 '}}" bindtap="">服务中</view>
+        <view style='float:right; ' wx:if="{{item.orderStatus=='工作完成 '}}" data-orderdetailid="{{item.id}}" bindtap="confirmComplete">确认完成</view>
+        <view style='float:right; ' wx:if="{{item.orderStatus=='客户已确认 '}}" data-index='{{index}} ' data-id="{{item.id}}" bindtap="toCommentPage">立即评价</view>
+        <view style='float:right; ' wx:if="{{item.orderStatus=='完成 '}}" data-index='{{index}} ' data-id="{{item.id}}" bindtap="toCommentPage">已评价</view>
+
+        <view>本次服务
+          <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text>{{info[0].oddJobOrders[0].appointTime == null? '暂无预约 ' : info[0].oddJobOrders[0].appointTime}}
+        </view>
+      </view>
+    </view>
+  </view> -->
+<!-- 家务订单-服务信息 -->
+<!-- <view wx:if='{{info[0].businessTypeId=="6" }} '>
+    <view class='breakline '></view>
+    <view style="padding:10rpx 30rpx; line-height:60rpx; background:#fff;font-weight:700;">
+      服务信息
+    </view>
+    <view class='breakline ' style='height:2rpx; '></view>
+    <view style="padding: 30rpx; line-height:60rpx; background:#fff;">
+      <view style='float:right; '>{{info[0].hourlyWorkersOrder[0].linkman?info[0].hourlyWorkersOrder[0].linkman:'- '}}</view>
+      <view>联系人姓名</view>
+      <view style='float:right; '>{{info[0].hourlyWorkersOrder[0].phone?info[0].hourlyWorkersOrder[0].phone:'- '}}</view>
+      <view>联系人电话</view>
+      <view style='float:right; '>{{info[0].hourlyWorkersOrder[0].area?info[0].hourlyWorkersOrder[0].area:'- '}}</view>
+      <view>服务区域</view>
+      <view style='float:right; '>{{info[0].hourlyWorkersOrder[0].address?info[0].hourlyWorkersOrder[0].address:' '}}{{info[0].hourlyWorkersOrder[0].houseNumber?info[0].hourlyWorkersOrder[0].houseNumber:' '}}</view>
+      <view>详细地址</view>
+    </view>
+    <view style="padding: 30rpx; line-height:60rpx; background:#fff;">
+      <view wx:for="{{info[0].hourlyWorkersServe}}" wx:key>
+        <view style='float:right; ' wx:if="{{info[0].orderStatusName=='取消订单 '}}" bindtap="">取消订单</view>
+        <view wx:else>
+          <view style='float:right; ' wx:if="{{item.orderStatus=='下单成功 '}}" bindtap="">待预约</view>
+          <view style='float:right; ' wx:if="{{item.orderStatus=='安排上门 '}}" bindtap="">安排上门</view>
+          <view style='float:right; ' wx:if="{{item.orderStatus=='准备服务 '}}" bindtap="">准备服务</view>
+          <view style='float:right; ' wx:if="{{item.orderStatus=='服务中 '}}" bindtap="">服务中</view>
+          <view style='float:right; ' wx:if="{{item.orderStatus=='工作完成 '}}" data-orderdetailid="{{item.id}}" bindtap="confirmComplete">确认完成</view>
+          <view style='float:right; ' wx:if="{{item.orderStatus=='客户已确认 '}}" data-index='{{index}} ' data-orderdetailid="{{item.id}}" bindtap="toCommentPage">立即评价</view>
+          <view style='float:right; ' wx:if="{{item.orderStatus=='完成 '}}" data-index='{{index}} ' data-orderdetailid="{{item.id}}" bindtap="toCommentPage">已评价</view>
+        </view>
+        <view>第{{index+1}}次服务
+          <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text>{{item.appointTime == null? '暂无预约时间 ' : item.appointTime}}
+        </view> -->
+<!-- 注释：工人的姓名和电话，暂时不加 -->
+<!-- <view>{{info[0].implementer.housekeeperName}}
+          <navigator>
+            <text bindtap='toWorkerPhone ' data-phone='{{info[0].implementer.tell}} '>{{info[0].implementer.tell}}</text>
+          </navigator>
+        </view> -->
+<!-- <view wx:for="{{info[0].implementer}}" wx:key> -->
+<!-- </view>  注释end-->
+
+<!-- </view>
+    </view>
+  </view>
+</view> -->

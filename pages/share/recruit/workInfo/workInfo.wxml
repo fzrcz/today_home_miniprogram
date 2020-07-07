@@ -1,0 +1,60 @@
+<view style='padding-left:60rpx; padding-top:20rpx; font-weight:bold; font-size:40rpx;'>
+  工作相关
+</view>
+<view class='font-32' style='padding:30rpx 60rpx;'>
+  雇主找阿姨需要这些信息
+</view>
+<view>
+  
+  <picker bindchange="chooseStatus" value="{{statusIndex}}" range="{{statusList}}">
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:150rpx; text-align:center; margin-right:30rpx;'>工作状态</view>
+      <input placeholder="请选择工作状态" wx:if='{{statusList[statusIndex] == null}}' disabled='true'></input>
+      <view>{{statusList[statusIndex]}}</view>
+    </view>
+  </picker>
+  
+  <picker bindchange="chooseBelief" value="{{beliefIndex}}" range="{{beliefArr}}">
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:150rpx; text-align:center; margin-right:30rpx;'>信仰</view>
+      <input placeholder="请选择信仰" wx:if='{{beliefArr[beliefIndex] == null}}' disabled='true'></input>
+      <view>{{beliefArr[beliefIndex]}}</view>
+    </view>
+  </picker>
+  <!-- <view class='flex-x flex-center-y cell' bindtap='chooseBelief'>
+    <view style='width:150rpx; text-align:center; margin-right:30rpx;'>信仰</view>
+    <input placeholder="请选择信仰" wx:if='{{belief == null}}' disabled='true'></input>
+    <view>{{belief}}</view>
+  </view> -->
+  <picker bindchange="chooseEdu" value="{{eduIndex}}" range="{{eduArr}}">
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:150rpx; text-align:center; margin-right:30rpx;'>学历</view>
+      <input placeholder="请选择学历" wx:if='{{eduArr[eduIndex] == null}}' disabled='true'></input>
+      <view>{{eduArr[eduIndex]}}</view>
+    </view>
+  </picker>
+  <!-- <view class='flex-x flex-center-y cell' bindtap='chooseEdu'>
+    <view style='width:150rpx; text-align:center; margin-right:30rpx;'>学历</view>
+    <input placeholder="请选择学历" wx:if='{{edu == null}}' disabled='true'></input>
+    <view>{{edu}}</view>
+  </view> -->
+  <picker bindchange="changeExp" value="{{expIndex}}" range="{{expArr}}">
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:150rpx; text-align:center; margin-right:30rpx;'>工作年限</view>
+      <input placeholder="请选择工作年限" wx:if='{{expArr[expIndex] == null}}' disabled='true'></input>
+      <view>{{expArr[expIndex]}}</view>
+    </view>
+  </picker>
+  <picker bindchange="changeSalary" value="{{salaryIndex}}" range="{{salaryArr}}">
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:150rpx; text-align:center; margin-right:30rpx;'>期望工资</view>
+      <input placeholder="请选择期望工资" wx:if='{{salaryArr[salaryIndex] == null}}' disabled='true'></input>
+      <view>{{salaryArr[salaryIndex]}}</view>
+    </view>
+  </picker>
+</view>
+
+<view style='padding:40rpx 50rpx; position: fixed; bottom:0rpx; width:650rpx;'>
+  <!-- <view class='btn-style' style='padding:20rpx 40rpx; margin-top:20rpx;' bindtap='toSkip'>跳过</view> -->
+  <view class='btn-style-fill' style='padding:20rpx; margin:20rpx 0rpx; width:600rpx;' bindtap='toNext'>下一步</view>
+</view>

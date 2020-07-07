@@ -1,0 +1,38 @@
+<view style='padding:30rpx 60rpx; border-bottom:2rpx #ddd solid;'>
+  <view class='font-28'>{{thisMonth}}月工资待支付（元）</view>
+  <view style='font-size:80rpx; color:#FF7F27; margin-top:10rpx;'>{{salary}}</view>
+</view>
+<view style='padding:50rpx 0 10rpx 40rpx;'>
+  <block wx:for="{{paymentList}}">
+    <view class='flex-center-y' style='margin-bottom:50rpx;'>
+      <image src='{{item.housekeeperPic}}' style='width:80rpx; height:80rpx; border-radius: 50%; margin-right:20rpx;' />
+      <view class='font-32' style='width:120rpx;'>{{item.housekeeperName}}</view>
+      <view class='flex-y' style='width:320rpx; line-height:50rpx;'>
+        <view class='theme-color font-36'>￥{{item.salary}}</view>
+        <view class='font-28' style='color:#888'>截止支付日{{item.deadline}}</view>
+      </view>
+      <view class='btn-style font-32' bindtap='toPay' data-id='{{item.id}}' data-money='{{item.salary}}'>支付</view>
+    </view>
+  </block>
+</view>
+<view>
+  <view class='flex-center-y' style='padding:20rpx; background-color: #eee;'>
+    <view class='flex-y font-28' style='width:700rpx; line-height:50rpx;'>
+      <view>{{totalDate}}</view>
+      <view style='color:#888;'>支出：￥{{totalMoney}}</view>
+    </view>  
+    <i-icon type="time" size='24' color='#FF7F27;' bindtap='changeDate'/>
+  </view>
+  <view style='padding:0 30rpx;'>
+    <block wx:for="{{dataList}}">
+      <view class='flex-center-y' style='padding:40rpx 0rpx; border-bottom:2rpx #ddd solid;'>
+        <image src='{{item.headPic}}' style='width:80rpx; height:80rpx; border-radius: 50%; margin-right:30rpx;' />
+        <view class='flex-y' style='width:450rpx; line-height:50rpx;'>
+          <view class='font-32'>{{item.remark}}</view>
+          <view class='font-28' style='color:#888'>{{item.dealTime}}</view>
+        </view>
+        <view class='font-36 theme-color'>{{item.salary}}</view>
+      </view>
+    </block>
+  </view>
+</view>

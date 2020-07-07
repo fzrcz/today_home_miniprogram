@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "个人履历",
+  "usingComponents": {
+    "i-icon": "/iview/icon/index"
+  }
+}

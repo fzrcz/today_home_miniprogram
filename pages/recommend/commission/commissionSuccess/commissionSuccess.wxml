@@ -1,0 +1,54 @@
+<!--代办支付成功-->
+<!--预约成功-->
+<view>
+  <view style='height:200rpx;background:#ff7f27;'>
+    <view class='headIcon'>
+      <image style='height:50rpx;width:50rpx'  src='/image/paySuccess.png'></image>
+    </view>
+    <view class='font-36' style='position: relative;color:#fff;left:130rpx;'>支付成功</view>
+    <view class='font-28' style='position: relative;color:#fff;left:130rpx;width:65%;'>购买签约保障服务成功,感谢您的信任!请耐心等待客户经理联系您。</view>
+  </view>
+  <view>
+    <view class='font-32' style='padding:20rpx 40rpx 10rpx 40rpx;'>
+      <text>订单信息</text>
+      <text class='font-28' style='float:right;color:grey'>编号：{{orderNo}}</text>
+    </view>
+    <view class='breakline' style='height:10rpx'></view>
+    <view class='font-28' style='padding:20rpx 40rpx 10rpx 40rpx;'>
+      <text>订单内容：</text>
+      <text style='color:grey;padding:0rpx 0rpx 0rpx 40rpx;'>签约保障</text>
+    </view>
+    <view class='font-28' style='padding:20rpx 40rpx 10rpx 40rpx;'>
+      <text>下单时间：</text>
+      <text style='color:grey;padding:0rpx 0rpx 0rpx 40rpx;'>{{orderTime}}</text>
+    </view>
+    <view class='font-28' style='padding:20rpx 40rpx 40rpx 40rpx;'>
+      <text>需求阿姨：</text>
+      <text style='color:grey;padding:0rpx 0rpx 0rpx 40rpx;'>{{housekeeperName!='undefined'?housekeeperName:'-'}}</text>
+    </view>
+  </view>
+  <view class='breakline' style='height:50rpx'></view>
+  <view class='font-28' style='padding:20rpx 40rpx 10rpx 40rpx;'>
+    <text>签约保障</text>
+    <text style='float:right;color:#ff7f27;padding:0rpx 0rpx 0rpx 40rpx;'>￥{{basicsPrice}}</text>
+  </view>
+  <view class='font-28' style='padding:20rpx 40rpx 10rpx 40rpx;'>
+    <text>其他服务</text>
+    <text style='float:right;color:#ff7f27;padding:0rpx 0rpx 0rpx 40rpx;'>￥{{otherPrice}}</text>
+  </view>
+  <view class='breakline' style='height:10rpx'></view>
+  <view class='font-32' style='padding:20rpx 40rpx 40rpx 40rpx;'>
+    <text>支付金额</text>
+    <text style='float:right;color:#ff7f27;padding:0rpx 0rpx 0rpx 40rpx;'>￥{{allPrice}}</text>
+  </view>
+  <view class='breakline' style='height:10rpx'></view>
+  <view class='flex-center' style='height:90rpx;padding:20rpx 40rpx 20rpx 40rpx;'>
+    <view class='flex-center font-28 btn-style' style='float:left;height:50rpx;width:120rpx;margin-right:20rpx;border: 2rpx grey solid;color:grey;'bindtap="toOrderDetail">
+     查看详情
+    </view>
+    <view class='flex-center font-28 btn-style' style='float:left;height:50rpx;width:120rpx;margin-left:20rpx;'bindtap="toRecommend">
+      返回首页
+    </view>
+  </view>
+</view>
+

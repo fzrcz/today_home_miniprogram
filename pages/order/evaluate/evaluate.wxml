@@ -1,0 +1,82 @@
+<!--pages/order/evaluate/evaluate.wxml-->
+<view>
+  <!-- <view class="top_box">
+    <image src="/image/gift.png" mode="aspectFill"></image>
+    评论即可获得家电清洗30元优惠券
+  </view> -->
+  <view class='evaluate-t'>
+    <view class='evaluate-t-t'>
+        <view wx:if='{{status == "完成"}}' class='star-box'>
+          <image class="assess" wx:for="{{assesslist}}" wx:key="index" src='{{tabArr.curHdIndex ==index+1?item.checkedimg:item.img}}'data-id="index+1" />
+        </view>
+        <view wx:else class='star-box' bindtap="chooseicon">
+        <view wx:for="{{assesslist}}" wx:key="index">
+          <image class="assess" src='{{tabArr.curHdIndex ==index+1?item.checkedimg:item.img}}'data-id="{{index+1}}" />
+          <view class="font-20">{{item.name}}</view>
+        </view>
+        </view>
+    </view>
+    <view class='evaluate-t-c'>
+      <view wx:if='{{status == "完成"}}' class='font-26'>
+        <textarea value='{{concent}}' placeholder-style='color:#bfbfbf'style="color:black" disabled="disabled">
+        </textarea>
+      </view>
+      <view wx:else='{{status == "客户已确认"}}' class='font-24'>
+        <textarea value='{{concent}}' bindinput="contentInput" placeholder-style='color:#bfbfbf;font-size:18rpx;' placeholder="请您对本次服务做出评价，保洁师的服务如何，清洁完后家中是否整洁？(写够15字，大额优惠券等着您~)">
+        </textarea>
+      </view>
+      <!-- <view class='font-20 evaluate-t-c-p'>评论100字，加3张图片<text>最高可获得100元优惠券</text></view> -->
+    </view>
+    <view class='evaluate-t-b'>
+      <view class="imgList" style="float:left" wx:for="{{imgUrls}}" wx:for-item="item" wx:key="index">
+        <image src="{{item}}" mode="aspectFit"></image>
+        <image src="/image/x.png" class="remove_x" bindtap="removePic" data-index="{{index}}"></image>
+      </view>
+      <view wx:if='{{status == "完成"}}' style="float:left">
+        <!-- <image src='/image/phone.png' bindtap="eveluateImg"></image> -->
+      </view>
+      <view wx:else style="float:left;position:relative;">
+        <image style="float:left;margin-right:26rpx;" src='/image/upimage.png' bindtap="eveluateImg"></image>
+        <view class="imgnumbers">{{imgUrls.length}}/{{maxPicNum}}</view>
+        
+        <!-- <image src='/image/upview.png' bindtap="eveluateImg"></image> -->
+      </view>
+    </view>
+    <view style="padding: 20rpx 0 40rpx;">
+      <view class="evaluate_title">您对保洁师如何评价?</view>
+      <view wx:if='{{status == "完成"}}'>
+        <checkbox-group bindchange="switchSelect">
+          <block wx:for="{{subDataList}}" wx:key>
+            <label class="box-style1 {{item.check?'shadow1':''}}" bindtap='' data-index="{{index}}" data-checked='{{item.check}}'>
+              <checkbox value="{{item.id}}" checked="{{item.check}}" hidden="false" />
+              <view>
+                <view class='font-24' style="text-align: center;">{{item.name}}</view>
+              </view>
+            </label>
+          </block>
+        </checkbox-group>
+      </view>
+      <view wx:else>
+        <checkbox-group bindchange="switchSelect">
+          <block wx:for="{{eveluatelist}}" wx:key='index'>
+          <!-- <block wx:for="{{subDataList}}" wx:key='index'> -->
+            <label class="box-style1 {{item.check?'shadow1':''}}" bindtap='checkbox' data-index="{{index}}" data-checked='{{item.check}}'>
+              <checkbox value="{{index}}" checked="{{item.check}}" hidden="false" />
+              <view>
+                <view class='font-24' style="text-align: center;">{{item.name}}</view>
+              </view>
+            </label>
+          </block>
+        </checkbox-group>
+      </view>
+    </view>
+  </view>
+  <view wx:if='{{status == "完成"}}'>
+  </view>
+  <view wx:else>
+    <button class='evaluate-b font-28' bindtap="confirm">
+      <text decode="{{true}}">发&nbsp;&nbsp;&nbsp;布</text>
+    </button>
+  </view>
+
+</view>

@@ -1,0 +1,15 @@
+<view style='line-height:50rpx; padding:50rpx 30rpx; border-bottom:2rpx #ddd solid;' class='flex-x flex-center-y'>
+  <image src='/image/icon-wxpay.png' style='width:60rpx; height:60rpx; margin-right:20rpx;' />
+  <view class='font-36'>提现到微信零钱</view>
+</view>
+<view style='padding:40rpx 30rpx;'>
+  <view class='font-28' style='color:#888'>提现金额</view>
+  <view class='flex-x flex-center-y' style='border-bottom:1rpx #f6f6f6 solid;'>
+    ￥<input value='{{money}}' focus='true' style=' padding:40rpx 0; font-size:96rpx; height:100rpx;' type='digit' bindinput="moneyInput"></input>
+  </view>
+  <view class='font-28' style='line-height:80rpx; color:#e00;' wx:if='{{isMore}}'>金额已超过可提现余额</view>
+  <view class='font-28' style='line-height:80rpx; color:#888;' wx:if='{{!isMore}}'>可提现余额{{total}}元</view>
+  
+
+</view>
+<view class='btn-style font-32 font-bold' bindtap='withdraw' style='margin:20rpx 55rpx; padding:20rpx; width:600rpx;'>确认提现</view>

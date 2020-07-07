@@ -1,0 +1,74 @@
+<view style='border-top:1rpx #f7f7f7 solid;'>
+  <block wx:for="{{dataList}}" wx:for-index='index' wx:key=''>
+    <view style='float:right; color:gray; font-size:28rpx;padding:20rpx;'>{{item.orderNo}}</view>
+    <view style='font-size:32rpx;padding:20rpx;'>{{item.pushTime}}</view>
+    <view class='breakline' style='height:2rpx;'></view>
+    <view style=" line-height:60rpx; color:#333 " class='font-32'>
+      <view bindtap='toDetail' data-id='{{item.id}}' style='padding: 20rpx 30rpx 20rpx 30rpx;'>
+        <view wx:if='{{role == "employer"}}'>预约阿姨：{{item.housekeeperName==null?'-':item.housekeeperName}}</view>
+        <view wx:if='{{role == "housekeeper"}}'>预约雇主：{{item.employerName==null?'-':item.employerName}}</view>
+        <view>预约状态：<text wx:if='{{item.status==1}}'>等待确认</text>
+          <text wx:if='{{item.status==3}}'>阿姨已同意</text>
+          <text wx:if='{{item.status==2}}'>阿姨拒绝</text>
+          <text wx:if='{{item.status==4}}'>阿姨申请取消</text>
+          <text wx:if='{{item.status==5}}'>雇主申请取消</text>
+          <text wx:if='{{item.status==6}}'>已完成</text>
+          <text wx:if='{{item.status==7}}'>雇主违约</text>
+          <text wx:if='{{item.status==8}}'>阿姨违约</text>
+          <text wx:if='{{item.status==9}}'>申请取消成功 </text>
+          <text wx:if='{{item.status==10}}'>申请取消失败</text>
+          <text wx:if='{{item.status==11}}'>取消预约成功</text>
+          <text wx:if='{{item.status==12}}'>锁定订单</text>
+          <text wx:if='{{item.status==13}}'>更换阿姨</text>
+        </view>
+        <view>预约时间：{{item.orderTime}} 至 {{item.appointTime}}</view>
+        <view>诚信金额：{{item.money}}元</view>
+
+      </view>
+
+      <view class='breakline' style='height:2rpx;'></view>
+      <view class='flex-x' style='float:right;'>
+        <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==1&&role=="housekeeper"}}' bindtap='reject' data-id='{{item.id}}' data-index='{{index}}'>拒绝</view>
+        <view class='btn-style-fill font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==1&&role=="housekeeper"}}' bindtap='toPay' data-id='{{item.id}}' data-money='{{item.money}}' data-index='{{index}}'>同意并支付</view>
+        <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==1&&role=="employer"}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='cancell'>取消预约</view>
+
+        <view class='btn-style-grey font-28;' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==2&&role=="employer"}}' data-id='{{item.id}}'>阿姨已拒绝</view>
+        <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==2&&role=="housekeeper"}}'>您已拒绝</view>
+
+        <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==3}}' bindtap='applyCancell' data-id='{{item.id}}' data-employer='{{item.employerId}}' data-housekeeper='{{item.housekeeperId}}' data-index='{{index}}'>申请取消</view>
+
+        <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==4&&role=="employer"}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='refusCancell'>拒绝取消</view>
+        <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==4&&role=="employer"}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='agreeCancell'>同意取消</view>
+        <view class='btn-style-grey font-28;' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==4&&role=="housekeeper"}}' data-id='{{item.id}}'>您已申请取消</view>
+
+        <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==5&&role=="housekeeper"}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='refusCancell'>拒绝取消</view>
+        <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==5&&role=="housekeeper"}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='agreeCancell'>同意取消</view>
+        <view class='btn-style-grey font-28;' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==5&&role=="employer"}}' data-id='{{item.id}}'>您已申请取消</view>
+
+        <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==6}}'>已完成</view>
+
+        <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==7}}'>雇主违约</view>
+
+        <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==8}}'>阿姨违约</view>
+
+        <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==9}}'>申请取消成功</view>
+
+        <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==10}}'>申请取消失败</view>
+
+        <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==11}}'>取消成功</view>
+
+        <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==12}}'>锁定订单</view>
+
+        <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.status==13}}'>更换阿姨</view>
+      </view>
+    </view>
+
+    <view class='breakline' style='height:2rpx;'></view>
+    <view decode='true' wx:if='{{!item.byCommission&&role=="employer"&&(item.status==1||item.status==3)}}' style='padding:20rpx 30rpx;' class='font-32 theme-color' bindtap='toCommission'>预约有风险，签约需保障，点击 >> 了解</view>
+    <view class='breakline'></view>
+  </block>
+</view>
+<!--加载更多提示-->
+<view wx:if="{{showType}}">
+  <i-load-more tip="{{ loadMoreTip }}" loading="{{loadType}}" />
+</view>

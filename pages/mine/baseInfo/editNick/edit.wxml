@@ -1,0 +1,6 @@
+<view style='padding:20rpx;'>
+  <form bindsubmit="submit">
+  <input value='{{name}}' name='nickname' focus='true' placeholder="请输入昵称" maxlength='6' style='border-bottom:1rpx #FF7F27 solid; padding:10rpx;' confirm-type='done' type='text'></input>
+   <button class='btn-style font-32' formType="submit" style='margin:50rpx; background:#fff; width:650rpx;'>保存</button>
+   </form>
+</view>

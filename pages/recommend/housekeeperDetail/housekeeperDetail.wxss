@@ -1,0 +1,285 @@
+/* 家政员详情 */
+/*圆圈*/
+.i-badge-dot {
+  position: relative;
+  height: 10rpx;
+  width: 10rpx;
+  border-radius: 100%;
+  background: #ff7f27;
+  z-index: 2;
+  box-shadow: 0 0 0 1rpx #ff7f27;
+  margin:25rpx;
+}
+/*标题公共样式*/
+.baseInfo_work_intent {
+  width: 100%;
+  height: 50rpx;
+  top:15rpx;
+  position: relative;
+}
+.baseInfo-title{
+  color:  #ff7f27;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+/*标题 - 内容*/
+.info_text {
+  /* color: gray; */
+  word-break: break-all;
+  padding: 30rpx 30rpx 30rpx 40rpx;
+}
+.text{
+  line-height: 60rpx;
+  font-size: 32rpx;
+}
+/*基本信息*/
+.baseInfoItem {
+  float: left;
+  width: 50%;
+  padding-bottom: 20rpx;
+  font-size: 32rpx;
+}
+
+/*印象标签*/
+
+.baseInfo_impression_tag {
+  border-radius: 20rpx;
+  border: 1rpx solid #cecece;
+  margin: 0rpx 5rpx 20rpx 20rpx;
+  padding: 6rpx;
+  font-size: 32rpx;
+}
+
+/* 未播放视频*/
+
+.upVideo {
+  width: 100%;
+}
+
+.imgUrl {
+  width: 100%;
+  height: 160rpx;
+  position: fixed;
+  top: 0px;
+}
+
+/* 播放视频*/
+
+.downVideo {
+  width: 100%;
+}
+
+/* 动画*/
+
+.i-spin-fix {
+  position: absolute;
+  top: 160rpx;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 150rpx;
+  background-color: rgba(248, 245, 245, 0.9);
+}
+
+.i-spin-dot {
+  position: relative;
+  display: block;
+  border-radius: 50%;
+  background-color: hsl(211, 87%, 56%);
+  width: 40rpx;
+  height: 40rpx;
+  animation: ani-spin-bounce 1s 0s ease-in-out infinite;
+}
+
+.i-spin-large .i-spin-dot {
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.i-spin-small .i-spin-dot {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.i-spin-fullscreen {
+  z-index: 2010;
+}
+
+.i-spin-fullscreen-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.i-spin-fix .i-spin-main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.i-spin-fix .i-spin-dot {
+  display: inline-block;
+}
+
+.i-spin-show-text .i-spin-dot, .i-spin-text {
+  display: none;
+}
+
+.i-spin-show-text .i-spin-text {
+  display: block;
+  font-size: 24rpx;
+}
+
+@keyframes ani-spin-bounce {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+/* 个人履历*/
+.i-step-ico {
+  height: 10rpx;
+  width: 10rpx;
+  border-radius: 100%;
+  background: #fff;
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  border: #dddee1 solid 1px;
+}
+.i-step-line {
+  position: absolute;
+  left: 50%;
+  top: 24rpx;
+  width: 100%;
+  height: 2rpx;
+  background: #dddee1;
+}
+.i-step-process .i-step-ico {
+  border: #ff7f27 solid 1px;
+  color: #fff;
+  background: #ff7f27;
+}
+.i-step-item {
+  font-size: 0.99em;
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  vertical-align: top;
+}
+.i-step-item-ico {
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+}
+.i-step-item-title {
+  font-size:32rpx;
+}
+.i-step-item-content {
+  font-size: 32rpx;
+  margin-top: 4rpx;
+  color: #80848f;
+  padding-top:10rpx;
+  padding-bottom:40rpx;
+  line-height: 50rpx;
+}
+.i-step-vertical {
+  padding-bottom: 20rpx;
+}
+.i-step-vertical .i-step-item-ico {
+  width: 48rpx;
+  float: left;
+}
+.i-step-vertical .i-step-item-main {
+  margin-left: 40rpx;
+  margin-top: -10rpx;
+  clear: inherit;
+}
+.i-step-vertical .i-step-line {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 20rpx;
+  margin: 0 0 0 24rpx;
+  width: 2rpx;
+}
+
+/* 证件、工作风采、为你推荐*/
+.scroll-view_H{
+  width: 100%;
+  white-space: nowrap; 
+}
+.scroll-view-item_H{
+  width:200rpx;
+  display: inline-block;
+  margin: 12rpx;
+}
+.cb{
+  transform: scale(0.55,0.55);
+}
+
+/*
+  问题：浮动引起的高度塌陷
+  引起原因：子元素全是float元素 且 父元素没有设置高度。
+*/
+.section-header::before, .section-header::after {
+  display: table;
+  content: "";
+}
+.section-header::after {
+  clear: both;
+}
+/*
+  更多评价
+*/
+.headImg{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx 30rpx;
+  border-radius: 100%;
+}
+.tem{
+  width: 95%;
+  border: 1rpx solid #cecece;
+  margin: 0rpx 20rpx 30rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+/* 禁止滑动穿透  */
+.disableScroll{
+  position:fixed;
+top:0;left:0;right:0;bottom:0;
+}
+
+button::after{
+border: none;
+}
+
+/*checkbox选中后图标样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  color: #ff7f27;
+}
+
+.icon-style{
+  width:40rpx;
+  height:40rpx;
+  margin-right:20rpx;
+  /* margin-left:20rpx; */
+}
+
+.text-ellipsis{
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    width:300rpx;
+}

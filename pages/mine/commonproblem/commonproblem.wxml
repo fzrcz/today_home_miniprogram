@@ -1,0 +1,4 @@
+<navigator url="/pages/mine/commonPA/commonPA" class="flex-between problem_box" wx:for="{{questionlist}}" wx:key='index' >
+  <text>{{index+1}} .   {{item}}</text> 
+  <i-icon type="enter" size="20"  />
+</navigator>

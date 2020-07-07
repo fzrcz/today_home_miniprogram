@@ -1,0 +1,22 @@
+ <view>
+  <block wx:for="{{dataList}}">
+
+    <view style="padding: 30rpx 30rpx 110rpx 30rpx; line-height:60rpx; border-bottom:2rpx #ddd solid;" class='font-32'>
+      <view class='font-36' style='font-weight:bold;'>{{item.healthName==null?'-':item.healthName}}</view>
+      <view>订单编号：{{item.orderNo}}</view>
+      <view>体检人：<text decode>&emsp;</text>{{item.healthPerson==null?'-':item.healthPerson}}</view>
+      <!-- <view>体检状态：{{item.status=='complete'?'已体检':'待体检'}}</view>
+      <view>体检时间：{{item.healthDate==null?'-':item.healthDate}}</view> -->
+      <view>上传报告时间：{{item.orderTime==null?'-':item.orderTime}}</view>
+      <view style='float:right;'>
+        <view class='btn-style font-28' style='margin:10rpx;' bindtap='toDetail' data-id='{{item.id}}'>查看详情</view>
+      </view>
+    </view>
+    
+  </block>
+</view>
+<!--加载更多提示-->
+<view wx:if="{{showType}}">
+	<i-load-more tip="{{ loadMoreTip }}" loading="{{loadType}}"/>
+</view>
+

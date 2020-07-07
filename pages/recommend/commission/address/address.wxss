@@ -1,0 +1,14 @@
+/* pages/recommend/commission/address/address.wxss */
+
+.address-list {
+  padding: 0 0 150rpx 0;
+}
+
+.add-new-btn {
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  /* bottom: 40rpx; */
+  height: 120rpx;
+}

@@ -1,0 +1,17 @@
+page{
+  background: #f6f6f7;
+}
+
+.cell{
+  background:#fff; 
+  line-height:50rpx; 
+  padding:20rpx; 
+  border-radius:10rpx;
+  margin:20rpx;
+}
+
+.cell-right{
+  float:right; 
+  color:#888; 
+  font-size:32rpx;
+}

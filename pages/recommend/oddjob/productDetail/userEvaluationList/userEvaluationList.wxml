@@ -1,0 +1,23 @@
+<!--pages/recommend/oddjob/productDetail/userEvaluationList/userEvaluationList.wxml-->
+<wxs src="../../../../../utils/subutil.wxs" module="subutil" />
+
+<view class="user-eval-box">
+  <view class="user-eval-list" wx:for="{{evaluateList}}" wx:key='id' wx:if='{{evaluateList.length > 0}}'>
+    <view>
+      <image class="user-pic" src="{{item.headPic}}"></image>
+    </view>
+    <view class="user-eval-r">
+      <view>
+        <view class="font-26">{{subutil.getStrTop2(item.employerNickName)}}**</view>
+        <view class="font-24" style="color:#aaa">{{item.timeStr}}</view>
+      </view>
+      <view class="font-24 user-eval-cont">{{item.discuss}}</view>
+      <view class="eval-img-list">
+        <image class="user-eval-img"wx:for="{{item.pathUrl}}" wx:key='*this' src="{{item}}"></image>
+      </view>
+    </view>
+  </view>
+  <view class="no-data-box" wx:if='{{evaluateList.length == 0}}'>
+    <image class="no-data" src="/image/no-data1.png"></image>
+  </view>
+</view>

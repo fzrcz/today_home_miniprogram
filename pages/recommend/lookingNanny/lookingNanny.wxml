@@ -1,0 +1,25 @@
+<!--pages/recommend/lookingNanny/lookingNanny.wxml-->
+<view class="looking-box">
+	<image wx:if="{{clickId==0}}" style="width:{{baseWidth}}px;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/nanny-3.jpg" mode="widthFix"></image>
+	<image wx:if="{{clickId==1}}" style="width:{{baseWidth}}px;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/maternity-matron-3.png" mode="widthFix"></image>
+	<image wx:if="{{clickId==2}}" style="width:{{baseWidth}}px;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/maternity-matron-7.png" mode="widthFix"></image>
+	<image wx:if="{{clickId==3}}" style="width:{{baseWidth}}px;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/maternity-matron-5.png" mode="widthFix"></image>
+	<image wx:if="{{clickId==4}}" style="width:{{baseWidth}}px;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/maternity-matron-4.png" mode="widthFix"></image>
+
+	<view class="looking-c">
+		<image wx:if="{{clickId==0}}" style="width:{{baseWidth}}px; margin-top:60rpx;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/nanny-2.jpg" mode="widthFix"></image>
+		<image wx:if="{{clickId==1}}" style="width:{{baseWidth}}px;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/maternity.png" mode="widthFix"></image>
+		<image wx:if="{{clickId==2}}" style="width:{{baseWidth}}px; margin-top:60rpx;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/support.png" mode="widthFix"></image>
+		<image wx:if="{{clickId==3}}" style="width:{{baseWidth}}px; margin-top:-40rpx;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/nurture.png" mode="widthFix"></image>
+		<image wx:if="{{clickId==4}}" style="width:{{baseWidth}}px;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/nurturebaby.png" mode="widthFix"></image>
+
+		<view class="nanny-btn-box" bindtap="onlineBooking">
+			<image src="/image/nanny-btn.png"></image>
+			<view class="font-28 nanny-btn-text">在线预约</view>
+		</view>
+	</view>
+</view>
+<view class="looking-bottom">
+	<view class="looking-btn" bindtap="toCall">电话预约</view>
+	<view class="looking-btn col-m-o" bindtap="onlineBooking">在线预约</view>
+</view>

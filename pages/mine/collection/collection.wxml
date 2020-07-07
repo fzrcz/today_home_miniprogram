@@ -1,0 +1,574 @@
+ <view>
+  <i-sticky scrollTop="{{scrollTop}}">
+    <block wx:if='{{dataList.appointHousekeepers.today[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的预约-今日
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.appointHousekeepers.today}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.appointHousekeepers.threeDaysAgo[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的预约-3天前
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.appointHousekeepers.threeDaysAgo}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.appointHousekeepers.aWeekAgo[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的预约-7天前
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.appointHousekeepers.aWeekAgo}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.appointHousekeepers.history[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的预约-历史
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.appointHousekeepers.history}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+
+    <block wx:if='{{dataList.collectHousekeepers.today[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的收藏-今日
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.collectHousekeepers.today}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.collectHousekeepers.threeDaysAgo[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的收藏-3天前
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.collectHousekeepers.threeDaysAgo}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.collectHousekeepers.aWeekAgo[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的收藏-7天前
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.collectHousekeepers.aWeekAgo}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.collectHousekeepers.history[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的收藏-历史
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.collectHousekeepers.history}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+
+
+
+    <block wx:if='{{dataList.interviewHousekeepers.today[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的面试-今日
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.interviewHousekeepers.today}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.interviewHousekeepers.threeDaysAgo[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的面试-3天前
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.interviewHousekeepers.threeDaysAgo}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.interviewHousekeepers.aWeekAgo[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的面试-7天前
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.interviewHousekeepers.aWeekAgo}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.interviewHousekeepers.history[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的面试-历史
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.interviewHousekeepers.history}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+
+    <block wx:if='{{dataList.visitHousekeepers.today[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的足迹-今日
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.visitHousekeepers.today}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.visitHousekeepers.threeDaysAgo[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的足迹-3天前
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.visitHousekeepers.threeDaysAgo}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.visitHousekeepers.aWeekAgo[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的足迹-7天前
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.visitHousekeepers.aWeekAgo}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+    <block wx:if='{{dataList.visitHousekeepers.history[0]}}'>
+      <i-sticky-item i-class="i-sticky-demo-title">
+        <view slot="title">
+          我的足迹-历史
+        </view>
+        <view slot="content">
+          <view wx:for="{{dataList.visitHousekeepers.history}}" wx:key='key' class='templet' data-index="{{item.id}}"  bindtap='toDetail'>
+            <view class="flex-x flex-center-y">
+              <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+              <view class='flex-y'>
+                <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}<text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+                </view>
+                <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+              </view>
+              <view class='theme-color' style='width:250rpx; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+            </view>
+            <view class='breakline' style='height:4rpx;'></view>
+
+            <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+              <i-row style="color:#888">
+                <i-col span="8">期望服务</i-col>
+                <i-col span="8">服务区域</i-col>
+                <i-col span="8">发布时间</i-col>
+                
+              </i-row>
+              <i-row>
+                <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+                <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+                <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+              </i-row>
+            </view>
+          </view> 
+        </view>
+      </i-sticky-item>
+    </block>
+
+  </i-sticky>
+</view>
+<!--加载更多提示-->
+<view wx:if="{{showType}}">
+  <i-load-more tip="{{ loadMoreTip }}" loading="{{loadType}}"/>
+</view>

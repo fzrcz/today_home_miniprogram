@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-icon": "/iview/icon/index"
+  },
+  "navigationBarTitleText": "工资委托"
+}

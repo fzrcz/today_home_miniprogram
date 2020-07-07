@@ -1,0 +1,39 @@
+<view style='padding-left:60rpx; padding-top:20rpx; font-weight:bold; font-size:40rpx;'>
+  个人信息
+</view>
+<view class='font-32' style='padding:30rpx 60rpx;'>
+  会定期举行阿姨活动
+</view>
+<view>
+  <view class='flex-x flex-center-y cell'>
+    <view style='width:160rpx; text-align:center; margin-right:30rpx;'>姓名</view>
+    <input placeholder="请输入姓名" value='{{nickname}}' bindinput="nameInput"></input>
+  </view>
+  
+  <picker bindchange="chooseBirthMonth" value='{{birthMonth}}' mode="date" fields='month' disabled='{{auth}}'>
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:160rpx; text-align:center; margin-right:30rpx;'>出生年月</view>
+      <input placeholder="请选择出生年月" wx:if='{{!birthMonth}}' disabled='true'></input>
+      <view>{{birthMonth}}</view>
+    </view>
+  </picker>
+  <view class='flex-x flex-center-y cell'>
+    <view style='width:160rpx; text-align:center; margin-right:30rpx;'>身份证号</view>
+    <input placeholder="请输入身份证号" value='{{idNo}}' bindinput="idNoInput" type='idcard' disabled='{{auth}}'></input>
+  </view>
+
+  <picker mode="region" bindchange="changeNative" value="{{native}}">
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:160rpx; text-align:center; margin-right:30rpx;'>籍贯</view>
+      <input placeholder="请选择籍贯" wx:if='{{native[0] == ""}}' disabled='true'></input>
+      {{native[0]}} {{native[1]}} {{native[2]}}
+    </view>
+  </picker>
+  
+  
+</view>
+
+<view style='padding:40rpx 50rpx; position: fixed; bottom:0rpx; width:650rpx;'>
+  <!-- <view class='btn-style' style='padding:20rpx 40rpx; margin-top:20rpx;' bindtap='toSkip'>跳过</view> -->
+  <view class='btn-style-fill' style='padding:20rpx; margin:20rpx 0rpx; width:600rpx;' bindtap='toNext'>下一步</view>
+</view>

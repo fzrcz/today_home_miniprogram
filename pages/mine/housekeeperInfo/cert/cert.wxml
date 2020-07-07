@@ -1,0 +1,21 @@
+<view style='padding-left:60rpx; padding-top:20rpx; font-weight:bold; font-size:40rpx;'>
+  证件资料
+</view> 
+<view class='font-28' style='padding:30rpx 60rpx;'>
+  请选择您拥有的证件，雇主会优先选择证件齐全的保姆！
+</view> 
+<view style='padding:50rpx 25rpx;'>
+  <checkbox-group bindchange="switchSelect">
+    <block wx:for="{{dataList}}">  
+        <label class="box-style {{item.check?'shadow':''}}" style=' line-height:100rpx;' data-id='{{item.id}}' data-isSelect='{{item.check}}'>  
+          <checkbox value="{{item.id}}" checked="{{item.check}}" hidden="false" />
+          <view class='flex-x flex-center-y'>
+            <image src='{{item.icon}}' style='width:80rpx;height:51rpx; margin-left:20rpx; margin-right:20rpx;' />
+            <view class='font-30'>{{item.name}}</view>  
+          </view>
+          
+        </label> 
+    </block>
+  </checkbox-group>
+</view>
+<view class='btn-style font-32 font-bold' bindtap='confirm' style='margin:55rpx; padding:20rpx; position: fixed; bottom:40rpx; width:600rpx;'>确定</view>

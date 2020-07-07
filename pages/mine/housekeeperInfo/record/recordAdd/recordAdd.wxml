@@ -1,0 +1,22 @@
+<view>
+<form bindsubmit="formSubmit">
+  <view class='flex-x flex-center-y cell'>
+    <view style='width:180rpx;'>开始时间</view>
+    <picker mode="date" value="{{startDate}}" name='startDate' fields="day" bindchange="changeStartDate">
+      <view class="picker" style='width:500rpx;'>{{startDate}}</view>
+    </picker>
+  </view>
+  <view class='flex-x flex-center-y cell'>
+    <view style='width:180rpx;'>结束时间</view>
+    <picker mode="date" value="{{endDate}}" name='endDate' fields="day" bindchange="changeEndDate">
+      <view class="picker" style='width:500rpx;'>{{endDate}}</view>
+    </picker>
+  </view>
+  <view class='flex-x flex-center-y cell'>
+    <view style='width:180rpx;'>详细内容</view><textarea name='content' auto-height='true' placeholder="请输入详细内容" style='width:500rpx;'></textarea> 
+  </view>
+
+  <button class='btn-style font-32' formType="submit" style='margin:50rpx; background:#fff; width:650rpx;'>保存履历</button>
+</form>
+</view>
+

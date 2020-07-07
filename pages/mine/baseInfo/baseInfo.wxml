@@ -1,0 +1,24 @@
+<i-cell-group>
+  <i-cell title="头像" is-link bindtap="chooseImg">
+    <image src='{{headPic}}' slot="footer" style='width:60rpx; height:60rpx; border-radius: 50%;' bindtap='previewheadPic' data-src='{{headPic}}'/>
+  </i-cell>
+  <i-cell title="身份认证" is-link url='/pages/mine/auth/auth'>
+    <view slot="footer" wx:if='{{auth}}'>
+      <text style='margin-right:10rpx;'>{{name}}</text>
+      <i-tag class="i-tags" type="border" color="theme">已实名</i-tag>
+    </view>
+    <view slot="footer" wx:if='{{!auth}}'>
+      未实名认证
+    </view>
+  </i-cell>
+  <i-cell title="手机号码" >
+    <view slot="footer">{{phone}}</view>
+  </i-cell>
+  <i-cell title="昵称" is-link url='editNick/edit?nickname={{nickname}}'>
+    <view slot="footer">{{nickname==null?'':nickname}}</view>
+  </i-cell>
+  <i-cell title="性别">
+    <view slot="footer">{{sex==null?'未知':sex }}</view>
+  </i-cell>
+  <i-cell title="我的地址" is-link url='/pages/mine/address/address'></i-cell>
+</i-cell-group>

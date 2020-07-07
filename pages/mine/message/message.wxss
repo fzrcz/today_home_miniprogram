@@ -1,0 +1,7 @@
+.list-time{
+  color: #BBB;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 50rpx;
+  height:50rpx;
+}

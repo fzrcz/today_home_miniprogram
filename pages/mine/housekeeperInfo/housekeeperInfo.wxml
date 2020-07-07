@@ -1,0 +1,59 @@
+<view class='flex-y flex-center ' style='width:100%; height:260rpx;background:#FF7F27; border-bottom-right-radius:50%; border-bottom-left-radius:50%; margin-bottom:0rpx;'>
+  <image src='{{headPic}}' mode='aspectFill' style='width:120rpx; height:120rpx; border-radius: 50%; margin:40rpx 0 20rpx;' bindtap="chooseImg"/>
+  <view style='color:#fff;'>{{nickname}}</view>
+</view>
+<view style='padding:20rpx;'>
+  <view class='font-36 cell' bindtap='chooseWorkStatus'>
+    <view class='cell-right'>{{workStatus}}<i-icon type="enter" size='20' color='#888'/></view>
+    <view>工作状态</view>
+  </view>
+
+  <view class='font-36 cell' bindtap='toAuth'>
+    <view class='cell-right'>
+      <block wx:if='{{auth}}'>
+        <text style="margin-right:10rpx;">{{name}}</text>
+        <i-tag class="i-tags" type="border" color="theme">已实名</i-tag>
+      </block>
+      <block wx:else>
+        未实名认证
+      </block>
+      <i-icon type="enter" size='20' color='#888'/>
+    </view>
+    <view>身份认证</view>
+  </view>
+
+  <view class='font-36 cell' bindtap='toIntention'>
+    <view class='cell-right'>{{workIntent}}<i-icon type="enter" size='20' color='#888'/></view>
+    <view>工作意向</view>
+  </view>
+
+  <view class='font-36 cell' bindtap='toServiceArea'> 
+    <view class='cell-right'><i-icon type="enter" size='20' color='#888'/></view>
+    <view>服务区域</view>
+  </view>
+
+  <view class='font-36 cell' bindtap='toBaseInfo'> 
+    <view class='cell-right'><i-icon type="enter" size='20' color='#888'/></view>
+    <view>基本信息</view>
+  </view>
+
+  <!-- <view class='font-36 cell'>
+    <view class='cell-right'><i-icon type="enter" size='20' color='#888'/></view>
+    <view>视频介绍</view>
+  </view> -->
+
+  <view class='font-36 cell' bindtap='toRecord'>
+    <view class='cell-right'><i-icon type="enter" size='20' color='#888'/></view>
+    <view>个人履历</view>
+  </view>
+
+  <view class='font-36 cell' bindtap='toCert'>
+    <view class='cell-right'><i-icon type="enter" size='20' color='#888'/></view>
+    <view>证件材料</view>
+  </view>
+
+  <view class='font-36 cell' bindtap='toWorkStyle'>
+    <view class='cell-right'><i-icon type="enter" size='20' color='#888'/></view>
+    <view>工作风采</view>
+  </view>
+</view>

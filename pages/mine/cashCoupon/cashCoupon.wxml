@@ -1,0 +1,56 @@
+<!--pages/mine/cashCoupon/cashCoupon.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">兑换现金券</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">兑换记录</view>
+</view>
+
+
+<swiper class="swiper-box" current="{{currentTab}}" style="height:{{windowHeight-swiperHeight}}px" bindchange="bindChange">
+  <!-- 兑换现金券 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+      <view class="input-box">
+        <input class="input-cunpon-number" bindinput="getExchangeCode" placeholder="请输入兑换码"></input>
+        <image class="redeem-now" mode="widthFix" bindtap="redeemNow" src="/image/redeem.png"></image>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+  <!-- 兑换记录 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+      <!-- 没有记录 -->
+      <view wx:if='{{exchangeList.length == 0}}' class="no-data-box">
+        <image src='/image/no-data1.png' class="no-data"></image>
+      </view>
+      <!-- 循环体 -->
+      <view wx:else>
+        <view wx:for='{{exchangeList}}' wx:key='redemptionCode' class="exchange-cou-list">
+          <view class="exchange-list flex-between">
+            <view class="exchange-list-l">
+              <view wx:if='{{item.electronicType == "coupon"}}' class="font-bold ex-title">
+                <!-- <text class="font-26">+</text> -->
+                <text class="font-34" decode="true">&nbsp;优惠券</text>
+              </view>
+              <view wx:if='{{item.electronicType == "balance"}}' class="font-bold ex-title">
+                <text class="font-26">+</text>
+                <text class="font-40" decode="true">&nbsp;{{item.price}}</text>
+              </view>
+              <view class="font-24" style="line-height:40rpx">兑换码：{{item.redemptionCode}}</view>
+              <view class="font-24">{{item.useTime}}</view>
+            </view>
+            <view class="flex-center-y">
+              <image class="success-icon" mode="widthFix" src="/image/suc-icon.png"></image>
+              <text wx:if='{{item.electronicType == "coupon"}}' class="font-26">优惠券兑换成功</text>
+              <text wx:if='{{item.electronicType == "balance"}}' class="font-26">电子券兑换成功</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+
+    </scroll-view>
+  </swiper-item>
+
+</swiper>

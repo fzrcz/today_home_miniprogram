@@ -1,0 +1,22 @@
+ <view>
+  <block wx:for="{{dataList}}">
+
+    <view style="padding: 30rpx 30rpx 110rpx 30rpx; line-height:60rpx; border-bottom:2rpx #ddd solid;" class='font-32'>
+      <view class='font-36' style='font-weight:bold;'>{{item.insuranceName}}</view>
+      <view>订单编号：{{item.orderNo}}</view>
+      <view>被保险人：{{item.insuredPerson==null?'-':item.insuredPerson}}</view>
+      <view>保险状态：{{item.status=='in-department'?'保障期内':'已失效'}}</view>
+      <view>保障时间：{{item.effectDate}} 至 {{item.expiryDate}}</view>
+      <view>上传报告时间：{{item.orderTime}}</view>
+      <view style='float:right;'>
+        <view class='btn-style font-28' style='margin:10rpx;' bindtap='toDetail' data-id='{{item.id}}'>查看详情</view>
+      </view>
+    </view>
+    
+  </block>
+</view>
+<!--加载更多提示-->
+<view wx:if="{{showType}}">
+	<i-load-more tip="{{ loadMoreTip }}" loading="{{loadType}}"/>
+</view>
+

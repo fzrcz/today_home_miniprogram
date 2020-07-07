@@ -1,0 +1,46 @@
+/* pages/recommend/oddjob/productDetail/userEvaluationList/userEvaluationList.wxss */
+.user-eval-box{
+  padding: 30rpx;
+}
+.user-eval-list{
+  display: flex;
+  padding: 0 0 20rpx 0;
+}
+.user-pic {
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+  border-radius: 50%;
+}
+.user-eval-cont {
+  padding: 20rpx 0 0 0;
+}
+.user-eval-r{
+  padding: 0 0 0 20rpx;
+}
+
+.user-eval-img{
+  width: 190rpx;
+  height: 190rpx;
+  display: block;
+  border-radius: 10rpx;
+  margin: 0 10rpx 10rpx 0;
+}
+
+.eval-img-list{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20rpx 0;
+}
+
+.no-data {
+  width: 276rpx;
+  height: 288rpx;
+  display: block;
+}
+.no-data-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40%;
+}

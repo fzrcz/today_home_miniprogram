@@ -1,0 +1,18 @@
+
+
+.box-style{
+  border: 1px solid gray;
+  width: 275rpx;
+  height: 100rpx;
+  margin-left:50rpx;
+  margin-bottom:50rpx;
+  display:inline-block;
+  border-radius: 10rpx;
+}
+
+
+.shadow{
+  border: 1px solid #FF7F27;
+  color:#fff;
+  background: #FF7F27;
+}

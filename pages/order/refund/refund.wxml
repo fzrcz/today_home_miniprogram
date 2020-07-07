@@ -1,0 +1,18 @@
+<!--代办订单退款-->
+<view>
+  <view class='flex-x base' style=''>
+    <view>联系电话</view>
+    <view><input type="text" name="loginid" style='height:60rpx;width:500rpx; margin:0 20rpx;font-size:32rpx;' placeholder="请填写联系电话" value="{{searchVal}}" bindinput="serachInput"/>
+     </view>
+  </view>
+  <view class='flex-x base' style=''>
+    <view>联系电话</view>
+    <view><input type="text" name="loginid" style='height:60rpx;width:500rpx; margin:0 20rpx;font-size:32rpx;' placeholder="请填写联系电话" value="{{searchVal}}" bindinput="serachInput"/>
+     </view>
+  </view>
+  <view class='flex-x base' style=''>
+    <view>联系电话</view>
+    <view><input type="text" name="loginid" style='height:60rpx;width:500rpx; margin:0 20rpx;font-size:32rpx;' placeholder="请填写联系电话" value="{{searchVal}}" bindinput="serachInput"/>
+     </view>
+  </view>
+</view>

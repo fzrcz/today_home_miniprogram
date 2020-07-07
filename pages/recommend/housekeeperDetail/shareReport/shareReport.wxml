@@ -1,0 +1,34 @@
+
+<scroll-view class="container backImg" style='letter-spacing:4rpx;'>
+  <!-- <scroll-view class="page-bd" >  -->
+    <view style='height:320rpx;'>
+    </view>
+    <view style='padding:20rpx 140rpx;'>
+      <view class='font-36' style='font-weight:600;'>尊敬的{{employerName==null?'雇主':employerName}}：</view>
+      <text decode class=''>&emsp;&emsp;您好！
+      &emsp;&emsp;很高兴为您服务，以下是我根据您的需求推荐的家政员。</text>
+      <block wx:for="{{dataList}}" wx:key="key">
+        <view class='flex-x flex-center-y' style='margin-top:20rpx;' bindtap='goInfo' data-nannyid='{{item.id}}'>
+          <view>
+            <image style='height:100rpx; width:100rpx; border-radius:50%;' src="{{item.headPic==null?'https://jrdj.oss-cn-shenzhen.aliyuncs.com/home/housekeeper/info/logo.jpg':item.headPic}}"></image>
+          </view>
+          <view class='flex-y' style='margin-left:20rpx;'>
+            <view>{{item.name==null?'姓名未知':item.name}}</view>
+            <view class='font-32'>{{item.age==null?'年龄未知':item.age+'岁'}}|{{item.nativeName==null?'籍贯未知':item.nativeName}}</view>
+          </view>
+        </view>
+      </block>
+      <text decode>
+        &emsp;敬祝：
+        身体健康，家庭美满！
+        
+      </text>
+    </view>   
+</scroll-view>
+ <!--返回首页悬浮-->
+  <view style='position: fixed;height:80rpx;top:40rpx;z-index: 3;left:20rpx;background-color:#b3b1b177; border: 1rpx solid #e7e5e5;border-radius: 50%;padding:10rpx;'>
+    <view bindtap='toRecommend'>
+      <image style='width:80rpx;height:80rpx;' src='/image/index.png'></image>
+    </view>
+  </view>
+

@@ -1,0 +1,21 @@
+<view class='backImg' style='height:100%; font-size:28rpx; line-height:50rpx;'>
+  <view style='height:350rpx;text-align:center;'>
+    <view style='padding-top:70rpx;'>
+        <image style='width:128rpx;height:128rpx;' src='/image/logo1.png'> </image>
+    </view>
+    <view style='padding-top:20rpx;'>
+        <image style='width:274rpx;height:91rpx;' src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/logo2.png'> </image>
+    </view>
+  </view>
+  <view style='padding:50rpx 60rpx 20rpx 70rpx;'>
+    <!-- <view class='zan-font-16' style="font-weight:bold; text-align:center; padding:20rpx 0;">恭喜您完成注册</view> -->
+    <text decode="true">&emsp;&emsp;福建省今日到家科技有限公司成立于2018年，公司注册资金人民币1000万元，是一家以“互联网+服务”为经营理念的科技型公司。
+    &emsp;&emsp;公司本着“诚信为本、用户至上、服务第一”的宗旨，研发互联网平台，让客户足不出户，即可享受方便、快捷、安全的优质服务体验。为了能够吸引更多优秀的家庭服务人员加入我们，并且用心提供优质的家庭服务，我司还专门打造“家庭服务人员生态圈”，为家政从业人员提升综合素质、提高自身就业价值、量身打造职业生涯规划、提供孵化创业平台、塑造行业新形态。
+    </text>
+  </view>
+  <view style='position: fixed; bottom:20rpx; width: 100%;text-align:center;'>
+    <view bindtap='toRule' style='color:#ff7f27;'>《今日到家服务条款》</view>
+    <view>福建省今日到家科技有限公司</view>
+  </view>
+
+</view>

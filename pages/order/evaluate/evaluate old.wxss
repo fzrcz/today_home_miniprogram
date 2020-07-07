@@ -1,0 +1,115 @@
+/* pages/order/evaluate/evaluate.wxss */
+
+page {
+  background: #f2f2f2;
+}
+
+.evaluate-t {
+  width: 86%;
+  margin: 20rpx auto 40rpx auto;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.evaluate-t-t {
+  display: flex;
+  align-items: flex-end;
+  margin: 0 30rpx;
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.evaluate-t-t-l {
+  width: 116rpx;
+  height: 116rpx;
+}
+
+.evaluate-t-t-l image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.evaluate-t-t-r {
+  padding: 0 0 0 50rpx;
+}
+
+.star-box {
+  display: flex;
+  margin: 20rpx 0 0 0;
+}
+
+.star-box image {
+  width: 44rpx;
+  height: 44rpx;
+  display: block;
+  margin: 0 20rpx 0 0;
+}
+
+.evaluate-t-c {
+  color: #bfbfbf;
+  padding: 20rpx 40rpx;
+}
+
+.evaluate-t-c textarea {
+  height: 100rpx;
+  width: 100%;
+  overflow-y: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.evaluate-t-c-p {
+  padding: 40rpx 0 0 0;
+}
+
+.evaluate-t-b {
+  overflow: hidden;
+  /* padding: 152rpx 30rpx 26rpx 30rpx; */
+  padding: 56rpx 30rpx 26rpx 30rpx;
+}
+
+.evaluate-t-b image {
+  width: 162rpx;
+  height: 162rpx;
+  display: block;
+}
+
+.evaluate-b {
+  width: 86%;
+  background: #fff;
+  height: 72rpx;
+  border-radius: 10rpx;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 72rpx;
+}
+
+.imgList{
+  border:  2rpx #bfbfbf dashed;
+  margin: 0 30rpx 30rpx 0;
+  border-radius: 10rpx;
+}
+.imgList:nth-child(3n){
+  margin: 0 0 30rpx 0;
+}
+
+.box-style1 {
+  border: 2rpx solid #bfbfbf;
+  width: 154rpx;
+  height: 50rpx;
+  margin-left: 42rpx;
+  margin-top: 31rpx;
+  display: inline-block;
+  border-radius: 10rpx;
+  line-height: 50rpx;
+  color: #bfbfbf;
+}
+.shadow1 {
+  border: 2rpx solid #ff7f27;
+  color: #ff7f27;
+}
+
+.checkbox-group {
+  display: inline-block;
+}

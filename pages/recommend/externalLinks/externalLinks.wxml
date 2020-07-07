@@ -1,0 +1,5 @@
+<!--pages/recommend/externalLinks/externalLinks.wxml-->
+<!-- <web-view src='https://test443.51jrdj.com/home-wechat2.0/cleaningAcarid?productId=51'> -->
+<web-view src='{{detailUrl}}'>
+
+</web-view>

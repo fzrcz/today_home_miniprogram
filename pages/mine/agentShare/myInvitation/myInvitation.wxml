@@ -1,0 +1,35 @@
+<!--pages/mine/myClient/myInvitation/myInvitation.wxml-->
+<view class="invitation-box">
+  <view class="my-invitation">
+    <view class="invi-title">
+      <!-- <view class="h-line"></view> -->
+      <text>邀请列表</text>
+    </view>
+    <scroll-view scroll-y="true" scroll-with-animation="true">
+
+      <!-- 没有数据 -->
+      <view class="no-data" wx:if='{{myClientList.length == 0}}'>
+        <image src="/image/no-data1.png"></image>
+      </view>
+
+      <!-- 有数据 -->
+      <view wx:else class="invi-content">
+        <!-- 循环体 -->
+        <view wx:for='{{myClientList}}' wx:key class="invitation-list flex-between">
+          <view class="flex-center-y">
+            <view class="head-img">
+              <image wx:if='{{item.headPic == null || item.headPic == "" || item.headPic == undefined}}' src="暂无"></image>
+              <image wx:else src="{{item.headPic}}"></image>
+            </view>
+            <view wx:if='{{item.nickName == null || item.nickName == "" || item.nickName == undefined}}' class="font-28 nick-name">暂无</view>
+            <view wx:else class="font-28 nick-name">{{item.nickName}}</view>
+          </view>
+          <view wx:if='{{item.inviteTime == null || item.inviteTime == "" || item.inviteTime == undefined}}' class="font-28">暂无</view>
+          <view wx:else class="font-28">{{item.inviteTime}}</view>
+        </view>
+        <i-divider>没有更多数据了</i-divider>
+      </view>
+    </scroll-view>
+
+  </view>
+</view>

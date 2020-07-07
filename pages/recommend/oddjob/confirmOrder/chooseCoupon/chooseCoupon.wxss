@@ -1,0 +1,242 @@
+/* pages/recommend/oddjob/confirmOrder/chooseCoupon/chooseCoupon.wxss */
+
+page {
+  background: #e6e6e6;
+}
+
+/* 头部 */
+
+.swiper-tab {
+  width: 100%;
+  text-align: center;
+  line-height: 80rpx;
+  /*height: 80rpx; */
+  background: #fff;
+}
+
+.swiper-tab-list {
+  font-size: 30rpx;
+  display: inline-block;
+  width: 33.3%;
+  height: 80rpx;
+  /* line-height: 80rpx; */
+  color: #2c2c2c;
+}
+
+.on {
+  color: #fc7122;
+  height: 80rpx;
+  background: #fff;
+  box-sizing: border-box;
+  border-bottom: 5rpx solid #fc7122;
+}
+
+/* 优惠券 */
+
+.coupon-list {
+  padding: 20rpx;
+  margin-bottom: 120rpx;
+}
+
+.wrapper {
+  margin: 0 auto 30rpx auto;
+  width: 100%;
+  display: flex;
+  background: #fff;
+  /* background:linear-gradient(-90deg,#ff7206,#faad52); *//*实现颜色渐变 */
+  position: relative;
+}
+
+/*前半部分样式*/
+
+.content {
+  position: relative;
+  /* flex: 1; *//* padding: 20rpx 30rpx; */
+  text-align: center;
+  width: 202rpx;
+}
+
+/*后半部分样式*/
+
+.tip {
+  position: relative;
+  padding: 40rpx 30rpx;
+  flex: 40 0 400rpx;
+}
+
+/*中间竖直虚线样式*/
+
+.split-line {
+  position: relative;
+  flex: 0 0 0;
+  margin: 0 10rpx 0 6rpx;
+  border-left: 4rpx dashed #bababa;
+}
+
+/*给虚线加两个伪类，基本样式如下*/
+
+.split-line:before, .split-line:after {
+  content: '';
+  position: absolute;
+  width: 32rpx;
+  height: 16rpx;
+  background: #e6e6e6;
+  left: -18rpx;
+  z-index: 1;
+}
+
+/*给前半部分加两个伪类，基本样式如下*/
+
+.content:before, .content:after {
+  content: '';
+  position: absolute;
+  /* width: 32rpx; */
+  height: 16rpx;
+  background: #fff;
+  left: -16rpx;
+  z-index: 1;
+}
+
+/*给前半部分加两个伪类，基本样式如下*/
+
+.tip:before, .tip:after {
+  content: '';
+  position: absolute;
+  /* width: 32rpx; */
+  height: 16rpx;
+  background: #fff;
+  right: -16rpx;
+  z-index: 1;
+}
+
+.content:before, .tip:before, .split-line:before {
+  border-radius: 0 0 16rpx 16rpx;
+  top: 0;
+}
+
+.content:after, .tip:after, .split-line:after {
+  border-radius: 16rpx 16rpx 0 0;
+  bottom: 0;
+}
+
+.money {
+  font-size: 60rpx;
+  color: #f02d2d;
+}
+
+.money text {
+  font-size: 40rpx;
+  /* padding-right: 20rpx;  */
+}
+
+.title {
+  color: #f02d2d;
+}
+
+.conditions {
+  color: #ababab;
+  padding: 15rpx 0;
+}
+
+.col-co-m {
+  color: #bababa;
+}
+
+.col-co-l {
+  border-left: 4rpx dashed #e4e4e6;
+}
+
+.col-co-n {
+  color: #bababa;
+}
+
+.col-co-t {
+  color: #c1c1c1;
+}
+
+.radio-group {
+  width: 100%;
+  /* position: absolute;
+  right: 10rpx;
+  top: 50%;
+  margin-top: -24rpx; */
+}
+
+.radio-group-list {
+  width: 100%;
+  position: relative;
+}
+
+.radio {
+  position: absolute;
+  right: 10rpx;
+  top: 50%;
+  margin-top: -12rpx;
+}
+
+.not-wrapper {
+  background: #fff;
+  margin: 0 0 30rpx 0;
+}
+
+.wrapper-top {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.not-split-line {
+  height: 134rpx;
+  margin: 40rpx 0;
+}
+
+.use-rule {
+  padding: 20rpx 0;
+  margin: 0 30rpx;
+  border-top: 4rpx dashed #e6e6e6;
+}
+
+.warning-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin: 0 10rpx 0 0;
+}
+
+.warning-icon image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.rule-text{
+  color: #69696b
+}
+.clip-coupons{
+  width: 100%;
+  background: #fff;
+  padding: 12rpx 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.clip-coupons button{
+  width: 90%;
+  background: #ff7f27;
+  color: #fff;
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked{
+   border-color: #f02d2d;
+   background: #f02d2d;
+}
+
+.no-data {
+  width: 276rpx;
+  height: 288rpx;
+}
+
+.no-data-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40%;
+}

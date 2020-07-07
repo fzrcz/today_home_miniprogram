@@ -1,0 +1,146 @@
+<!--pages/mine/myCoupon/myCoupon.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">可用优惠券</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">已使用优惠券</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">失效优惠券</view>
+</view>
+<swiper class="swiper-box" current="{{currentTab}}" style="height:{{windowHeight-swiperHeight}}px" bindchange="bindChange">
+  <!-- 可用 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+      <view class="coupon-list" wx:if='{{couponList.length != 0}}'>
+
+        <!-- 循环体 -->
+        <view wx:for='{{couponList}}' wx:key class="wrapper">
+          <view class="flex-center-y">
+            <view class="content">
+              <view class="money">
+                <text>¥</text>{{item.couponsLimit}}
+              </view>
+              <view class="font-24 title">满{{item.targetAmount}}元使用</view>
+            </view>
+          </view>
+          <view class="split-line"></view>
+          <view class="tip">
+            <view class="flex-between">
+              <view class="font-32" wx:if='{{item.couponsType==1}}'>全品类</view>
+              <view class="font-32" wx:if='{{item.couponsType==2}}'>{{item.name}}</view>
+              <view class="font-32" wx:if='{{item.couponsType==3}}'>{{item.productName}}</view>
+            </view>
+            <view class="conditions font-24">
+              <view>{{item.couponsTypeName}}</view>
+              <view>有效期至：{{item.validTime}}</view>
+            </view>
+            <view class="to-use" wx:if='{{item.couponsType == 1}}'>
+              <text bindtap="toIndex">去使用</text>
+            </view>
+            <view class="to-use" wx:if='{{item.couponsType == 2}}'>
+              <text bindtap="toClassification" data-businessTypeId='{{item.businessTypeId}}'>去使用</text>
+            </view>
+            <view class="to-use" wx:if='{{item.couponsType == 3}}'>
+              <text bindtap="toProduct" data-productId='{{item.productId}}'>去使用</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:else class="no-data-box">
+        <image src='/image/no-data1.png' class="no-data"></image>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+  <!-- 已使用 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+      <view class="coupon-list" wx:if='{{couponList.length != 0}}'>
+        <!-- 循环体 -->
+        <view wx:for='{{couponList}}' wx:key class="wrapper">
+          <view class="flex-center-y">
+            <view class="content">
+              <view class="money col-co-m">
+                <text>¥</text>{{item.couponsLimit}}
+              </view>
+              <view class="font-24 title col-co-t">满{{item.targetAmount}}元使用</view>
+            </view>
+          </view>
+          <view class="split-line col-co-l"></view>
+          <view class="tip">
+            <view class="flex-between">
+              <view class="font-32 col-co-n" wx:if='{{item.couponsType==1}}'>全品类</view>
+              <view class="font-32 col-co-n" wx:if='{{item.couponsType==2}}'>{{item.name}}</view>
+              <view class="font-32 col-co-n" wx:if='{{item.couponsType==3}}'>{{item.productName}}</view>
+              <view class="font-28 col-co-t">已使用</view>
+            </view>
+            <view class="conditions font-24 col-co-t">
+              <view>{{item.couponsTypeName}}</view>
+              <view>有效期至：{{item.validTime}}</view>
+            </view>
+          </view>
+        </view>
+
+        <!-- <view class="wrapper">
+          <view class="flex-center-y">
+            <view class="content">
+              <view class="money col-co-m">
+                <text>¥</text>50
+              </view>
+              <view class="font-24 title col-co-t">满500元使用</view>
+            </view>
+          </view>
+          <view class="split-line col-co-l"></view>
+          <view class="tip">
+            <view class="flex-between">
+              <view class="font-40 col-co-n">新人专享</view>
+              <view class="font-28 col-co-t">已使用</view>
+            </view>
+            <view class="conditions font-24 col-co-t">
+              <view>限全品类商品使用</view>
+              <view>有效期至：2019-08-12 00:00:00</view>
+            </view>
+          </view>
+        </view> -->
+
+      </view>
+      <view wx:else class="no-data-box">
+        <image src='/image/no-data1.png' class="no-data"></image>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+  <!-- 已失效 -->
+  <swiper-item>
+    <scroll-view bindscrolltolower='lower' scroll-y="true" scroll-with-animation="true" style='position:absolute;width:100%;height:100%;'>
+      <view class="coupon-list" wx:if='{{couponList.length != 0}}'>
+        <!-- 循环体 -->
+        <view wx:for='{{couponList}}' wx:key class="wrapper">
+          <view class="flex-center-y">
+            <view class="content">
+              <view class="money col-co-m">
+                <text>¥</text>{{item.couponsLimit}}
+              </view>
+              <view class="font-24 title col-co-t">满{{item.targetAmount}}元使用</view>
+            </view>
+          </view>
+          <view class="split-line col-co-l"></view>
+          <view class="tip">
+            <view class="flex-between">
+              <view class="font-32 col-co-n" wx:if='{{item.couponsType==1}}'>全品类</view>
+              <view class="font-32 col-co-n" wx:if='{{item.couponsType==2}}'>{{item.name}}</view>
+              <view class="font-32 col-co-n" wx:if='{{item.couponsType==3}}'>{{item.productName}}</view>
+              <view class="font-28 col-co-t">已失效</view>
+            </view>
+            <view class="conditions font-24 col-co-t">
+              <view>{{item.couponsTypeName}}</view>
+              <view>有效期至：{{item.validTime}}</view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+      <view wx:else class="no-data-box">
+        <image src='/image/no-data1.png' class="no-data"></image>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+</swiper>

@@ -1,0 +1,19 @@
+<!--pages/empower/empower.wxml-->
+
+<view class="login-box">
+  <view>
+    <view class="login-bg">
+      <image class="logo-img" src="/image/logo1.png" mode="widthFix"></image>
+      <view>
+        <view class="h-bar font-30">使用微信账号授权并登录</view>
+        <view class="text-list font-22">·获取您的微信账号信息（头像、昵称等）·</view>
+        <view class="text-list font-22">·并将其作为您在本商城内的身份账号·</view>
+        <view class="text-list font-22">·确认授权后，即可注册用户身份进行后续操作·</view>
+      </view>
+    </view>
+    <view class="autho-login">
+      <button class="agree" open-type='getUserInfo' bindgetuserinfo='getUserInfo'>授权并登录</button>
+      <button class="refuse" bindtap="refuse">拒绝</button>
+    </view>
+  </view>
+</view>

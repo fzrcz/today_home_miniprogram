@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "i-modal": "/iview/modal/index"
+  }
+}

@@ -1,0 +1,24 @@
+<!--pages/mine/generateAddMiniCode/generateAddMiniCode.wxml-->
+<view class="content">
+  <view class="ad-list flex-center-y">
+    <view class="ad-title font-36">商品id：</view>
+    <input class="ad-input" type="text" bindinput='getProductId'>输入框</input>
+  </view>
+  <view class="ad-list flex-center-y">
+    <view class="ad-title font-36">来源：</view>
+    <input class="ad-input" type="text" bindinput='getSource'>输入框</input>
+  </view>
+    <view>1.朋友分享过来的 2.广告位过来的 3.正常进入</view>
+  <view class="ad-list flex-center-y">
+    <view class="ad-title font-36">广告位：</view>
+    <input class="ad-input" type="text" bindinput='getAddNo'>输入框</input>
+  </view>
+  <view class="ad-list flex-center-y">
+    <view class="ad-title font-36">路径：</view>
+    <!-- <input class="ad-input" type="text" bindinput='getPagePath'>输入框</input> -->
+    <textarea class="ad-input" type="text" bindinput='getPagePath'></textarea>
+  </view>
+  <button class="ad-button font-36" bindtap="generateMinicode">生成</button>
+</view>
+<image src="{{miniCodeSrc}}" class='shengcheng'></image>
+<!-- <text>{{miniCodeSrc}}</text> -->

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "i-load-more": "/iview/load-more/index",
+    "i-icon": "/iview/icon/index"
+  },
+  "navigationBarTitleText": "消息",
+  "enablePullDownRefresh": true
+}

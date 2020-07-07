@@ -1,0 +1,35 @@
+<view>
+  <form bindsubmit="formSubmit">
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:180rpx;'>联系人</view>
+      <input name='name' placeholder="名字" value='{{name}}' maxlength="5" style='width:500rpx;'></input>
+    </view>
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:180rpx;'>联系电话</view>
+      <input name='phone' type='number' placeholder="请输入手机号" value='{{phone}}' style='width:500rpx;'></input>
+    </view>
+    <!-- <view class='flex-x flex-center-y cell'>
+      <view style='width:180rpx;'>所在地区</view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" name='region' custom-item="{{customItem}}">
+        <view class="picker">
+          {{region[0]}} {{region[1]}} {{region[2]}}
+        </view>
+      </picker>
+    </view> -->
+    <input name='areaId'value='{{areaId}}' hidden='true'></input>
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:180rpx;'>服务地址</view>
+      <input name='address' placeholder="请选择地址" style='width:500rpx;' value='{{address}}' disabled='true' bindtap='toSearch'></input>
+    </view>
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:180rpx;'>门牌号</view>
+      <textarea name='houseNumber' auto-height='true' placeholder="请输入门牌号" style='width:500rpx;'></textarea>
+    </view>
+    <view class='flex-x flex-center-y cell'>
+      <view style='width:580rpx;'>是否默认</view>
+      <i-switch value="{{check}}" bind:change="onChange"></i-switch>
+    </view>
+
+    <button class='btn-style font-32' formType="submit" style='margin:50rpx; background:#fff; width:650rpx;'>保存地址</button>
+  </form>
+</view>

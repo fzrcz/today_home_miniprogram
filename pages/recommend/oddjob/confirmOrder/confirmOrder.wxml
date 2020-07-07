@@ -1,0 +1,247 @@
+<view class="content">
+  <view wx:if='{{!address}}' style='text-align:center; padding:40rpx; border-radius: 6px; margin:20rpx; background:#fff;' class='flex-y flex-center'>
+    <view class='font-32'>我们需要知道您的地址哦</view>
+    <view class='btn-style font-28' style='padding:10rpx; margin-top:30rpx; width:150rpx;' bindtap='toAddress'>选择地址</view>
+  </view>
+  <!--联系地址-->
+  <view class='flex-x flex-center-y common-list' wx:if='{{address}}' bindtap='toAddress'>
+    <view class='flex-y' style='width:90%; line-height:70rpx;'>
+      <view class='font-36'>
+        <view style='width:200rpx; float:left;'>{{address.name==null?'-':address.name}}</view>
+        <text>{{address.tell==null?'-':address.tell}}</text>
+        <!-- <text style='font-size:20rpx; border:2rpx #FF7F27 solid; color:#FF7F27; padding:0 4rpx; margin-left:20rpx;'>默认</text> -->
+      </view>
+      <view class='font-32'>{{address.address==null?'-':address.address}}{{address.houseNumber==null?'-':address.houseNumber}}</view>
+    </view>
+    <i-icon type="enter" i-class='theme-color' data-addrid='{{item.addrId}}' size='28' />
+  </view>
+
+  <view class='common-list'>
+    <view class='flex-between font-36'>
+      <view>{{productName}}
+        <text style='font-size:28rpx; color:#888; margin-left:36rpx;'>x1</text>
+      </view>
+      <view>￥{{price}}</view>
+    </view>
+    <!-- <view class='flex-between font-36' style='margin-top:40rpx;' wx:if='{{businessTypeId == "7" || (businessTypeId == "11" && productId != "25")}}'> -->
+    <view class='flex-between font-36' style='margin-top:40rpx;' wx:if='{{showType == "7" || (showType == "11" && productId != "25")}}'>
+      <view>数量</view>
+      <i-input-number value="{{ buyCnt }}" min="{{min}}" max="10" bindchange="changeNum" />
+    </view>
+    <!-- 面积 -->
+    <!-- <view class='flex-between font-36' style='margin-top:40rpx;' wx:if='{{businessTypeId == "13"}}'> -->
+    <view class='flex-between font-36' style='margin-top:40rpx;' wx:if='{{showType == "13" && productId != 74}}'>
+      <view>面积:（单位：m²）</view>
+      <i-input-number value="{{buyCnt}}" min="{{min}}" max="10000" bindchange="changeNum" />
+    </view>
+    <!-- <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{businessTypeId == "13"}}'> -->
+    <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{showType == "13" && productId != 74}}'>
+      <view>居家面积:</view>
+      <view bindtap="houseSize" data-value="120" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡</view>
+      <view bindtap="houseSize" data-value="80" class="choose-list {{secondValue?'choose-list-on':''}}">80㎡</view>
+      <view bindtap="houseSize" data-value="40" class="choose-list {{thirdValue?'choose-list-on':''}}">40㎡</view>
+    </view>
+
+
+    <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{showType == "13" && productId == 74}}'>
+        <view>改造区域:</view>
+        <view bindtap="reformArea" data-value="1" class="choose-list {{fourValue?'choose-list-on':''}}">厨房</view>
+        <view bindtap="reformArea" data-value="2" class="choose-list {{fiveValue?'choose-list-on':''}}">卫生间</view>
+    </view>
+  </view>
+
+  <!-- 加上预约时间及备注 -->
+  <!-- <view wx:if='{{businessTypeId == "6"}}' class="common-list"> -->
+  <view wx:if='{{showType == "6"}}' class="common-list">
+    <view class='flex-between item-list'>
+      <view>预约日期:</view>
+      <navigator class="picker" url='{{"calendar/calendar?bornDay="+bornDay+"&todaytime="+todaytime+"&productId="+productId}}' hover-class="navigator-hover">
+        <view>{{bornDay}}</view>
+      </navigator>
+      <!-- <picker class="picker" mode="date" value="{{bornDay}}" bindchange="bindDateChange">
+        <view>
+          {{bornDay}}
+          <text decode="{{true}}" class="{{crowdStatus?'crowd-red':'crowd-green'}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{crowd}}</text>
+        </view>
+      </picker> -->
+    </view>
+
+    <!-- 注释：暂时去掉上下午 选择上午下午 -->
+    <!-- <div class='flex-center-y item-list'>
+      <view>预约时间:</view>
+      <view bindtap="selectValue" data-value="上午" class="choose-list {{morning?'choose-list-on':''}}">上午</view>
+      <view bindtap="selectValue" data-value="下午" class="choose-list {{noon?'choose-list-on':''}}">下午</view>
+    </div> -->
+
+    <!-- 面积 -->
+    <view class='flex-between font-36' style='margin-top:40rpx;' wx:if='{{productId == "69"}}'>
+      <view>面积:（单位：m²）</view>
+      <i-input-number value="{{buyCnt}}" min="{{min}}" max="10000" bindchange="changeNum" />
+    </view>
+    <!-- 开荒保洁，productId = 69 -->
+    <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{productId == "69"}}'>
+      <view>居家面积:</view>
+      <view bindtap="houseSize" data-value="120" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡</view>
+      <view bindtap="houseSize" data-value="80" class="choose-list {{secondValue?'choose-list-on':''}}">80㎡</view>
+      <view bindtap="houseSize" data-value="40" class="choose-list {{thirdValue?'choose-list-on':''}}">40㎡</view>
+    </view>
+    <!-- 病毒消杀，productId = 81，雾化消毒productId=82 -->
+    <view class='flex-between' style="margin:20rpx 0" wx:if='{{productId == "81" || productId == "82"}}'>
+      <view>选择时间:</view>
+      <view>
+        <slider bindchange="slider4change" min="8" max="22" block-size="18" show-value/>
+        <view style="display:inline-block;">点</view>
+      </view>
+    </view>
+    <view class='flex-between font-32' style="padding-top:20rpx;" wx:if='{{productId == "81"}}'>
+      <view>消杀区域面积:</view>
+      <view bindtap="houseSize" data-value="150" style="margin:0;width:170rpx;" class="choose-list {{fourthValue?'choose-list-on':''}}">150㎡及以下</view>
+      <!-- <view>其他:</view> -->
+      <view style="position: relative;">
+        <input bindinput="virusKillAreaInput" bindfocus="focusarea" type="number" class="otheareas" placeholder="150㎡以上请输入面积" value="{{virusKillArea}}"/>
+        <text wx:if="{{virusKillArea!=''}}" class="areaunit">㎡</text>
+      </view>
+    </view>
+    <view class='flex-between font-32' style="padding-top:20rpx;" wx:if='{{productId == "82"}}'>
+      <view>消杀区域面积:</view>
+      <view style="margin:0;width:170rpx;" class="choose-list choose-list-on}}">130㎡及以下</view>
+    </view>
+
+    <!-- 居家面积 -->
+    <view wx:if='{{productId != 69 && productId != 81 && productId != 82}}' class='flex-between'>
+      <view>居家面积:</view>
+      <view bindtap="selectHouseSize" data-value="1" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡以上</view>
+      <view bindtap="selectHouseSize" data-value="2" class="choose-list {{secondValue?'choose-list-on':''}}">80-120㎡</view>
+      <view bindtap="selectHouseSize" data-value="3" class="choose-list {{thirdValue?'choose-list-on':''}}">40-80㎡</view>
+    </view>
+
+  </view>
+  <!-- 选择商家 -->
+  <!-- <view wx:if='{{showType != 6}}' class='common-list'>
+    <view class='flex-between font-36'>
+      <view>服务商家选择</view> -->
+      
+      <!-- 注释 <view class="flex-between">
+        <view class="font-28 no-coupon">更多</view>
+        <i-icon type="enter" size='18' />
+      </view> -->
+      
+    <!-- </view>
+    <view style="margin: 40rpx 0;" wx:for="{{storeList}}" wx:key data-index="{{index}}" data-storeid="{{item.id}}" bindtap="chooseStore">
+      <view class="serbus-box {{item.selected?'serbuscheck':''}}" >
+        <image wx:if="{{!item.selected}}" class="serbusimg" src="/image/busnessimg.png"></image>
+        <image wx:else class="serbusimg" src="/image/buscheck.png"></image>
+        <view class="serbusti">{{item.name}}</view>
+        <view class="serbus-right">
+          <view class="serbusgap">距您 {{item.distance}}km
+            <text style="margin:0 16rpx;">|</text>
+            <text wx:if="{{!item.selected}}">选 择</text>
+            <image wx:else style="height:20rpx;width:34rpx;margin-left:16rpx;" src="/image/check.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+
+  <!-- 选择优惠券 -->
+  <view class='common-list'>
+    <view class='flex-between font-36' wx:if="{{paymentName=='微信支付' && imgBase64==''}}" bindtap="chooseCoupon">
+      <view>优惠券</view>
+      <view class="flex-between">
+        <view class="font-28 no-coupon {{isCanUse?'color-red':''}}">{{selectCoupon}}</view>
+        <i-icon type="enter" data-addrid='{{item.addrId}}' size='18' />
+      </view>
+    </view>
+    <view class='flex-between font-36' wx:else>
+      <view>已选择其他优惠,优惠券不可用</view>
+    </view>
+  </view>
+
+  <!-- 网龙购物凭证 -->
+  <view class='common-list font-36' wx:if='{{shopVoucher}}'>
+    <view>购物凭证</view>
+    <view class="shopvoucher">
+    <image src='{{imgUrl1}}' bindtap="chooseImg1"></image>
+    <image wx:if='{{isUploadPic}}' bindtap="closePic" src="/image/x.png" mode="aspectFit" class="imgclear"></image>
+    </view>
+    
+  </view>
+  <view class='common-list font-36' wx:else>
+    <view>{{vouchaertip}}</view>
+  </view>
+  <!-- 选择支付方式 -->
+  <view class='common-list' bindtap="showPayment">
+    <view class='flex-between font-36'>
+      <view>支付方式</view>
+      <view class="flex-between">
+        <view class="font-28 no-coupon">{{paymentName}}
+          <text wx:if="{{paymentName=='电子券余额'}}">（￥{{cardLeftBalance}}元）</text>
+        </view>
+        <i-icon type="enter" size='18' />
+      </view>
+    </view>
+    <!-- 选择支付弹窗 -->
+    <!-- <maskPayment id="maskPayment"></maskPayment> -->
+  </view>
+
+  <!-- 备注 -->
+  <!-- <view wx:if='{{businessTypeId == "6"}}' class="common-list flex-center-y"> -->
+  <view wx:if='{{showType == "6"}}' class="common-list flex-center-y">
+    <text decode="{{true}}">备&emsp;&emsp;注:</text>
+    <textarea bindinput="memoInput" class="remarks" placeholder="选填"></textarea>
+  </view>
+
+  <view style='border-radius: 6px; margin:20rpx; background:#fff;'>
+    <view style='border-bottom:1px solid #f6f6f7; padding:10px; font-size:32rpx; color:#ff7f27; line-height:50rpx;'>
+      <view class='font-36'>温馨提示：</view>
+      <view>1.预约电话：400-600-6580</view>
+      <view>2.服务范围：福州市区；超出三环将收取30元/单</view>
+      <view>3.购买成功后将有工作人员与您联系，请保持手机畅通</view>
+    </view>
+  </view>
+
+  <view class='add_btn flex-x' style=' height:100rpx;'>
+    <view style='width:60%; background:#fff; padding-left:20px;' wx:if="{{paymentName=='微信支付'}}">合计：
+      <text style="color:#ff7f27">￥{{totalPrice}}</text>
+      <text class="font-24">
+      优惠券：￥{{couponsLimit}}
+      </text>
+    </view>
+    <view style='width:60%; background:#fff; padding-left:20px;' wx:else>合计：
+      <text style="color:#ff7f27">￥{{totalFee}}</text>
+      <text class="font-24">
+      电子券：￥{{cardLeftBalance>=totalPrice?totalPrice:cardPrice}}
+      </text>
+    </view>
+    <view style='width:40%; background:#ff7f27; color:white; font-size:40rpx; text-align:center; font-weight: bold;line-height:100rpx;' class="{{crowdStatus?'gree':''}}" bindtap='toPay' disabled="true">立即支付</view>
+  </view>
+
+</view>
+
+
+<!-- 登录提示弹窗 -->
+<view>
+
+  <!-- 弹窗 -->
+  <view class='modal-pay' animation="{{animationData}}" wx:if="{{showPaymentStatus}}" catchtouchmove="true">
+    <view class="font-36 font-bold choose-payment">选择支付方式</view>
+    <radio-group class="pay-group" bindchange="paymentChange">
+      <label class="pay-group-list flex-between" wx:for="{{paymentList}}" wx:key="{{index}}">
+        <view class="font-28">{{item.paymentName}}
+          <text wx:if='{{item.value==1&&cardLeftBalance>0}}'>（￥{{cardLeftBalance}}元）</text>
+          <text wx:if="{{checkindex==0 && item.value==1 }}">{{checktip}}</text>
+          <text wx:if="{{cardLeftBalance==0 && item.value==1}}">（您的电子券没有余额）</text>
+        </view>
+        <radio wx:if="{{(checkindex==0 || cardLeftBalance==0)&&item.value==1}}" value="{{item.value}}" checked="{{item.checked}}" disabled="disabled"></radio>
+        <radio wx:else value="{{item.value}}" checked="{{item.checked}}"></radio>
+      </label>
+    </radio-group>
+
+  </view>
+
+  <!-- 遮罩 -->
+  <view class='mask' bindtap='hidePayment' catchtouchmove="true" wx:if="{{showPaymentStatus}}" style='height:{{windowHeight}}px'>
+
+  </view>
+
+</view>

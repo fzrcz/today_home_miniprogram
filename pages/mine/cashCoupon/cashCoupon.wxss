@@ -1,0 +1,105 @@
+/* pages/mine/cashCoupon/cashCoupon.wxss */
+
+page {
+  background: #f2f2f2;
+}
+
+/* 头部 */
+
+.swiper-tab {
+  width: 100%;
+  text-align: center;
+  line-height: 80rpx;
+  background: #fff;
+}
+
+.swiper-tab-list {
+  font-size: 30rpx;
+  display: inline-block;
+  width: 50%;
+  height: 80rpx;
+  color: #6d6d6d;
+}
+
+.on {
+  color: #fc7122;
+  height: 80rpx;
+  background: #fff;
+  box-sizing: border-box;
+  border-bottom: 5rpx solid #fc7122;
+}
+
+.swiper-box {
+  display: block;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+swiper-item {
+  overflow: scroll;
+}
+
+/*隐藏滚动条*/
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.redeem-now {
+  width: 60%;
+  margin: 40rpx auto 0 auto;
+  display: block;
+}
+
+.input-cunpon-number {
+  width: 76%;
+  height: 80rpx;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 16rpx;
+  padding: 0 0 0 30rpx;
+  color: #6d6d6d;
+  box-shadow: 2rpx 8rpx 4rpx 0 #eaeaea;
+}
+
+.input-box {
+  padding: 142rpx 0 0 0;
+}
+
+.exchange-cou-list{
+  padding: 30rpx 0 0 0;
+}
+
+.exchange-list {
+  background: #fff;
+  border-radius: 16rpx;
+  width: 84%;
+  margin: 0 auto;
+  padding: 30rpx;
+  color: #808080;
+  box-shadow: 2rpx 8rpx 4rpx 0 #eaeaea;
+}
+
+.success-icon {
+  width: 46rpx;
+  display: block;
+  margin: 0 20rpx
+}
+
+.ex-title{
+  color: #fe0000;
+}
+
+.no-data-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40%;
+}
+
+.no-data {
+  width: 276rpx;
+  height: 288rpx;
+}

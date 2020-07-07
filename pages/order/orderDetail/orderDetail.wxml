@@ -1,0 +1,187 @@
+<!--订单详情-->
+<view>
+  <!--步骤导航-->
+  <view style='height:150rpx;background-color:#f6f6f7;padding:40rpx 0rpx 0rpx 0rpx;'>
+    <i-steps current="{{current}}">
+      <i-step icon="barrage">
+        <view slot="title">
+          需求提交
+        </view>
+      </i-step>
+      <i-step icon="brush">
+        <view slot="title">
+          预约阿姨
+        </view>
+      </i-step>
+      <i-step icon="group">
+        <view slot="title">
+          签约保障
+        </view>
+      </i-step>
+      <i-step icon="task">
+        <view slot="title">
+          售后服务
+        </view>
+      </i-step>
+      
+    </i-steps>
+  </view>
+  <view class='font-32' style='padding: 30rpx; line-height:60rpx;'>
+    <view class='cell-left'>订单编号：</view>
+    <view>{{dataDetail.orderNo==null?'-':dataDetail.orderNo}}</view>
+    <view class='cell-left'>支付金额：</view>
+    <view>￥{{dataDetail.cost==null?'0':dataDetail.cost}}</view>
+    <view class='cell-left'>下单时间：</view>
+    <view>{{dataDetail.orderTime ==null?'-':dataDetail.orderTime}}</view>
+
+    <view class='cell-left' wx:if="{{role=='employer'}}">签约阿姨：</view><view wx:if="{{role=='employer'}}">{{dataDetail.housekeeperName==null?'-':dataDetail.housekeeperName}}</view>
+    <view class='cell-left' wx:if="{{role=='housekeeper'}}">签约雇主：</view><view wx:if="{{role=='housekeeper'}}">{{dataDetail.employerName==null?'-':dataDetail.employerName}}</view>
+    <view class='cell-left'>客户经理：</view><view>{{dataDetail.staffName==null?'-':dataDetail.staffName}}</view>
+    <view class='cell-left'>经理电话：</view>
+    <view class='theme-color' bindtap='toMakePhone' data-phone='{{dataDetail.staffPhone}}'>{{dataDetail.staffPhone==null?'-':dataDetail.staffPhone}}</view>
+
+    <!-- <view class='cell-left'>签约雇主：</view>
+    <view>{{dataDetail.employerName==null?'-':dataDetail.employerName}}</view>
+    <view class='cell-left'>雇主电话：</view>
+    <view class='theme-color' bindtap='toMakePhone' data-phone='{{dataDetail.employerPhone}}'>{{dataDetail.employerPhone==null?'-':dataDetail.employerPhone}}</view>
+    <view class='cell-left'>签约阿姨：</view>
+    <view>{{dataDetail.housekeeperName==null?'-':dataDetail.housekeeperName}}</view>
+    <view class='cell-left'>阿姨电话：</view>
+    <view class='theme-color' bindtap='toMakePhone' data-phone='{{dataDetail.housekeeperPhone}}'>{{dataDetail.housekeeperPhone==null?'-':dataDetail.housekeeperPhone}}</view> -->
+    <view class='cell-left' wx:if='{{contract != null && contract.serviceArea}}'>服务地址：</view>
+    <view class='theme-color' bindtap='openMap' data-position='{{contract.position}}' wx:if='{{contract != null && contract.serviceArea}}'>{{contract.serviceArea}}{{contract.serviceAddress}}</view>
+    <!-- <view class='cell-left'>客户经理：</view><view>{{dataDetail.staffName==null?'-':dataDetail.staffName}}</view> -->
+    <!-- <view class='flex-x'>
+      <view style='width:160rpx;'>订单内容：</view>
+      <view style='width:520rpx;'>{{dataDetail.orderTitle==null?'-':dataDetail.orderTitle}}</view>
+    </view> -->
+  </view>
+  <view class='breakline' style='height:30rpx'></view>
+  <!--服务明细-->
+  <view wx:if="{{dataDetail.serviceDtos.length==0?false:true}}">
+    <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 30rpx 45rpx;'>服务明细</view>
+    <block wx:for="{{dataDetail.serves}}" wx:key="key" style='padding-bottom:20rpx;'>
+      <view class='font-28' style='height:40rpx;padding:0rpx 30rpx 30rpx 45rpx;color: gray;'>
+        <view style='float:left'>{{item.name}}</view>
+        <view style='float:left;position: absolute;right:40rpx;'>
+          <text class='font-28'>￥{{item.price}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 折叠类型  -->
+  <!-- <i-collapse-item title="服务明细" i-class-title='title'>
+    <view slot="content">
+      <block wx:for="{{dataDetail.serviceDtos}}" wx:key="key" style='padding-bottom:20rpx; margin-top:20rpx;'>
+        <view class='font-28' style='height:40rpx;padding:30rpx 30rpx 0rpx 45rpx;color: gray;'>
+          <view style='float:left'>{{item.name}}</view>
+          <view style='float:left;position: absolute;right:40rpx;'>
+            <text class='font-28' style='padding:0rpx 30rpx 0rpx 0rpx;'>￥{{item.price}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </i-collapse-item>
+  <view style='background:#dddee1; height:1px; width:100%; margin-top:20rpx;'>dasd</view> -->
+
+  <view class='breakline' style='height:30rpx' wx:if='{{discussList.length > 0}}'></view>
+  <!--交流记录-->
+  <view bindtap='toRecord' wx:if='{{discussList.length > 0}}'>
+    <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 30rpx 45rpx;'>交流记录
+      <i-icon i-class='icon' type="enter" size="20" color='#807F80' />
+    </view>
+  </view>
+
+  <view class='breakline' style='height:30rpx' wx:if='{{backCheckPics.length > 0}}'></view>
+  <!--背调文件-->
+  <view wx:if='{{backCheckPics.length > 0}}'>
+    <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 30rpx 45rpx;'>背调文件
+      <!-- <i-icon i-class='icon' type="enter" size="20" color='#807F80' /> -->
+    </view>
+    <view style='padding:0 30rpx 30rpx 30rpx' >
+      <block wx:for="{{backCheckPics}}" wx:key=''>
+        <image src='{{item}}' mode='aspectFill' bindtap='previewPic' data-src='{{item}}' data-pics='{{backCheckPics}}' style="width:200rpx; height:200rpx; margin-left:20rpx; margin-bottom:20rpx;"></image>
+      </block>
+      <view wx:if='{{backCheckContent}}' class='font-28' style='color:gray; margin-left:20rpx;'>{{backCheckContent}}</view>
+    </view>
+  </view>
+
+  <view class='breakline' style='height:30rpx' wx:if='{{healthPics.length > 0}}'></view>
+  <!--体检文件-->
+  <view wx:if='{{healthPics.length > 0}}'>
+    <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 30rpx 45rpx;'>体检文件
+      <!-- <i-icon i-class='icon' type="enter" size="20" color='#807F80' /> -->
+    </view>
+    <view style='padding:0 30rpx 30rpx 30rpx'>
+      <block wx:for="{{healthPics}}" wx:key=''>
+        <image src='{{item}}' mode='aspectFill' bindtap='previewPic' data-src='{{item}}' data-pics='{{healthPics}}' style="width:200rpx; height:200rpx; margin-left:20rpx; margin-bottom:20rpx;"></image>
+      </block>
+      <view wx:if='{{healthContent}}' class='font-28' style='color:gray; margin-left:20rpx;'>{{healthContent}}</view>
+    </view>
+  </view>
+
+  <view class='breakline' style='height:30rpx' wx:if='{{insurancePics.length > 0}}'></view>
+  <!--保险文件-->
+  <view wx:if='{{insurancePics.length > 0}}'>
+    <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 30rpx 45rpx;'>保险文件
+      <!-- <i-icon i-class='icon' type="enter" size="20" color='#807F80' /> -->
+    </view>
+    <view style='padding:0 30rpx 30rpx 30rpx'>
+      <block wx:for="{{insurancePics}}" wx:key=''>
+        <image src='{{item}}' mode='aspectFill' bindtap='previewPic' data-src='{{item}}' data-pics='{{insurancePics}}' style="width:200rpx; height:200rpx; margin-left:20rpx; margin-bottom:20rpx;"></image>
+      </block>
+      <view wx:if='{{insuranceContent}}' class='font-28' style='color:gray; margin-left:20rpx;'>{{insuranceContent}}</view>
+    </view>
+
+  </view>
+
+  <view class='breakline' style='height:30rpx' wx:if='{{contractPics.length > 0}}'></view>
+  <!--合同文件-->
+  <view wx:if='{{contractPics.length > 0}}'>
+    <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 30rpx 45rpx;' >合同文件
+      <!-- <i-icon i-class='icon' type="enter" size="20" color='#807F80' /> -->
+    </view>
+    <view style='padding:0 30rpx 30rpx 30rpx'>
+      <block wx:for="{{contractPics}}" wx:key=''>
+        <image src='{{item}}' mode='aspectFill' bindtap='previewPic' data-src='{{item}}' data-pics='{{contractPics}}' style="width:200rpx; height:200rpx; margin-left:20rpx; margin-bottom:20rpx;"></image>
+      </block>
+      <view wx:if='{{contract}}' class='flex-y font-28' style='color:gray; margin-left:20rpx; line-height:50rpx;'>
+        <view>签约地点：{{contract.contractAddress}}</view>
+        <view>签约时间：{{contract.signTime?contract.signTime:'-'}}</view>
+        <view>合同有效时间：{{contract.efficacyTime}}</view>
+        <view>交流记录：{{contract.discuss?contract.discuss:'-'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='breakline' style='height:30rpx' wx:if='{{contract != null && contract.salary}}'></view>
+  <!--工资走平台-->
+  <view wx:if='{{contract != null && contract.salary}}'>
+    <view class='font-32' style='height:50rpx;padding:30rpx 30rpx 30rpx 45rpx;'>工资协议
+      <!-- <i-icon i-class='icon' type="enter" size="20" color='#807F80' /> -->
+    </view>
+    <view style='padding:0 30rpx 30rpx 30rpx'>
+      <block wx:for="{{salaryPics}}" wx:key=''>
+        <image src='{{item}}' mode='aspectFill' bindtap='previewPic' data-src='{{item}}' data-pics='{{salaryPics}}' style="width:200rpx; height:200rpx; margin-left:20rpx; margin-bottom:20rpx;"></image>
+      </block>
+      <view class='flex-y font-28' style='color:gray; margin-left:20rpx; line-height:50rpx;'>
+        <view>月工资：{{contract.salary?contract.salary:'-'}}</view>
+        <!-- <view>每月支付时间：{{salaryContent.monthPay}}日</view> -->
+        <view>约定提前支付天数：{{contract.appointDay?contract.appointDay:'-'}}天</view>
+        <view>交流记录：{{salaryDiscuss?salaryDiscuss:'-'}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='back_btn flex-center font-28' bindtap='toList'>首页</view>
+<!--底部按钮 申请退款-->
+<!-- <view class='add_btn flex-center' wx:if="{{current==-1?true:false}}">
+  <text class='font-36 flex-center' style='color:gray;width:30%;height: 100rpx;background-color:#f6f6f7;'>申请退款
+  </text>
+  <text class='font-36 flex-center' bindtap='toMakePhone' data-phone='{{dataDetail.staffPhone}}' style='height:100rpx;color:white;background-color:#ff7f27;width:70%;'>联系代办人</text>
+</view> -->
+<!--底部按钮 不能申请退款-->
+<!-- <view class='add_btn flex-center'wx:if="{{current!=-1?true:false}}">
+  <text class='font-36 flex-center' bindtap='toMakePhone' data-phone='{{dataDetail.staffPhone}}' style='height: 100rpx;color:white;background-color:#ff7f27;width:100%;'>联系客户经理</text>
+</view> -->

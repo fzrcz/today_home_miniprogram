@@ -1,0 +1,33 @@
+/**index.wxss**/
+page{  height: 100%;
+}.backImg{
+  background-image: url("https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/back.jpg");  
+  background-size:100%;  
+
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+/*checkbox选中后图标样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  color: #ff7f27;
+}

@@ -1,0 +1,50 @@
+
+
+/* 订单详情 */
+/* 底部按钮  */
+.back_btn{
+    width: 100rpx;
+    height: 100rpx;
+    position: fixed;
+    bottom: 100rpx;
+    right: 40rpx;
+    color:white;
+    border-radius: 50%;
+    background-color:#ff7f27;
+}
+
+/*
+  问题：浮动引起的高度塌陷
+  引起原因：子元素全是float元素 且 父元素没有设置高度。
+*/
+.section-header::before, .section-header::after {
+  display: table;
+  content: "";
+}
+.section-header::after {
+  clear: both;
+}
+
+.cell-left{
+  float:left;
+  width:160rpx;
+}
+
+.icon{
+  float: right;
+}
+
+.record-cell-left{
+  float:left;
+  width:90rpx;
+}
+
+.title{
+  height:50rpx;
+  padding:30rpx 30rpx 20rpx 45rpx;
+  font-size:32rpx;
+}
+
+.content{
+height:40rpx;padding:0rpx 30rpx 30rpx 45rpx;color: gray;
+}

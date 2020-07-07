@@ -1,0 +1,66 @@
+<!--pages/mine/share/share.wxml-->
+<view class='content' style="height:{{windowHeight-78}}px">
+  <view>
+    <view style='display: flex;align-items: center;justify-content: center;'>
+      <view class="show_block" bindlongpress="handleLongPress">
+        <image class="bg" src="{{bgSrc}}" />
+        <image class="img" src="{{imgSrc}}" />
+        <canvas class="myCanvas" canvas-id="myCanvas" style="width: {{shWidth}}px; height: {{shHeight}}px;"></canvas>
+      </view>
+    </view>
+
+    <view class='pre-box'>
+      <view class='font-32' style="padding:0 0 20rpx 0">长按保存上图分享给好友即可获得奖励</view>
+      <!-- <view class='font-28 purpose-t'>所有与您相关的用户产生的交易额您将获得5%收益</view> -->
+    </view>
+  </view>
+
+
+  <view class='share-bottom'>
+    <view class='share-text-list' bindtap="toMyInvitation">
+      <view class='share-list-t'>
+        <text wx:if='{{myClientNum.length == 0}}' class='font-34 col-sh-r font-bold'>0 </text>
+        <text wx:else class='font-34 col-sh-r font-bold'>{{myClientNum.length}} </text>
+        <text class='font-24'>人</text>
+      </view>
+      <view class='share-list-b font-24 col-sh-g'>
+        我的邀请人
+      </view>
+    </view>
+
+    <!-- <view class='share-text-list' bindtap="myClient">
+      <view class='share-list-t'>
+        <text wx:if='{{myClientList.length == 0}}' class='font-34 col-sh-r font-bold'>0 </text>
+        <text wx:else class='font-34 col-sh-r font-bold'>{{employerCount}} </text>
+        <text class='font-24'>人</text>
+      </view>
+      <view class='share-list-b font-24 col-sh-g'>
+        已邀请客户
+      </view>
+    </view>
+
+    <view class='share-text-list'>
+      <view class='share-list-t'>
+        <text wx:if='{{myClientList.length == 0}}' class='font-34 col-sh-r font-bold'>0 </text>
+        <text wx:else class='font-34 col-sh-r font-bold'>{{workerCount}} </text>
+        <text class='font-24'>人</text>
+      </view>
+      <view class='share-list-b font-24 col-sh-g'>
+        已邀请工友
+      </view>
+    </view> -->
+
+    <view class='share-text-list' bindtap="income">
+      <view class='share-list-t'>
+        <text wx:if='{{myClientList.length == 0}}' class='fonte-34 col-sh-r font-bold'>0 </text>
+        <text wx:else class='fonte-34 col-sh-r font-bold'>{{allIncome}} </text>
+        <text class='font-24'>元</text>
+      </view>
+      <view class='share-list-b font-24 col-sh-g'>
+        总收入
+      </view>
+    </view>
+
+  </view>
+
+</view>

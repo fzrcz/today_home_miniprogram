@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "体检",
+  "usingComponents": {
+    "i-load-more": "/iview/load-more/index"
+  }
+}

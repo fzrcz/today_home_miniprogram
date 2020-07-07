@@ -1,0 +1,421 @@
+<!--家政员详情-->
+<view class="{{ visible?'disableScroll':''}}" bindtouchmove="touchMove" bindtouchstart='touchendSart' bindtouchend="touchendEnd" style="top:{showTop}}px;width:100%">
+  <!--视频-->
+  <view>
+    <image mode='aspectFill' style='height:100rpx;width:100%;' src='/image/icon-head.png'></image>
+  </view>
+  <!--信息-->
+  <view style='position:relative;top:-90rpx;'>
+    <view class="baseInfo">
+      <view style='height:160rpx;position:relative;'>
+        <view style='float:left;'>
+          <view style="border-radius:20rpx;width:200rpx;height:200rpx;margin:0rpx 0rpx 0rpx 20rpx">
+            <image mode='aspectFill' bindtap='previewheadPic' data-src='{{housekeeperInfo.headPic}}' src="{{housekeeperInfo.headPic==null?'/image/logo1.png':housekeeperInfo.headPic}}" style='width:200rpx;height:200rpx;border-radius:20rpx;'></image>
+          </view>
+          <view style="position: absolute;width:80rpx;height:80rpx;top:0rpx;left:20rpx;">
+            <image mode='aspectFill' src="/image/{{housekeeperInfo.personStatus==null?'unknown':housekeeperInfo.personStatus}}.png" style='width:80rpx;height:80rpx;'></image>
+          </view>
+        </view>
+        <view style='float:left;position: relative;margin:100rpx 0rpx 0rpx 20rpx;'>
+          <view class='font-36' style='margin-bottom:10rpx;'>{{housekeeperInfo.name==null?'未知':housekeeperInfo.name}} |（{{housekeeperInfo.age==null?'未知':housekeeperInfo.age+'岁'}}）
+            <text class='font-28' style='color:gray;margin:0rpx 0rpx 0rpx 40rpx;'>浏览量：{{housekeeperInfo.visitCount==null?'0':housekeeperInfo.visitCount}}</text>
+          </view>
+          <view class='flex-center-y' bindtap='toComplain' data-id='{{housekeeperInfo.id}}'>
+            <image style='height:30rpx;width:30rpx; margin-right:10rpx;' src='/image/warning.png'></image>
+            <text class='font-28' style='color: gray;'>联系方式或信息有误请<text style='color:blue;' >举报</text></text>
+          </view>
+        </view>
+      </view>
+      <!--基本信息-->
+      <view class='section-header' style="margin:80rpx 0rpx 20rpx 40rpx">
+        <view class="baseInfoItem flex-center-y">
+          <image class='icon-style' mode='aspectFit' src='/image/nativeName.png'></image>{{housekeeperInfo.nativeName==null?'-':housekeeperInfo.nativeName}}
+        </view>
+        <!-- <view class="baseInfoItem flex-center-y">
+          <image class='icon-style' mode='aspectFit' src='/image/nation.png'></image>{{housekeeperInfo.nation==null?'-':housekeeperInfo.nation}}
+        </view> -->
+        <view class="baseInfoItem flex-center-y">
+          <image class='icon-style' mode='aspectFit' src='/image/birthMonth.png'></image>{{housekeeperInfo.birthMonth==null?'-':housekeeperInfo.birthMonth}} ({{housekeeperInfo.zodiac==null?'-':housekeeperInfo.zodiac}})
+        </view>
+        <view class="baseInfoItem flex-center-y">
+          <image class='icon-style' mode='aspectFit' src='/image/belief.png'></image>
+          <view wx:if='{{housekeeperInfo.belief==null}}'>未知信仰</view>
+          <view wx:if='{{housekeeperInfo.belief!=null}}'>{{housekeeperInfo.belief=='其他'?'其他信仰':housekeeperInfo.belief}}</view>
+        </view>
+        <view class="baseInfoItem flex-center-y">
+          <image class='icon-style' mode='aspectFit' src='/image/workYears.png'></image>工作{{housekeeperInfo.workYears==null?'-':housekeeperInfo.workYears+'年'}}
+        </view>
+        <view class="baseInfoItem flex-center-y">
+          <image class='icon-style' mode='aspectFit' src='/image/education.png'></image>{{housekeeperInfo.education==null?'未知学历':housekeeperInfo.education}}
+        </view>
+        <!-- <view class="baseInfoItem flex-center-y">
+          <image class='icon-style' mode='aspectFit' src='/image/serviceArea.png'></image><view class='text-ellipsis'>{{housekeeperInfo.serviceArea==null?'-':housekeeperInfo.serviceArea}}</view>
+        </view> -->
+        <view class="baseInfoItem flex-center-y">
+          <image class='icon-style' mode='aspectFit' src='/image/salary.png'></image>{{housekeeperInfo.salary==null||housekeeperInfo.salary=='未知'?'未知':'￥'+housekeeperInfo.salary}}
+        </view>
+      </view>
+    </view>
+
+    <!--服务区域-->
+    <!-- <view style='width:100%;height:6rpx;background-color:#f6f6f7;'></view> -->
+    <view class="baseInfo_work_intent">
+      <view class="i-badge-dot" style='float:left;'></view>
+      <view class='baseInfo-title' style='float:left;'>服务区域</view>
+      <view class="i-badge-dot" style='float:left;'></view>
+    </view>
+    <view class="info_text text">
+      {{housekeeperInfo.serviceArea==null?'-':housekeeperInfo.serviceArea}}
+    </view>
+
+    <!--工作意向-->
+    <!-- <view style='width:100%;height:6rpx;background-color:#f6f6f7;'></view> -->
+    <view class="baseInfo_work_intent">
+      <view class="i-badge-dot" style='float:left;'></view>
+      <view class='baseInfo-title' style='float:left;'>工作意向</view>
+      <view class="i-badge-dot" style='float:left;'></view>
+    </view>
+    <view class="info_text text">
+      {{workIntentsVal==""?'暂无':workIntentsVal}}
+    </view>
+    <!-- <view style='width:100%;height:6rpx;background-color:#f6f6f7;'></view> -->
+    <!--综合评价-->
+    <view class="baseInfo_work_intent">
+      <view class="i-badge-dot" style='float:left;'></view>
+      <view class='baseInfo-title' style='float:left;'>综合评价</view>
+      <view class="i-badge-dot" style='float:left;'></view>
+    </view>
+    <view class="info_text text">
+      {{housekeeperInfo.comment==null?'暂无':housekeeperInfo.comment}}
+    </view>
+    <!-- <view style='width:100%;height:6rpx;background-color:#f6f6f7;'></view> -->
+    <!--印象标签-->
+    <view class="baseInfo_work_intent">
+      <view class="i-badge-dot" style='float:left;'></view>
+      <view class='baseInfo-title' style='float:left;'>印象标签</view>
+      <view class="i-badge-dot" style='float:left;'></view>
+    </view>
+    <view class="info_text text" style=''>
+      <view wx:if="{{housekeeperInfo.impressions==null?true:false}}">暂无</view>
+      <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+        <block wx:for="{{housekeeperInfo.impressions==null?[]:housekeeperInfo.impressions}}" wx:key="key">
+        <text style='font-size:28rpx; border:2rpx #FF7F27 solid; color:#FF7F27; background:#FFD5BA; padding:10rpx 20rpx; margin-right:20rpx; margin-top:10rpx;'>{{item}}</text>
+        <!-- <view class='baseInfo_impression_tag' style='float:left;background-color:#F7F6FA;'>{{item}}</view> -->
+      </block>
+      </scroll-view>      
+    </view>
+
+    <!--个人履历-->
+    <view class="baseInfo_work_intent" wx:if="{{housekeeperInfo.experienceDtos==null?false:true}}">
+      <view class="i-badge-dot" style='float:left;'></view>
+      <view class='baseInfo-title' style='float:left;'>个人履历</view>
+      <view class="i-badge-dot" style='float:left;'></view>
+    </view>
+    <!-- <view class="info_text text" wx:if="{{housekeeperInfo.experienceDtos==null?true:false}}">暂无</view> -->
+    <view wx:if="{{housekeeperInfo.experienceDtos==null?false:true}}" style='padding: 50rpx 30rpx 10rpx 30rpx;'>
+      <view class="i-class i-step-item i-step-process i-step-vertical" style="width : 100%;">
+        <block wx:for="{{housekeeperInfo.experienceDtos==null?[]:housekeeperInfo.experienceDtos}}" wx:key="key">
+          <view class="i-step-item-ico">
+            <view class="i-step-ico"></view>
+            <view class="i-step-line"></view>
+          </view>
+          <view class="i-step-item-main">
+            <view class="i-step-item-title">
+              {{item.startDate==null?'-':item.startDate}} 至 {{item.endDate==null?'-':item.endDate}}
+            </view>
+            <view class="i-step-item-content">
+              {{item.describe == null?'暂无':item.describe}}
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- <view style='width:100%;height:6rpx;background-color:#f6f6f7;'></view> -->
+    <!--客户评价-->
+    <view wx:if="{{showComment}}">
+      <view class="baseInfo_work_intent">
+        <view class="i-badge-dot" style='float:left;'></view>
+        <view class='baseInfo-title' style='float:left;'>客户评价</view>
+        <view class="i-badge-dot" style='float:left;'></view>
+        <view style='position: absolute;float:left;right:30rpx;top:10rpx;color: gray;font-size: 28rpx;'>
+          <view style='float:left;'>综合评价：</view>
+          <view style='float:left;'>{{housekeeperInfo.scope==null?'-':housekeeperInfo.scope}}</view>
+        </view>
+      </view>
+      <view class="info_text text" wx:if="{{housekeeperInfo.commentDto==null?true:false}}">暂无</view>
+      <view wx:if="{{housekeeperInfo.commentDto==null?false:true}}" class="info_text text" bindtap="handleOpen" style='border-radius:20rpx;border:#cecece solid 1px;margin:40rpx;padding:30rpx 30rpx 60rpx 30rpx;'>
+        {{housekeeperInfo.commentDto==null?'-':housekeeperInfo.commentDto.comment}}
+        <view style='position: absolute;left:500rpx;color: gray;font-size:32rpx;'>{{housekeeperInfo.commentDto==null?'-':housekeeperInfo.commentDto.commentTime}}</view>
+      </view>
+      <!-- <view style='width:100%;height:6rpx;background-color:#f6f6f7;'></view> -->
+    </view>
+    <!--证件认证-->
+    <view class="baseInfo_work_intent" wx:if="{{certificate.length==0?false:true}}">
+      <view class="i-badge-dot" style='float:left;'></view>
+      <view class='baseInfo-title' style='float:left;'>证件材料</view>
+      <view class="i-badge-dot" style='float:left;'></view>
+    </view>
+    <!-- <view class="info_text text" wx:if="{{certificate.length==0?true:false}}">暂无</view> -->
+    <view class="info_text" wx:if="{{certificate.length==0?false:true}}">
+      <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+        <view wx:for="{{certificate}}" wx:key="item.id" class="scroll-view-item_H" style='height:150rpx;width:30%;'>
+          <image src='{{item.icon}}' style="width:213rpx;height:138rpx;"></image>
+          <!-- <view class='flex-center font-32'>{{item.name}}</view> -->
+        </view>
+      </scroll-view>
+      <view class='font-28' bindtap='toCommission'>注:阿姨具备以上证件材料，进行签约时需核实证件材料真伪
+        <text style='color:blue;'>[签约保障服务]</text>
+      </view>
+    </view>
+    <!-- <view style='width:100%;height:6rpx;background-color:#f6f6f7;'></view> -->
+    <!--工作风采-->
+    <view class="baseInfo_work_intent" wx:if="{{housekeeperInfo.workMiens==null?false:true}}">
+      <view class="i-badge-dot" style='float:left;'></view>
+      <view class='baseInfo-title' style='float:left;'>工作风采</view>
+      <view class="i-badge-dot" style='float:left;'></view>
+    </view>
+    <!-- <view class="info_text text" wx:if="{{housekeeperInfo.workMiens==null?true:false}}">暂无</view> -->
+    <view class="info_text" wx:if="{{housekeeperInfo.workMiens==null?false:true}}">
+      <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+        <view wx:for="{{housekeeperInfo.workMiens==null?[]:housekeeperInfo.workMiens}}" wx:key="item.id" class="scroll-view-item_H" style='height:200rpx;width:30%;'>
+          <image src='{{item}}' mode='aspectFit' bindtap='previewheadPic' data-src='{{item}}' style="width:100%;height:100%;"></image>
+        </view>
+      </scroll-view>
+    </view>
+    <!--广告宣传-->
+    <view>
+      <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/ad/img-commission-ad01.png' style='width:750rpx;height:181rpx; margin:20rpx 0;' bindtap='toCommission'></image>
+    </view>
+    <view style='width:100%;height:6rpx;background-color:#f6f6f7;'></view>
+    <!--为你推荐-->
+    <view class="baseInfo_work_intent">
+      <view class="i-badge-dot" style='float:left;'></view>
+      <view class='baseInfo-title' style='float:left;'>为你推荐</view>
+      <view class="i-badge-dot" style='float:left;'></view>
+      <view bindtap="more" style='position: absolute;float:left;right:30rpx;top:10rpx;color: gray;font-size:28rpx;'>更多阿姨
+        <i-icon i-class='icon' type="enter" color='#807F80' />
+      </view>
+    </view>
+    <view class="info_text text" wx:if="{{housekeeperInfo.detailRecommendDtos==null?true:false}}">暂无</view>
+    <view wx:if="{{housekeeperInfo.detailRecommendDtos==null?false:true}}" style='word-break: break-all;padding: 30rpx 30rpx 30rpx 30rpx;'>
+      <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+        <view wx:for="{{housekeeperInfo.detailRecommendDtos==null?[]:housekeeperInfo.detailRecommendDtos}}" wx:key="item.id" class="scroll-view-item_H" style='border:1rpx solid #ff7f27;height:280rpx;' bindtap='toDetail' data-index="{{item.id}}">
+          <view class='flex-center' style='margin:20rpx;'>
+            <image src='{{item.headPic}}' mode='aspectFill' style="width:120rpx;height:120rpx;border-radius:100%;"></image>
+          </view>
+          <view class='flex-center font-32' style="margin-bottom:10rpx;">{{item.name==null?'-':item.name}}</view>
+          <view class='flex-center font-28' style="margin-bottom:10rpx;color:gray;">{{item.workType==null?'-':item.workType}} | {{item.workYears==null?'-':item.workYears}}年</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view style='height:70rpx;'></view>
+  <!--底部按钮-->
+  <view style='position: fixed;width:100%;height:160rpx;bottom:0rpx; background: #fff;z-index: 3;' wx:if='{{showBtn}}'>
+    <view style="margin:10rpx 10rpx 10rpx 20rpx; color:#ff7f27;color: #80848f;font-size:28rpx;height:40rpx;">
+      <view style='float:left;color:#ff7f27;'>温馨提示：</view>
+      预约成功，即可锁定阿姨
+    </view>
+    <view class='flex-center' style='float:left;width:14%;height:100rpx;align-items: center;justify-content: center;'>
+      <view>
+        <button class='button' open-type="share" data-id='dd' style='background-color:#FFF;color:#FFF;'>
+          <i-icon type="share" size='28' color='#ff7f27' />
+        </button>
+      </view>
+    </view>
+    <view class='flex-center' style='float:left;width:2%;height:100rpx;'>
+      <view style='width:2rpx;height:40rpx;background-color:#ff7f27;'></view>
+    </view>
+    <view class='flex-center' style='float:left;width:14%;height:100rpx;'>
+      <view bindtap="doCollect">
+        <i-icon type="{{collect?'like_fill':'like'}}" size='28' color="#ff7f27" />
+      </view>
+    </view>
+    <view class='flex-center' bindtap="handleOpenAppoin" style='float:left;width:70%;height:100rpx;background-color:#ff7f27;color:white;'>
+      <text class='font-36 font-bold'>立即预约</text>
+      <view style='font-size: 24rpx;position:relative;top:5rpx'>({{housekeeperInfo.appointCount=='0'?'赶紧抢沙发':'已有'+housekeeperInfo.appointCount+'人预约'}})</view>
+    </view>
+  </view>
+  <!--面试悬浮-->
+  <view style='position: fixed;height:160rpx;bottom:200rpx;z-index: 3;right:{{hideRight}}rpx;'>
+    <view bindtap='handleOpenCall' data-phone='{{housekeeperInfo.phone}}'>
+      <image style='width:100rpx;height:100rpx;' src='/image/call.png'></image>
+    </view>
+  </view>
+  <!--更多评价-->
+  <view catchtouchmove="ture">
+    <i-action-sheet visible="{{ visible }}" bind:cancel="handleCancel">
+      <view slot="header">
+        <view class='font-28' style='width:100%;height:90rpx;'>
+          <view class='font-36' style='float:left;position:absolute;left:30rpx; margin: 20rpx 20rpx 30rpx 20rpx;color:black;'>用户评价</view>
+          <view class='font-32' style='float:left;position:absolute;right:100rpx;color:gray; margin: 30rpx 0rpx 30rpx 0rpx;'>综合评价：{{housekeeperInfo.scope==null?'-':housekeeperInfo.scope}}</view>
+          <view bindtap="handleCancel" style='float:left;position:absolute;right:10rpx;color:gray; margin: 10rpx 0rpx 0rpx 0rpx;'>
+            <image style='width:60rpx;height:60rpx;' src='/image/close.png'></image>
+          </view>
+        </view>
+        <scroll-view class="" scroll-y style="width: 100%;height:700rpx;">
+          <view wx:for='{{commentDtoList}}' wx:key="key">
+            <view class='font-28' style='line-height:50rpx;text-align:left; '>
+              <view class='tem'>
+                <view style='height:100rpx'>
+                  <view style='float:left;'>
+                    <image src="{{item.headPic==null?'https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/banner-findJob.png':item.headPic}}" class="headImg" />
+                  </view>
+                  <view style='float:left;line-height:40rpx;margin-top:10rpx;color:gray;'>
+                    <view class='font-26' style=''>{{item.name == null?'-':item.name}}</view>
+                    <view class='font-26' style=''>{{item.commentDate == null?'-':item.commentDate}}</view>
+                  </view>
+                  <view style='position: relative;color:gray;'>
+                    <view style='position:absolute;right:20rpx;top:10rpx;'>
+                      <i-rate count="5" value="{{item.scope == null?0:item.scope}}"></i-rate>
+                    </view>
+                  </view>
+                </view>
+                <view class='font-28' style=' word-break: break-all;padding: 15rpx 30rpx 30rpx 30rpx;color:gray;'>
+                  {{item.comment == null?'-':item.comment}}
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </i-action-sheet>
+  </view>
+
+  <!--预约-->
+  <view catchtouchmove="ture">
+    <i-action-sheet visible="{{ visibleAppoin }}" bind:cancel="handleCancelAppoin">
+      <view slot="header">
+        <view style='background-color:#ff7f27;padding:15rpx;position: relative;height:150rpx;'>
+          <view class='font-36' style='color:#fff;position: absolute;left:50rpx'>温馨提示：</view>
+          <view class='font-28 font-bold' style='color:#fff;position: absolute;top:70rpx;left:50rpx'>您需要电话阿姨预约，然后下诚信金做信用保障。
+        </view>
+          <view class='font-28' style='color:#fff;position: absolute;top:120rpx;left:50rpx'>
+          {{hasFreeTxt?hasFreeTxt:'诚信金将在履约后原路退还，不建议为0元。'}}</view>
+        </view>
+        <view style='padding:30rpx 35rpx 30rpx 35rpx'>
+          <view class='font-28' style='color:gray;margin-left:30rpx;text-align:left;'>诚信金标准</view>
+
+          <view style='position: absolute;top:250rpx; height:80rpx; z-index:5'>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='cxjChoose' data-price='0'></view>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='cxjChoose' data-price='50'>a</view>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='cxjChoose' data-price='100'>a</view>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='cxjChoose' data-price='150'>a</view>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='cxjChoose' data-price='200'>a</view>
+          </view>
+
+          <view>
+            <slider bindchange="cxjChange" value="50" step="50" min="0" max="200" activeColor='#ff7f27' block-size='16' block-color='#ff7f27' value='{{price}}' disabled='true'/>
+          </view>
+          <view style='position: relative;top:-30rpx;padding:10rpx 25rpx 10rpx 25rpx;height:30rpx'>
+            <view class='font-28' style='float:left;position: relative;'>￥0</view>
+            <view class='font-28' style='float:left;position: relative;left:90rpx;'>￥50</view>
+            <view class='font-28' style='float:left;position: relative;left:160rpx;'>￥100</view>
+            <view class='font-28' style='float:left;position: relative;left:240rpx;'>￥150</view>
+            <view class='font-28' style='float:left;position: relative;left:320rpx;'>￥200</view>
+          </view>
+          <view style='height:1rpx; width:100%'></view>
+          <view class='font-28' style='color:gray;margin-left:30rpx;text-align:left;'>履约时间({{dateTime}}前)</view>
+          
+          <view style='position: absolute;top:400rpx; height:80rpx; z-index:5'>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='lychoose' data-days='0'></view>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='lychoose' data-days='7'>a</view>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='lychoose' data-days='14'>a</view>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='lychoose' data-days='21'>a</view>
+            <view class='font-28' style='float:left; width:140rpx; height:80rpx; opacity:0;' bindtap='lychoose' data-days='28'>a</view>
+          </view>
+
+          <view>
+            <slider bindchange="lychange" step="7" min="0" max="28" activeColor='#ff7f27' block-size='16' block-color='#ff7f27' value='{{days}}' disabled='true'/>
+          </view>
+          <view style='position: relative;top:-30rpx;padding:10rpx 25rpx 10rpx 25rpx;height:30rpx'>
+            <view class='font-28' style='float:left;position: relative;'>3天</view>
+            <view class='font-28' style='float:left;position: relative;left:90rpx;'>7天</view>
+            <view class='font-28' style='float:left;position: relative;left:200rpx;'>14天</view>
+            <view class='font-28' style='float:left;position: relative;left:290rpx;'>21天</view>
+            <view class='font-28' style='float:left;position: relative;left:380rpx;'>28天</view>
+          </view>
+          <!--
+        <view style='position: relative;top:-30rpx;padding:30rpx 25rpx 10rpx 25rpx;height:30rpx'>
+          <view class='font-28' style=''>注意：<text style='color:#ff7f27'>{{dateTime}}</text>前履约,诚信金将原路退还</view>
+        </view>
+        -->
+          <view style='height:1rpx; width:100%'></view>
+          <view class='font-28 flex-x flex-center-y' style='height:36rpx'>
+            <view bindtap='checkbox'>
+              <checkbox style='transform: scale(0.6,0.6);' value="1" checked="{{checkboxVal}}" />
+            </view>
+            <view style='text-align:left'>
+              同意遵守
+              <text style='color:#ff7f27' bindtap='toRule'>《诚信金规则》</text>点击阅读详细
+            </view>
+          </view>
+        </view>
+        <view style='height:90rpx;'>
+          <view class='flex-center font-36' style='float:left;background:rgb(243, 240, 240);height:90rpx;width:40%;' bindtap="handleCancelAppoin">
+            我再想想
+          </view>
+          <form bind:submit="pay" report-submit="true">
+            <button formType="submit" class='button' style='width:60%;background:#ff7f27; border-radius:0;'>
+              <text class='font-bold' style='color:#fff;background:#ff7f27;height:90rpx;font-size:36rpx;'>为诚信代言</text>
+              <text class='font-24' style='height:90rpx;color:#fff;'>(需支付{{price}}元）</text>
+            </button>
+          </form>
+        </view>
+      </view>
+    </i-action-sheet>
+  </view>
+</view>
+
+<!--加载提示-->
+<view class="container" style='display:{{ spinShow }}'>
+  <i-spin fix size="large"></i-spin>
+</view>
+
+<!-- 视屏播放  -->
+<view catchtouchmove="ture" hidden='{{!showCode}}' bindtap='closeVideo' style='background:#888;width:100%;height:100%;position:absolute;top:0;left:0; z-index:2;opacity:0.8'></view>
+<view hidden='{{!showCode}}' style='height:40px;background:#fff;z-index:2;position:absolute;top:0;width:100%;'>
+  <image src='/image/back.png' class='back-icon' bindtap='closeVideo'></image>
+</view>
+<view catchtouchmove="ture" style='position:absolute;top:40px;z-index:3' hidden='{{!showCode}}'>
+  <video id="myVideo" src="{{videoUrl}}" binderror="videoErrorCallback" initial-time='1' show-center-play-btn='{{showCenter}}' controls style='height:{{bodyHeight}}px;width:750rpx'>
+  </video>
+</view>
+
+<!-- 免责声明  -->
+<i-modal title='风险提示' visible="{{ visibleDisclaimer }}" actions="{{ disclaimerActions }}" bind:click="disclaimerClick">
+  <view class='font-28' style='padding:10rpx 40rpx; text-align:left'>
+    <view>1、为确保各位雇主的资金安全，雇主在未经今日到家平台承保的情况下，切勿与家政服务人员发生任何私下资金往来。</view>
+    <view style='margin-top:10rpx;'>2、雇主私下接触家政服务人员，其未经今日到家平台背景调查、健康证审核等安全保障筛选的，对此产生的一切后果，由雇主自行承担，今日到家不承担任何相应的法律责任。</view>
+  </view>
+</i-modal>
+
+<!-- 拨打电话  -->
+<i-modal visible="{{ visibleCall }}" actions="{{ actions }}" action-mode="{{ vertical }}" bind:click="modalClick">
+  <view class='font-32' style='padding:20rpx 40rpx;'>您今天已面试了5个阿姨，还没找到您满意的吗？</view>
+</i-modal>
+
+<!-- 登录 -->
+<view catchtouchmove="ture">
+  <i-modal visible="{{ visibleLogin }}" bind:click="handleCloseLogin" show-ok="{{false}}" show-cancel="{{false}}">
+    <view style='position: relative;height:320rpx;'>
+      <view style='position: absolute;right:30rpx;top:-20rpx;' bindtap='handleCloseLogin'>
+        <image style='width:60rpx;height:60rpx;' src='/image/close.png'></image>
+      </view>
+      <view style='margin-top:20rpx;'>
+        <image style='height:100rpx;width:100rpx;' src='/image/login-log.png'></image>
+      </view>
+      <view class='font-36' style='color:#1c2438'>Hi~请您登录</view>
+      <view>
+        <button style='margin:30rpx;background:#ff7f27;color:#fff' open-type='getUserInfo' bindgetuserinfo='getUnionId'>授权登录</button>
+      </view>
+    </view>
+  </i-modal>
+</view>
+
+
+<view catchtouchmove="ture" hidden='{{!showAd}}' style='background:rgba(0,0,0,.7); width:100%;height:100%;position:fixed;top:0;left:0; z-index:901;'></view>
+<view catchtouchmove="ture" style='position:fixed;top:18%;left:75rpx;z-index:902' hidden='{{!showAd}}'>
+  <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/img-commission-ad.png' style='width:600rpx; height:666rpx;' bindtap='toCommission'/>
+  <image src='/image/img-commission-ad2.png' style='width:600rpx; height:146rpx;' bindtap='closeAd'/>
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "保险详情",
+  "usingComponents": {
+    "i-panel": "/iview/panel/index"
+  }
+}

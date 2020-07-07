@@ -1,0 +1,15 @@
+.record-cell-left{
+  float:left;
+  width:100rpx;
+}
+
+.add_btn{
+    width: 100rpx;
+    height: 100rpx;
+    position: fixed;
+    bottom: 100rpx;
+    right: 60rpx;
+    color:white;
+    border-radius: 50%;
+    background-color:#ff7f27;
+}

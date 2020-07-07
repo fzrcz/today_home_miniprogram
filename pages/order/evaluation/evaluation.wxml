@@ -1,0 +1,21 @@
+<!--评价-->
+<view>
+    <view class='head-main'>
+        <view class='head'>
+            <view class='font-36'>发布评价</view>
+        </view>
+    </view>
+ 
+    <view class='score'>
+        <view class='score-right'>
+          <view>评分：</view>
+          <i-rate  count="{{5}}" value="{{rate}}" bind:change="onChangeRate"></i-rate>
+        </view>
+    </view>
+ 
+    <view class='textarea'>
+        <textarea bindinput="serachInput" placeholder-class='textarea-text' placeholder='服务满足你的期待吗？说说你的使用心得，分享给想买的他们吧'>
+        </textarea>
+    </view>
+    <view bindtap="push" class='btn-style flex-center font-28' style='padding:20rpx 40rpx; margin:40rpx 40rpx 40rpx 40rpx;width:100rpx;float:right;'>发布</view>
+</view>

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "阿姨",
+  "usingComponents": {
+    "i-card": "/iview/card/index",
+    "i-row": "/iview/row/index",
+    "i-col": "/iview/col/index",
+    "i-sticky": "/iview/sticky/index",
+    "i-load-more": "/iview/load-more/index",
+    "i-sticky-item": "/iview/sticky-item/index"
+  }
+}

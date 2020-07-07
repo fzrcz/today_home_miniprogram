@@ -1,0 +1,8 @@
+/* 预约成功 */
+.headIcon{
+  position: relative;
+  height: 50rpx;
+  width: 50rpx;
+  top:50rpx;
+  left:50rpx;
+}

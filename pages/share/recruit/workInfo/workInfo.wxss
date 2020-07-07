@@ -1,0 +1,11 @@
+.cell{
+  margin:30rpx 60rpx; 
+  padding:30rpx; 
+  border:2rpx #ddd solid; 
+  font-size:32rpx;
+  border-radius: 10rpx;
+}
+
+.font-color{
+  color:red;
+}

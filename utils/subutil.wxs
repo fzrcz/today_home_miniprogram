@@ -1,0 +1,36 @@
+//地区
+var sub = function (val) {
+  if (val == undefined || val == null) {
+    return;
+  }
+  else if (val.length > 0) {
+    var vLength = val.length-1;
+    return val.substring(0, vLength);
+  } else {
+    return val;
+  }
+}
+
+// 截取字符串的前两位
+var getStrTop2 = function (val) {
+  if (val.length == 0 || val == undefined || val == null) {
+    return;
+  } else {
+    return val.substring(0, 2);
+  }
+}
+// 两数相减，结果保留小数点后两位小数
+var getToFixed = function (val1, val2) {
+  var val3 = val1 - val2;
+  var val4 = val3.toFixed(2);
+  var val5 = val4.split(".");
+  if(val5[1] == '00'){
+    return val5[0];
+  }else{
+    return val4;
+  }
+}
+
+module.exports.sub = sub;
+module.exports.getStrTop2 = getStrTop2;
+module.exports.getToFixed = getToFixed;

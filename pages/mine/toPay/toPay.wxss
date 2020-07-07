@@ -1,0 +1,75 @@
+/* pages/mine/toPay/toPay.wxss */
+/*订单 */
+.info{
+  padding:10rpx 40rpx 10rpx 40rpx;
+}
+.info-text{
+  color:grey;
+  padding:0rpx 0rpx 0rpx 40rpx;
+}
+
+/* 我的预约 */
+.info_text {
+  font-size: 0.7em;
+  color: gray;
+  word-break: break-all;
+  padding: 5rpx 30rpx 30rpx 45rpx;
+}
+.scroll-view_H{
+  width: 100%;
+  height:500rpx;
+}
+.scroll-view-item_H{
+  display: inline-block;
+  margin: 12rpx;
+  border:1rpx solid #ff7f27;
+  height:320rpx;
+  width:200rpx;
+}
+.scroll-view-item_H-select{
+  display: inline-block;
+  margin: 12rpx;
+  border:1rpx solid #ff7f27;
+  height:320rpx;
+  width:200rpx;
+  background-color:#ff7f27;
+}
+.btn-style-select{
+  padding:6rpx 38rpx;
+  border: 2rpx #fff solid;
+  border-radius: 10rpx;
+  color:#fff;
+}
+.view-style-select{
+  color:white;
+}
+/*
+  问题：浮动引起的高度塌陷
+  引起原因：子元素全是float元素 且 父元素没有设置高度。
+*/
+.section-header::before, .section-header::after {
+  display: table;
+  content: "";
+}
+.section-header::after {
+  clear: both;
+}
+
+.cell-left{
+  float:left;
+  width:160rpx;
+}
+
+.businessType{
+  background-color:#FF7F27;
+  padding:5rpx 20rpx;
+  color:#fff;
+  border-radius:10rpx;
+  font-weight:700;
+}
+
+.number-times{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,28 @@
+<view style='padding-left:60rpx; padding-top:20rpx; font-weight:bold; font-size:40rpx;'>
+  工作风采
+</view> 
+<view class='font-32' style='padding:30rpx 60rpx;'>
+  上传您工作的照片，向雇主展示您的风采！
+</view> 
+
+<view>
+  <view style='padding:20rpx;'>
+    <view style='margin-bottom:20rpx;'>
+      <view>
+        <block wx:for="{{imageList}}" wx:for-item="image" wx:if="{{image.pic}}">
+          <!-- <i-badge count="X" bindtap='closeUploadImg' data-close="{{index}}"> -->
+          <view class="i-class i-badge" style='margin-bottom:20rpx;'>
+            <view class="i-badge-count i-class-alone" bindtap='closeUploadImg' data-close="{{index}}">X</view>
+            <image src="{{image.pic}}" data-index="{{index}}" bindtap="previewImage" style='width:200rpx; height:200rpx;margin-left:30rpx; display:block'></image>
+          </view>
+          <!-- </i-badge> -->
+        </block> 
+        <image src="/image/icon-addImg.png" mode='aspectFill' bindtap="chooseImage" style='width:200rpx; height:200rpx;margin-left:30rpx;'></image> 
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class='font-32' style='margin:55rpx; padding:20rpx; position: fixed; bottom:40rpx; width:600rpx;'>恭喜您填写完成，请耐心等待客服与您联系，或者拨打客服热线：<text bindtap='toCall' class='theme-color'>400-600-6580</text></view> -->
+<view class='btn-style-fill font-32' bindtap='complete' style='margin:55rpx; padding:20rpx; position: fixed; bottom:40rpx; width:600rpx;'>完成</view>
+    

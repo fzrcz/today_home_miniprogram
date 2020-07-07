@@ -1,0 +1,194 @@
+/* pages/mine/myCoupon/myCoupon.wxss */
+
+page {
+  background: #e6e6e6;
+}
+
+/* 头部 */
+
+.swiper-tab {
+  width: 100%;
+  text-align: center;
+  line-height: 80rpx;
+  /*height: 80rpx; */
+  background: #fff;
+}
+
+.swiper-tab-list {
+  font-size: 30rpx;
+  display: inline-block;
+  width: 33.3%;
+  height: 80rpx;
+  /* line-height: 80rpx; */
+  color: #2c2c2c;
+}
+
+.on {
+  color: #fc7122;
+  height: 80rpx;
+  background: #fff;
+  box-sizing: border-box;
+  border-bottom: 5rpx solid #fc7122;
+}
+
+/* 优惠券 */
+
+.coupon-list {
+  padding: 20rpx;
+}
+
+.wrapper {
+  margin: 0 auto 30rpx auto;
+  width: 100%;
+  display: flex;
+  background: #fff;
+  /* background:linear-gradient(-90deg,#ff7206,#faad52); *//*实现颜色渐变 */
+}
+
+/*前半部分样式*/
+
+.content {
+  position: relative;
+  /* flex: 1; *//* padding: 20rpx 30rpx; */
+  text-align: center;
+  width: 202rpx;
+}
+
+/*后半部分样式*/
+
+.tip {
+  position: relative;
+  padding: 40rpx 30rpx;
+  flex: 40 0 400rpx;
+}
+
+/*中间竖直虚线样式*/
+
+.split-line {
+  position: relative;
+  flex: 0 0 0;
+  margin: 0 10rpx 0 6rpx;
+  border-left: 4rpx dashed #bababa;
+}
+
+/*给虚线加两个伪类，基本样式如下*/
+
+.split-line:before, .split-line:after {
+  content: '';
+  position: absolute;
+  width: 32rpx;
+  height: 16rpx;
+  background: #e6e6e6;
+  left: -18rpx;
+  z-index: 1;
+}
+
+/*给前半部分加两个伪类，基本样式如下*/
+
+.content:before, .content:after {
+  content: '';
+  position: absolute;
+  /* width: 32rpx; */
+  height: 16rpx;
+  background: #fff;
+  left: -16rpx;
+  z-index: 1;
+}
+
+/*给前半部分加两个伪类，基本样式如下*/
+
+.tip:before, .tip:after {
+  content: '';
+  position: absolute;
+  /* width: 32rpx; */
+  height: 16rpx;
+  background: #fff;
+  right: -16rpx;
+  z-index: 1;
+}
+
+.content:before, .tip:before, .split-line:before {
+  border-radius: 0 0 16rpx 16rpx;
+  top: 0;
+}
+
+.content:after, .tip:after, .split-line:after {
+  border-radius: 16rpx 16rpx 0 0;
+  bottom: 0;
+}
+
+.money {
+  font-size: 60rpx;
+  color: #f02d2d;
+}
+
+.money text {
+  font-size: 40rpx;
+  /* padding-right: 20rpx;  */
+}
+
+.title {
+  color: #f02d2d;
+}
+
+.conditions {
+  color: #ababab;
+  padding: 30rpx 0 0 0;
+}
+
+.col-co-m {
+  color: #bababa;
+}
+
+.col-co-l {
+  border-left: 4rpx dashed #e4e4e6;
+}
+
+.col-co-n {
+  color: #bababa;
+}
+
+.col-co-t {
+  color: #c1c1c1;
+}
+
+.swiper-box {
+  display: block;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+swiper-item {
+  overflow: scroll;
+}
+
+/*隐藏滚动条*/
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.no-data {
+  width: 276rpx;
+  height: 288rpx;
+}
+
+.no-data-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40%;
+}
+
+.to-use{
+  position: absolute;
+  right: 20rpx;
+  top: 92rpx;
+  background: #fc7122;
+  color: #fff;
+  border-radius: 50rpx;
+  padding: 6rpx 20rpx;
+  font-size: 24rpx;
+}

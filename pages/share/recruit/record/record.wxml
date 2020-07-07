@@ -1,0 +1,16 @@
+<view class='container'>
+
+  <block wx:for="{{dataList}}" style='pad'>
+    <view class='flex-x flex-center-y' style='padding:30rpx 20rpx; border-bottom:2rpx #888 dashed'>
+      <view class='flex-y' style='width:90%; line-height:60rpx;'>
+        <view class='font-36'>
+          <text style='margin-right:20rpx;'>{{item.startDate}}</text>至<text style='margin-left:20rpx;'>{{item.endDate}}</text>
+        </view>
+        <view class='font-28' style='margin-top:10rpx;'>{{item.describe}}</view>
+      </view>
+      <i-icon type="brush_fill" i-class='theme-color' bindtap='toEdit' data-id='{{item.id}}' size='28'/>
+    </view>
+  </block>
+  <view class='btn-style font-32' bindtap='toAdd' style='padding:20rpx; position: fixed; bottom:40rpx; width:650rpx;'>+ 新建履历</view>
+
+</view>

@@ -1,0 +1,39 @@
+<view class="container">
+		<view class="head">
+			<text>申请成为代理商</text>
+			<image class="img" src="/image/jxs_bg.png" mode=""></image>
+		</view>
+		<!-- <view class="title">请等待管理员审核，审核通过后即可成为代理</view> -->
+		<form catchsubmit="formSubmit">
+			<view class="warp-content">
+				<view class='line'>
+					<view class='lineLeft'>姓名</view>
+					<view class="lineRight">
+						<!-- data-name为自定义参数名称,同时也会以此为参数名存入data的form中-->
+						<input maxlength="10" name="name" class="input" placeholder-class="plaClass" placeholder='请输入姓名'></input>
+					</view>
+				</view>
+				<view class='line'>
+					<view class='lineLeft'>性别</view>
+					<view class="lineRight">
+						<view>
+							<radio-group name="sex" bindchange="changeSex">
+								<radio color="#ff7f27" checked value="1">男</radio>
+								<radio color="#ff7f27" value="2">女</radio>
+							</radio-group>
+						</view>
+					</view>	
+				</view>
+				<view class='line'>
+					<view class='lineLeft'>手机号</view>
+					<view class="lineRight">
+						<input type="number" maxlength="11" class="input" name='phone' placeholder-class="plaClass" placeholder='请输入手机号'></input>
+					</view>
+				</view>
+			</view>
+			<button class="buttonBox" formType="submit" style="background-color: #ff7f27;">
+				提交审核
+			</button>
+		</form>
+    
+  </view>

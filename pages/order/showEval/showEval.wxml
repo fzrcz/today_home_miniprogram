@@ -1,0 +1,20 @@
+<!--评价-->
+<view>
+    <view class='head-main'>
+        <view class='head'>
+            <view class='font-36'>查看评价</view>
+        </view>
+    </view>
+ 
+    <view class='score'>
+        <view class='score-right'>
+          <view>评分：</view>
+          <i-rate  count="{{5}}" value="{{rate}}"></i-rate>
+        </view>
+    </view>
+ 
+    <view class='textarea'>
+        <textarea bindinput="serachInput" placeholder-class='textarea-text' value='{{comment}}' disabled='true'>
+        </textarea>
+    </view>
+</view>

@@ -1,0 +1,160 @@
+page {
+  background-color: #f6f6f7;
+}
+
+.info_text {
+  /* color: gray; */
+  word-break: break-all;
+  padding: 30rpx 30rpx 30rpx 40rpx;
+  background: #fff;
+}
+
+/* 证件、工作风采、为你推荐*/
+
+.scroll-view_H {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.scroll-view-item_H {
+  width: 200rpx;
+  display: inline-block;
+  margin: 12rpx;
+}
+
+.i-panel-title {
+  font-size: 14px;
+  line-height: 1;
+  color: #1c2438;
+  padding: 20px 16px 10px;
+  background: #fff;
+}
+
+/* 新增样式 */
+
+.order-status {
+  position: relative;
+}
+
+.order-bg {
+  width: 100%;
+  height: 160rpx;
+}
+
+.order-title {
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40rpx 0 0 60rpx;
+}
+
+image {
+  width: 100%;
+  height: 100%;
+}
+
+.order-details {
+  position: relative;
+}
+
+.order-main {
+  width: 100%;
+  position: absolute;
+  top: 110rpx;
+}
+
+.order-main-wid {
+  width: 86%;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.order-main-pad {
+  padding: 30rpx;
+}
+
+.order-main-title {
+  padding: 0 0 30rpx 0;
+}
+
+.list-title-span {
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 4rpx;
+  background: #fc7122;
+}
+
+.list-title-text {
+  font-size: 34rpx;
+  color: #858585;
+  padding: 0 0 0 20rpx;
+  letter-spacing: 6rpx;
+}
+
+.order-main-list {
+  line-height: 60rpx;
+  color: #6b6b6b;
+  padding: 0 0 0 20rpx;
+}
+
+.type-b-l {
+  width: 144rpx;
+  height: 144rpx;
+  display: block;
+  border-radius: 6rpx;
+}
+
+.type-b-l image {
+  border-radius: 10rpx;
+}
+
+.type-b-r {
+  /* width: 100%; */
+  height: 144rpx;
+  padding: 0 0 0 30rpx;
+  position: relative;
+}
+
+.type-b-r text {
+  display: block;
+}
+
+.type-b-t {
+  display: flex;
+  align-items: center;
+}
+
+.type-b-c {
+  color: #858585;
+  display: flex;
+  align-items: baseline;
+  padding: 10rpx 0 0 0;
+}
+
+.type-b-b {
+  width: 94%;
+  display: flex;
+  align-items: baseline;
+  position: absolute;
+  bottom: 0;
+  color: #e93b32;
+}
+
+.list-title-r {
+  width: 46rpx;
+  height: 36rpx;
+}
+
+.list-ad-r {
+  width: 382rpx;
+  margin: 0 0 0 20rpx;
+}
+.infor-list{
+  padding: 0 0 0 20rpx;
+  line-height: 60rpx;
+  color: #6d6d6d;
+}

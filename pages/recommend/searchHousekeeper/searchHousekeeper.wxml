@@ -1,0 +1,85 @@
+<!--搜索阿姨-->
+<!-- 查询框 -->
+<!-- <view class="{{visible =='block'?'serach-view-head-show':'serach-view-head-hide'}}"> -->
+<view style='height:100rpx; width:100%; background:#fff; position: fixed; left:0;top:0; z-index:3;'></view>
+<view class="{{visible =='block'?'serach-view-head-show':'serach-view-head-hide'}}">
+  <view class='flex-x' style=''>
+    <view class="flex-x flex-center-y">
+        <input type="text" name="loginid" style='height:80rpx;width:580rpx;font-size:32rpx;' placeholder="请输入保姆姓名或电话" value="{{searchVal}}" bindinput="serachInput" />
+        <!-- <image src='/image/icon-camera.png' style='width:60rpx;height:60rpx;padding-right:20rpx;' bindtap='chooseImage'></image> -->
+        <!-- <i-icon type="camera" color='#ff7f27' size='28' bindtap='chooseImage'/>
+        <view style='width:2rpx; height:40rpx; background:#bbb; margin:0 10rpx;'></view> -->
+        <i-icon type="search" color='#ff7f27' size='28' bindtap="search"/>
+      </view>
+  </view>
+</view>
+
+<!-- 列表 -->
+<view style='margin:120rpx 0rpx 0rpx 0rpx;'>
+  <view wx:for="{{searchData}}" data-index="{{item.id}}" wx:key="item.id" class='templet' bindtap='toDetail'>
+    <view class="flex-x flex-center-y" style=' position:relative'>
+      <view class='status'>
+        <image style='width: 80rpx;height: 80rpx;' src="/image/{{item.personStatus==null?'unknown':item.personStatus}}.png"></image>
+      </view>
+      <image src='{{item.visualizePicDto.visualizePicUrl}}' mode='aspectFill' class="headImg" />
+      <view class='flex-y'>
+        <view style='width:320rpx;'>{{item.name==null?'未知':item.name}}
+          <text class='font-28' style='color:#888; margin-left:40rpx;'>浏览量：{{item.visitCount==null?'0':item.visitCount}}</text>
+        </view>
+        <view style=' width:320rpx; font-size:28rpx; line-height:60rpx;'>{{item.sex==null?'未知':item.sex}} | {{item.age==null?'未知':item.age+'岁'}} | {{item.workYears==null?'未知':item.workYears+'年'}} | {{item.nativeName==null?'未知':item.nativeName}}</view>
+      </view>
+      <view class='theme-color' style='width:125px; text-align:center; font-weight:bold;'>{{item.salary==null?'未知':'￥'+item.salary}}</view>
+    </view>
+    <view class='breakline' style='height:4rpx;'></view>
+
+    <view class='font-28' style='text-align:center; line-height:50rpx; padding:20rpx 0;'>
+      <i-row style="color:#888">
+        <i-col span="8">期望服务</i-col>
+        <i-col span="8">服务区域</i-col>
+        <i-col span="8">发布时间</i-col>
+      </i-row>
+      <i-row>
+        <i-col span="8"><view class='text'>{{item.expectService==null?'未知':item.expectService}}</view></i-col>
+        <i-col span="8"><view class='text'>{{item.serviceArea ==null?'未知':item.serviceArea}}</view></i-col>
+        <i-col span="8">{{item.joinTime==null?'未知':item.joinTime}}</i-col>
+      </i-row>
+    </view>
+  </view>
+</view>
+<!--数据为空提示-->
+<view style='height:100rpx;padding-top:20rpx;' wx:if="{{isShow}}">
+  <i-load-more tip="{{loadMsg}}" loading="{{loadType}}" />
+</view>
+
+<!--搜索记录-->
+<view class='swiper-parent' style="display:{{visible}};width:100%">
+  <view class='flex-center' style='margin-bottom:20rpx;'>
+    <image style='height:128rpx;width:128rpx;' src='/image/logo1.png'></image>
+  </view>
+  <view class='flex-center'>
+    <image style='width:274rpx;height:91rpx;' src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/logo2.png'></image>
+  </view>
+  <view class='flex-x' style=' margin:60rpx 40rpx 25rpx 40rpx;'>
+    <view class='serach-view-text'>
+      <view class="flex-x flex-center-y">
+        <input type="text" name="loginid" style='height:80rpx;width:580rpx;font-size:32rpx;' placeholder="请输入保姆姓名或电话" value="{{searchVal}}" bindinput="serachInput" />
+        <!-- <image src='/image/icon-camera.png' style='width:60rpx;height:60rpx;padding-right:20rpx;' bindtap='chooseImage'></image> -->
+        <!-- <i-icon type="camera" color='#ff7f27' size='28' bindtap='chooseImage'/>
+        <view style='width:2rpx; height:40rpx; background:#bbb; margin:0 10rpx;'></view> -->
+        <i-icon type="search" color='#ff7f27' size='28' bindtap="search"/>
+      </view>
+    </view>
+    <!-- <view class="flex-center" style='font-size:28rpx;color:#ff7f27;padding-left:30rpx;' bindtap="search">
+      搜索
+    </view> -->
+  </view>
+  <view bindtap="search" class='font-28' style='padding:0rpx 50rpx 0rpx 50rpx;line-height: 60rpx;color:gray;z-index:4;'>
+    <text class='font-28' style='color:#ff7f27;'>温馨提示：</text>目前支持姓名、电话号码搜索
+  </view>
+  <view class='font-28' style='padding:30rpx 30rpx 0rpx 50rpx;color:gray;' wx:if='{{history.length > 0}}'>历史搜索</view>
+  <view style="padding-top:30rpx; margin-left:30rpx; z-index: 3;display:{{visible}};">
+    <block wx:for="{{history}}" wx:key="key">
+      <view class='baseInfo_impression_tag' style='float:left' data-index="{{item}}" bindtap="searchHistory">{{item}}</view>
+    </block>
+  </view>
+</view>

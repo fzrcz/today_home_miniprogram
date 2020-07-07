@@ -1,0 +1,118 @@
+/* pages/mine/myClient/myInvitation/myInvitation.wxss */
+
+page {
+  background: #fff;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%; */
+}
+
+.invitation-box {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+
+.my-invitation {
+  background: #fff;
+  /* width: 86%; */
+  /* height: 1004rpx; */
+  border-radius: 10rpx;
+  margin: 30rpx auto 0 auto;
+}
+
+.invi-title {
+  padding: 0 30rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+
+.invi-content {
+  padding: 0 30rpx;
+  /* height: 854rpx; */
+}
+
+.head-img {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.head-img image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+}
+
+.nick-name {
+  padding: 0 0 0 20rpx;
+}
+
+.invitation-list {
+  padding: 0 0 30rpx 0;
+}
+.no-data{
+  width: 276rpx;
+  height: 288rpx;
+  margin: 35% auto 0 auto;
+}
+.no-data image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.order-wrap{
+  font-size: 26rpx;
+}
+
+.order-item{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+
+.order-item image {
+  width:100rpx;
+  height:100rpx;
+  border-radius: 50%;
+}
+
+.order-item .head{
+  display: flex;
+  color: #797979;
+  margin-bottom: 20rpx;
+}
+
+.order-item .head text:first-child{
+  margin-right: auto;
+}
+
+.order-item .item{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20rpx;
+}
+
+.order-item .item .money{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: auto;
+  margin-left: 20rpx;
+}
+
+.order-item .item .date{
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  justify-content: space-around;
+
+}
+
+.order-item .item .date text:last-child{
+  font-size: 22rpx;
+}

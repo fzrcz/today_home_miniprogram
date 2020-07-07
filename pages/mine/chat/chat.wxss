@@ -1,0 +1,94 @@
+scroll-view{
+  width: 750rpx;
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.chat_box{
+  overflow: auto;
+  margin: 4rpx 20rpx;
+  padding: 0 20rpx;
+}
+.chat_time{
+  text-align: center;
+  padding: 8rpx 0;
+  font-size: 24rpx;
+  color: #ccc;
+}
+.chat_content{
+  float: left;
+  font-size: 28rpx;
+  padding: 12rpx 26rpx;
+  margin: 0 0 8rpx 0;
+  max-width: 500rpx;
+  min-width: 50rpx;
+  border-radius: 50rpx;
+  box-shadow: 0 2rpx 4rpx 2rpx rgba(0, 0, 0, 0.1);
+}
+.right{
+  float: right;
+  background-color: #ff7f27;
+  color: #fff;
+}
+.chat_input{
+  /* height: 300rpx; */
+  width: 750rpx;
+  box-shadow: 0 -2rpx 4rpx 0rpx rgba(0, 0, 0, 0.1);
+}
+input{
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  display: inline-block;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  background-color: #f1f1f1;
+  margin-right: 10rpx;
+}
+.input_before{
+  width: 78%;
+}
+.inputing{
+  width: 71%;
+}
+.input{
+  padding: 10rpx 10rpx 0;
+}
+.input image{
+  margin: 0 8rpx 8rpx;
+  height: 48rpx;
+  width: 48rpx;
+}
+button{
+  margin: 0 8rpx 8rpx;
+  display: inline-block;
+  height: 48rpx;
+  width: 96rpx;
+  padding: 0;
+  font-size: 24rpx;
+  line-height: 48rpx;
+  color: #fff;
+  background-color: #ff7f00;
+}
+.funct{
+  /* display: none; */
+  background-color: #eee;
+  height: 320rpx;
+}
+.funct image{
+  display: inline-block;
+  text-align: center;
+  margin: 0 30rpx;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+  height: 44rpx;
+  width: 44rpx;
+}
+.pane{
+  float: left;
+  height: 48rpx;
+  line-height: 48rpx;
+  width: 48rpx;
+  text-align: center;
+  margin: 10rpx;
+}

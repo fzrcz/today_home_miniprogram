@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-tag": "/iview/tag/index",
+    "i-cell-group": "/iview/cell-group/index",
+    "i-cell": "/iview/cell/index"
+  }
+}

@@ -1,0 +1,26 @@
+/* pages/recommend/oddjob/sterilize/sterilize.wxss */.pro-list-l {
+  width: 200rpx;
+  height: 200rpx;
+  position: relative;
+}
+
+.pro-list-l-img {
+  width: 200rpx;
+  height: 100%;
+  display: block;
+}
+
+.double-lo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60rpx;
+}
+
+.newbus {
+  height:34rpx;
+  width:66rpx;
+  /* vertical-align:middle; */
+  margin-left:6rpx;
+  border-radius: 6rpx;
+}

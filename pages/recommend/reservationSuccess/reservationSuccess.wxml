@@ -1,0 +1,26 @@
+<!--预约成功-->
+<view>
+  <view>
+       <image style='height:308rpx;width:750rpx'  src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/img-paysuccess.png'></image>
+    <!-- <view class='font-36' style='position: relative;color:#fff;left:130rpx;'>提交成功</view>
+    <view class='font-28' style='position: relative;color:#fff;left:130rpx;'>请耐心等待对方确认同意预约信息</view> -->
+  </view>
+
+  <view>
+    <image style='width:100%;height:532rpx' src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/img-relation.png'></image>
+  </view>
+  <view class='breakline'></view>
+  <view class='font-32' style='padding:20rpx 40rpx 10rpx 60rpx;'>
+    <view style='padding:10rpx;'>订单编号：{{orderNo}}</view>
+    <view style='padding:10rpx;'>预约时间：{{appointTime}}</view>
+    <view style='padding:10rpx;'>注：查看预约详情，请到<text bindtap='toBooking' style='color:#ff7f27;'>[订单列表]</text></view>
+    <view style='padding:10rpx;'><text bindtap='toMain' style='color:#ff7f27;'>[返回首页]</text></view>
+    
+  </view>
+  <view class='font-28 flex-center'style='padding:40rpx 40rpx 20rpx 40rpx;background-color:#f6f6f7;color:gray;'>
+    预约成功的人还看了以下服务
+  </view>
+  <view>
+    <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/ad/img-commission-ad01.png' bindtap='toCommission' style="width:750rpx; height:181rpx;"></image>
+  </view>
+</view>

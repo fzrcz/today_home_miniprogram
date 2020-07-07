@@ -1,0 +1,38 @@
+<!-- <view>
+  <image src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/no-dev.png' style='width:750rpx; height:1062rpx;' bindtap='toBack'></image>
+</view> -->
+
+<view style='padding:30rpx;'>
+  <block wx:for="{{productList}}" wx:key="id">
+    <view class='flex-x flex-center-y font-28' style='border-bottom:1px solid #eee; margin-top:20rpx; padding-bottom:20rpx;' data-productid='{{item.id}}' data-activityid='{{item.activityId}}' bindtap='toDetail'>
+      <view class="pro-list-l">
+        <image class="pro-list-l-img" src="{{item.productFile[0].filePath}}" mode='aspectFill' />
+        <!-- <image class="double-lo" src="/image/double-lo.png" mode="widthFix"></image> -->
+      </view>
+      <view class='flex-y' style='padding:20rpx 0 20rpx 20rpx; line-height:50rpx; width:470rpx;'>
+        <view wx:if='{{item.activityId}}' class='font-bold font-32'>
+          <text style='background:#FF7F27; color:#FFF; padding:10rpx; font-size:24rpx; margin-right:10rpx; font-weight:bold;'>{{item.activityTypeName}}</text>{{item.activityRemark}}</view>
+        <view wx:else class='font-bold font-32'>{{item.description}}</view>
+        <view class='flex-between' style='align-items:flex-end; margin-top:20rpx;'>
+          <!-- 展示现价，原价 -->
+          <view wx:if='{{item.price == item.originalPrice}}' class='font-bold theme-color font-40'>￥{{item.price}}<text wx:if='{{item.id == 69 || item.id == 65 || item.id == 66}}'> /㎡</text></view>
+          <view wx:else class='font-bold theme-color font-40'>￥{{item.price}}<text wx:if='{{item.id == 69 || item.id == 65 || item.id == 66}}'> /㎡</text>
+            <text wx:if='{{item.originalPrice != null && item.originalPrice != ""}}' style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥{{item.originalPrice}}</text>
+          </view>
+
+          <!-- afterPriceList是优惠商品的数组，如果有优惠商品，且优惠商品的id跟列表页商品id一致，就证明这个商品有活动价 -->
+          <view>
+            <!-- 下一行,只展示现价 -->
+            <!-- <view class="font-28" style="color:red">价格￥{{item.price}}<text wx:if='{{item.id == 69 || item.id == 65 || item.id == 66}}'> /㎡</text></view> -->
+            <!-- 按平方米计算的价格不能这样直接用优惠券来减 -->
+            <!-- <view class="font-28" style="color:red" wx:for='{{afterPriceList}}' wx:key='id' wx:for-item="afterItem" wx:if='{{afterItem.id == item.id && item.id != 65 && item.id != 66 && item.id != 74}}'>活动价
+              <text class="font-bold font-32">￥{{afterItem.afterPrice}}</text> 
+            </view> -->
+          </view>
+
+          <view style='padding:10rpx 20rpx; background-color: #FF7F27; color:#FFF; text-align: center;'>立即抢购 ></view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

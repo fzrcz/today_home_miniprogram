@@ -1,0 +1,84 @@
+/* pages/recommend/searchPage/searchPage.wxss */
+
+.input-box {
+  padding: 10rpx 30rpx;
+}
+
+.input-text {
+  background: #f2f2f2;
+  width: 74%;
+  height: 60rpx;
+  border-radius: 60rpx;
+  padding: 6rpx 30rpx 6rpx 30rpx;
+}
+
+.his-box {
+  padding: 30rpx 40rpx;
+}
+
+.delete {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.his-list-box {
+  margin: 30rpx 0;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.his-list {
+  background: #f2f2f2;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  color: #797979;
+  margin: 0 20rpx 20rpx 0;
+}
+.product-list {
+  background: #fff;
+  box-shadow: -2rpx 4rpx 8rpx 4rpx #e2e2e2;
+  border-radius: 10rpx;
+  padding: 14rpx;
+  display: flex;
+  margin: 0 0 30rpx 0;
+}
+
+.pro-list-l {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.pro-list-l image {
+  width: 100%;
+  height: 100%;
+}
+
+.pro-list-r {
+  width: 72%;
+  padding: 0 0 0 20rpx;
+  position: relative;
+}
+
+.col-mm-t {
+  color: #585858;
+}
+
+.pro-list-r-b {
+  width: 90%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.col-mm-r {
+  color: #ff0030;
+}
+
+.col-mm-g {
+  color: #808080;
+}
+.no-data{
+  margin-top: 150rpx;
+}

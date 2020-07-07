@@ -1,0 +1,24 @@
+/* pages/mine/generateAddMiniCode/generateAddMiniCode.wxss */
+.content{
+  padding: 30rpx;
+}
+.ad-list{
+  padding: 20rpx 0;
+}
+.ad-input{
+  border: 2rpx solid #ccd;
+}
+.ad-title{
+  width: 24%;
+}
+.ad-button{
+  width: 40%;
+  margin-top: 30rpx;
+  background: #f60;
+  color: #fff;
+}
+
+.shengcheng{
+  width: 600rpx;
+  height: 600rpx;
+}

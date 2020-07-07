@@ -1,0 +1,3 @@
+<!--pages/recommend/defendVirus/defendVirus.wxml-->
+<image wx:for='{{srcList}}' style="width:750rpx" mode='widthFix' src="{{item}}" wx:key='*this'></image>
+<!-- <image class="size" mode='aspectFill' src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/banner/defendVirusDetail.jpg"></image> -->

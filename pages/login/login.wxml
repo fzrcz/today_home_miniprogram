@@ -1,0 +1,28 @@
+
+<view class="container backImg" style='height:100%; '>
+  <scroll-view class="page-bd" > 
+    <view style='height:600rpx;text-align:center;'>
+      <view style='padding-top:150rpx;'>
+         <image style='width:192rpx;height:192rpx;' src='/image/logo1.png'> </image>
+      </view>
+      <view style='padding-top:40rpx;'>
+         <image style='width:360rpx;height:116rpx;' src='https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/logo2.png'> </image>
+      </view>
+    </view>
+      <view class='flex-y font-36' style='padding:75rpx; font-weight:500;'>
+        <view class='font-36'>该程序将获取以下授权：</view> 
+        <view class='font-32' style='margin:20rpx 0; color:#666'>*获得您微信绑定的手机号码</view>
+
+        <view class='font-32 flex-x flex-center-y' style='height:36rpx; margin-top:20rpx;'>
+          <view bindtap='checkbox'>
+            <checkbox style='transform: scale(0.7,0.7);' value="1" checked="{{checkboxVal}}" />
+          </view>
+          <view style='text-align:left;'>
+            同意并遵守<text style='color:#ff7f27' bindtap='toRule'>《今日到家服务条款》</text>
+          </view>
+        </view>
+        <button class='btn-style-fill' style='width:100%; margin-top:30rpx; padding: 0; color:#fff;' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber' >允许</button>
+      </view>
+  </scroll-view>
+</view>
+

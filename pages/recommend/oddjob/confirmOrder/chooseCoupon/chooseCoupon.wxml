@@ -1,0 +1,78 @@
+<!--pages/recommend/oddjob/confirmOrder/chooseCoupon/chooseCoupon.wxml-->
+
+<!-- 可用优惠券 -->
+<view wx:if='{{couponList.length != 0}}' class="coupon-list">
+  <radio-group class="radio-group" bindchange="radioChange">
+    <!-- 循环体 -->
+    <view wx:for='{{canUserCouponList}}' wx:if='{{item.flag == true}}' wx:key='id' class="radio-group-list">
+      <view class="wrapper">
+        <view class="flex-center-y">
+          <view class="content">
+            <view class="money">
+              <text>¥</text>{{item.couponsLimit}}
+            </view>
+            <view class="font-24 title">满{{item.targetAmount}}元使用</view>
+          </view>
+        </view>
+        <view class="split-line"></view>
+        <view class="tip">
+          <view class="flex-between">
+            <view class="font-32" wx:if='{{item.couponsType==1}}'>全品类</view>
+            <view class="font-32" wx:if='{{item.couponsType==2}}'>{{item.name}}</view>
+            <view class="font-32" wx:if='{{item.couponsType==3}}'>{{item.productName}}</view>
+          </view>
+          <view class="conditions font-24">
+            <view>{{item.couponsTypeName}}</view>
+            <view>有效期至：{{item.validTime}}</view>
+          </view>
+        </view>
+      </view>
+      <label class="radio">
+        <radio class="radio" value="{{index}}" />
+      </label>
+    </view>
+
+  </radio-group>
+
+  <!-- 不可以用优惠券 -->
+  <view wx:for='{{canNotUserCouponList}}' wx:if='{{item.flag == false}}' wx:key='id' class="not-wrapper">
+    <view class="wrapper-top">
+      <view class="flex-center-y">
+        <view class="content">
+          <view class="money col-co-m">
+            <text>¥</text>{{item.couponsLimit}}
+          </view>
+          <view class="font-24 title col-co-t">满{{item.targetAmount}}元使用</view>
+        </view>
+      </view>
+      <view class="not-split-line col-co-l"></view>
+      <view class="tip">
+        <view class="flex-between">
+          <view class="font-32 col-co-n" wx:if='{{item.couponsType==1}}'>全品类</view>
+          <view class="font-32 col-co-n" wx:if='{{item.couponsType==2}}'>{{item.name}}</view>
+          <view class="font-32 col-co-n" wx:if='{{item.couponsType==3}}'>{{item.productName}}</view>
+        </view>
+        <view class="conditions font-24 col-co-t">
+          <view>{{item.couponsTypeName}}</view>
+          <view>有效期至：{{item.validTime}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="use-rule flex-center-y">
+      <view class="warning-icon">
+        <image src="/image/warning01.png"></image>
+      </view>
+      <view class="font-24 rule-text">{{item.memo}}</view>
+    </view>
+  </view>
+
+
+</view>
+<view wx:else class="no-data-box">
+  <image src='/image/no-data1.png' class="no-data"></image>
+</view>
+
+
+<view class="clip-coupons">
+  <button bindtap="userCoupon">使用</button>
+</view>

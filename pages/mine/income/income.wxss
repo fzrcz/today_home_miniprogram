@@ -1,0 +1,252 @@
+/* pages/mime/income/income.wxss */
+
+page {
+  background: #e5e5e5;
+  color: #4e4e4e;
+}
+
+.in-come {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.in-come-t {
+  margin: 20rpx 0;
+  box-sizing: border-box;
+  /* border: 2rpx #d5d5d5 solid; */
+  border-radius: 20rpx;
+  /* box-shadow: 0 2rpx 2rpx 2rpx #d5d5d5; */
+  height: 400rpx;
+}
+
+.understand {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 6rpx;
+  top: 6rpx;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.understand image {
+  width: 14rpx;
+  height: 20rpx;
+}
+
+.flex-t {
+  padding: 30rpx;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20rpx;
+}
+
+.flex-l {
+  width: 50%;
+}
+
+.flex-r {
+  width: 50%;
+  position: absolute;
+  top: 30rpx;
+  bottom: 44rpx;
+  right: 30rpx;
+}
+
+.cash {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  background: #fffa72;
+  /* background:linear-gradient(#ffe400 0%, #fffa72 100%); */
+  box-shadow: 0 4rpx 8rpx 0 #fe6a1d;
+}
+
+.account {
+  position: absolute;
+  right: 20rpx;
+  bottom: 0;
+  background: #fff;
+  color: #ff744c;
+}
+
+.flex-t-list {
+  width: 63%;
+}
+
+.flex-b {
+  /* padding: 40rpx 0; */
+}
+
+.flex-b-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 40rpx;
+  /* padding: 0 0 10rpx 0; */
+}
+
+.flex-r-w {
+  width: 130rpx;
+  border-radius: 100rpx;
+  text-align: center;
+  padding: 6rpx 0;
+}
+
+/* 账户余额 */
+
+.flex-tab {
+  display: flex;
+  height: 67rpx;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 0 40rpx 0;
+  background: #9bc3f7;
+  color: #fff;
+  border-radius: 16rpx 16rpx 0 0;
+}
+
+.in-come-b {
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 8rpx 4rpx #ddd;
+}
+
+.tab-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 20rpx 0;
+}
+
+.tab-list-1 {
+  padding: 0 0 0 0;
+}
+
+.flex-tab-l {
+  width: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.flex-tab-i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-tab-p {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.flex-tab-p progress {
+  widows: 90%;
+}
+
+.flex-tab-i image {
+  width: 94rpx;
+  height: 94rpx;
+  margin: 0 20rpx;
+  border-radius: 50%;
+}
+
+.flex-tab-ii image {
+  width: 44rpx;
+  height: 44rpx;
+  margin: 0 20rpx;
+  border-radius: 50%;
+}
+
+.flex-tab-r {
+  padding: 0 0 0 20rpx;
+}
+
+.ranking-box {
+  padding: 0 30rpx;
+  height: 696rpx;
+}
+
+.no-data {
+  width: 276rpx;
+  height: 288rpx;
+}
+
+.no-ranking {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ranking-in {
+  width: 62rpx;
+  height: 76rpx;
+  display: flex;
+  align-items: center;
+}
+
+.ranking-in text {
+  width: 100%;
+  text-align: center;
+}
+
+.ranking-in image {
+  width: 62rpx;
+  height: 76rpx;
+}
+
+/* 切换 */
+
+.onTab {
+  background: #f2f0f1;
+  color: #2c2c2c;
+  border-radius: 16rpx 16rpx 0 0;
+}
+
+.item-tap {
+  width: 100%;
+  height: 67rpx;
+  line-height: 67rpx;
+  text-align: center;
+  border-radius: 16rpx 16rpx 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+/* 前三 */
+
+.first-three {
+  border-bottom: 2rpx solid #d5d5d5;
+}
+
+.four-late {
+  padding: 20rpx 0 0 0;
+}
+
+.riank-list {
+  width: 26rpx;
+  height: 26rpx;
+  margin: 0 40rpx 0 0;
+  display: block;
+}
+
+.sleep {
+  width: 26rpx;
+  height: 26rpx;
+  display: block;
+  margin: 0 20rpx 0 0;
+}
+
+.col-b-d {
+  background: #f2f0f1;
+}
+
+.col-c-white {
+  color: #fff;
+}

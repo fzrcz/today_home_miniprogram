@@ -1,0 +1,82 @@
+/* pages/mine/income/confirmGetCash/confirmGetCash.wxss */
+
+page {
+  background: #e6e6e6;
+}
+
+.change-box {
+  width: 86%;
+  margin: 30rpx auto 0 auto;
+}
+
+.change-t {
+  height: 104rpx;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx 20rpx 0 0;
+}
+
+.change-t text {
+  font-size: 30rpx;
+  color: #b8b8b8;
+  font-weight: bold;
+}
+
+.cash-t {
+  font-size: 28rpx;
+  color: #aaa;
+  padding: 40rpx 0;
+}
+
+.change-b {
+  background: #fff;
+  padding: 0 30rpx;
+  border-radius: 0 0 20rpx 20rpx;
+}
+
+.cash-input {
+  display: flex;
+  align-items: center;
+  padding: 0 0 30rpx 0;
+  border-bottom: 2rpx #f5f5f5 solid;
+}
+
+.list-input {
+  font-size: 44rpx;
+  padding: 0 0 0 50rpx;
+  font-weight: bold;
+}
+
+.flex-r-w {
+  background: #1bb456;
+  color: #fff;
+  letter-spacing: 20rpx;
+  margin: 60rpx 0 0 0;
+}
+
+.cash-change {
+  padding: 10rpx 0 0 0;
+}
+
+.button-hover {
+  color: rgba(0, 0, 0, 0);
+}
+
+.flex-get {
+  text-align: center;
+  padding: 20rpx 0 40rpx 0;
+  color: #82a7ce;
+}
+
+.wx-pay {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 20rpx;
+}
+
+.tip{
+  margin: 20rpx 0rpx 0rpx 0rpx;
+}

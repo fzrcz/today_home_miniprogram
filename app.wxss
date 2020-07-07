@@ -1,0 +1,126 @@
+.container {
+  padding: 0 30rpx;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-center-y {
+  display: flex;
+  align-items: center;
+}
+
+.flex-between-x {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-y {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-x {
+  display: flex;
+  flex-direction: row;
+}
+
+.theme-color {
+  color: #ff7f27;
+}
+
+.font-46 {
+  font-size: 46rpx;
+}
+
+.font-40 {
+  font-size: 40rpx;
+}
+
+.font-36 {
+  font-size: 36rpx;
+}
+
+.font-30 {
+  font-size: 30rpx;
+}
+
+.font-32 {
+  font-size: 32rpx;
+}
+
+.font-28 {
+  font-size: 28rpx;
+}
+
+.font-26 {
+  font-size: 26rpx;
+}
+
+.font-24 {
+  font-size: 24rpx;
+}
+.font-22 {
+  font-size: 22rpx;
+}
+
+.font-20 {
+  font-size: 20rpx;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.breakline {
+  clear: both;
+  height: 20rpx;
+  width: 100%;
+  background-color: #f6f6f7;
+}
+
+.btn-style {
+  padding: 6rpx 38rpx;
+  border: 2rpx #ff7f27 solid;
+  border-radius: 10rpx;
+  color: #ff7f27;
+  text-align: center;
+}
+
+.btn-style-grey {
+  padding: 6rpx 38rpx;
+  border: 2rpx #80848f solid;
+  border-radius: 10rpx;
+  color: #80848f;
+  text-align: center;
+}
+
+.btn-style-fill {
+  padding: 20rpx 38rpx;
+  border-radius: 10rpx;
+  background-color: #ff7f27;
+  border: 2rpx #ff7f27 solid;
+  color: #fff;
+  text-align: center;
+}

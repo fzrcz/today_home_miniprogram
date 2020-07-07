@@ -1,0 +1,125 @@
+<!--pages/mine/income/balanceDetails/balanceDetails.wxml-->
+<view class="content">
+
+  <view class="flex-tab tucuui">
+    <view class="item-tap {{currentTab==0 ? 'onTab' : ''}}" data-current="0" bindtap="swichTab0">全部</view>
+    <view class="item-tap {{currentTab==1 ? 'onTab' : ''}}" data-current="1" bindtap="swichTab1">收入</view>
+    <view class="item-tap {{currentTab==2 ? 'onTab' : ''}}" data-current="2" bindtap="swichTab2">支出</view>
+  </view>
+<view style="height:80rpx"></view>
+  <view class="details-box">
+    <!-- 全部 -->
+    <scroll-view scroll-y="true" style="height:100%;position: relative;" scroll-into-view="{{toView}}" scroll-with-animation="true">
+      <view hidden='{{currentTab !=0}}' data-index='1'>
+        <!-- <view wx:if='{{allBalanceDetailList.length == 0}}'>
+          暂无数据...
+        </view> -->
+        <view class="no-data-box" wx:if='{{allBalanceDetailList.length == 0}}'>
+          <image class="no-data" src="/image/no-data1.png"></image>
+        </view>
+        <view wx:else>
+          <view wx:for="{{allBalanceDetailList}}" wx:key='id'>
+            <view class="details-list">
+              <view class="details-list-t">
+                <view wx:if='{{item.businessType == 1}}' class="pay-method">本人收入</view>
+                <view wx:if='{{item.businessType == 2 || item.businessType == 3}}' class="pay-method">{{item.inviteeName}}</view>
+                <view wx:if='{{item.businessType == 4}}' class="pay-method">提现支出</view>
+                <!-- <view wx:if='{{item.businessType == 5}}' class="pay-method">{{item.memo||item.accountBatch.remark}}</view> -->
+                <view wx:if='{{item.businessType == 5}}' class="pay-method">{{item.accountBatch.remark}}</view>
+                <view wx:if='{{item.businessType == 6}}' class="pay-method">电子券支付</view>
+                
+                <view wx:if='{{item.businessType == 3}}' style="float:right">{{item.productName?item.productName:'下单商品'}}</view>
+                <view wx:if='{{item.businessType == 6}}' style="float:right">{{item.memberProductName?item.memberProductName:'下单商品'}}</view>
+
+              </view>
+              <view class="details-list-t">
+              <view class="pay-time">{{item.traceTime}}</view>
+                <!-- <view class="blance">余额：{{item.cashLeftBalance}}</view> -->
+                <view style="float:right" wx:if='{{item.traceType == 1}}' class="pay-price" style="color: red">+{{item.traceMoney}}</view>
+                <view style="float:right" wx:else class="pay-price">-{{item.traceMoney}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="no-data-more" wx:if='{{noDataList1 == 0}}'>没有更多数据啦...</view>
+      </view>
+    </scroll-view>
+
+    <!-- 收入 -->
+    <scroll-view scroll-y="true" style="height:100%;position: relative;" scroll-into-view="{{toView}}" scroll-with-animation="true">
+      <view hidden='{{currentTab !=1}}' data-index='2'>
+        <!-- <view wx:if='{{inComeBalanceDetailList.length == 0}}'>
+          暂无数据...
+        </view> -->
+        <view class="no-data-box" wx:if='{{inComeBalanceDetailList.length == 0}}'>
+          <image class="no-data" src="/image/no-data1.png"></image>
+        </view>
+        <view wx:else>
+          <view wx:for="{{inComeBalanceDetailList}}" wx:key='id'>
+            <view class="details-list">
+              <view class="details-list-t">
+
+                <view wx:if='{{item.businessType == 1}}' class="pay-method">本人收入</view>
+                <view wx:if='{{item.businessType == 2 || item.businessType == 3}}' class="pay-method">{{item.inviteeName}}</view>
+                <view wx:if='{{item.businessType == 4}}' class="pay-method">提现支出</view>
+                <view wx:if='{{item.businessType == 5}}' class="pay-method">{{item.memo||item.accountBatch.remark}}</view>
+
+                <view wx:if='{{item.businessType != 5}}' style="float:right">{{item.productName?item.productName:"下单商品"}}</view>
+
+
+              </view>
+              <view class="details-list-t">
+                <view class="pay-time">{{item.traceTime}}</view>
+                <!-- <view class="blance">余额：{{item.cashLeftBalance}}</view> -->
+                <view wx:if='{{item.traceType == 1}}' class="pay-price">+{{item.traceMoney}}</view>
+                <view wx:else class="pay-price">-{{item.traceMoney}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="no-data-more" wx:if='{{noDataList2 == 0}}'>没有更多数据啦...</view>
+      </view>
+    </scroll-view>
+
+    <!-- 支出 -->
+    <scroll-view scroll-y="true" style="height:100%;position: relative;" scroll-into-view="{{toView}}" scroll-with-animation="true">
+      <view hidden='{{currentTab !=2}}' data-index='3'>
+        <!-- <view wx:if='{{outComeBalanceDetailList.length == 0}}'>
+          暂无数据...
+        </view> -->
+        <view class="no-data-box" wx:if='{{outComeBalanceDetailList.length == 0}}'>
+          <image class="no-data" src="/image/no-data1.png"></image>
+        </view>
+        <view wx:else>
+          <view wx:for="{{outComeBalanceDetailList}}" wx:key='id'>
+            <view class="details-list">
+              <view class="details-list-t">
+
+                <!-- <view class="pay-method">{{item.invitee}}</view> -->
+                <view wx:if='{{item.businessType == 1}}' class="pay-method">本人收入</view>
+                <view wx:if='{{item.businessType == 2 || item.businessType == 3}}' class="pay-method">{{item.inviteeName}}</view>
+                <view wx:if='{{item.businessType == 4}}' class="pay-method">提现支出</view>
+                <view wx:if='{{item.businessType == 6}}' class="pay-method">电子券支付</view>
+
+                <!-- <view style="float:right" wx:if="{{item.memo!=null}}">{{item.memo}}</view>
+                <view style="float:right" wx:else>{{item.accountBatch.remark}}</view> -->
+
+                <!-- <view wx:if='{{item.businessType != 5}}' style="float:right">{{item.productName?item.productName:"下单商品"}}</view> -->
+                <view wx:if='{{item.businessType != 4}}' style="float:right">{{item.productName?item.productName:"下单商品"}}</view>
+
+                
+              </view>
+              <view class="details-list-t">
+                <view class="pay-time">{{item.traceTime}}</view>
+                <!-- <view class="blance">余额：{{item.cashLeftBalance}}</view> -->
+                <view wx:if='{{item.traceType == 1}}' class="pay-price">+{{item.traceMoney}}</view>
+                <view wx:else class="pay-price">-{{item.traceMoney}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="no-data-more" wx:if='{{noDataList3 == 0}}'>没有更多数据啦...</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

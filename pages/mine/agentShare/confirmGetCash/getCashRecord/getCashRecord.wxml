@@ -1,0 +1,38 @@
+<!--pages/mine/income/confirmGetCash/getCashRecord/getCashRecord.wxml-->
+<view class="content">
+  <view class="content-detail">
+    <view class="flex-tab">
+      <view class="item-tap pay-method-time">时间</view>
+      <view class="item-tap pay-method-go">去向</view>
+      <view class="item-tap pay-method-go">金额</view>
+      <view class="item-tap pay-method-go">状态</view>
+    </view>
+
+    <view class="details-box">
+      <!-- 全部 -->
+      <scroll-view scroll-y="true" style="height:100%;position: relative;" scroll-into-view="{{toView}}" scroll-with-animation="true">
+        <view wx:if='{{getCashList.length != 0}}'>
+          <view wx:for="{{getCashList}}" wx:key='id'>
+            <view class="details-list">
+              <view class="details-list-t">
+                <view class="pay-method pay-method-time">{{item.createTime}}</view>
+                <view class="pay-method pay-method-go">微信零钱</view>
+                <view class="pay-price pay-method-go">{{item.traceMoney}}</view>
+                <view wx:if='{{item.isCheck == 0}}' class="pay-method pay-method-go">审核中</view>
+                <view wx:if='{{item.isCheck == 1 || item.isCheck == 3}}' class="pay-method pay-method-go">提现中</view>
+                <view wx:if='{{item.isCheck == 2}}' class="pay-method pay-method-go">提现失败</view>
+                <view wx:if='{{item.isCheck == 4}}' class="pay-method pay-method-go">提现成功</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- <view wx:else>暂无数据...</view> -->
+        <view wx:else class="no-data-box">
+          <image class="no-data" src="/image/no-data1.png"></image>
+        </view>
+        <view wx:if='{{noDataList == 0}}' class="no-data-more">没有更多数据啦...</view>
+      </scroll-view>
+    </view>
+  </view>
+
+</view>
