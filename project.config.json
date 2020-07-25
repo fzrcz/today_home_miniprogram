@@ -1,182 +1,187 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"postcss": false,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.6.5",
-	"appid": "wxfb9f738acf040e2f",
-	"projectname": "today_miniprogram",
-	"cloudfunctionTemplateRoot": "",
-	"watchOptions": {
-		"ignore": []
-	},
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"scripts": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": 6,
-			"list": [
-				{
-					"id": -1,
-					"name": "订单",
-					"pathName": "pages/order/order",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/mine/mine",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "优惠券",
-					"pathName": "pages/mine/myCoupon/myCoupon",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "保洁",
-					"pathName": "pages/recommend/oddjob/hourCleaning/hourCleaning",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/mine",
-					"pathName": "pages/mine/mine",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/cashCoupon/cashCoupon",
-					"pathName": "pages/mine/cashCoupon/cashCoupon",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "pages/classification/classification",
-					"pathName": "pages/classification/classification",
-					"query": "id=123445ddd",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/share/share",
-					"pathName": "pages/mine/share/share",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/wantAgent/wantAgent",
-					"pathName": "pages/mine/wantAgent/wantAgent",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 9,
-					"name": "pages/mine/agentShare/agentShare",
-					"pathName": "pages/mine/agentShare/agentShare",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/agentShare/income/income",
-					"pathName": "pages/mine/agentShare/income/income",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/myClient/myInvitation/myInvitation",
-					"pathName": "pages/mine/myClient/myInvitation/myInvitation",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/share/share",
-					"pathName": "pages/mine/share/share",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/agentShare/income/income",
-					"pathName": "pages/mine/agentShare/income/income",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "代理商邀请列表",
-					"pathName": "pages/mine/myClient/agentMyInvitationList/myInvitation",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "代理商佣金列表",
-					"pathName": "pages/mine/myClient/agentMyInvitation/myInvitation",
-					"query": "",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": false,
+    "postcss": false,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.6.5",
+  "appid": "wxfb9f738acf040e2f",
+  "projectname": "today_miniprogram",
+  "cloudfunctionTemplateRoot": "",
+  "watchOptions": {
+    "ignore": []
+  },
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": 6,
+      "list": [
+        {
+          "id": -1,
+          "name": "订单",
+          "pathName": "pages/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/mine/mine",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "优惠券",
+          "pathName": "pages/mine/myCoupon/myCoupon",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "保洁",
+          "pathName": "pages/recommend/oddjob/hourCleaning/hourCleaning",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/mine",
+          "pathName": "pages/mine/mine",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/cashCoupon/cashCoupon",
+          "pathName": "pages/mine/cashCoupon/cashCoupon",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 6,
+          "name": "pages/classification/classification",
+          "pathName": "pages/classification/classification",
+          "query": "id=123445ddd",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/share/share",
+          "pathName": "pages/mine/share/share",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/wantAgent/wantAgent",
+          "pathName": "pages/mine/wantAgent/wantAgent",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 9,
+          "name": "pages/mine/agentShare/agentShare",
+          "pathName": "pages/mine/agentShare/agentShare",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/agentShare/income/income",
+          "pathName": "pages/mine/agentShare/income/income",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/myClient/myInvitation/myInvitation",
+          "pathName": "pages/mine/myClient/myInvitation/myInvitation",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/share/share",
+          "pathName": "pages/mine/share/share",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/agentShare/income/income",
+          "pathName": "pages/mine/agentShare/income/income",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "代理商邀请列表",
+          "pathName": "pages/mine/myClient/agentMyInvitationList/myInvitation",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "代理商佣金列表",
+          "pathName": "pages/mine/myClient/agentMyInvitation/myInvitation",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
