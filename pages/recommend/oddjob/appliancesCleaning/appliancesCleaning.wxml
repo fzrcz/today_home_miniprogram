@@ -8,7 +8,7 @@
       <view class='flex-y' style='padding:20rpx 0 20rpx 20rpx; line-height:50rpx; width:470rpx;'>
         <view wx:if='{{item.activityId}}' class='font-bold font-32'>
           <text style='background:#FF7F27; color:#FFF; padding:10rpx; font-size:24rpx; margin-right:10rpx; font-weight:bold;'>{{item.activityTypeName}}</text>{{item.activityRemark}}</view>
-        <view wx:else class='font-bold font-32'>{{item.description}}</view>
+        <view wx:else class='font-bold font-32'>{{item.NAME}}</view>
         <view class='flex-between' style='align-items:flex-end; margin-top:20rpx;'>
           <!-- 展示现价，原价 -->
           <view wx:if='{{item.price == item.originalPrice}}' class='font-bold theme-color font-40'>￥{{item.price}}</view>
