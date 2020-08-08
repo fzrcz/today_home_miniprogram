@@ -1,6 +1,7 @@
 // pages/classification/classification.js
 var app = getApp();
 var util = require('../../utils/util.js')
+let WxNotificationCenter = require('../../utils/WxNotificationCenter')
 
 Page({
 
@@ -8,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShowCompany: false,
     serverlist: [{
         imageUrl: "/image/hourCleaning.png",
         description: "钟点保洁",
@@ -68,6 +70,7 @@ Page({
   onLoad: function(options) {
     console.log('调试二维码')
     console.log(options)
+    WxNotificationCenter.addNotification('categoryUpdate', this.categoryNotification, this)
     this.setData({
       agentId: options.scene
     })
@@ -86,7 +89,10 @@ Page({
     })
 
   },
-  
+  categoryNotification() {
+    console.log('分类刷新')
+    this.getProductList()
+  },
 
   // 侧边栏切换
   goServer: function(e) {
@@ -182,6 +188,11 @@ Page({
    */
   onShow: function() {
     console.log("分类onshow")
+    if(wx.getStorageSync('selectCompany')) {
+      this.setData({
+        isShowCompany: false
+      })
+    }
     if(this.data.agentId){
       let scene = decodeURIComponent(this.data.agentId);
       wx.setStorageSync('invitationAgentId', scene)
@@ -205,7 +216,8 @@ Page({
     var data = {
       showType: that.data.showType,
       activityStatus: 'miniapp',
-      status: 'put'
+      status: 'put',
+      companyId: wx.getStorageSync('selectCompany').id
     }
 
     if(wx.getStorageSync('invitationAgentId')) {

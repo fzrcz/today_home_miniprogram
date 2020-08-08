@@ -85,3 +85,5 @@
 </view>
 
 <maskModal></maskModal>
+
+<selectModal show="{{isShowCompany}}"></selectModal>

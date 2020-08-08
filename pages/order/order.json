@@ -7,6 +7,7 @@
     "i-spin": "/iview/spin/index",
     "i-drawer": "/iview/drawer/index",
     "i-action-sheet": "/iview/action-sheet/index",
-    "i-modal": "/iview/modal/index"
+    "i-modal": "/iview/modal/index",
+    "selectModal": "/common/selectModal/index"
   }
 }

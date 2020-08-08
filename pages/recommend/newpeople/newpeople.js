@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShowCompany: false
   },
 
   /**
@@ -22,6 +23,11 @@ Page({
  */
   onShow: function () {
     var that = this;
+    if(wx.getStorageSync('selectCompany')) {
+      this.setData({
+        isShowCompany: false
+      })
+    }
     that.onLoad();
 
     // 轮播图查询
@@ -33,6 +39,8 @@ Page({
     var that = this;
     var data = {
       page: 2,// 2.查询的是新人专享的轮播图
+      companyId: wx.getStorageSync('selectCompany').id
+
     }
     util.reqLoading(app.globalData.apiUrl, 'MS01001', data, 'POST', '加载中...', function (res) {
       console.log("新人专享轮播图查询，返回：", res);
@@ -60,7 +68,9 @@ Page({
       // isNewPeople:是否是新人，1 是新人，只去查询新人专享的商品 0 不是新人
       isNewPeople: 1,
       activityStatus: 'miniapp',
-      status: 'put'
+      status: 'put',
+      companyId: wx.getStorageSync('selectCompany').id
+
     }
     util.doGet("/product/queryList", data, function (res) {
 

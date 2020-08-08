@@ -20,14 +20,14 @@ Page({
     if (!area){
       area = e.currentTarget.dataset.areaid
     }
-    if (area.indexOf("仓山区") == -1 && area.indexOf("鼓楼区") == -1 && area.indexOf("台江区") == -1 && area.indexOf("晋安区") == -1 && area.indexOf("闽侯县") == -1){
-      wx.showToast({
-        title: '不在服务范围内！',
-        icon: 'none',
-        duration: 2000
-      })
-      return false
-    }
+    // if (area.indexOf("仓山区") == -1 && area.indexOf("鼓楼区") == -1 && area.indexOf("台江区") == -1 && area.indexOf("晋安区") == -1 && area.indexOf("闽侯县") == -1){
+    //   wx.showToast({
+    //     title: '不在服务范围内！',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    //   return false
+    // }
 
     wx.setStorageSync("area", e.currentTarget.dataset.area);
     wx.setStorageSync("address", e.currentTarget.dataset.address);

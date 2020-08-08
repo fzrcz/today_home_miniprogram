@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "maskModal":"/common/maskModal/maskModal"
+    "maskModal":"/common/maskModal/maskModal",
+    "selectModal": "/common/selectModal/index"
   }
 }

@@ -5,7 +5,8 @@
   <swiper previous-margin autoplay="true" interval="3000" style='height:{{detail.productFileBanner[0].fileHeight}}rpx;'>
     <block wx:for="{{detail.productFileBanner}}" wx:key="id">
       <swiper-item>
-        <image style='width:{{item.fileWidth}}rpx; height:{{item.fileHeight}}rpx;' src="{{item.filePath}}" />
+        <!-- <image style='width:{{item.fileWidth}}rpx; height:{{item.fileHeight}}rpx;' src="{{item.filePath}}" /> -->
+        <image style='width:100%;' src="{{item.filePath}}" />
       </swiper-item>
     </block>
   </swiper>
@@ -290,6 +291,7 @@
   </view>
 </view>
 
+<selectModal show="{{isShowCompany}}"></selectModal>
 
 <!-- 登录 -->
 <!-- <view catchtouchmove="ture">

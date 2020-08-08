@@ -5,7 +5,8 @@
     "i-col": "/iview/col/index",
     "i-cell-group": "/iview/cell-group/index",
     "i-cell": "/iview/cell/index",
-    "i-modal": "/iview/modal/index"
+    "i-modal": "/iview/modal/index",
+    "selectModal": "/common/selectModal/index"
   },
   "enablePullDownRefresh": true,
   "navigationStyle": "custom"

@@ -27,6 +27,7 @@ Page({
         accountId: app.data.accountId,
         // businessTypeId: that.data.businessTypeId,
         showType: that.data.showType,
+        companyId: wx.getStorageSync('selectCompany').id
 
       }
       util.reqLoading(app.globalData.apiUrl, 'MS00206', data, 'POST', '加载中...', function (res) {
@@ -58,7 +59,8 @@ Page({
       // businessTypeId: that.data.businessTypeId,
       showType: that.data.showType,
       status: 'put',
-      activityStatus: 'miniapp'
+      activityStatus: 'miniapp',
+      companyId: wx.getStorageSync('selectCompany').id
     }
     util.doGet("/product/queryList", data, function (res) {
       that.setData({

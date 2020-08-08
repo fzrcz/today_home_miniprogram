@@ -7,7 +7,8 @@
     <view class="flex-between search-box">
       <view class="flex-center-y">
         <image class="address-icon" src="/image/location.png"></image>
-        <view class="city font-32">{{tools.sub(city)}}</view>
+        <view class="city font-32" bind:tap="toCompany" wx:if="{{selectCompany}}">{{tools.sub(city)}} - {{selectCompany.name}}</view>
+        <view class="city font-32" bind:tap="toCompany" wx:else>{{tools.sub(city)}}</view>
       </view>
       <view class="font-26 flex-center"style="color:#a6a6a6">已服务13870+名用户</view>
       <!-- <view class="search flex-center" bindtap="toSearchPage">
@@ -375,6 +376,9 @@
 
 <!-- 优惠券及登录的组件 -->
 <maskModal></maskModal>
+
+<!-- 分店选择 -->
+<selectModal show="{{isShowCompany}}"></selectModal>
 
 <!-- 优惠券弹窗 -->
 <!-- <view> -->

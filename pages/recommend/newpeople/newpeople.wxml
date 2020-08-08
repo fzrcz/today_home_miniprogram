@@ -52,3 +52,4 @@
     </view>
   </block>
 </view>
+<selectModal show="{{isShowCompany}}"></selectModal>

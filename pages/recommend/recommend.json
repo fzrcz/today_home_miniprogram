@@ -11,6 +11,7 @@
     "i-spin": "/iview/spin/index",
     "i-icon": "/iview/icon/index",
     "i-notice-bar": "/iview/notice-bar/index",
-    "maskModal": "/common/maskModal/maskModal"
+    "maskModal": "/common/maskModal/maskModal",
+    "selectModal": "/common/selectModal/index"
   }
 }

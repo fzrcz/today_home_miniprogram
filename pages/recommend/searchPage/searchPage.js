@@ -111,7 +111,8 @@ Page({
     var data = {
       name: searchContent,
       activityStatus: 'miniapp',
-      status: 'put'
+      status: 'put',
+      companyId: wx.getStorageSync('selectCompany').id
     }
     util.doGet("/product/queryList", data, function(res) {
       console.log('搜索列表：');

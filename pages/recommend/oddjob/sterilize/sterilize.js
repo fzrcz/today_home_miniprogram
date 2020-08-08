@@ -15,6 +15,8 @@ Page({
         accountId: app.data.accountId,
         // businessTypeId: 6,
         showType: that.data.showType,
+        companyId: wx.getStorageSync('selectCompany').id
+
       }
       console.log("保洁列表查询优惠价钱传参：")
       console.log(data)
@@ -37,7 +39,8 @@ Page({
       // businessTypeId: that.data.businessTypeId,
       showType: that.data.showType,
       activityStatus: 'miniapp',
-      status: 'put'
+      status: 'put',
+      companyId: wx.getStorageSync('selectCompany').id
     }
     util.doGet("/product/queryList", data, function (res) {
       console.log('保洁列表页：')

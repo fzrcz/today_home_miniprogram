@@ -2,8 +2,9 @@ var app = getApp();
 // 测试
 // var baseUrl = 'https://weixin.51jrdj.com/home-service'
 // var baseUrl = 'https://test443.51jrdj.com/home-service2.0'
-//  var baseUrl = 'http://192.168.0.102:9090/home-service2.0'; // 测试
-//  var baseUrl = 'https://weixin.51jrdj.com/home-service'; // 测试
+//  var baseUrl = 'http://192.168.0.20:8081/home-service2.0';
+
+// var baseUrl = 'https://test443.91jrdj.com/home-service_test'; // 测试
  var baseUrl = 'https://weixin.51jrdj.com/home-service2.0'; // 正式
 
 // 提示框
@@ -446,10 +447,14 @@ const requestLoading = function(url, params, method, message, success, fail) {
 // fail：失败的回调
 const reqLoading = function(url, busiCode, data, method, message, resultMethod) {
   var _this = this
+  console.log('这里报错了')
+  console.log(app)
+  // console.log(app.data)
+  // console.log(app.data.accountId)
   var params = {
     "requestParam": {
       "requestCode": busiCode,
-      "token": app.data.accountId
+      "token": app ? app.data.accountId : ''
     },
     "pagingInfo": {
       "curPageNum": "",
@@ -487,10 +492,10 @@ const reqLoading = function(url, busiCode, data, method, message, resultMethod) 
           } else {
             console.log('报错：res.data.response为undefined');
           }
-          wx.showModal({
-            title: '提示',
-            content: '系统繁忙,请联系管理员！',
-          })
+          // wx.showModal({
+          //   title: '提示',
+          //   content: '系统繁忙,请联系管理员！',
+          // })
         }
       }
     },

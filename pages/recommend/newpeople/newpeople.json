@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "selectModal": "/common/selectModal/index"
+  }
 }

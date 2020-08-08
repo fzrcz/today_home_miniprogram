@@ -1,6 +1,7 @@
 var util = require('../../utils/util.js')
 const app = getApp();
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+let WxNotificationCenter = require('../../utils/WxNotificationCenter')
 var qqmapsdk;
 var i = 1;
 var j = 1;
@@ -29,6 +30,8 @@ Page({
     colOneHeight: 0,
     colTwoHeight: 0,
     msgCount: 0,
+    selectCompany: {},
+    isShowCompany: false,
     serverlist: [
       {
         imageUrl: "/image/newpoeple.png",
@@ -105,7 +108,8 @@ Page({
     autoplay: false, //是否自动切换	
     indicatordots: false, //是否显示面板指示点
     showView: true, //点击切换
-    currentTab: 0, // tab切换  
+    currentTab: 0, // tab切换 
+    isShowMask: true, 
     // 遮罩层变量
     animationData: "",
     showModalStatus: false,
@@ -116,6 +120,15 @@ Page({
     this.setData({
       current: e.detail.current
     })
+  },
+  toCompany() {
+    console.log('去选择分店')
+    this.setData({
+      isShowCompany: true
+    })
+  },
+  bindPickerChange(e) {
+    console.log(e)
   },
   tapswip(){
     var current=1
@@ -137,6 +150,10 @@ Page({
   },
   //生命周期函数--监听页面加载
   onLoad: function(options) {
+    WxNotificationCenter.addNotification('homeUpdate', this.homeNotification, this)
+    // this.setData({
+    //   isShowCompany: false
+    // })
     app.data.source = 123;
     app.data.parameter = 'kokokoko';
     var that = this;
@@ -215,6 +232,29 @@ Page({
     //   serverlist2: serverlist2
     // })
   },
+  handleMask() {
+    this.setData({
+      isShowMask: false
+    })
+  },
+  homeNotification() {
+    console.log('接收到更新')
+    this.setData({
+      selectCompany: wx.getStorageSync('selectCompany'),
+      isShowCompany: false
+    })
+    this.loadData();
+    this.loadWorkType();
+    this.loadBanner();
+    this.loadInfo();
+    this.getUserLocation();
+    // that.showModal()
+    this.getList();
+    // 加载热门服务
+    this.getHotServiceList();
+    // 轮播图查询
+    this.getRollPicList();
+  },
   // 查询优惠券的方法
   getCouponList: function (status, available) {
     var that = this;
@@ -256,6 +296,24 @@ Page({
     //   //   couponsList: res2.data,
     //   // })
     // })
+    console.log('首页的app')
+    console.log(app)
+    util.doGet("/company/companyList", {}, (res) => {
+      console.log('分店列表：');
+      console.log(res);
+      app.data.companyList = res.data
+      // wx.setStorageSync('companyList', res.data)
+    })
+
+    if(wx.getStorageSync('selectCompany')) {
+      this.setData({
+        selectCompany: wx.getStorageSync('selectCompany'),
+        isShowCompany: false
+      })
+    }
+    //  else {
+    //   
+    // }
 
     if (!app.data.accountId) {
       this.showModalLogin()
@@ -265,6 +323,7 @@ Page({
     that.loadInfo();
     that.getUserLocation();
     that.showModal()
+    
 
     // 调用是否有优惠券的接口
     // if (app.data.loginStatus == 'login') {
@@ -284,9 +343,11 @@ Page({
 
   // 查询轮播图的方法
   getRollPicList: function(){
+    // debugger
     var that = this;
     var data = {
-      page: 1,// 1.查询的是首页的轮播图
+      // page: 1,// 1.查询的是首页的轮播图
+      companyId: wx.getStorageSync('selectCompany').id
     }
     util.reqLoading(app.globalData.apiUrl, 'MS01001', data, 'POST', '加载中...', function (res) {
       console.log("轮播图查询，返回：", res);
@@ -533,6 +594,7 @@ Page({
       // activityStatus: 'miniapp',
       status: 'nomal',
       platform: 'wechat',
+      companyId: wx.getStorageSync('selectCompany').id
     }
     // util.doGet("/product/queryList", data, function (res) {
     //   console.log(res)
@@ -567,6 +629,8 @@ Page({
       // activityStatus: 'miniapp',
       // status: 'put',
       platform: 'miniapp',
+      companyId: wx.getStorageSync('selectCompany').id
+
     }
     util.doGet("/productRecommend/queryList", data, function(res) {
       console.log('今日特价：');
@@ -660,7 +724,8 @@ Page({
     var data = {
       // employerId:'1',
       offset: that.data.offset,
-      limit: that.data.limit
+      limit: that.data.limit,
+      companyId: wx.getStorageSync('selectCompany').id
     }
     // console.log(22222)
     that.showLoadMore();
@@ -975,6 +1040,8 @@ Page({
 
   //跳转h5页面
   externalLinks: function(e) {
+    console.log('跳转链接')
+    console.log(e)
     var that = this;
     if (!app.data.accountId) {
       wx.navigateTo({

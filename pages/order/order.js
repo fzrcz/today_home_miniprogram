@@ -16,6 +16,7 @@ Page({
       {name:'待评价',num:0},
       {name:'已完成',num:0}
     ],
+    isShowCompany: false,
     //dataList:[],
     // offset: 0,
     // limit: 10,
@@ -111,6 +112,11 @@ Page({
    */
   onShow: function() {
     var that = this;
+    if(wx.getStorageSync('selectCompany')) {
+      this.setData({
+        isShowCompany: false
+      })
+    }
     this.getOrderListnum('')
     // this.getOrderListnum('0')
     // this.getOrderListnum('14,15')
@@ -234,6 +240,7 @@ Page({
       businessTypeId: '6,7,8,9,10,11,12,13,14,15,16,17,18,19,20',
       offset: 0,
       limit: that.data.currentPage * that.data.limit + that.data.limit,
+      companyType: 0
     }
     util.doGet("/business/orders/queryList", data, function(res) {
       wx.hideToast();
@@ -698,6 +705,7 @@ Page({
       stageArr: stage,
       offset: 0,
       limit: that.data.limit,
+      companyType: 0
     }
     // }
     console.log("打印订单的传参：");
@@ -778,6 +786,7 @@ Page({
         stageArr: that.data.stage,
         offset: currentPage * that.data.limit,
         limit: that.data.limit,
+        companyType: 0
       }
       console.log("查询订单的传参：");
       console.log(data);

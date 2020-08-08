@@ -14,7 +14,8 @@ Page({
     isOpenEye: '/image/open-eye.png',
     eyeStatus: 1, // 1:睁眼 2：闭眼
     balance: '---',
-    accountPoint:0
+    accountPoint:0,
+    isShowCompany: false
   },
 
   /**
@@ -39,6 +40,11 @@ Page({
 
     // btn = false
     var that = this;
+    if(wx.getStorageSync('selectCompany')) {
+      this.setData({
+        isShowCompany: false
+      })
+    }
     that.setData({
       role: app.data.userRole,
       loginStatus: app.data.loginStatus,
@@ -330,6 +336,7 @@ Page({
       stageArr: stage,
       offset: 0,
       limit: 999,
+      companyType: 0
     }
     // console.log("查询订单的传参：");
     // console.log(data);

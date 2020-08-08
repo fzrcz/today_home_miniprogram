@@ -32,7 +32,8 @@ Page({
       // businessTypeId: that.data.businessTypeId,
       showType: that.data.showType,
       activityStatus: 'miniapp',
-      status: 'put'
+      status: 'put',
+      companyId: wx.getStorageSync('selectCompany').id
     }
     util.doGet("/product/queryList", data, function(res) {
 
@@ -65,6 +66,7 @@ Page({
         accountId: app.data.accountId,
         // businessTypeId: that.data.businessTypeId,
         showType: that.data.showType,
+        companyId: wx.getStorageSync('selectCompany').id
       }
       util.reqLoading(app.globalData.apiUrl, 'MS00206', data, 'POST', '加载中...', function(res) {
         console.log("商品优惠后的价钱：")

@@ -1026,7 +1026,8 @@ Page({
       cardPrice: cardPrice,
       // 店铺id
       storeId: that.data.storeId,
-      agentId: wx.getStorageSync('invitationAgentId')
+      agentId: wx.getStorageSync('invitationAgentId'),
+      companyId: wx.getStorageSync('selectCompany').id
     };
     console.log("点击立即支付传参：");
     console.log(data);

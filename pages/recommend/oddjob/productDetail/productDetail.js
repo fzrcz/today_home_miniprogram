@@ -55,6 +55,7 @@ Page({
     showModalStatus: false,
     //登录提示
     showModalLogin: false,
+    isShowCompany: false,
     num: 0,// 可用优惠券的数量
   },
 
@@ -435,6 +436,11 @@ Page({
    */
   onShow: function() {
     var that = this;
+    if(wx.getStorageSync('selectCompany')) {
+      this.setData({
+        isShowCompany: false
+      })
+    }
 
     // if (!app.data.accountId) {
     //   this.showModalLogin()

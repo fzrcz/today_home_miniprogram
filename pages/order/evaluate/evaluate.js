@@ -201,7 +201,7 @@ Page({
     console.log("发表评论，传参：", data);
 
     // return;
-    util.doPost("/business/orders/orderEvaluate", data, function(res) {
+    util.doPost('',"/business/orders/orderEvaluate", data, function(res) {
       console.log("发表后，返回：")
       console.log(res)
       if (res.success) {

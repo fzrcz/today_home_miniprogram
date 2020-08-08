@@ -1,5 +1,5 @@
 //app.js
-// var util = require('/utils/util.js')
+var util = require('/utils/util.js')
 // var scene = '';
 App({
   data: {
@@ -19,10 +19,19 @@ App({
     minShopAppId:'wx05feeef3aaa022bb',//今日好物到家的appId
     jumpNum: 0,
     haveJump: 0,
+    companyList: []
   },
 
   onLaunch: function() {
     console.log("全局的onlaunch");
+    // await this.getCompanyList()
+    // let _this = this
+    util.doGet("/company/companyList", {}, res => {
+      console.log('分店列表：');
+      console.log(res);
+      this.data.companyList = res.data
+      wx.setStorageSync('companyList', res.data)
+    })
 
     const updateManager = wx.getUpdateManager()
     wx.setStorageSync('urlSocket', 'wss://weixin.51-star.cn/home-service/websocket');
@@ -78,9 +87,17 @@ App({
       source: source,
     })
   },
-
+  // getCompanyList() {
+    
+  // },
   onShow: function (options) {
-    let  that = this;    
+    let  that = this;   
+     
+    if(!wx.getStorageSync('selectCompany')) { // 没有选择分店
+      console.log('没有有选择分店')
+    } else {
+      console.log('有选择分店')
+    }
     console.log("全局的onshow");
     wx.getSystemInfo({
       success: res => {// console.log('手机信息res'+res.model)
@@ -136,6 +153,7 @@ App({
       console.log(res);
     })
   },
+  
 
    reqLoadingNoAccountId: function (url, busiCode, data, method, message, resultMethod) {
     var _this = this
@@ -209,9 +227,12 @@ App({
 
   globalData: {
     currentTab: null,
+    // 正式||测试
     apiUrl: "https://weixin.51jrdj.com/itgroup_home/incoming/apply.pair",//请求地址 正式
+    // apiUrl: "https://test443.91jrdj.com/itgroup_home_test/incoming/apply.pair",//请求地址 测试
+    // -----------
     netAddress: "https://weixin.51jrdj.com/home-wechat2.0",// 正式 用于支付回调
-    // apiUrl: "http://192.168.0.102:8080/itgroup_home/incoming/apply.pair",//请求地址 本地测试
+    // apiUrl: "http://192.168.0.20:8080/itgroup_home/incoming/apply.pair",//请求地址 本地测试
     // apiUrl: "http://47.106.112.87/itgroup_home/incoming/apply.pair", //请求地址 测试
     // apiUrl: "https://weixin.51jrdj.com/itgroup_home_test/incoming/apply.pair",//请求地址 测试
     // isHuaWei: false,
