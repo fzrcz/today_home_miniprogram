@@ -276,7 +276,7 @@ Page({
             id: that.data.id,
             housekeeperId: that.data.housekeeperId
           }
-          util.doPost("/signSafeguard/commission", data, function (res) {
+          util.doPost('',"/signSafeguard/commission", data, function (res) {
             console.log(res)
             that.data.dataList[that.data.index].commissionOrders.housekeeperName = that.data.housekeeperName;
             that.data.dataList[that.data.index].commissionOrders.status = 53;
@@ -632,7 +632,7 @@ Page({
     var data = {
       status: 43 //状态，1等待确认，2阿姨拒绝，3阿姨同意
     }
-    util.doPost("/employers/appoint/" + id + "/" + 43 + "/" + app.data.accountId, dealId, function (res) {
+    util.doPost('',"/employers/appoint/" + id + "/" + 43 + "/" + app.data.accountId, dealId, function (res) {
       if (res || res == 'true') {
         var list = that.data.dataList;
         list[index].appointsOrders.status = 43
@@ -651,7 +651,7 @@ Page({
     var data = {
       status: 42 //1：雇主支付 2：家政员拒绝 3：家政员接受4：家政员申请取消 5：雇主申请取消 6 预约成功 7雇主违约 8家政员违约
     }
-    util.doPost("/employers/appoint/" + e.currentTarget.dataset.id + "/" + 42 + "/" + app.data.accountId, "", function (res) {
+    util.doPost('',"/employers/appoint/" + e.currentTarget.dataset.id + "/" + 42 + "/" + app.data.accountId, "", function (res) {
       if (res || res == 'true') {
         var list = that.data.dataList;
         list[e.currentTarget.dataset.index].appointsOrders.status = 42
@@ -667,7 +667,7 @@ Page({
     var id = e.currentTarget.dataset.id;
     var index = e.currentTarget.dataset.index;
     var data = {};
-    util.doPost("/employers/" + app.data.accountId + "/appoint/" + id, data, function (res) {
+    util.doPost('',"/employers/" + app.data.accountId + "/appoint/" + id, data, function (res) {
       // console.log('aa',res);
       if (res || res == 'true') {
         wx.showToast({
@@ -758,7 +758,7 @@ Page({
       appointId: id,
       disposeStatus: 'accept'
     };
-    util.doPost("/applyCancelAppoint", data, function (res) {
+    util.doPost('',"/applyCancelAppoint", data, function (res) {
       // console.log('同意取消', res);
       if (res) {
         wx.showToast({
@@ -789,7 +789,7 @@ Page({
       appointId: id,
       disposeStatus: 'refuse'
     };
-    util.doPost("/applyCancelAppoint", data, function (res) {
+    util.doPost('',"/applyCancelAppoint", data, function (res) {
       // console.log('拒绝取消', res);
       if (res) {
         wx.showToast({

@@ -146,7 +146,7 @@ Page({
           id: app.data.accountId,
           belief: e.tapIndex + 1
         }
-        util.doPost("/housekeeper", data, function (res) {
+        util.doPost('',"/housekeeper", data, function (res) {
           if (res) {
             wx.showToast({
               title: '修改成功',
@@ -171,7 +171,7 @@ Page({
           id: app.data.accountId,
           education: e.tapIndex + 1
         }
-        util.doPost("/housekeeper", data, function (res) {
+        util.doPost('',"/housekeeper", data, function (res) {
           if (res) {
             wx.showToast({
               title: '修改成功',
@@ -192,7 +192,7 @@ Page({
       id: app.data.accountId,
       workYears: e.detail.value
     }
-    util.doPost("/housekeeper/workInfo", data, function (res) {
+    util.doPost('',"/housekeeper/workInfo", data, function (res) {
       if (res) {
         wx.showToast({
           title: '修改成功',
@@ -211,7 +211,7 @@ Page({
       id: app.data.accountId,
       expectSalary: salaryIdArr[e.detail.value]
     }
-    util.doPost("/housekeeper/workInfo", data, function (res) {
+    util.doPost('',"/housekeeper/workInfo", data, function (res) {
       if (res) {
         wx.showToast({
           title: '修改成功',
@@ -231,7 +231,7 @@ Page({
       id: app.data.accountId,
       nativeId: region[0] + region[1] + region[2]
     }
-    util.doPost("/housekeeper", data, function (res) {
+    util.doPost('',"/housekeeper", data, function (res) {
       // console.log(res);
       if (res) {
         wx.showToast({
@@ -252,7 +252,7 @@ Page({
       id: app.data.accountId,
       serviceArea: region[0] + region[1] + region[2]
     }
-    util.doPost("/housekeeper/workInfo", data, function (res) {
+    util.doPost('',"/housekeeper/workInfo", data, function (res) {
       if (res) {
         wx.showToast({
           title: '修改成功',

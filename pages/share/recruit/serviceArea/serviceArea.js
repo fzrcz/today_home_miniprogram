@@ -171,7 +171,7 @@ Page({
         id: app.data.accountId,
         serviceArea: str
       }
-      util.doPost("/housekeeper/workInfo", data, function (res) {
+      util.doPost('',"/housekeeper/workInfo", data, function (res) {
         
       })
     }

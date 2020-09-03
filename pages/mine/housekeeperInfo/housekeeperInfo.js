@@ -106,7 +106,7 @@ Page({
           id:app.data.accountId,
           personStatus: statuskeyList[e.tapIndex]
         }
-        util.doPost("/housekeeper", data, function (res) {
+        util.doPost('',"/housekeeper", data, function (res) {
           if(res){
             wx.showToast({
               title: '修改成功',

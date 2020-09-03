@@ -26,12 +26,12 @@ App({
     console.log("全局的onlaunch");
     // await this.getCompanyList()
     // let _this = this
-    util.doGet("/company/companyList", {}, res => {
-      console.log('分店列表：');
-      console.log(res);
-      this.data.companyList = res.data
-      wx.setStorageSync('companyList', res.data)
-    })
+    // util.doGet("/company/companyList", {}, res => {
+    //   console.log('分店列表：');
+    //   console.log(res);
+    //   this.data.companyList = res.data
+    //   wx.setStorageSync('companyList', res.data)
+    // })
 
     const updateManager = wx.getUpdateManager()
     wx.setStorageSync('urlSocket', 'wss://weixin.51-star.cn/home-service/websocket');
@@ -232,7 +232,7 @@ App({
     // apiUrl: "https://test443.91jrdj.com/itgroup_home_test/incoming/apply.pair",//请求地址 测试
     // -----------
     netAddress: "https://weixin.51jrdj.com/home-wechat2.0",// 正式 用于支付回调
-    // apiUrl: "http://192.168.0.20:8080/itgroup_home/incoming/apply.pair",//请求地址 本地测试
+    // apiUrl: "http://192.168.0.16:18080/itgroup_home/incoming/apply.pair",//请求地址 本地测试
     // apiUrl: "http://47.106.112.87/itgroup_home/incoming/apply.pair", //请求地址 测试
     // apiUrl: "https://weixin.51jrdj.com/itgroup_home_test/incoming/apply.pair",//请求地址 测试
     // isHuaWei: false,

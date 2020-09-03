@@ -71,13 +71,19 @@ Page({
     }).exec();
 
     // util.mask('加载中...');
-    util.doGet("/housekeepers/" + app.data.accountId + "/qrCode", data, function(res1) {
+    util.doGet("/housekeepers/" + app.data.accountId + "/qrCode", data, function(res) {
       console.log('qrCode为：')
-      console.log(res1)
-      var imgSrc = ''
-      that.setData({
-        imgSrc: res1.qrCode
-      })
+      var imgSrc = res.qrCode
+      if(wx.getStorageSync('selectCompany').id != 2) {
+        that.setData({
+          imgSrc: imgSrc
+        })
+      } else {
+        that.setData({
+          imgSrc: 'https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200826/19716.jpg?v=2'
+        })
+      }
+      
     })
     // 查询邀请共几人
     util.doGet("/housekeepers/" + app.data.accountId + "/inviteInfo", data, function(res2) {

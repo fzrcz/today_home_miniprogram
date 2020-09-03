@@ -106,4 +106,4 @@
 <view wx:if='{{noLogin}}' catchtouchmove="ture" class="yhwdl" bindtap="goLogin">
 	<image style="width:400rpx;" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/miniapp/toLogin.jpg" mode='widthFix'></image>
 </view>
-<selectModal show="{{isShowCompany}}"></selectModal>
+<!-- <selectModal show="{{isShowCompany}}"></selectModal> -->

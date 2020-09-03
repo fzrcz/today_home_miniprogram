@@ -148,7 +148,7 @@ Page({
       type: 'housekeeper',
       dataId: that.data.housekeeperId
     };
-    util.doPost("/employers/collect", data, function (res) {
+    util.doPost('',"/employers/collect", data, function (res) {
       if (res){
         that.setData({
           collect: !that.data.collect,

@@ -209,7 +209,7 @@ Page({
       belief: parseInt(this.data.beliefIndex) + 1,
       education: parseInt(this.data.eduIndex) + 1
     }
-    util.doPost("/housekeeper", data, function (res) {
+    util.doPost('',"/housekeeper", data, function (res) {
       if (res) {
         // wx.showToast({
         //   title: '修改成功',
@@ -227,7 +227,7 @@ Page({
       expectSalary: salaryIdArr[this.data.salaryIndex],
       workYears: expIndex
     }
-    util.doPost("/housekeeper/workInfo", workData, function (res) {
+    util.doPost('',"/housekeeper/workInfo", workData, function (res) {
       if (res) {
         // wx.showToast({
         //   title: '修改成功',

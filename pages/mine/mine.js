@@ -15,7 +15,8 @@ Page({
     eyeStatus: 1, // 1:睁眼 2：闭眼
     balance: '---',
     accountPoint:0,
-    isShowCompany: false
+    isShowCompany: false,
+    companyId: ''
   },
 
   /**
@@ -45,6 +46,9 @@ Page({
         isShowCompany: false
       })
     }
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id
+    })
     that.setData({
       role: app.data.userRole,
       loginStatus: app.data.loginStatus,
@@ -546,9 +550,15 @@ Page({
   },
   //客服电话
   toCall: function() {
-    wx.makePhoneCall({
-      phoneNumber: '400-600-6580'
-    })
+    if(this.data.companyId == 2) {
+      wx.makePhoneCall({
+        phoneNumber: "0591-88771616"
+      })
+    } else {
+      wx.makePhoneCall({
+        phoneNumber: "400-600-6580"
+      })
+    }
     // wx.navigateTo({
     //   url: 'chat/chat',
     // })
@@ -845,10 +855,15 @@ Page({
   },
   //投诉中心
   complaintCenter: function() {
-    wx.makePhoneCall({
-      // phoneNumber: '0591-88599000'
-      phoneNumber: '400-600-6580'
-    })
+    if(this.data.companyId == 2) {
+      wx.makePhoneCall({
+        phoneNumber: "0591-88771616"
+      })
+    } else {
+      wx.makePhoneCall({
+        phoneNumber: "400-600-6580"
+      })
+    }
   },
 
   //我的优惠券

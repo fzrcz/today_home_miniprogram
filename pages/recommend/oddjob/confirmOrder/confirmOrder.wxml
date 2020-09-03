@@ -35,12 +35,23 @@
       <i-input-number value="{{buyCnt}}" min="{{min}}" max="10000" bindchange="changeNum" />
     </view>
     <!-- <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{businessTypeId == "13"}}'> -->
-    <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{showType == "13" && productId != 74}}'>
-      <view>居家面积:</view>
-      <view bindtap="houseSize" data-value="120" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡</view>
-      <view bindtap="houseSize" data-value="80" class="choose-list {{secondValue?'choose-list-on':''}}">80㎡</view>
-      <view bindtap="houseSize" data-value="40" class="choose-list {{thirdValue?'choose-list-on':''}}">40㎡</view>
+    <view wx:if="{{companyId != 2}}">
+      <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{showType == "13" && productId != 74}}'>
+        <view>居家面积:</view>
+        <view bindtap="houseSize" data-value="120" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡</view>
+        <view bindtap="houseSize" data-value="80" class="choose-list {{secondValue?'choose-list-on':''}}">80㎡</view>
+        <view bindtap="houseSize" data-value="40" class="choose-list {{thirdValue?'choose-list-on':''}}">40㎡</view>
+      </view>
     </view>
+    <view>
+      <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{showType == "13" && productId != 74}}'>
+        <view>居家面积:</view>
+        <view bindtap="houseSize" data-value="160" class="choose-list {{firstValue?'choose-list-on':''}}">160㎡以上</view>
+        <view bindtap="houseSize" data-value="120-160" class="choose-list {{secondValue?'choose-list-on':''}}">120-160㎡</view>
+        <view bindtap="houseSize" data-value="120" class="choose-list {{thirdValue?'choose-list-on':''}}">120㎡以下</view>
+      </view>
+    </view>
+    
 
 
     <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{showType == "13" && productId == 74}}'>
@@ -79,12 +90,23 @@
       <i-input-number value="{{buyCnt}}" min="{{min}}" max="10000" bindchange="changeNum" />
     </view>
     <!-- 开荒保洁，productId = 69 -->
-    <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{productId == "69"}}'>
-      <view>居家面积:</view>
-      <view bindtap="houseSize" data-value="120" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡</view>
-      <view bindtap="houseSize" data-value="80" class="choose-list {{secondValue?'choose-list-on':''}}">80㎡</view>
-      <view bindtap="houseSize" data-value="40" class="choose-list {{thirdValue?'choose-list-on':''}}">40㎡</view>
+    <view wx:if="{{companyId != 2}}">
+      <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{productId == "69"}}'>
+        <view>居家面积:</view>
+        <view bindtap="houseSize" data-value="120" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡</view>
+        <view bindtap="houseSize" data-value="80" class="choose-list {{secondValue?'choose-list-on':''}}">80㎡</view>
+        <view bindtap="houseSize" data-value="40" class="choose-list {{thirdValue?'choose-list-on':''}}">40㎡</view>
+      </view>
     </view>
+    <view wx:else>
+      <view class='flex-between font-32' style="margin-top:40rpx" wx:if='{{productId == "69"}}'>
+        <view>居家面积:</view>
+        <view bindtap="houseSize" data-value="160" class="choose-list {{firstValue?'choose-list-on':''}}">160㎡以上</view>
+        <view bindtap="houseSize" data-value="120-160" class="choose-list {{secondValue?'choose-list-on':''}}">120-160㎡</view>
+        <view bindtap="houseSize" data-value="120" class="choose-list {{thirdValue?'choose-list-on':''}}">120㎡</view>
+      </view>
+    </view>
+    
     <!-- 病毒消杀，productId = 81，雾化消毒productId=82 -->
     <view class='flex-between' style="margin:20rpx 0" wx:if='{{productId == "81" || productId == "82"}}'>
       <view>选择时间:</view>
@@ -108,12 +130,23 @@
     </view>
 
     <!-- 居家面积 -->
-    <view wx:if='{{productId != 69 && productId != 81 && productId != 82}}' class='flex-between'>
-      <view>居家面积:</view>
-      <view bindtap="selectHouseSize" data-value="1" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡以上</view>
-      <view bindtap="selectHouseSize" data-value="2" class="choose-list {{secondValue?'choose-list-on':''}}">80-120㎡</view>
-      <view bindtap="selectHouseSize" data-value="3" class="choose-list {{thirdValue?'choose-list-on':''}}">40-80㎡</view>
+    <view wx:if="{{companyId != 2}}">
+      <view wx:if='{{productId != 69 && productId != 81 && productId != 82}}' class='flex-between'>
+        <view>居家面积:</view>
+        <view bindtap="selectHouseSize" data-value="1" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡以上</view>
+        <view bindtap="selectHouseSize" data-value="2" class="choose-list {{secondValue?'choose-list-on':''}}">80-120㎡</view>
+        <view bindtap="selectHouseSize" data-value="3" class="choose-list {{thirdValue?'choose-list-on':''}}">40-80㎡</view>
+      </view>
     </view>
+    <view wx:else>
+      <view wx:if='{{productId != 69 && productId != 81 && productId != 82}}' class='flex-between'>
+        <view>居家面积:</view>
+        <view bindtap="selectHouseSize" data-value="1" class="choose-list {{firstValue?'choose-list-on':''}}">160㎡以上</view>
+        <view bindtap="selectHouseSize" data-value="2" class="choose-list {{secondValue?'choose-list-on':''}}">120-160㎡</view>
+        <view bindtap="selectHouseSize" data-value="3" class="choose-list {{thirdValue?'choose-list-on':''}}">120㎡以下</view>
+      </view>
+    </view>
+    
 
   </view>
   <!-- 选择商家 -->
@@ -191,7 +224,15 @@
     <textarea bindinput="memoInput" class="remarks" placeholder="选填"></textarea>
   </view>
 
-  <view style='border-radius: 6px; margin:20rpx; background:#fff;'>
+  <view wx:if="{{companyId == 2}}" style='border-radius: 6px; margin:20rpx; background:#fff;'>
+    <view style='border-bottom:1px solid #f6f6f7; padding:10px; font-size:32rpx; color:#ff7f27; line-height:50rpx;'>
+      <view class='font-36'>温馨提示：</view>
+      <view>1、预约电话：0591-88771616</view>
+      <view>2、服务范围：老城区内免费上门，新城区每次上门收取20元上门费，具体情况可联系客服了解</view>
+      <view>3、购买成功后将有工作人员联系您，请保持手机通畅</view>
+    </view>
+  </view>
+  <view wx:else style='border-radius: 6px; margin:20rpx; background:#fff;'>
     <view style='border-bottom:1px solid #f6f6f7; padding:10px; font-size:32rpx; color:#ff7f27; line-height:50rpx;'>
       <view class='font-36'>温馨提示：</view>
       <view>1.预约电话：400-600-6580</view>

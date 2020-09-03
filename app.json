@@ -109,6 +109,9 @@
     "pages/recommend/oddjob/confirmOrder/calendar/calendar",
     "pages/recommend/oddjob/orderSuccess/orderSuccess",
     "pages/recommend/oddjob/sterilize/sterilize",
+    "pages/recommend/oddjob/ywqx/ywqx",
+    "pages/recommend/oddjob/bjfw/bjfw",
+    "pages/recommend/oddjob/jsgj/jsgj",
     "pages/classification/classification",
     "pages/recommend/lookingNanny/lookingNanny",
     "pages/recommend/lookingNanny/onlineBooking/onlineBooking",
@@ -130,7 +133,8 @@
     "pages/mine/myClient/myInvitation/myInvitation",
     "pages/mine/agentShare/myInvitation/myInvitation",
     "pages/mine/agentShare/confirmGetCash/confirmGetCash",
-    "pages/mine/agentShare/confirmGetCash/getCashRecord/getCashRecord"
+    "pages/mine/agentShare/confirmGetCash/getCashRecord/getCashRecord",
+    "pages/recommend/hdPage/hdPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

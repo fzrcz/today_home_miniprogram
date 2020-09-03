@@ -57,11 +57,30 @@ Page({
         description: "翻新养护",
         url: "/pages/recommend/oddjob/leatherCare/leatherCare",
         id: 8
+      },
+      {
+        imageUrl: "/image/menu_ywqx.jpeg",
+        description: "衣物清洗",
+        url: "/pages/recommend/oddjob/dredgePipeline/dredgePipeline",
+        id: 16
+      },
+      {
+        imageUrl: "/image/menu_bjfw.jpeg",
+        description: "搬家服务",
+        url: "/pages/recommend/oddjob/removeHCHO/removeHCHO",
+        id: 17
+      },
+      {
+        imageUrl: "/image/jsgj.png",
+        description: "家事管家",
+        url: "/pages/recommend/oddjob/removeHCHO/removeHCHO",
+        id: 18
       }
     ],
     curNav: 1,
     curIndex: 0,
-    agentId: ''
+    agentId: '',
+    companyId: ''
   },
 
   /**
@@ -72,7 +91,8 @@ Page({
     console.log(options)
     WxNotificationCenter.addNotification('categoryUpdate', this.categoryNotification, this)
     this.setData({
-      agentId: options.scene
+      agentId: options.scene,
+      showType: '6',
     })
     var that = this;
     // 获取手机高度
@@ -84,9 +104,8 @@ Page({
         })
       }
     })
-    that.setData({
-      showType: '6',
-    })
+    // that.setData({
+    // })
 
   },
   categoryNotification() {
@@ -158,6 +177,25 @@ Page({
       })
     }
 
+    if (id == 16) {
+      that.setData({
+        // businessTypeId: '13'
+        showType: '16'
+      })
+    }
+
+    if (id == 17) {
+      that.setData({
+        // businessTypeId: '13'
+        showType: '17'
+      })
+    }
+    if (id == 18) {
+      that.setData({
+        // businessTypeId: '13'
+        showType: '18'
+      })
+    }
     that.getProductList();
     // var data = {
     //   // businessTypeId: that.data.businessTypeId,
@@ -193,6 +231,121 @@ Page({
         isShowCompany: false
       })
     }
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id,
+    })
+    if(this.data.companyId == 1) {
+      this.setData({
+        serverlist: [{
+          imageUrl: "/image/hourCleaning.png",
+          description: "钟点保洁",
+          url: "/pages/recommend/oddjob/hourCleaning/hourCleaning",
+          id: 1
+          },
+          {
+            imageUrl: "/image/appliancesCleaning.png",
+            description: "家电清洗",
+            url: "/pages/recommend/oddjob/appliancesCleaning/appliancesCleaning",
+            id: 2
+          },
+          {
+            imageUrl: "/image/mitesRemoval.png",
+            description: "除尘除螨",
+            url: "/pages/recommend/oddjob/mitesRemoval/mitesRemoval",
+            id: 3
+          },
+          // {
+          //   imageUrl: "/image/unlock.png",
+          //   description: "今日好物",
+          //   url: "/pages/recommend/oddjob/unlock/unlock",
+          //   id: 4
+          // },
+          {
+            imageUrl: "/image/dredgePipeline.png",
+            description: "管道疏通",
+            url: "/pages/recommend/oddjob/dredgePipeline/dredgePipeline",
+            id: 5
+          },
+          {
+            imageUrl: "/image/removeHCHO.png",
+            description: "甲醛治理",
+            url: "/pages/recommend/oddjob/removeHCHO/removeHCHO",
+            id: 6
+          },
+          // {
+          //   imageUrl: "/image/appliancesRepair.png",
+          //   description: "家电维修",
+          //   url: "/pages/recommend/oddjob/appliancesRepair/appliancesRepair",
+          //   id: 7
+          // },
+          {
+            imageUrl: "/image/leatherCare.png",
+            description: "翻新养护",
+            url: "/pages/recommend/oddjob/leatherCare/leatherCare",
+            id: 8
+          },
+          {
+            imageUrl: "/image/menu_ywqx.jpeg",
+            description: "衣物清洗",
+            url: "/pages/recommend/oddjob/dredgePipeline/dredgePipeline",
+            id: 16
+          },
+          {
+            imageUrl: "/image/menu_bjfw.jpeg",
+            description: "搬家服务",
+            url: "/pages/recommend/oddjob/removeHCHO/removeHCHO",
+            id: 17
+          },
+          {
+            imageUrl: "/image/jsgj.png",
+            description: "家事管家",
+            url: "/pages/recommend/oddjob/removeHCHO/removeHCHO",
+            id: 18
+          }
+        ]
+      })
+    } else {
+      this.setData({
+        serverlist: [{
+          imageUrl: "/image/hourCleaning.png",
+          description: "钟点保洁",
+          url: "/pages/recommend/oddjob/hourCleaning/hourCleaning",
+          id: 1
+          },
+          {
+            imageUrl: "/image/appliancesCleaning.png",
+            description: "家电清洗",
+            url: "/pages/recommend/oddjob/appliancesCleaning/appliancesCleaning",
+            id: 2
+          },
+          {
+            imageUrl: "/image/mitesRemoval.png",
+            description: "除尘除螨",
+            url: "/pages/recommend/oddjob/mitesRemoval/mitesRemoval",
+            id: 3
+          },
+          // {
+          //   imageUrl: "/image/unlock.png",
+          //   description: "今日好物",
+          //   url: "/pages/recommend/oddjob/unlock/unlock",
+          //   id: 4
+          // },
+          {
+            imageUrl: "/image/removeHCHO.png",
+            description: "甲醛治理",
+            url: "/pages/recommend/oddjob/removeHCHO/removeHCHO",
+            id: 6
+          },
+          // {
+          //   imageUrl: "/image/appliancesRepair.png",
+          //   description: "家电维修",
+          //   url: "/pages/recommend/oddjob/appliancesRepair/appliancesRepair",
+          //   id: 7
+          // },
+        ]
+      })
+    }
+
     if(this.data.agentId){
       let scene = decodeURIComponent(this.data.agentId);
       wx.setStorageSync('invitationAgentId', scene)

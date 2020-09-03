@@ -202,7 +202,7 @@ Page({
 
   paySuccess: function (dealId){
     var that =this
-    util.doPost("/salaryEntrusts/" + dealId + "/" + payId, '', function (res) {
+    util.doPost('',"/salaryEntrusts/" + dealId + "/" + payId, '', function (res) {
       if(res){
         util.doBaseGet("/salaryEntrusts/" + app.data.accountId, function (res) {
           // console.log(res)

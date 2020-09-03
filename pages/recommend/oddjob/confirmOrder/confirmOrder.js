@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    companyId: '',
     serbuslist:[
       { serbusname: '今日到家-01', serbusimg: '', serbusgas: '1', serbuscheck:0},
       { serbusname: '今日到家-02', serbusimg: '', serbusgas: '2', serbuscheck: 1 },
@@ -350,6 +351,7 @@ Page({
       date = DATE.getDate(),
       select = year + '-' + this.zero(month) + '-' + this.zero(date);
     this.setData({
+      companyId: wx.getStorageSync('selectCompany').id,
       todaytime: select,
       // 每次返回页面的时候，把立即支付变成可点击的
       crowdStatus: false,
@@ -577,6 +579,7 @@ Page({
   //选择面积（地板养护）
   houseSize:function(e){
     const value = +e.currentTarget.dataset.value;
+    console.log(value)
     if (value==120){
       this.setData({
         firstValue: true,
@@ -612,6 +615,34 @@ Page({
         virusKillArea: "",
         houseSize: "150㎡及以下",
       })
+    } else if (value == 160) {
+      this.setData({
+        firstValue: true,
+        secondValue: false,
+        thirdValue: false,
+        buyCnt: value,
+        total: this.data.price * value,
+        totalPrice: (this.data.price * value).toFixed(2)
+
+      })
+    } else if (value == '120-160') {
+      this.setData({
+        firstValue: false,
+        secondValue: true,
+        thirdValue: false,
+        buyCnt: value,
+        total: this.data.price * value,
+        totalPrice: (this.data.price * value).toFixed(2)
+      })
+    } else if (value == '120') {
+      this.setData({
+        firstValue: false,
+        secondValue: false,
+        thirdValue: true,
+        buyCnt: value,
+        total: this.data.price * value,
+        totalPrice: (this.data.price * value).toFixed(2)
+      })
     }
   },
 // 改造区域
@@ -644,7 +675,7 @@ Page({
         firstValue: true,
         secondValue: false,
         thirdValue: false,
-        houseSize: '120㎡以上',
+        houseSize: '160㎡以上',
       })
     }
     if (value == '2') {
@@ -652,7 +683,7 @@ Page({
         firstValue: false,
         secondValue: true,
         thirdValue: false,
-        houseSize: '80-120㎡',
+        houseSize: '120-160㎡',
       })
     }
     if (value == '3') {
@@ -660,7 +691,7 @@ Page({
         firstValue: false,
         secondValue: false,
         thirdValue: true,
-        houseSize: '40-80㎡',
+        houseSize: '120㎡',
       })
     }
   },

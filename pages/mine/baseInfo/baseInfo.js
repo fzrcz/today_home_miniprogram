@@ -125,7 +125,7 @@ Page({
           id: app.data.accountId,
           sex: e.tapIndex + 1
         }
-        util.doPost("/employer", data, function (res) {
+        util.doPost('',"/employer", data, function (res) {
           if (res) {
             wx.showToast({
               title: '修改成功',

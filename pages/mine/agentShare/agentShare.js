@@ -1,84 +1,91 @@
-// pages/mine/share/share.js
 var util = require('../../../utils/util.js');
 var app = getApp();
 let WxNotificationCenter = require('../../../utils/WxNotificationCenter')
 
-var timer;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    // 获取手机高度
-    windowWidth: '',
-    windowHeight: '',
-    //获取宽高
-    shWidth: '',
-    shHeight: '',
-    imgWidth: '',
-    imgHeight: '',
-    dxLeft: '',
-    dyTop: '',
-
-    // bgSrc: 'https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/share-bg.png?v=2',
-    bgSrc: '/image/angent-share-bg.png',
-    imgSrc: '',
-    pic: ''
+    imgDraw: {},
+    sharePath: "",
+    shareCount: 0,
+    count: 0,
+    total: 0,
+    imgSrc: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    console.log(options)
+  onLoad: function (options) {
+
     this.setData({
       imgSrc: options.shareUrl
     })
     WxNotificationCenter.addNotification('updateWithdrawal', this.getCommissionTotal, this)
-    
-    //二维码获取
-    var that = this;
-    var data;
-    wx.getSystemInfo({
-      success: res => {
-        that.setData({
-          windowWidth: res.windowHeight,
-          windowHeight: res.windowHeight
-        })
+    this.getCommissionTotal()
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    let _this = this
+    wx.showLoading({
+      title: '生成中'
+    })
+    this.setData({
+      imgDraw: {
+        width: '750rpx',
+        height: '1100rpx',
+        background: 'https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200829/19732.png?v=3',
+        views: [
+          {
+            type: 'image',
+            url: wx.getStorageSync('avatarUrl') || '',
+            css: {
+              top: '504rpx',
+              left: '328rpx',
+              width: '96rpx',
+              height: '96rpx',
+              borderWidth: '6rpx',
+              borderColor: '#FFF',
+              borderRadius: '96rpx'
+            }
+          },
+          {
+            type: 'text',
+            text: wx.getStorageSync('nickName') || '今日到家',
+            css: {
+              top: '610rpx',
+              fontSize: '28rpx',
+              left: '375rpx',
+              align: 'center',
+              color: '#3c3c3c'
+            }
+          },
+          {
+            type: 'image',
+            url: _this.data.imgSrc,
+            css: {
+              top: '888rpx',
+              left: '20rpx',
+              width: '200rpx',
+              height: '200rpx'
+            }
+          }
+        ]
       }
     })
-    var query = wx.createSelectorQuery();
-    query.select('.show_block').boundingClientRect(function(rect) {
-      var shWidth = rect.width;
-      var shHeight = rect.height
-      var sLeft = rect.left
-      var sTop = rect.top
-      console.log(sTop, sLeft)
-      that.setData({
-        sLeft: sLeft,
-        sTop: sTop
-      })
-      that.setData({
-        shWidth: shWidth,
-        shHeight: shHeight
-      })
-    }).exec();
-    query.select('.img').boundingClientRect(function(rect) {
-      var imgWidth = rect.width;
-      var imgHeight = rect.height
-      var dTop = rect.top
-      var dLeft = rect.left
-      console.log(dTop, dLeft)
-      that.setData({
-        imgWidth: imgWidth,
-        imgHeight: imgHeight,
-        dTop: dTop,
-        dLeft: dLeft
-      })
-    }).exec();
-    this.getCommissionTotal()
-
+  },
+  onImgOK(e) {
+    console.log(e)
+    wx.hideLoading()
+    this.setData({
+      sharePath: e.detail.path
+    })
   },
   getCommissionTotal() {
     let that = this
@@ -119,40 +126,42 @@ Page({
       })
     })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-    var that = this;
-    // timer = setTimeout(function () {
-    //   console.log("----Countdown----");
-    //   that.getMyClientNum(this.data);
-    //   that.onShow();
-    // }, 5000);
-  },
-
-
-  handleLongPress: function(e) {
+  handleLongPress() {
     console.log("长按");
-    let that = this;
-    var imgSrc = that.data.imgSrc;
-    let isFirst = wx.getStorageSync('isFirst') || 0;
-    console.log(imgSrc)
+    let _this = this
+    wx.showLoading({
+      title: '保存中...',
+      duration: 2000
+    });
+    // debugger
+    console.log(_this.data.sharePath)
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.writePhotosAlbum']) {
           wx.authorize({
             scope: 'scope.writePhotosAlbum',
             success() {
-              console.log('yes')
-              that.saveImage();
+              wx.getImageInfo({
+                src: _this.data.sharePath,
+                success: function (ret) {
+                    var path = ret.path;
+                    wx.saveImageToPhotosAlbum({
+                        filePath: path,
+                        success(result) {
+                            console.log(result)
+                            wx.showToast({
+                              title: '保存成功',
+                              icon: 'success',
+                              duration: 2000
+                            });
+                        },
+                        fail(err) {
+                          console.log(err)
+                        }
+                    })
+                }
+             })
             },
-            // fail() {
-            //   console.log("拒绝")
-
-
-            // },
             fail() {
               wx.hideLoading();
               wx.showModal({
@@ -180,91 +189,32 @@ Page({
               });
 
             }
-
           });
         } else {
-          that.saveImage();
+          wx.getImageInfo({
+            src: _this.data.sharePath,
+            success: function (ret) {
+                var path = ret.path;
+                wx.saveImageToPhotosAlbum({
+                    filePath: path,
+                    success(result) {
+                        console.log(result)
+                        wx.showToast({
+                          title: '保存成功',
+                          icon: 'success',
+                          duration: 2000
+                        });
+                    },
+                    fail(err) {
+                      console.log(err)
+                    }
+                })
+            }
+         })
         }
       },
 
     });
-
-  },
-  saveImage() {
-    wx.showLoading({
-      title: '保存中...',
-      duration: 2000
-    });
-    let that = this;
-    // if (that.data.pic == null || '') {
-    //   wx.showLoading({
-    //     title: '保存失败',
-    //     duration: 2000
-    //   });
-    // }
-    wx.getImageInfo({
-      src: that.data.imgSrc,
-      success: function(res) {
-        console.log(res)
-        var bgSrc = that.data.bgSrc
-        var imgSrc = res.path
-        console.log(that.data.bgSrc)
-        var shWidth = that.data.shWidth
-        var shHeight = that.data.shHeight
-        var imgWidth = that.data.imgWidth
-        var imgHeight = that.data.imgHeight
-        var windowWidth = that.data.windowWidth
-        var dLeft = that.data.dLeft
-        var dTop = that.data.dTop
-        var sTop = that.data.sTop
-        var sLeft = that.data.sLeft
-        var dxLeft = dLeft - sLeft
-        var dyTop = dTop - sTop
-        console.log(dxLeft, dyTop)
-        // var dx = 40 / shWidth
-        // var dy = 350 / shHeight
-        // var dxW = 60 / shWidth
-        // var dxH = 60 / shWidth
-
-        const ctx = wx.createCanvasContext('myCanvas');
-        // ctx.drawImage(bgSrc, 0, 0, shWidth, shHeight);
-        // ctx.drawImage(imgSrc, 60, 320, 60, 60); // 二维码
-        ctx.drawImage(bgSrc, 0, 0, shWidth, shHeight);
-        ctx.drawImage(imgSrc, dxLeft, dyTop, imgWidth, imgHeight);
-        ctx.draw(false, function(e) {
-          // 保存到本地
-          var shWidth = that.data.shWidth
-          var shHeight = that.data.shHeight
-          wx.canvasToTempFilePath({
-            x: 0,
-            y: 0,
-            width: shWidth,
-            height: shHeight,
-            canvasId: 'myCanvas',
-            destWidth: 2010,
-            destHeight: 2877,
-            success: function(res) {
-              let pic = res.tempFilePath;
-              console.log(pic)
-              that.setData({
-                  pic: pic
-                }),
-                wx.saveImageToPhotosAlbum({
-                  filePath: pic,
-                  success(res) {
-                    wx.hideLoading();
-                    wx.showToast({
-                      title: '保存成功',
-                      icon: 'success',
-                      duration: 2000
-                    });
-                  }
-                });
-            }
-          });
-        });
-      }
-    })
   },
   // 邀请列表
   toMyAgentInvitation() {
@@ -287,51 +237,44 @@ Page({
     })
   },
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 生命周期函数--监听页面显示
    */
-  onReady: function() {
-
+  onShow: function () {
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-    // console.log('onHide****');
-    // // 退出当前页面时，清除定时器
-    // clearTimeout(timer);
+  onHide: function () {
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
-    // console.log('onunload****');
-    // // 退出当前页面时，清除定时器
-    // clearTimeout(timer);
-
+  onUnload: function () {
+    
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-
+  onPullDownRefresh: function () {
+    
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function(res) {
-    if (res.from === 'button') {
-      console.log(res.target)
-    }
+  onReachBottom: function () {
+    
   },
 
-  // /**
-  //  * 用户点击右上角分享
-  //  */
-  // onShareAppMessage: function() {
-
-  // }
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    
+  }
 })

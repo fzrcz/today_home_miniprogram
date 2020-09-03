@@ -1,106 +1,11 @@
-/* pages/mine/share/share.wxss */
 page {
   background: #e6e6e6;
 }
-
-.content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.share-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.share-content {
-  width: 498rpx;
-  height: 826rpx;
-  background: #fff;
-  border-radius: 10rpx;
-  line-height: 34rpx;
-}
-
-.share-content-t {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 60rpx 0 48rpx 0;
-}
-
-.share-content-l {
-  padding: 0 20rpx 0 0;
-}
-
-.share-content-l image {
-  width: 134rpx;
-  height: 42rpx;
-  display: block;
-}
-
-.share-content-r {
-  font-size: 24rpx;
-  padding: 0 0 0 20rpx;
-  border-left: 2rpx solid #000;
-}
-
-.purpose {
-  text-align: center;
-  margin: 0 auto;
-  font-size: 20rpx;
-}
-
-.purpose-t {
-  color: #ff0042;
-}
-
-.share-img {
-  width: 420rpx;
-  height: 362rpx;
-  margin: 30rpx auto;
-}
-
-.share-img image {
-  width: 100%;
-  height: 100%;
-  border-radius: 10rpx;
-  display: block;
-}
-
-.follow {
-  display: flex;
-  align-items: center;
-  margin: 0 0 0 48rpx;
-}
-
-.follow-l {
-  width: 124rpx;
-  height: 124rpx;
-}
-
-.follow-l image {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.follow-r {
-  font-size: 18rpx;
-  text-align: center;
-  margin: 0 0 0 20rpx;
-}
-
-.follow-r-b {
-  color: #ff0054;
-}
-
-.pre-box {
-  text-align: center;
-  padding: 24rpx 0 0 0;
-  line-height: 34rpx;
+.share-img{
+  position: absolute;
+  left: 50%;
+  top: 30rpx;
+  transform: translateX(-50%);
 }
 
 .share-bottom {
@@ -130,34 +35,13 @@ page {
   color: #5c5c5c;
 }
 
-.show_block {
-  position: relative;
-  width: 550rpx;
-  height: 886rpx;
-}
-
-.bg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.img {
+.pre-box {
+  width: 750rpx;
   position: absolute;
-  top: 640rpx;
-  left: 120rpx;
-  display: block;
-  width: 120rpx;
-  height: 120rpx;
-}
-
-.myCanvas {
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-image{
-  width: 100%;
-  height: 100%;
+  bottom: -1040rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 24rpx 0 0 0;
+  line-height: 34rpx;
 }

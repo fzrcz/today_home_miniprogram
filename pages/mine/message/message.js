@@ -124,7 +124,7 @@ Page({
       this.setData({
         dataList: list
       })
-      util.doPost("/platAccounts/" + e.currentTarget.dataset.id + "/message", '', function (res) {
+      util.doPost('',"/platAccounts/" + e.currentTarget.dataset.id + "/message", '', function (res) {
 
       })
     }

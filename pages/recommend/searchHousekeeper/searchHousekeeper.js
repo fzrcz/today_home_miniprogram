@@ -117,7 +117,7 @@ Page({
     });
     if (that.data.searchType == 'text') {
       var data={};
-      util.doPost("/housekeepers?offset=" + that.data.offset + "&limit=" + that.data.limit + "&text=" + that.data.searchVal, data, function (res) {
+      util.doPost('',"/housekeepers?offset=" + that.data.offset + "&limit=" + that.data.limit + "&text=" + that.data.searchVal, data, function (res) {
         // console.log('列表',res);
         that.setData({
           searchData: res

@@ -131,7 +131,7 @@ Page({
     console.log(id);
     console.log(that.data.housekeeperId);
     console.log(dealId);
-    util.doPost("/employers/appoint/" + id + "/" + 3 + "/" + that.data.housekeeperId, dealId, function (res) {
+    util.doPost('',"/employers/appoint/" + id + "/" + 3 + "/" + that.data.housekeeperId, dealId, function (res) {
       console.log(res);
       if (res || res == 'true') {
         that.setData({

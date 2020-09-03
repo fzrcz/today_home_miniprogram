@@ -37,6 +37,7 @@ Page({
     }
     let data ={
       platId: app.data.accountId,
+      companyId: wx.getStorageSync('selectCompany').id,
       name,
       phone,
       sex

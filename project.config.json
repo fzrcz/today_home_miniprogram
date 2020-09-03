@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": false,
     "postcss": false,
@@ -22,7 +22,7 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
-    "useApiHook": false,
+    "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -35,7 +35,7 @@
     "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "2.12.0",
+  "libVersion": "2.12.1",
   "appid": "wxfb9f738acf040e2f",
   "projectname": "today_miniprogram",
   "cloudfunctionTemplateRoot": "",
@@ -188,6 +188,61 @@
           "name": "商品详情",
           "pathName": "pages/recommend/oddjob/productDetail/productDetail",
           "query": "productId=91&activityId=",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "详情",
+          "pathName": "pages/recommend/oddjob/productDetail/productDetail",
+          "query": "productId=108&activityId=",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "分类",
+          "pathName": "pages/classification/classification",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的地址",
+          "pathName": "pages/mine/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "衣物清洗",
+          "pathName": "pages/recommend/oddjob/ywqx/ywqx",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "商品详情11",
+          "pathName": "pages/recommend/oddjob/productDetail/productDetail",
+          "query": "productId=142&activityId=",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "分享",
+          "pathName": "pages/mine/share/share",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "二维码",
+          "pathName": "pages/mine/agentShare/agentShare",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "代理商",
+          "pathName": "pages/mine/agentShare/agentShare",
           "scene": null
         }
       ]

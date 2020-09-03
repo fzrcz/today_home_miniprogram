@@ -218,7 +218,7 @@ Page({
     console.log("支付的传参：");
     console.log(data);
 
-    util.doPost('/business/orders/contract', data, function(res) {
+    util.doPost('','/business/orders/contract', data, function(res) {
       console.log('点击立即支付返回：')
       console.log(res)
       if (res.success) {

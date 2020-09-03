@@ -170,7 +170,7 @@ Page({
         id: app.data.accountId,
         serviceArea: str
       }
-      util.doPost("/housekeeper/workInfo", data, function (res) {
+      util.doPost('',"/housekeeper/workInfo", data, function (res) {
         if (res) {
           wx.showToast({
             title: '保存成功',

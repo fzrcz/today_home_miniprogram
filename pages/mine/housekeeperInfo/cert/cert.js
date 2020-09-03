@@ -111,7 +111,7 @@ Page({
   confirm: function() {
     var data = certStr.substring(0, certStr.length - 1);
     if (data) {
-      util.doPost("/housekeepers/" + app.data.accountId + "/authMaterials", data, function(res) {
+      util.doPost('',"/housekeepers/" + app.data.accountId + "/authMaterials", data, function(res) {
         if (res) {
           wx.showToast({
             title: '保存成功',

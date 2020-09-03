@@ -118,7 +118,7 @@ Page({
       describe: e.detail.value.content
     }
 
-    util.doPost("/housekeepers/experience", data, function (res) {
+    util.doPost('',"/housekeepers/experience", data, function (res) {
       wx.navigateBack({
         delta: 1
       })

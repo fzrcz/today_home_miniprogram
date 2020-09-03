@@ -162,7 +162,7 @@ Page({
       type: 'housekeeper',
       dataId: that.data.housekeeperId
     };
-    util.doPost("/employers/collect", data, function (res) {
+    util.doPost('',"/employers/collect", data, function (res) {
       if (res) {
         that.setData({
           collect: !that.data.collect,
@@ -948,7 +948,7 @@ Page({
         housekeeperId: that.data.housekeeperId,
         orderStatus: '13'
       }
-      util.doPost("/signSafeguard/appoint", data, function (res) {
+      util.doPost('',"/signSafeguard/appoint", data, function (res) {
         //console.log(res);
         if (res == true){
           that.setData({

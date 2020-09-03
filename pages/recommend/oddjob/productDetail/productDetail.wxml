@@ -5,8 +5,9 @@
   <swiper previous-margin autoplay="true" interval="3000" style='height:{{detail.productFileBanner[0].fileHeight}}rpx;'>
     <block wx:for="{{detail.productFileBanner}}" wx:key="id">
       <swiper-item>
-        <!-- <image style='width:{{item.fileWidth}}rpx; height:{{item.fileHeight}}rpx;' src="{{item.filePath}}" /> -->
-        <image style='width:100%;' src="{{item.filePath}}" />
+        <image style='width:100%; height:{{item.fileHeight}}rpx;' src="{{item.filePath}}" />
+        <!-- <image style='width:100%; height:{{item.fileHeight}}rpx;' src="{{item.filePath}}" /> -->
+        <!-- <image style='width:100%;' src="{{item.filePath}}" /> -->
       </swiper-item>
     </block>
   </swiper>
@@ -121,117 +122,26 @@
   <view wx:if="{{detail.showType==6 || detail.showType==11}}">
     <image class='breakline' style='width:750rpx; height:196rpx;' bindtap="toDetail" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/detectTip.png?v=2" mode="aspectFit" />
   </view>
-  <block wx:for="{{detail.productFileDetail}}" wx:key="id">
+  <!-- <block wx:for="{{detail.productFileDetail}}" wx:key="id">
     <view style='width:{{item.fileWidth}}rpx; height:{{item.fileHeight}}rpx;'>
-      <image style='width:{{item.fileWidth}}rpx; height:{{item.fileHeight}}rpx;' src="{{item.filePath}}" mode="aspectFit" />
+      <image src="{{item.filePath}}" />
+    </view>
+  </block> -->
+   <block wx:for="{{detail.productFileDetail}}" wx:key="id">
+    <view style='width:750rpx;'>
+      <image style='width:100%;' src="{{item.filePath}}" mode="widthFix" />
     </view>
   </block>
   <view wx:if="{{detail.showType==6 || detail.showType==11}}">
-    <image style='width:750rpx; height:1799rpx;' src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/banner/defendVirusDetail.jpg?v=1" mode="aspectFit" />
+    <image wx:if="{{companyId == 2}}" style='width:750rpx; height:1799rpx;' src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200830/19744.jpg?v=1" mode="aspectFit" />
+    <image wx:else style='width:750rpx; height:1799rpx;' src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/banner/defendVirusDetail.jpg?v=1" mode="aspectFit" />
   </view>
 </view>
 <view class='breakline'></view>
 
 <view style='margin:20rpx;padding-bottom:100rpx;'>
-  <view class="theme-color" style="font-size:34rpx; padding:16rpx 0 10rpx 0">订购须知</view>
-  <!-- <view style='font-size:24rpx;' wx:if="{{detail.businessTypeId==6}}"> -->
-  <view style='font-size:24rpx;' wx:if="{{detail.showType==6}}">
-    <view style="line-height:40rpx;">（1）为了确保服务的安全性，我们将严格按系统登记的地址服务。若地址错误导致保洁师上门无法服务，您需另付50元空单费/次。</view>
-    <view style="line-height:40rpx;">（2）未入住或装修后保洁收费15元/平米。出租合租房、集体宿舍、自建房及公共办公场所保洁或超过一个月没有彻底清洁的住宅打扫收费259元一次（4小时/人）。
-      <!-- <text class="theme-color">前2小时取订单将按30元/人扣取误工费；</text> -->
-    </view>
-    <view style="line-height:40rpx;">（3）居家日常保洁指卧室、卫生间、厨房、餐厅、客厅、阳台共六大区域保洁整理（含门/窗/家具/地板/2米内的玻璃清洁及油烟机的外部清洁），以室内打扫为主清洗玻璃为辅洗外玻璃时间不超过2小时。不可服务内容有：</view>
-    <view style="line-height:40rpx;">A 家电内部（比如空调风轮或油烟机的电机）；</view>
-    <view style="line-height:40rpx;">B 柜子抽屉内部（或其他私人物品存放处）；</view>
-    <view style="line-height:40rpx;">C 天花板吊灯和墙壁（厨房和卫生间有吊顶的区域可服务）；</view>
-    <view style="line-height:40rpx;">D 窗帘沙发专业拆洗和需借助一米以上攀登物作业的区域；</view>
-    <view style="line-height:40rpx;">E 洗衣做饭刷锅洗碗宠物粪便等生活照料工作；</view>
-    <view style="line-height:40rpx;">F 贵重物品（详见第6条）。</view>
-    <view style="line-height:40rpx;">一般情况下，体验单的油烟机拆洗储油盒但不拆过滤网，地垫抖干净即可，油烟机及地垫清洁方面有进一步需要的用户可现场与保洁师进行沟通。</view>
-    <view style="line-height:40rpx;">（4）客户贵重物品是指：货币金银首饰、古董字画、宗教陈设、名烟名酒、工艺品易碎易损摆件，请客户自行收好以免损坏或丢失无法理赔。友情提醒：建议您或家人特别关注贵重物品存放处（例如主卧）的打扫全部过程并将相应区域锁上之后再安排其他区域的打扫。</view>
-    <view style="line-height:40rpx;">（5）保洁服务必须按规定每次做足四小时，不允许另收加时费用。如有违反规定欢迎致电，进行举报。
-      <!-- <text class="theme-color">8:00-12:00，14:00-18:00。</text> -->
-    </view>
-    <view style="line-height:40rpx;">（6）服务时间每次四小时：上午8点前开始，下午2点前开始。由于各家的室内清洁程度及物品数量不同，不能保证四小时一定打扫完毕。所以需要您向保洁师交代本次服务重点。特别是体验客户可能家里卫生死角较多，打扫难度会比较大，打扫速度不会很快。建议您购买包年套餐定期打扫，就能确保合理科学打扫无死角。</view>
-    <view style="line-height:40rpx;">（7）客户需要准备：厨房去油污专用的清洁剂（非洗洁精）和卫生间专用的清洁剂（比如洁厕剂、马桶刷），另外有水即可。</view>
-    <view style="line-height:40rpx;">（8）保洁师自带工具组清单：保洁箱、伸缩杆、万能拖、磁砖刷、围裙、玻璃擦、刮水器、毛刷等。</view>
-    <view style="line-height:40rpx;">（9）保洁师自带清洁剂清单：玻璃水、去污膏、消毒水、清香剂，七色布。（保洁布）已消毒请您放心使用。</view>
-    <view style="line-height:40rpx;">（10）家政服务人员统一佩戴《工号牌》和穿着围裙工作，服务前请您将贵重物品收好。服务后，请您在《家政服务确认单》签字。同时，请您确定物品无丢失无破损，经您确认后服务人员将带走生活垃圾。</view>
-    <view style="line-height:40rpx;">（11）在四小时服务时间内，服务人员会尽量完成的。若服务后您发现物品丢失或破损或服务品质较不满意，请于服务完成24小时内反馈给客服，请您共同督促保洁师团队的服务品质，并竭诚助您家务更轻松生活更快乐！</view>
-    <view style="line-height:40rpx;">（12）需要更改服务时间，请于服务前一天18点前致电</view>
-    <view style="line-height:40rpx;">（13）为避免因临时突状况致您承担50元空单费，请您注意避免以下临时突发状况：</view>
-    <view style="line-height:40rpx;">A 如第3条所述地址有误、不详细或者该地址已使用过；</view>
-    <view style="line-height:40rpx;">B 如第12条所述18:00下班后才通知客服；</view>
-    <view style="line-height:40rpx;">C 没人开门、电话联系不上等原因导致无法入户服务；</view>
-    <view style="line-height:40rpx;">D 已上门但停水停电无法继续服务（服务2小时后视为全单服务）；</view>
-    <view style="line-height:40rpx;">E 上门后发现客户的要求是第4条至第6条所述本产品无法服务的情形；</view>
-    <view style="line-height:40rpx;">若有五大类之一的突发状况，今日到家将不能为您提供服务，并且您需要支付50元空单费，敬请尽量避免，谢谢您的理解和支持！</view>
-  </view>
-  <view style='font-size:24rpx;' wx:else>
-    <view style="line-height:40rpx;">1.订单确认后，修改上门服务时间或退款需提前2小时通知；</view>
-    <view style="line-height:40rpx;">2.用户在约定服务时间
-      <text class="theme-color">前2小时取消订单将按30元/人扣取误工费；</text>
-    </view>
-    <view style="line-height:40rpx;">3.如接单后服务人员爽约将全额退款并向您额外赔付30元；</view>
-    <view style="line-height:40rpx;">4.为保障您的权益，所有费用请通过今日到家平台支付；</view>
-  </view>
-
-  <view>
-    <view class="open-rule" bindtap="toggle">
-      <view style=" display: flex;justify-content: center;align-items: center;">
-        <text>平台退款及爽约赔付规则</text>
-        <image style="width:18rpx;height:18rpx;margin-left:16rpx" class="{{ruleShow ? 'on' : ''}}" src="/image/down.png"></image>
-      </view>
-    </view>
-
-    <view wx:if="{{ruleShow}}">
-      <view style="font-size:34rpx">平台退款及爽约赔付规则</view>
-      <view>
-        <view class="rule-list">
-          <view class="rule-title">
-            1.平台接单
-          </view>
-          <view class="rule-content">
-            用户付款下单后，平台需要在30分钟内确认是否接单。如果下单时间不在平台服务时间，平台将在次日上班后1个小时内确认是否接单。
-          </view>
-        </view>
-        <view class="rule-list">
-          <view class="rule-title">
-            2.正常退款
-          </view>
-          <view class="rule-content">
-            用户下单后，在平台服务时间内、离约定时间2小时之前，用户申请退款的，平台应予以100%退款。
-          </view>
-        </view>
-        <view class="rule-list">
-          <view class="rule-title">
-            3.平台爽约
-          </view>
-          <view class="rule-content">
-            平台确认接单后，单方面取消订单或在未事先取得用户同意的情况下超过约定时间2小时仍未上门的，均视为平台爽约。用户申请退款时，若尚未开始服务平台须将已付款项予以100%退款，并向用户另行赔付30元爽约金。
-          </view>
-        </view>
-        <view class="rule-list">
-          <view class="rule-title">
-            4.用户爽约
-          </view>
-          <view class="rule-content">
-            平台已确认接单后，用户单方面在离约定时间2小时内申请退款、服务人员按时上门后用户拒绝接受服务、服务人员按时上门后无法联系到用户导致未能提供服务，或者用户未在约定时间2小时前告知小区停水停电等情况均视为用户爽约。平台可按上门服务人员数扣取30元/人的爽约金（空单费)。如今日到家已安排服务车辆上门的，可另行扣取最高不超过100元/辆的空驶费，其余部分应予以退款。
-          </view>
-        </view>
-        <view class="rule-list">
-          <view class="rule-title">
-            5.协商退款
-          </view>
-          <view class="rule-content">
-            在服务人员开始服务后，如果用户对提供的服务不满意用户可向商家申请部分退款，具体退金额需和平台协商，以保障双方的合理权益。
-          </view>
-        </view>
-
-      </view>
-    </view>
-  </view>
-
+  <image wx:if="{{companyId == 2}}" style='width:100%;' src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200819/19648.jpg?v=0" mode="widthFix" />
+  <image wx:else style='width:100%;' src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200819/19653.jpg?v=2" mode="widthFix" />
 </view>
 
 
@@ -291,7 +201,7 @@
   </view>
 </view>
 
-<selectModal show="{{isShowCompany}}"></selectModal>
+<!-- <selectModal show="{{isShowCompany}}"></selectModal> -->
 
 <!-- 登录 -->
 <!-- <view catchtouchmove="ture">

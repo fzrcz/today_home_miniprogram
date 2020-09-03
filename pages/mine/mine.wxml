@@ -233,4 +233,4 @@
     </view>
   </i-modal>
 </view> -->
-<selectModal show="{{isShowCompany}}"></selectModal>
+<!-- <selectModal show="{{isShowCompany}}"></selectModal> -->

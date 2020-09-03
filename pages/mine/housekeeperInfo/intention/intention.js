@@ -148,7 +148,7 @@ Page({
     // console.log(subIntentionStr + intentionStr)
     var data = subIntentionStr + intentionStr
     if (data) {
-      util.doPost("/housekeepers/" + app.data.accountId + "/workIntents", data, function(res) {
+      util.doPost('',"/housekeepers/" + app.data.accountId + "/workIntents", data, function(res) {
         if (res) {
           wx.showToast({
             title: '保存成功',

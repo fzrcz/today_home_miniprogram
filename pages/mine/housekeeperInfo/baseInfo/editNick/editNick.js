@@ -73,7 +73,7 @@ Page({
       id: app.data.accountId,
       nickname: e.detail.value.nickname
     }
-    util.doPost("/housekeeper", data, function (res) {
+    util.doPost('',"/housekeeper", data, function (res) {
       if (res) {
         wx.showToast({
           title: '修改成功',

@@ -1,15 +1,19 @@
 var util = require('../../../../utils/util.js')
 const app = getApp();
+var QQMapWX = require('../../../../utils/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
 var scene = ''
 var productPic = ''
 var headPic = ''
 let animationShowHeight = 600; //动画偏移高度
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    companyId: '',
     evaluateListaa: [{
         headPic: '/image/moren-1.png',
         employerNickName: '555*222',
@@ -186,6 +190,11 @@ Page({
   onLoad: function(options) {
     var that = this;
     var _this = this
+    //地址定位
+    qqmapsdk = new QQMapWX({
+      key: 'BW5BZ-34TC4-PYLUX-XUPZ5-G7YGE-5FBFG'
+    });
+    this.getUserLocation()
     wx.getSystemInfo({
       success: function(res) {
         _this.setData({
@@ -441,6 +450,9 @@ Page({
         isShowCompany: false
       })
     }
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id
+    })
 
     // if (!app.data.accountId) {
     //   this.showModalLogin()
@@ -563,9 +575,16 @@ Page({
   },
 
   toCall: function() {
-    wx.makePhoneCall({
-      phoneNumber: "400-600-6580"
-    })
+    if(this.data.companyId == 2) {
+      wx.makePhoneCall({
+        phoneNumber: "0591-88771616"
+      })
+    } else {
+      wx.makePhoneCall({
+        phoneNumber: "400-600-6580"
+      })
+    }
+    
   },
 
   /**
@@ -794,22 +813,32 @@ console.log('分享')
       title: '生成中...',
       mask: true
     });
-
+    console.log(that.data.detail.productFileBanner[0].filePath)
     //保存产品详情图片到缓存
     wx.getImageInfo({
       src: that.data.detail.productFileBanner[0].filePath,
       success(img) {
         productPic = img.path
+        console.log(productPic)
+        console.log(app.data.avatarUrl)
         //保存头像图片到缓存
         wx.getImageInfo({
-          src: app.data.avatarUrl,
+          src: wx.getStorageSync('avatarUrl'),
           success(head) {
             console.log("进到getimageinfo")
             console.log("head为：", head)
             headPic = head.path
             that.getMiniCode()
+          },
+          fail(err) {
+            console.log(err)
+            // that.getMiniCode()
+
           }
         })
+      },
+      fail(err) {
+        console.log(err)
       }
     })
 
@@ -850,6 +879,7 @@ console.log('分享')
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createPoster: function(miniCodePic) {
     var that = this;
+    // let avatarUrl = wx.getStorageSync('avatarUrl')
     var context = wx.createCanvasContext('mycanvas');
     context.setFillStyle("#fff")
     context.fillRect(0, 0, 375, 667)
@@ -933,6 +963,123 @@ console.log('分享')
     wx.navigateTo({
       url: '/pages/recommend/defendVirus/defendVirus?type=1',
     })
+  },
+  // 判断用户是否授权
+  getUserLocation: function() {
+    let vm = this;
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+          wx.showModal({
+            title: '请求授权当前位置',
+            content: '需要获取您的地理位置，请确认授权',
+            success: function(res) {
+              if (res.cancel) {
+                wx.showToast({
+                  title: '拒绝授权',
+                  icon: 'none',
+                  duration: 1000
+                })
+                wx.navigateBack({
+                  delta: 1
+                })
+              } else if (res.confirm) {
+                wx.openSetting({
+                  success: function(dataAu) {
+                    if (dataAu.authSetting["scope.userLocation"] == true) {
+                      wx.showToast({
+                        title: '授权成功',
+                        icon: 'success',
+                        duration: 1000
+                      })
+                      vm.getLocation();
+                    } else {
+                      wx.showToast({
+                        title: '授权失败',
+                        icon: 'none',
+                        duration: 1000
+                      })
+                      wx.navigateBack({
+                        delta: 1
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        } else if (res.authSetting['scope.userLocation'] == undefined) {
+          //调用wx.getLocation的API
+          vm.getLocation();
+        } else {
+          //调用wx.getLocation的API
+          vm.getLocation();
+        }
+      }
+    })
+  },
+  // 微信获得经纬度
+  getLocation: function() {
+    let vm = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success: function(res) {
+        // console.log(JSON.stringify(res))
+        var latitude = res.latitude
+        var longitude = res.longitude
+        var speed = res.speed
+        var accuracy = res.accuracy;
+        vm.getLocal(latitude, longitude)
+      },
+      fail: function(res) {
+        // console.log('fail' + JSON.stringify(res))
+      }
+    })
+  },
+  // 获取当前地理位置
+  getLocal: function(latitude, longitude) {
+    let vm = this;
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: latitude,
+        longitude: longitude
+      },
+      success: function(res) {
+        console.log('定位')
+        console.log(JSON.stringify(res));
+        let province = res.result.ad_info.province
+        let city = res.result.ad_info.city
+        let district = res.result.ad_info.district
+        util.doGet("/company/getCompany", {city, county: district}, res => {
+          console.log('获取当前分店：');
+          
+          if(!res.data) {
+            this.setData({
+              selectCompany: {}
+            })
+          } else {
+            wx.setStorageSync('selectCompany',res.data[0])
+            vm.setData({
+              selectCompany: res.data[0]
+            })
+          }
+          console.log(res);
+        })
+        vm.setData({
+          province: province,
+          city: city,
+          latitude: latitude,
+          longitude: longitude
+        })
+
+      },
+      fail: function(res) {
+        console.log(res);
+      },
+      complete: function(res) {
+        // console.log(res);
+      }
+    });
   },
 
 

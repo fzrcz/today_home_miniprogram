@@ -150,7 +150,7 @@ Page({
       longitude: that.data.longitude,
     }   
     console.log("编辑保存地址,传参", data)
-    util.doPost("/account/serveAddress", data, function (res) {
+    util.doPost('',"/account/serveAddress", data, function (res) {
       wx.navigateBack({
         delta: 1
       })

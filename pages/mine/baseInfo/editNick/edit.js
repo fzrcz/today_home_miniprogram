@@ -74,7 +74,7 @@ Page({
       nickname: e.detail.value.nickname
     }
     // console.log(e);
-    util.doPost("/employer", data, function (res) {
+    util.doPost('',"/employer", data, function (res) {
       if (res) {
         wx.showToast({
           title: '修改成功',

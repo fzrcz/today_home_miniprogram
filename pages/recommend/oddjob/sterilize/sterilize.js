@@ -4,6 +4,7 @@ Page({
   data: {
     // businessTypeId: '6',
     showType: 6,
+    companyId: ''
 
   },
   // 查询商品优惠后的价钱
@@ -33,6 +34,9 @@ Page({
     // var that = this;
     // that.onLoad();
     var that = this
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id
+    })
     var data = {
       // 传此accountId是为了检测这个人是否还是新用户，进而是否展示新人专享的商品
       accountId: app.data.accountId,
@@ -51,6 +55,8 @@ Page({
       // 查询商品优惠后的价钱
       that.getProductLaterPrice();
     })
+    
+
     
   },
   //进入产品详情

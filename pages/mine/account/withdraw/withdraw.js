@@ -98,7 +98,7 @@ Page({
       accountId: app.data.accountId,
       money: money
     }
-    util.doPost("/housekeeper/" + app.data.openid +"/withdraw", data, function (res) {
+    util.doPost('',"/housekeeper/" + app.data.openid +"/withdraw", data, function (res) {
       if(res){
         wx.showToast({
           title: '提现成功',
