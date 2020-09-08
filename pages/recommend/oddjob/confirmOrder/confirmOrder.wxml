@@ -63,7 +63,7 @@
 
   <!-- 加上预约时间及备注 -->
   <!-- <view wx:if='{{businessTypeId == "6"}}' class="common-list"> -->
-  <view wx:if='{{showType == "6"}}' class="common-list">
+  <view wx:if='{{showType == "6" || showType == "18"}}' class="common-list">
     <view class='flex-between item-list'>
       <view>预约日期:</view>
       <navigator class="picker" url='{{"calendar/calendar?bornDay="+bornDay+"&todaytime="+todaytime+"&productId="+productId}}' hover-class="navigator-hover">

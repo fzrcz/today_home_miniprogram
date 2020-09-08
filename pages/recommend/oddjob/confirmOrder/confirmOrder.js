@@ -344,6 +344,7 @@ Page({
    */
   
   onShow: function(options) {
+    // debugger
     //获取当天时间
     let DATE =new Date(),
       year = DATE.getFullYear(),
@@ -426,12 +427,19 @@ Page({
     // console.log('次数' + that.data.serviceNo)
     //次数商品不予使用电子券和凭证
     if (that.data.serviceNo != 1 && that.data.serviceNo != 'null' && that.data.serviceNo != ''){
-      that.setData({
-        shopVoucher:false,
-        checkindex: 0,
-        checktip: '(该商品优惠券不可用)',
-        vouchaertip: '该商品购物凭证不可用'
-      })
+      if(that.data.businessTypeId == '18') {
+        that.setData({
+          shopVoucher:true
+        })
+      } else {
+        that.setData({
+          shopVoucher:false,
+          checkindex: 0,
+          checktip: '(该商品优惠券不可用)',
+          vouchaertip: '该商品购物凭证不可用'
+        })
+      }
+      
     }
     //未选择优惠券
     if (!couponsLimit) {
@@ -883,7 +891,7 @@ Page({
     }
 
     // if (that.data.businessTypeId == '6') {
-    if (that.data.showType == '6') {
+    if (that.data.showType == '6' || that.data.showType == '18') {
       if (that.data.bornDay == '请选择日期') {
         wx.showToast({
           title: '您还未选择预约日期！',

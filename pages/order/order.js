@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    companyId: '',
     swichNavlist:[
       {name:'全  部',num:0},
       {name:'待付款',num:0},
@@ -117,6 +118,9 @@ Page({
         isShowCompany: false
       })
     }
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id
+    })
     this.getOrderListnum('')
     // this.getOrderListnum('0')
     // this.getOrderListnum('14,15')

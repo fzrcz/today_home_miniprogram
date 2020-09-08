@@ -11,6 +11,7 @@ Page({
     phoneVal:'',
     isSuccess:false,
     visible:false,
+    companyId: '',
     actions: [
       {
         name: '客服协助'
@@ -61,6 +62,9 @@ Page({
    */
   onShow: function () {
     btn = false
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id
+    })
   },
 
   /**
@@ -293,9 +297,16 @@ Page({
   },
 
   toHelp: function () {
-    wx.makePhoneCall({
-      phoneNumber: '400-600-6580'
-    })
+    if(this.data.companyId != 2) {
+      wx.makePhoneCall({
+        phoneNumber: '400-600-6580'
+      })
+    } else {
+      wx.makePhoneCall({
+        phoneNumber: '0591-88771616'
+      })
+    }
+    
   },
 
   toComplement:function(){

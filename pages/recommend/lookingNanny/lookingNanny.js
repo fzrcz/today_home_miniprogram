@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    companyId: ''
   },
 
   /**
@@ -42,14 +42,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id
+    })
   },
 
   // 联系客服
   toCall: function() {
-    wx.makePhoneCall({
-      phoneNumber: '400-600-6580'
-    })
+    if(this.data.companyId != 2) {
+      wx.makePhoneCall({
+        phoneNumber: '400-600-6580'
+      })
+    } else {
+      wx.makePhoneCall({
+        phoneNumber: '0591-88771616'
+      })
+    }
+    
   },
   // 在线预约
   onlineBooking: function() {

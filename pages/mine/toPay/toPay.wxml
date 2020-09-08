@@ -69,7 +69,8 @@
           <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.appointsOrders.status==412}}'>锁定订单</view>
 
           <view class='btn-style-grey font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' wx:if='{{item.appointsOrders.status==413}}'>更换阿姨</view>
-          <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+          <view class='btn-style font-28' wx:if="{{companyId != 2}}" style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+          <view class='btn-style font-28' wx:else style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' bindtap='toMakePhone' data-phone='{{"0591-88771616"}}'>联系客服</view>
 
         </view>
       </view>
@@ -141,7 +142,8 @@
           <view wx:elif='{{item.oddJobOrders[0].orderStatus == "工作完成"}}' class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='confirmComplete' data-index="{{index}}" data-orderdetailid='{{item.oddJobOrders[0].id}}'
             data-businesstypeid='{{item.businessTypeId}}'>确认完成</view>
           <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toPay'>付款</view>
-          <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+          <view class='btn-style font-28' wx:if="{{companyId != 2}}" style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+          <view class='btn-style font-28' wx:else style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' bindtap='toMakePhone' data-phone='{{"0591-88771616"}}'>联系客服</view>
 
         </view>
 
@@ -182,7 +184,8 @@
           <view class='breakline' style="height:1px;"></view>
         </view>
 
-        <view class='btn-style font-28' style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;float:right' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+        <view class='btn-style font-28' wx:if="{{companyId != 2}}" style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' bindtap='toMakePhone' data-phone='{{"400-600-6580"}}'>联系客服</view>
+        <view class='btn-style font-28' wx:else style='margin:20rpx 40rpx 20rpx 20rpx; padding:0 20rpx;' bindtap='toMakePhone' data-phone='{{"0591-88771616"}}'>联系客服</view>
 
       </view>
 

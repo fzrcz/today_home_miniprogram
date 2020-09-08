@@ -18,6 +18,7 @@ Page({
       {sendid:0,content:'好',time:'今天'},
       {sendid:1,content:'这句话测试这句话有多长这句话会不会换行11111111111111',time:'今天'},
     ],
+    companyId: '',
     emojiChar: ["😠","😩","😲","😰","😒","😍","😜","😝","😋","😘","😚","😷","😳","😃","😅","😆","😁","😂","😊","😄","😢","😭","😨","😣","😡","😌","😖","😔","😱","😪","😏","😓","😫","😉","😤","✊","👍","👋","👏","👌","👎","🙏"],
   },
 
@@ -28,6 +29,9 @@ Page({
 
   },
   onShow: function () {
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id
+    })
     wx.getSystemInfo({
       success:res=>{
         this.setData({
@@ -94,8 +98,15 @@ Page({
   },
   //拨打电话
   tocall(e){
-    wx.makePhoneCall({
-      phoneNumber: '400-600-6580'
-    })
+    if(this.data.companyId != 2) {
+      wx.makePhoneCall({
+        phoneNumber: '400-600-6580'
+      })
+    } else {
+      wx.makePhoneCall({
+        phoneNumber: '0591-88771616'
+      })
+    }
+    
   }
 })

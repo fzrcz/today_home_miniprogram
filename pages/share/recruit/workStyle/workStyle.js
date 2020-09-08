@@ -7,6 +7,7 @@ Page({
    */
   data: {
     imageList: [],
+    companyId: ''
   },
 
   /**
@@ -138,9 +139,16 @@ Page({
   },
 
   toCall:function(){
-    wx.makePhoneCall({
-      phoneNumber: '400-600-6580'
-    })
+    if(this.data.companyId != 2) {
+      wx.makePhoneCall({
+        phoneNumber: '400-600-6580'
+      })
+    } else {
+      wx.makePhoneCall({
+        phoneNumber: '0591-88771616'
+      })
+    }
+    
   }
 
 })

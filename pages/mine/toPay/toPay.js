@@ -15,6 +15,7 @@ Page({
     scroll: false,
     //更多评论模态框
     visible: false,
+    companyId: '',
     //阿姨列表
     housekeepersData: [],
     housekeeperId: '',
@@ -43,6 +44,9 @@ Page({
    */
   onShow: function () {
     btn = false
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id
+    })
     if (!this.isLogin()) {
       this.handleOpenLogin();
       return false;

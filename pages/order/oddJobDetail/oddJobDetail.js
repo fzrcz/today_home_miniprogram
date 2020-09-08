@@ -7,6 +7,7 @@ Page({
    */
   data: {
     imgList: [],
+    companyId: ''
   },
 
   /**
@@ -40,6 +41,9 @@ Page({
       that.continueConfirmComplete(that.data.signFilePath);
       that.data.signStatus = false;
     }
+    this.setData({
+      companyId: wx.getStorageSync('selectCompany').id
+    })
     //************************************** */
     wx.showLoading({
       title: '加载中...',

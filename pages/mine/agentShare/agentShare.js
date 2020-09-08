@@ -36,11 +36,17 @@ Page({
     wx.showLoading({
       title: '生成中'
     })
+    let bgImage = ''
+    if(wx.getStorageSync('selectCompany').id != 2) {
+      bgImage = 'https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200829/19732.png?v=3'
+    } else {
+      bgImage = 'https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200905/19758.png?v=0'
+    }
     this.setData({
       imgDraw: {
         width: '750rpx',
         height: '1100rpx',
-        background: 'https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200829/19732.png?v=3',
+        background: bgImage,
         views: [
           {
             type: 'image',
