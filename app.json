@@ -134,7 +134,8 @@
     "pages/mine/agentShare/myInvitation/myInvitation",
     "pages/mine/agentShare/confirmGetCash/confirmGetCash",
     "pages/mine/agentShare/confirmGetCash/getCashRecord/getCashRecord",
-    "pages/recommend/hdPage/hdPage"
+    "pages/recommend/hdPage/hdPage",
+    "pages/recommend/oddjob/sdwx/sdwx"
   ],
   "window": {
     "backgroundTextStyle": "light",

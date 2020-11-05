@@ -306,123 +306,6 @@ Page({
       }
     })
   },
-  setNavMenu() {
-    this.setData({
-      companyId: wx.getStorageSync('selectCompany').id
-    })
-    if(wx.getStorageSync('selectCompany').id == 1) {
-      let menu = [
-        {
-          imageUrl: "/image/newpoeple.png",
-          description: "新人专享",
-          url: "newpeople/newpeople"
-        },
-        {
-          imageUrl: "/image/antarea.png",
-          description: "抗疫专区",
-          url: 'oddjob/sterilize/sterilize'
-        },
-        {
-          imageUrl: "/image/hourCleaning.png",
-          description: "钟点保洁",
-          url: "/pages/recommend/oddjob/hourCleaning/hourCleaning"
-        },
-        {
-          imageUrl: "/image/appliancesCleaning.png",
-          description: "家电清洗",
-          url: "/pages/recommend/oddjob/appliancesCleaning/appliancesCleaning"
-        },{
-          imageUrl: "/image/nannymoon.png",
-          description: "月嫂保姆",
-          url: '/pages/recommend/classifyWorkers/classifyWorkers'
-        },
-        {
-          imageUrl: "/image/mitesRemoval.png",
-          description: "除尘除螨",
-          url: "/pages/recommend/oddjob/mitesRemoval/mitesRemoval"
-        },
-        {
-          imageUrl: "/image/leatherCare.png",
-          description: "翻新养护",
-          url: "/pages/recommend/oddjob/leatherCare/leatherCare"
-        },
-        {
-          imageUrl: "/image/unlock.png",
-          description: "今日直购",
-          url: ""
-        },
-        {
-          imageUrl: "/image/menu_ywqx.jpeg",
-          description: "衣物清洗",
-          url: "/pages/recommend/oddjob/ywqx/ywqx"
-        },
-        {
-          imageUrl: "/image/menu_bjfw.jpeg",
-          description: "搬家服务",
-          url: "/pages/recommend/oddjob/bjfw/bjfw"
-        },
-        // {
-        //   imageUrl: "/image/dredgePipeline.png",
-        //   description: "管道疏通",
-        //   url: "/pages/recommend/oddjob/dredgePipeline/dredgePipeline"
-        // },
-        // {
-        //   imageUrl: "/image/removeHCHO.png",
-        //   description: "甲醛治理",
-        //   url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
-        // },
-        // {
-        //   imageUrl: "/image/appliancesRepair.png",
-        //   description: "家电维修",
-        //   url: "/pages/recommend/oddjob/appliancesRepair/appliancesRepair"
-        // }
-      ]
-      this.setData({
-        serverlist: menu
-      })
-      console.log('serverlist')
-      console.log(this.data.serverlist)
-      
-    } else {
-      let menu = [
-        {
-          imageUrl: "/image/newpoeple.png",
-          description: "新人专享",
-          url: "newpeople/newpeople"
-        },
-        {
-          imageUrl: "/image/antarea.png",
-          description: "抗疫专区",
-          url: 'oddjob/sterilize/sterilize'
-        },
-        {
-          imageUrl: "/image/hourCleaning.png",
-          description: "钟点保洁",
-          url: "/pages/recommend/oddjob/hourCleaning/hourCleaning"
-        },
-        {
-          imageUrl: "/image/appliancesCleaning.png",
-          description: "家电清洗",
-          url: "/pages/recommend/oddjob/appliancesCleaning/appliancesCleaning"
-        },
-        {
-          imageUrl: "/image/mitesRemoval.png",
-          description: "除尘除螨",
-          url: "/pages/recommend/oddjob/mitesRemoval/mitesRemoval"
-        },
-        {
-          imageUrl: "/image/removeHCHO.png",
-          description: "甲醛治理",
-          url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
-        },
-      ]
-      this.setData({
-        serverlist: menu
-      })
-      console.log('serverlist')
-      console.log(this.data.serverlist)
-    }
-  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -533,6 +416,16 @@ Page({
           imageUrl: "/image/removeHCHO.png",
           description: "甲醛治理",
           url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
+        },
+        {
+          imageUrl: "/image/menu_bjfw.jpeg",
+          description: "搬家服务",
+          url: "/pages/recommend/oddjob/bjfw/bjfw"
+        },
+        {
+          imageUrl: "/image/menu_sdwx.png",
+          description: "水电维修",
+          url: "/pages/recommend/oddjob/sdwx/sdwx"
         },
       ]
       vm.setData({
@@ -1388,6 +1281,16 @@ Page({
                 imageUrl: "/image/removeHCHO.png",
                 description: "甲醛治理",
                 url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
+              },
+              {
+                imageUrl: "/image/menu_bjfw.jpeg",
+                description: "搬家服务",
+                url: "/pages/recommend/oddjob/bjfw/bjfw"
+              },
+              {
+                imageUrl: "/image/menu_sdwx.png",
+                description: "水电维修",
+                url: "/pages/recommend/oddjob/sdwx/sdwx"
               },
             ]
             vm.setData({

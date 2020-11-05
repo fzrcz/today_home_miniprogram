@@ -196,6 +196,12 @@ Page({
         showType: '18'
       })
     }
+    if (id == 19) {
+      that.setData({
+        // businessTypeId: '13'
+        showType: '19'
+      })
+    }
     that.getProductList();
     // var data = {
     //   // businessTypeId: that.data.businessTypeId,
@@ -336,12 +342,18 @@ Page({
             url: "/pages/recommend/oddjob/removeHCHO/removeHCHO",
             id: 6
           },
-          // {
-          //   imageUrl: "/image/appliancesRepair.png",
-          //   description: "家电维修",
-          //   url: "/pages/recommend/oddjob/appliancesRepair/appliancesRepair",
-          //   id: 7
-          // },
+          {
+            imageUrl: "/image/menu_bjfw.jpeg",
+            description: "搬家服务",
+            url: "/pages/recommend/oddjob/removeHCHO/removeHCHO",
+            id: 17
+          },
+          {
+            imageUrl: "/image/menu_sdwx.png",
+            description: "水电维修",
+            url: "/pages/recommend/oddjob/sdwx/sdwx",
+            id: 19
+          },
         ]
       })
     }

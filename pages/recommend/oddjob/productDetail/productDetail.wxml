@@ -166,7 +166,10 @@
 
 
 
-  <view class='flex-center' style='width:50%; background:#ff7f27; color:white;' bindtap='toOrder' disabled="disabled">
+  <view wx:if="{{detail.status == '下架'}}" class='flex-center' style='width:50%; background:#ccc; color:white;' disabled="disabled">
+    <view>已下架</view>
+  </view>
+  <view wx:else class='flex-center' style='width:50%; background:#ff7f27; color:white;' bindtap='toOrder' disabled="disabled">
     <view>立即预约</view>
   </view>
 </view>

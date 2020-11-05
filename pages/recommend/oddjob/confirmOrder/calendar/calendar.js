@@ -141,6 +141,7 @@ Page({
       month: this.data.month,
       date: this.zero(date)
     });
+    console.log(this.data.date)
     if (ayinum==0){
       tis='当前日期暂无人员为您服务，请选择其他时间'
     } else if (ayinum<=3){
@@ -235,13 +236,17 @@ Page({
   },
   //确认
   choosedaily() {
+    // debugger
     let pages = getCurrentPages();
     //prevPage 是获取上一个页面的js里面的pages的所有信息。 -2 是上一个页面，-3是上上个页面以此类推。
     let prevPage = pages[pages.length - 2];
     console.log(this.data.select)
     // prevPage.__data__.bornDay = this.data.select
     console.log(prevPage)
-    prevPage.__data__.bornDay = this.data.select2
+    let date = this.data.year + '-' + this.data.month + '-' + this.data.date
+    // prevPage.__data__.bornDay = this.data.select
+    prevPage.__data__.bornDay = date
+    // prevPage.__data__.bornDay = this.data.select2
     wx.navigateBack({
       delta: 1,
     })

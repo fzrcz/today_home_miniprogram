@@ -241,7 +241,7 @@
     </view>
   </view>
 
-  <view class='add_btn flex-x' style=' height:100rpx;'>
+  <view class='add_btn flex-x' style=' height:100rpx;z-index:9999'>
     <view style='width:60%; background:#fff; padding-left:20px;' wx:if="{{paymentName=='微信支付'}}">合计：
       <text style="color:#ff7f27">￥{{totalPrice}}</text>
       <text class="font-24">
@@ -254,7 +254,8 @@
       电子券：￥{{cardLeftBalance>=totalPrice?totalPrice:cardPrice}}
       </text>
     </view>
-    <view style='width:40%; background:#ff7f27; color:white; font-size:40rpx; text-align:center; font-weight: bold;line-height:100rpx;' class="{{crowdStatus?'gree':''}}" bindtap='toPay' disabled="true">立即支付</view>
+    <view style='width:40%; background:#ff7f27; color:white; font-size:40rpx; text-align:center; font-weight: bold;line-height:100rpx;' bindtap='toPay'>立即支付</view>
+    <!-- <view style='width:40%; background:#ff7f27; color:white; font-size:40rpx; text-align:center; font-weight: bold;line-height:100rpx;' class="{{crowdStatus?'gree':''}}" bindtap='toPay' disabled="true">立即支付</view> -->
   </view>
 
 </view>

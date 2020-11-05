@@ -21,7 +21,7 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": true,
+    "useMultiFrameRuntime": false,
     "useApiHook": true,
     "babelSetting": {
       "ignore": [],
@@ -31,8 +31,11 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
-    "packNpmRelationList": []
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "bundle": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.12.1",
@@ -49,27 +52,22 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
     "plugin": {
-      "current": -1,
       "list": []
     },
     "game": {
       "list": []
     },
     "gamePlugin": {
-      "current": -1,
+      "list": []
+    },
+    "search": {
+      "list": []
+    },
+    "conversation": {
       "list": []
     },
     "miniprogram": {
-      "current": 6,
       "list": [
         {
           "id": -1,
@@ -243,6 +241,14 @@
           "id": -1,
           "name": "代理商",
           "pathName": "pages/mine/agentShare/agentShare",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "下单支付",
+          "pathName": "pages/recommend/oddjob/confirmOrder/confirmOrder",
+          "query": "productId=67&businessTypeId=6&showType=6&activityId=&productName=2次X4小时新客户保洁体验服务&price=258&serviceNo=2",
           "scene": null
         }
       ]
