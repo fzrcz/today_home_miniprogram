@@ -4,9 +4,10 @@
   <view class="sidebar-box" style="height:{{windowHeight}}px">
     <scroll-view class="sidebar" style="height:{{windowHeight-1}}px" scroll-y="false">
       <view>
+        <!-- bindtap="switchRightTab" -->
         <block wx:for="{{serverlist}}" wx:key="id">
-          <view class="list" bindtap="goServer" data-url='{{item.url}}' data-id="{{item.id}}" data-description="{{item.description}}">
-            <text class="desc {{curNav == item.id ? 'desc-on' : ''}}" bindtap="switchRightTab" data-index="{{index}}">{{item.description}}</text>
+          <view class="list" bindtap="goServer" data-dataItem="{{item}}" data-mark="{{item.mark}}" data-show-type="{{item.showType}}" data-url='{{item.url}}' data-id="{{item.categoryId}}" data-description="{{item.description}}">
+            <text class="desc {{curNav == item.categoryId ? 'desc-on' : ''}}" data-index="{{index}}">{{item.name}}</text>
           </view>
         </block>
       </view>

@@ -1,0 +1,101 @@
+<view>
+  <view wx:if="{{companyId == 2}}" style='padding:30rpx;'>
+    <view data-productid='123' data-activityid='' bindtap='toDetail' class='flex-x flex-center-y font-28' style='border-bottom:1px solid #eee; margin-top:20rpx; padding-bottom:20rpx;'>
+      <view class="pro-list-l">
+        <image class="pro-list-l-img" src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200225/19324.jpg?v=1" mode='aspectFill' />
+      </view>
+      <view class='flex-y' style='padding:20rpx 0 20rpx 20rpx; line-height:50rpx; width:470rpx;'>
+        <view class='font-bold font-32'>4小时全屋雾化消毒<image class="newbus" src="/image/newred.png" mode='aspectFill'></image></view>
+        <view class='flex-between' style='align-items:flex-end; margin-top:20rpx;'>
+          <view>
+            <view class="font-28" style="color:red">价格￥189<text style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥399</text></view>
+            
+
+          </view>
+          <view style='padding:10rpx 20rpx; background-color: #FF7F27; color:#FFF; text-align: center;'>立即抢购 ></view>
+        </view>
+      </view>
+    </view>
+    
+    <view data-productid='124' data-activityid='' bindtap='toDetail' class='flex-x flex-center-y font-28' style='border-bottom:1px solid #eee; margin-top:20rpx; padding-bottom:20rpx;'>
+      <view class="pro-list-l">
+        <image class="pro-list-l-img" src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200213/19312.jpg?v=4" mode='aspectFill' />
+      </view>
+      <view class='flex-y' style='padding:20rpx 0 20rpx 20rpx; line-height:50rpx; width:470rpx;'>
+        <view class='font-bold font-32'>办公室消毒服务<image class="newbus" src="/image/newred.png" mode='aspectFill'></image></view>
+        <view class='flex-between' style='align-items:flex-end; margin-top:20rpx;'>
+          <view>
+            <view class="font-28" style="color:red">价格￥300<text style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥330</text></view>
+          </view>
+          <view style='padding:10rpx 20rpx; background-color: #FF7F27; color:#FFF; text-align: center;'>立即抢购 ></view>
+        </view>
+      </view>
+    </view>
+
+    <view data-productid='129' data-activityid='' bindtap='toDetail' class='flex-x flex-center-y font-28' style='border-bottom:1px solid #eee; margin-top:20rpx; padding-bottom:20rpx;'>
+      <view class="pro-list-l">
+        <image class="pro-list-l-img" src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200830/19743.jpg?v=4 " mode='aspectFill' />
+      </view>
+      <view class='flex-y' style='padding:20rpx 0 20rpx 20rpx; line-height:50rpx; width:470rpx;'>
+        <view class='font-bold font-32'>清洗挂式空调<image class="newbus" src="/image/newred.png" mode='aspectFill'></image></view>
+        <view class='flex-between' style='align-items:flex-end; margin-top:20rpx;'>
+          <view>
+            <view class="font-28" style="color:red">价格￥78<text style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥128</text></view>
+          </view>
+          <view style='padding:10rpx 20rpx; background-color: #FF7F27; color:#FFF; text-align: center;'>立即抢购 ></view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view wx:else style='padding:30rpx;'>
+    <view data-productid='82' data-activityid='' bindtap='toDetail' class='flex-x flex-center-y font-28' style='border-bottom:1px solid #eee; margin-top:20rpx; padding-bottom:20rpx;'>
+      <view class="pro-list-l">
+        <image class="pro-list-l-img" src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200225/19324.jpg?v=1" mode='aspectFill' />
+      </view>
+      <view class='flex-y' style='padding:20rpx 0 20rpx 20rpx; line-height:50rpx; width:470rpx;'>
+        <view class='font-bold font-32'>4小时全屋雾化消毒<image class="newbus" src="/image/newred.png" mode='aspectFill'></image></view>
+        <view class='flex-between' style='align-items:flex-end; margin-top:20rpx;'>
+          <view>
+            <view class="font-28" style="color:red">价格￥189<text style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥399</text></view>
+            
+
+          </view>
+          <view style='padding:10rpx 20rpx; background-color: #FF7F27; color:#FFF; text-align: center;'>立即抢购 ></view>
+        </view>
+      </view>
+    </view>
+    
+    <view data-productid='81' data-activityid='' bindtap='toDetail' class='flex-x flex-center-y font-28' style='border-bottom:1px solid #eee; margin-top:20rpx; padding-bottom:20rpx;'>
+      <view class="pro-list-l">
+        <image class="pro-list-l-img" src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200213/19312.jpg?v=4" mode='aspectFill' />
+      </view>
+      <view class='flex-y' style='padding:20rpx 0 20rpx 20rpx; line-height:50rpx; width:470rpx;'>
+        <view class='font-bold font-32'>办公室消毒服务<image class="newbus" src="/image/newred.png" mode='aspectFill'></image></view>
+        <view class='flex-between' style='align-items:flex-end; margin-top:20rpx;'>
+          <view>
+            <view class="font-28" style="color:red">价格￥300<text style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥330</text></view>
+          </view>
+          <view style='padding:10rpx 20rpx; background-color: #FF7F27; color:#FFF; text-align: center;'>立即抢购 ></view>
+        </view>
+      </view>
+    </view>
+
+    <view data-productid='1' data-activityid='' bindtap='toDetail' class='flex-x flex-center-y font-28' style='border-bottom:1px solid #eee; margin-top:20rpx; padding-bottom:20rpx;'>
+      <view class="pro-list-l">
+        <image class="pro-list-l-img" src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200404/19353.jpg?v=1" mode='aspectFill' />
+      </view>
+      <view class='flex-y' style='padding:20rpx 0 20rpx 20rpx; line-height:50rpx; width:470rpx;'>
+        <view class='font-bold font-32'>清洗挂式空调<image class="newbus" src="/image/newred.png" mode='aspectFill'></image></view>
+        <view class='flex-between' style='align-items:flex-end; margin-top:20rpx;'>
+          <view>
+            <view class="font-28" style="color:red">价格￥58<text style='margin-left:20rpx; text-decoration:line-through; color:#888; font-size:28rpx;'>￥108</text></view>
+          </view>
+          <view style='padding:10rpx 20rpx; background-color: #FF7F27; color:#FFF; text-align: center;'>立即抢购 ></view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

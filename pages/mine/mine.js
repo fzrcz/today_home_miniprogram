@@ -550,15 +550,9 @@ Page({
   },
   //客服电话
   toCall: function() {
-    if(this.data.companyId == 2) {
-      wx.makePhoneCall({
-        phoneNumber: "0591-88771616"
-      })
-    } else {
-      wx.makePhoneCall({
-        phoneNumber: "400-600-6580"
-      })
-    }
+    wx.makePhoneCall({
+      phoneNumber: wx.getStorageSync('selectCompany').tel
+    })
     // wx.navigateTo({
     //   url: 'chat/chat',
     // })
@@ -855,15 +849,9 @@ Page({
   },
   //投诉中心
   complaintCenter: function() {
-    if(this.data.companyId == 2) {
-      wx.makePhoneCall({
-        phoneNumber: "0591-88771616"
-      })
-    } else {
-      wx.makePhoneCall({
-        phoneNumber: "400-600-6580"
-      })
-    }
+    wx.makePhoneCall({
+      phoneNumber: wx.getStorageSync('selectCompany').tel
+    })
   },
 
   //我的优惠券

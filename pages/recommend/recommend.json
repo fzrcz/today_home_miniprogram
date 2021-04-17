@@ -10,7 +10,8 @@
     "i-load-more": "/iview/load-more/index",
     "i-spin": "/iview/spin/index",
     "i-icon": "/iview/icon/index",
-    "i-notice-bar": "/iview/notice-bar/index",
+    "i-tabs": "/iview/tabs/index",
+    "i-tab": "/iview/tab/index",
     "maskModal": "/common/maskModal/maskModal",
     "selectModal": "/common/selectModal/index"
   }

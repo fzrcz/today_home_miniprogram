@@ -1,7 +1,9 @@
 var app = getApp();
 // 测试
 // var baseUrl = 'https://test443.51jrdj.com/home-service2.0'
-//  var baseUrl = 'http://192.168.0.2:19090/home-service2.0';
+//  var baseUrl = 'http://192.168.31.110:8080/';
+//  var baseUrl = 'http://192.168.31.110:8080/home-service2.0';
+//  var baseUrl = 'http://192.168.31.110:19090/home-service2.0';
 //  var baseUrl = 'http://192.168.43.123:8081/home-service2.0';
 
 // var baseUrl = 'https://test443.91jrdj.com/home-service_test'; // 测试
@@ -29,7 +31,7 @@ function mask(str) {
   if (str) {
     titleStr = str;
   }
-  wx.showToast({
+wx.showToast({
     title: titleStr,
     icon: 'loading',
     duration: 20000,

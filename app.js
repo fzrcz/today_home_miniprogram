@@ -229,7 +229,9 @@ App({
     currentTab: null,
     // 正式||测试
     apiUrl: "https://weixin.51jrdj.com/itgroup_home/incoming/apply.pair",//请求地址 正式
+    // apiUrl: "http://192.168.31.110:18080/itgroup_home/incoming/apply.pair",//请求地址 本地测试试
     // apiUrl: "https://test443.91jrdj.com/itgroup_home_test/incoming/apply.pair",//请求地址 测试
+    // apiUrl: "https://test443.91jrdj.com/itgroup_home/incoming/apply.pair",//请求地址 测试
     // -----------
     netAddress: "https://weixin.51jrdj.com/home-wechat2.0",// 正式 用于支付回调
     // apiUrl: "http://192.168.0.16:18080/itgroup_home/incoming/apply.pair",//请求地址 本地测试

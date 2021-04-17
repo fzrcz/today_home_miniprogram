@@ -1,0 +1,114 @@
+<view>
+  <!-- 保姆卡片 -->
+  <view class="nanny-wrap">
+    <view class="nanny-card">
+      <view class="avatar">
+        <image src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200617/19409.jpg?v=1" alt=""/>
+        <view class="detail">
+          <view class="name">苏阿姨</view>
+          <view class="info">
+            <view>等级：<text>金牌月嫂 | </text></view>
+            <view>名族：<text>汉</text></view>
+          </view>
+          <view class="info">
+            <view>性别：<text>女 | </text></view>
+            <view>生肖：<text>虎</text></view>
+            <view>星座：<text>水瓶座</text></view>
+          </view>
+          <view class="info">
+            <view>员工编号：<text>JTT048928923801</text></view>
+          </view>
+        </view>
+      </view>
+
+      <view class="basic-info">
+        <view class="info">
+          <text>47</text>
+          <text>年龄</text>
+        </view>
+        <view class="info">
+          <text>10年</text>
+          <text>经验</text>
+        </view>
+        <view class="info">
+          <text>中专</text>
+          <text>学历</text>
+        </view>
+        <view class="info">
+          <text>福建</text>
+          <text>籍贯</text>
+        </view>
+      </view>
+
+      <view class="nanny-tag">
+        <view>老实本分</view>
+        <view>干活利索</view>
+        <view>细心认证</view>
+        <view>诚实可信</view>
+      </view>
+      
+    </view>
+  </view>
+
+  <view class="certification">
+    <view class="title">认证信息</view>
+    <view class="certification-wrap">
+      <view class="certification-item">
+        <view class="iconfont icon-renzheng1"></view>
+        <!-- <image src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200617/19409.jpg?v=1" alt=""/> -->
+        <view>背景合格</view>
+      </view>
+      <view class="certification-item">
+        <view class="iconfont icon-credentials_icon active"></view>
+        <view>身份证</view>
+      </view>
+      <view class="certification-item">
+        <view class="iconfont icon-congyezige"></view>
+        <view>从业资格证</view>
+      </view>
+      <view class="certification-item">
+        <view class="iconfont icon-tijianbaogao"></view>
+        <view>体检报告</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="profile">
+    <view class="title">个人简介</view>
+    <view class="desc">
+      暂无
+    </view>
+  </view>
+
+  <view class="profile">
+    <view class="title">获得证书</view>
+    <view class="desc">
+      <image src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200617/19409.jpg?v=1" alt=""/>
+      <image src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200617/19409.jpg?v=1" alt=""/>
+    </view>
+  </view>
+
+  <view class="profile">
+    <view class="title">权威证书</view>
+    <view class="desc">
+      <image src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200617/19409.jpg?v=1" alt=""/>
+    </view>
+  </view>
+
+  <view class="fixed-bottom">
+    <!-- <view class="qrcode">
+      <view class="opear">
+        <image src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200617/19409.jpg?v=1" alt=""/>
+        <view>关注</view>
+      </view>
+      <view class="opear">
+        <image src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200617/19409.jpg?v=1" alt=""/>
+        <view>Ta的二维码</view>
+      </view>
+    </view> -->
+    <view class="btn">
+      <view class="btn1">咨询价格</view>
+      <!-- <view class="btn2">邀约面试</view> -->
+    </view>
+    </view>
+</view>

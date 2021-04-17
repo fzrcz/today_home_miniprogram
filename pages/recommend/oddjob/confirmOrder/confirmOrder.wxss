@@ -143,9 +143,15 @@ slider{
   border-radius: 20rpx 20rpx 0 0;
   background: #fff;
   width: 100%;
-  min-height: 490rpx;
+  /* min-height: 350rpx; */
 }
 
+.modal-pay-490{
+  min-height: 490rpx;
+}
+.modal-pay-350{
+  min-height: 350rpx;
+}
 /* 遮罩 */
 
 .mask {

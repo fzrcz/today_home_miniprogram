@@ -15,6 +15,7 @@ Page({
   //页面的初始数据
   data: {
     str:'',
+    currentSelected: 'tab1',
     strtime:0,
     current:0,
     spinShow: "none",
@@ -33,94 +34,9 @@ Page({
     selectCompany: {},
     isShowCompany: false,
     companyId: 1,
-    serverlist: [
-      // {
-      //   imageUrl: "/image/newpoeple.png",
-      //   description: "新人专享",
-      //   url: "newpeople/newpeople"
-      // },
-      // {
-      //   imageUrl: "/image/antarea.png",
-      //   description: "抗疫专区",
-      //   url: 'oddjob/sterilize/sterilize'
-      // },
-      // {
-      //   imageUrl: "/image/hourCleaning.png",
-      //   description: "钟点保洁",
-      //   url: "/pages/recommend/oddjob/hourCleaning/hourCleaning"
-      // },
-      // {
-      //   imageUrl: "/image/appliancesCleaning.png",
-      //   description: "家电清洗",
-      //   url: "/pages/recommend/oddjob/appliancesCleaning/appliancesCleaning"
-      // },{
-      //   imageUrl: "/image/nannymoon.png",
-      //   description: "月嫂保姆",
-      //   url: '/pages/recommend/classifyWorkers/classifyWorkers'
-      // },
-      // {
-      //   imageUrl: "/image/mitesRemoval.png",
-      //   description: "除尘除螨",
-      //   url: "/pages/recommend/oddjob/mitesRemoval/mitesRemoval"
-      // },
-      // {
-      //   imageUrl: "/image/leatherCare.png",
-      //   description: "翻新养护",
-      //   url: "/pages/recommend/oddjob/leatherCare/leatherCare"
-      // },
-      // {
-      //   imageUrl: "/image/unlock.png",
-      //   description: "今日直购",
-      //   url: ""
-      // },
-      // {
-      //   imageUrl: "/image/dredgePipeline.png",
-      //   description: "管道疏通",
-      //   url: "/pages/recommend/oddjob/dredgePipeline/dredgePipeline"
-      // },
-      // {
-      //   imageUrl: "/image/removeHCHO.png",
-      //   description: "甲醛治理",
-      //   url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
-      // },
-      // {
-      //   imageUrl: "/image/appliancesRepair.png",
-      //   description: "家电维修",
-      //   url: "/pages/recommend/oddjob/appliancesRepair/appliancesRepair"
-      // }
-    ],
-    serverlist2: [
-      {
-        imageUrl: "/image/leatherCare.png",
-        description: "翻新养护",
-        url: "/pages/recommend/oddjob/leatherCare/leatherCare"
-      },
-      {
-        imageUrl: "/image/pet.png",
-        description: "宠物洁",
-        url: "petclean/petclean"
-      },
-      {
-        imageUrl: "/image/dredgePipeline.png",
-        description: "管道疏通",
-        url: "/pages/recommend/oddjob/dredgePipeline/dredgePipeline"
-      },
-      {
-        imageUrl: "/image/removeHCHO.png",
-        description: "甲醛治理",
-        url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
-      },
-      {
-        imageUrl: "/image/menu_ywqx.jpeg",
-        description: "衣物清洗",
-        url: "/pages/recommend/oddjob/ywqx/ywqx"
-      },
-      {
-        imageUrl: "/image/menu_bjfw.jpeg",
-        description: "搬家服务",
-        url: "/pages/recommend/oddjob/bjfw/bjfw"
-      },
-    ],
+    serverlist: [],
+    serverlist2: [],
+    menuSize: 0,
     autoplay: false, //是否自动切换	
     indicatordots: false, //是否显示面板指示点
     showView: true, //点击切换
@@ -257,11 +173,39 @@ Page({
       // businessTypeId: '6',
       showType: 6,
     })
+    // this.getCategorys()
 
+  },
+  getCategorys() {
+    util.doGet("/category/getCategorys", {companyId: wx.getStorageSync('selectCompany').id}, (res) => {
+        console.log('分类');
+        console.log(res);
+        let menuList = res.data
+        console.log(menuList.slice(0, 8))
+        console.log(menuList.slice(8))
+        this.setData({
+          menuSize: menuList.length,
+          serverlist: menuList.slice(0, 8),
+          serverlist2: menuList.slice(8),
+        })
+      
+    })
   },
   handleMask() {
     this.setData({
       isShowMask: false
+    })
+  },
+  toNannyDetail() {
+    wx.navigateTo({
+      url: '/pages/recommend/nannyDetail/nannyDetail',
+    })
+  },
+  handleChange(e) {
+    console.log(e)
+    let currentTab = e.detail.key
+    this.setData({
+      currentSelected: currentTab
     })
   },
   homeNotification() {
@@ -311,187 +255,15 @@ Page({
    */
   onShow: function() {
     var that = this;
-    let vm = this
-    if(vm.data.companyId == 1) {
-      let menu = [
-        {
-          imageUrl: "/image/newpoeple.png",
-          description: "新人专享",
-          url: "newpeople/newpeople"
-        },
-        {
-          imageUrl: "/image/antarea.png",
-          description: "抗疫专区",
-          url: 'oddjob/sterilize/sterilize'
-        },
-        {
-          imageUrl: "/image/hourCleaning.png",
-          description: "钟点保洁",
-          url: "/pages/recommend/oddjob/hourCleaning/hourCleaning"
-        },
-        {
-          imageUrl: "/image/appliancesCleaning.png",
-          description: "家电清洗",
-          url: "/pages/recommend/oddjob/appliancesCleaning/appliancesCleaning"
-        },{
-          imageUrl: "/image/nannymoon.png",
-          description: "月嫂保姆",
-          url: '/pages/recommend/classifyWorkers/classifyWorkers'
-        },
-        {
-          imageUrl: "/image/mitesRemoval.png",
-          description: "除尘除螨",
-          url: "/pages/recommend/oddjob/mitesRemoval/mitesRemoval"
-        },
-        {
-          imageUrl: "/image/jsgj.png",
-          description: "家事管家",
-          url: "/pages/recommend/oddjob/jsgj/jsgj"
-        },
-        {
-          imageUrl: "/image/unlock.png",
-          description: "今日直购",
-          url: ""
-        },
-        {
-          imageUrl: "/image/menu_ywqx.jpeg",
-          description: "衣物清洗",
-          url: "/pages/recommend/oddjob/ywqx/ywqx"
-        },
-        {
-          imageUrl: "/image/menu_bjfw.jpeg",
-          description: "搬家服务",
-          url: "/pages/recommend/oddjob/bjfw/bjfw"
-        },
-        // {
-        //   imageUrl: "/image/dredgePipeline.png",
-        //   description: "管道疏通",
-        //   url: "/pages/recommend/oddjob/dredgePipeline/dredgePipeline"
-        // },
-        // {
-        //   imageUrl: "/image/removeHCHO.png",
-        //   description: "甲醛治理",
-        //   url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
-        // },
-        // {
-        //   imageUrl: "/image/appliancesRepair.png",
-        //   description: "家电维修",
-        //   url: "/pages/recommend/oddjob/appliancesRepair/appliancesRepair"
-        // }
-      ]
-      vm.setData({
-        serverlist: menu
-      })
-      console.log('serverlist')
-      // console.log(this.data.serverlist)
-      
-    } else {
-      let menu = [
-        {
-          imageUrl: "/image/newpoeple.png",
-          description: "新人专享",
-          url: "newpeople/newpeople"
-        },
-        {
-          imageUrl: "/image/antarea.png",
-          description: "抗疫专区",
-          url: 'oddjob/sterilize/sterilize'
-        },
-        {
-          imageUrl: "/image/hourCleaning.png",
-          description: "钟点保洁",
-          url: "/pages/recommend/oddjob/hourCleaning/hourCleaning"
-        },
-        {
-          imageUrl: "/image/appliancesCleaning.png",
-          description: "家电清洗",
-          url: "/pages/recommend/oddjob/appliancesCleaning/appliancesCleaning"
-        },
-        {
-          imageUrl: "/image/mitesRemoval.png",
-          description: "除尘除螨",
-          url: "/pages/recommend/oddjob/mitesRemoval/mitesRemoval"
-        },
-        {
-          imageUrl: "/image/removeHCHO.png",
-          description: "甲醛治理",
-          url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
-        },
-        {
-          imageUrl: "/image/menu_bjfw.jpeg",
-          description: "搬家服务",
-          url: "/pages/recommend/oddjob/bjfw/bjfw"
-        },
-        {
-          imageUrl: "/image/menu_sdwx.png",
-          description: "水电维修",
-          url: "/pages/recommend/oddjob/sdwx/sdwx"
-        },
-      ]
-      vm.setData({
-        serverlist: menu
-      })
-      console.log('serverlist')
-      // console.log(this.data.serverlist)
-    }
-    // var data = {
-    //   accountId: app.data.accountId,
-    //   type: 1, // 1.系统发放 2.手点击领取
-    //   couponsBatchId: app.globalData.couponsBatchIdsList,
-    // }
-    // util.reqLoading(app.globalData.apiUrl, 'MS00205', data, 'GET', '加载中...', function (res2) {
-    //   console.log("onload查询优惠券205205，返回：");
-    //   console.log(res2);
-    //   // that.setData({
-    //   //   couponsList: res2.data,
-    //   // })
-    // })
-
-    // this.setData({
-    //   companyId: wx.getStorageSync('selectCompany').id
-    // })
-    // debugger
-    
-    // console.log('selectCompany的ID')
-    // console.log(wx.getStorageSync('selectCompany').id)
-    // console.log('首页的app')
-    // console.log(app)
-    // util.doGet("/company/companyList", {}, (res) => {
-    //   console.log('分店列表：');
-    //   console.log(res);
-    //   app.data.companyList = res.data
-    //   // wx.setStorageSync('companyList', res.data)
-    // })
-
-    
-    // this.setNavMenu()
-    //  else {
-    //   
-    // }
-
     if (!app.data.accountId) {
       this.showModalLogin()
     } else {
       this.hideModalLogin()
     }
-    // that.loadInfo();
-    // // that.getUserLocation();
-    // that.showModal()
-    // // 加载热门服务
-    // this.getHotServiceList();
-
-    // // 轮播图查询
-    // that.getRollPicList();
-
-    // 调用是否有优惠券的接口
-    // if (app.data.loginStatus == 'login') {
-    //   that.getIsCoupons();
-    // }
     // 调用获取优惠券列表的方法
     if(app.data.loginStatus == 'login'){
       that.getCouponList(1, 1, 0);
     }
-    
     
   },
 
@@ -505,8 +277,12 @@ Page({
     }
     util.reqLoading(app.globalData.apiUrl, 'MS01001', data, 'POST', '加载中...', function (res) {
       console.log("轮播图查询，返回：", res);
+      let sortData = res.data[0].info.sort((a, b) => {
+        return parseInt(b.page - a.page)
+      })
+      console.log(sortData)
       that.setData({
-        rollPicList: res.data[0].info,
+        rollPicList: sortData,
       })
     })
   },
@@ -530,49 +306,6 @@ Page({
     }
 
   },
-  // 调用是否有优惠券的接口
-  // getIsCoupons: function() {
-  //   var that = this;
-  //   // 第一批优惠券调用这个MS00203的接口，之后新的优惠券就调用MS00205接口
-  //   var data = {
-  //     accountId: app.data.accountId,
-  //   }
-  //   util.reqLoading(app.globalData.apiUrl, 'MS00203', data, 'GET', '加载中...', function(res) {
-
-  //     // var data = {
-  //     //   accountId: app.data.accountId,
-  //     //   type: 1, // 1.系统发放 2.手点击领取
-  //     //   couponsBatchId: app.globalData.couponsBatchIdsList,
-  //     // }
-  //     // util.reqLoading(app.globalData.apiUrl, 'MS00205', data, 'GET', '加载中...', function(res) {
-
-  //     console.log("调用是否有优惠券，返回：");
-  //     console.log(res);
-  //     if (res.data[0].flag) {
-
-  //       var data = {
-  //         accountId: app.data.accountId,
-  //         type: 1, // 1.系统发放 2.手点击领取
-  //         couponsBatchIds: app.globalData.couponsBatchIdsList,
-  //       }
-  //       util.reqLoading(app.globalData.apiUrl, 'MS00204', data, 'GET', '加载中...', function(res2) {
-  //         console.log("onload查询优惠券，返回：");
-  //         console.log(res2);
-  //         that.setData({
-  //           couponsList: res2.data,
-  //         })
-  //       })
-
-  //       that.setData({
-  //         showModalStatus: true
-  //       })
-  //     } else {
-  //       that.setData({
-  //         showModalStatus: false
-  //       })
-  //     }
-  //   })
-  // },
 
   //跳转服务
   goServer: function(e) {
@@ -599,6 +332,35 @@ Page({
         url: e.currentTarget.dataset.url,
       });
     }
+  },
+  menuToList(e) {
+    // console.log(e)
+    let {dataItem} = e.currentTarget.dataset
+    console.log(dataItem)
+    console.log(JSON.stringify(dataItem))
+    wx.setStorageSync('menuData', dataItem)
+    if(dataItem.mark == 'jrzg') {
+      wx.navigateToMiniProgram({
+        appId: 'wx3cd9055ad8bbb8e2',
+        path: 'common/pages/index/index',
+        extraData: {},
+        envVersion: 'develop',
+        success(res) {
+          // 打开成功
+          console.log(res)
+        }
+      })
+      return
+    }
+    if(dataItem.mark == 'ysbm') {
+      wx.navigateTo({
+        url: '/pages/recommend/classifyWorkers/classifyWorkers',
+      })
+      return
+    }
+    wx.navigateTo({
+      url: `/pages/recommend/oddjob/menuDetail/menuDetail?dataItem=${JSON.stringify(dataItem)}`,
+    });
   },
 
   //跳转家电维修
@@ -783,10 +545,11 @@ Page({
       // activityStatus: 'miniapp',
       // status: 'put',
       platform: 'miniapp',
-      companyId: wx.getStorageSync('selectCompany').id
-
+      companyId: wx.getStorageSync('selectCompany').id,
+      ifDay: 1
     }
-    util.doGet("/productRecommend/queryList", data, function(res) {
+    // productRecommend/queryList
+    util.doGet("/product/getDayProductList", data, function(res) {
       console.log('今日特价：');
       console.log(res);
       that.setData({
@@ -1177,128 +940,7 @@ Page({
               selectCompany: res.data[0]
             })
           }
-          if(vm.data.companyId == 1) {
-            let menu = [
-              {
-                imageUrl: "/image/newpoeple.png",
-                description: "新人专享",
-                url: "newpeople/newpeople"
-              },
-              {
-                imageUrl: "/image/antarea.png",
-                description: "抗疫专区",
-                url: 'oddjob/sterilize/sterilize'
-              },
-              {
-                imageUrl: "/image/hourCleaning.png",
-                description: "钟点保洁",
-                url: "/pages/recommend/oddjob/hourCleaning/hourCleaning"
-              },
-              {
-                imageUrl: "/image/appliancesCleaning.png",
-                description: "家电清洗",
-                url: "/pages/recommend/oddjob/appliancesCleaning/appliancesCleaning"
-              },{
-                imageUrl: "/image/nannymoon.png",
-                description: "月嫂保姆",
-                url: '/pages/recommend/classifyWorkers/classifyWorkers'
-              },
-              {
-                imageUrl: "/image/mitesRemoval.png",
-                description: "除尘除螨",
-                url: "/pages/recommend/oddjob/mitesRemoval/mitesRemoval"
-              },
-              {
-                imageUrl: "/image/jsgj.png",
-                description: "家事管家",
-                url: "/pages/recommend/oddjob/jsgj/jsgj"
-              },
-              {
-                imageUrl: "/image/unlock.png",
-                description: "今日直购",
-                url: ""
-              },
-              {
-                imageUrl: "/image/menu_ywqx.jpeg",
-                description: "衣物清洗",
-                url: "/pages/recommend/oddjob/ywqx/ywqx"
-              },
-              {
-                imageUrl: "/image/menu_bjfw.jpeg",
-                description: "搬家服务",
-                url: "/pages/recommend/oddjob/bjfw/bjfw"
-              },
-              // {
-              //   imageUrl: "/image/dredgePipeline.png",
-              //   description: "管道疏通",
-              //   url: "/pages/recommend/oddjob/dredgePipeline/dredgePipeline"
-              // },
-              // {
-              //   imageUrl: "/image/removeHCHO.png",
-              //   description: "甲醛治理",
-              //   url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
-              // },
-              // {
-              //   imageUrl: "/image/appliancesRepair.png",
-              //   description: "家电维修",
-              //   url: "/pages/recommend/oddjob/appliancesRepair/appliancesRepair"
-              // }
-            ]
-            vm.setData({
-              serverlist: menu
-            })
-            console.log('serverlist')
-            // console.log(this.data.serverlist)
-            
-          } else {
-            let menu = [
-              {
-                imageUrl: "/image/newpoeple.png",
-                description: "新人专享",
-                url: "newpeople/newpeople"
-              },
-              {
-                imageUrl: "/image/antarea.png",
-                description: "抗疫专区",
-                url: 'oddjob/sterilize/sterilize'
-              },
-              {
-                imageUrl: "/image/hourCleaning.png",
-                description: "钟点保洁",
-                url: "/pages/recommend/oddjob/hourCleaning/hourCleaning"
-              },
-              {
-                imageUrl: "/image/appliancesCleaning.png",
-                description: "家电清洗",
-                url: "/pages/recommend/oddjob/appliancesCleaning/appliancesCleaning"
-              },
-              {
-                imageUrl: "/image/mitesRemoval.png",
-                description: "除尘除螨",
-                url: "/pages/recommend/oddjob/mitesRemoval/mitesRemoval"
-              },
-              {
-                imageUrl: "/image/removeHCHO.png",
-                description: "甲醛治理",
-                url: "/pages/recommend/oddjob/removeHCHO/removeHCHO"
-              },
-              {
-                imageUrl: "/image/menu_bjfw.jpeg",
-                description: "搬家服务",
-                url: "/pages/recommend/oddjob/bjfw/bjfw"
-              },
-              {
-                imageUrl: "/image/menu_sdwx.png",
-                description: "水电维修",
-                url: "/pages/recommend/oddjob/sdwx/sdwx"
-              },
-            ]
-            vm.setData({
-              serverlist: menu
-            })
-            console.log('serverlist')
-            // console.log(this.data.serverlist)
-          }
+          vm.getCategorys()
           vm.loadData();
           vm.loadWorkType();
           vm.loadBanner();
@@ -1401,6 +1043,7 @@ Page({
   // 点击轮播图
   clickBanner: function(e){
     var that = this;
+    console.log(e.currentTarget.dataset)
     var jumpPath = e.currentTarget.dataset.jumppath;
     wx.navigateTo({
       url: jumpPath,

@@ -63,12 +63,13 @@
 
   <!-- 加上预约时间及备注 -->
   <!-- <view wx:if='{{businessTypeId == "6"}}' class="common-list"> -->
-  <view wx:if='{{showType == "6" || showType == "18"}}' class="common-list">
-    <view class='flex-between item-list'>
-      <view>预约日期:</view>
+  <view wx:if='{{showType == "6" || showType == "18" || showType == "90"}}' class="common-list">
+    <!-- item-list -->
+    <view class='flex-between'>
+      <!-- <view>预约日期:</view>
       <navigator class="picker" url='{{"calendar/calendar?bornDay="+bornDay+"&todaytime="+todaytime+"&productId="+productId}}' hover-class="navigator-hover">
         <view>{{bornDay}}</view>
-      </navigator>
+      </navigator> -->
       <!-- <picker class="picker" mode="date" value="{{bornDay}}" bindchange="bindDateChange">
         <view>
           {{bornDay}}
@@ -133,9 +134,9 @@
     <view wx:if="{{companyId != 2}}">
       <view wx:if='{{productId != 69 && productId != 81 && productId != 82}}' class='flex-between'>
         <view>居家面积:</view>
-        <view bindtap="selectHouseSize" data-value="1" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡以上</view>
-        <view bindtap="selectHouseSize" data-value="2" class="choose-list {{secondValue?'choose-list-on':''}}">80-120㎡</view>
-        <view bindtap="selectHouseSize" data-value="3" class="choose-list {{thirdValue?'choose-list-on':''}}">40-80㎡</view>
+        <view bindtap="selectHouseSize" data-value="4" class="choose-list {{firstValue?'choose-list-on':''}}">120㎡以上</view>
+        <view bindtap="selectHouseSize" data-value="5" class="choose-list {{secondValue?'choose-list-on':''}}">80-120㎡</view>
+        <view bindtap="selectHouseSize" data-value="6" class="choose-list {{thirdValue?'choose-list-on':''}}">40-80㎡</view>
       </view>
     </view>
     <view wx:else>
@@ -177,7 +178,7 @@
   </view> -->
 
   <!-- 选择优惠券 -->
-  <view class='common-list'>
+  <view class='common-list' wx:if="{{ifCoupon == 1}}">
     <view class='flex-between font-36' wx:if="{{paymentName=='微信支付' && imgBase64==''}}" bindtap="chooseCoupon">
       <view>优惠券</view>
       <view class="flex-between">
@@ -224,20 +225,10 @@
     <textarea bindinput="memoInput" class="remarks" placeholder="选填"></textarea>
   </view>
 
-  <view wx:if="{{companyId == 2}}" style='border-radius: 6px; margin:20rpx; background:#fff;'>
+  <view wx:if="{{showType != 90}}" style='border-radius: 6px; margin:20rpx; background:#fff;'>
     <view style='border-bottom:1px solid #f6f6f7; padding:10px; font-size:32rpx; color:#ff7f27; line-height:50rpx;'>
-      <view class='font-36'>温馨提示：</view>
-      <view>1、预约电话：0591-88771616</view>
-      <view>2、服务范围：老城区内免费上门，新城区每次上门收取20元上门费，具体情况可联系客服了解</view>
-      <view>3、购买成功后将有工作人员联系您，请保持手机通畅</view>
-    </view>
-  </view>
-  <view wx:else style='border-radius: 6px; margin:20rpx; background:#fff;'>
-    <view style='border-bottom:1px solid #f6f6f7; padding:10px; font-size:32rpx; color:#ff7f27; line-height:50rpx;'>
-      <view class='font-36'>温馨提示：</view>
-      <view>1.预约电话：400-600-6580</view>
-      <view>2.服务范围：福州市区；超出三环将收取30元/单</view>
-      <view>3.购买成功后将有工作人员与您联系，请保持手机畅通</view>
+      <view class='font-36'>温馨提示：</view>      
+      <view wx:for="{{tips}}" wx:key="{{item}}">{{item}}</view>
     </view>
   </view>
 
@@ -265,7 +256,7 @@
 <view>
 
   <!-- 弹窗 -->
-  <view class='modal-pay' animation="{{animationData}}" wx:if="{{showPaymentStatus}}" catchtouchmove="true">
+  <view class='modal-pay {{selectCompany.ifPayBalance == 1 ? "modal-pay-490" : "modal-pay-350"}}' animation="{{animationData}}" wx:if="{{showPaymentStatus}}" catchtouchmove="true">
     <view class="font-36 font-bold choose-payment">选择支付方式</view>
     <radio-group class="pay-group" bindchange="paymentChange">
       <label class="pay-group-list flex-between" wx:for="{{paymentList}}" wx:key="{{index}}">

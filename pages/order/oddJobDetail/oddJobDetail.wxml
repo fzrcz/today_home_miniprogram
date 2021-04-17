@@ -98,10 +98,7 @@
               <view class='list-title-span'></view>
               <text class='list-title-text'>服务信息</text>
             </view>
-            <view class='list-title-r' wx:if="{{companyId != 2}}" data-phone='{{"400-600-6580"}}' bindtap="phoneCall">
-              <image src="/image/kf-hui.png"></image>
-            </view>
-            <view class='list-title-r' wx:else data-phone='{{"0591-88771616"}}' bindtap="phoneCall">
+            <view class='list-title-r' bindtap="toCall">
               <image src="/image/kf-hui.png"></image>
             </view>
           </view>
@@ -169,7 +166,7 @@
               <text>{{info[0].hourlyWorkersOrder[0].area?info[0].hourlyWorkersOrder[0].area:''}}{{info[0].hourlyWorkersOrder[0].address?info[0].hourlyWorkersOrder[0].address:''}}{{info[0].hourlyWorkersOrder[0].houseNumber?info[0].hourlyWorkersOrder[0].houseNumber:''}}</text>
             </view>
           </view>
-          <view class='infor-list font-28'>
+          <!-- <view class='infor-list font-28'>
             <view class='list-ad-l'>
               <text decode="{{true}}">预约时间：</text>
             </view>
@@ -181,9 +178,8 @@
             </view>
             <view wx:if='{{info[0].businessTypeId == "6" && info[0].hourlyWorkersServe.length != 0}}' class='list-ad-r'>
               <text>{{info[0].hourlyWorkersServe[nextService].appointTime?info[0].hourlyWorkersServe[nextService].appointTime:'暂无'}}</text>
-              <!-- <text>（{{nextService}}/{{info[0].hourlyWorkersServe.length}}）</text> -->
             </view>
-          </view>
+          </view> -->
           <view class='infor-list font-28'>
             <view class='list-ad-l'>
               <text decode="{{true}}">备&emsp;&emsp;注：</text>
@@ -222,6 +218,17 @@
         </view>
       </view>
 
+      <view class="order-main-wid order-margin" style="padding-bottom:60rpx">
+        <view class="order-main-pad">
+          <view class="flex-center-y order-main-title">
+            <view class='list-title-span'></view>
+            <text class='list-title-text'>客服微信</text>
+          </view>
+          <view class="no-record font-30" style="line-height: 0">
+            <image style="width: 600rpx; height: 600rpx;" bindtap="previewImage" data-src="{{selectCompany.wechatUrl}}" src="{{selectCompany.wechatUrl}}"></image>
+          </view>
+        </view>
+      </view>
 
     </view>
   </view>

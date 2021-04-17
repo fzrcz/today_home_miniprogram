@@ -14,6 +14,7 @@ Page({
    */
   data: {
     companyId: '',
+    selectCompany: {},
     evaluateListaa: [{
         headPic: '/image/moren-1.png',
         employerNickName: '555*222',
@@ -258,6 +259,7 @@ Page({
       that.setData({
         detail: res.data
       })
+      wx.setStorageSync('ifCoupon', res.data.ifCoupon)
     })
 
     // 把source和parameter存起来，用于支付的时候传参
@@ -575,16 +577,9 @@ Page({
   },
 
   toCall: function() {
-    if(this.data.companyId == 2) {
-      wx.makePhoneCall({
-        phoneNumber: "0591-88771616"
-      })
-    } else {
-      wx.makePhoneCall({
-        phoneNumber: "400-600-6580"
-      })
-    }
-    
+    wx.makePhoneCall({
+      phoneNumber: wx.getStorageSync('selectCompany').tel
+    })
   },
 
   /**

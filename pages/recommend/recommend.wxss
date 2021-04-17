@@ -3,6 +3,52 @@
   bottom: 0rpx;
   width: 100%;
 }
+.recommend-wrap{
+  font-size: 28rpx;
+}
+
+.recommend-title{
+  text-align: center;
+  margin-top: 10rpx;
+}
+
+.recommend-list-wrap{
+
+}
+
+.recommend-list-wrap .recommend-list{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
+  box-shadow: -2rpx 4rpx 14rpx #ddd;
+  margin: 20rpx 0;
+  border-radius: 20rpx;
+  padding: 10px 0 10px 10px;
+}
+.recommend-list-wrap .recommend-list .recommend-img{
+  margin-right: 14rpx;
+}
+
+.recommend-list-wrap .recommend-list .person-info{
+  display: flex;
+  justify-content: space-between;
+  width: 112%;
+}
+
+.recommend-list-wrap .recommend-list .person-info .recommend-money{
+  margin-left: auto;
+  display: inline-block;
+}
+
+.recommend-list-wrap .recommend-list .person-record{
+  
+}
+
+.recommend-list-wrap .recommend-list .person-status{
+  
+}
+
 
 .top-search {
   position: fixed;

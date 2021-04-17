@@ -120,28 +120,22 @@
 
 <view>
   <view wx:if="{{detail.showType==6 || detail.showType==11}}">
-    <image class='breakline' style='width:750rpx; height:196rpx;' bindtap="toDetail" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/detectTip.png?v=2" mode="aspectFit" />
+    <image class='breakline' style='width:750rpx; height:196rpx;' bindtap="toDetail" src="{{selectCompany.detailTopUrl}}" mode="aspectFit" />
   </view>
-  <!-- <block wx:for="{{detail.productFileDetail}}" wx:key="id">
-    <view style='width:{{item.fileWidth}}rpx; height:{{item.fileHeight}}rpx;'>
-      <image src="{{item.filePath}}" />
-    </view>
-  </block> -->
    <block wx:for="{{detail.productFileDetail}}" wx:key="id">
     <view style='width:750rpx;'>
       <image style='width:100%;' src="{{item.filePath}}" mode="widthFix" />
     </view>
   </block>
   <view wx:if="{{detail.showType==6 || detail.showType==11}}">
-    <image wx:if="{{companyId == 2}}" style='width:750rpx; height:1799rpx;' src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200830/19744.jpg?v=1" mode="aspectFit" />
-    <image wx:else style='width:750rpx; height:1799rpx;' src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/banner/defendVirusDetail.jpg?v=1" mode="aspectFit" />
+    <image style='width:750rpx; height:1799rpx;' src="{{selectCompany.detailUrl1}}" mode="aspectFit" />
   </view>
 </view>
 <view class='breakline'></view>
 
 <view style='margin:20rpx;padding-bottom:100rpx;'>
-  <image wx:if="{{companyId == 2}}" style='width:100%;' src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200819/19648.jpg?v=0" mode="widthFix" />
-  <image wx:else style='width:100%;' src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20200819/19653.jpg?v=2" mode="widthFix" />
+<!-- 平潭 -->
+  <image style='width:100%;' src="{{selectCompany.detailUrl2}}" mode="widthFix" />
 </view>
 
 

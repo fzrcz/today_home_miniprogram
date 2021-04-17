@@ -8,6 +8,7 @@ Page({
    */
   data: {
     companyId: '',
+    selectCompany: {},
     serbuslist:[
       { serbusname: '今日到家-01', serbusimg: '', serbusgas: '1', serbuscheck:0},
       { serbusname: '今日到家-02', serbusimg: '', serbusgas: '2', serbuscheck: 1 },
@@ -29,12 +30,12 @@ Page({
         id: 0,
         checked: true
       },
-      {
-        paymentName: "电子券余额",
-        value: 1,
-        id: 1,
-        checked: false
-      }
+      // {
+      //   paymentName: "电子券余额",
+      //   value: 1,
+      //   id: 1,
+      //   checked: false
+      // }
     ],
    paymentName:'微信支付',
    //total:0,//无优惠的总价格
@@ -198,6 +199,7 @@ Page({
       firstValue: false,
       secondValue: false,
       thirdValue: true,
+      houseSize: '',
       buyCnt: 40,
       productId: options.productId,
       businessTypeId: options.businessTypeId,
@@ -351,12 +353,47 @@ Page({
       month = DATE.getMonth() + 1,
       date = DATE.getDate(),
       select = year + '-' + this.zero(month) + '-' + this.zero(date);
+    let paymentList = [{
+      paymentName: "微信支付",
+      value: 0,
+      id: 0,
+      checked: true
+    }]
+    if (wx.getStorageSync('selectCompany').ifPayBalance == 1) {
+      paymentList = [{
+        paymentName: "微信支付",
+        value: 0,
+        id: 0,
+        checked: true
+      },
+      {
+        paymentName: "电子券余额",
+        value: 1,
+        id: 1,
+        checked: false
+      }]
+    } else {
+      paymentList = [{
+        paymentName: "微信支付",
+        value: 0,
+        id: 0,
+        checked: true
+      }]
+    }
     this.setData({
       companyId: wx.getStorageSync('selectCompany').id,
+      selectCompany: wx.getStorageSync('selectCompany'),
       todaytime: select,
       // 每次返回页面的时候，把立即支付变成可点击的
       crowdStatus: false,
+      ifCoupon: wx.getStorageSync('ifCoupon'),
+      paymentList
     })
+    let tips = this.data.selectCompany.workDistribute.split('|')
+    this.setData({
+      tips
+    })
+    // debugger
     
     var that = this;
     // 从立即支付回到页面，开关变为false
@@ -367,6 +404,7 @@ Page({
         firstValue: false,
         secondValue: false,
         thirdValue: true,
+        houseSize: '40-80㎡',
         buyCnt: 40,
         total: that.data.price * 40,
         totalPrice: that.data.price * 40
@@ -702,6 +740,30 @@ Page({
         houseSize: '120㎡',
       })
     }
+    if (value == '4') {
+      that.setData({
+        firstValue: true,
+        secondValue: false,
+        thirdValue: false,
+        houseSize: '120㎡以上',
+      })
+    }
+    if (value == '5') {
+      that.setData({
+        firstValue: false,
+        secondValue: true,
+        thirdValue: false,
+        houseSize: '80-120㎡',
+      })
+    }
+    if (value == '6') {
+      that.setData({
+        firstValue: false,
+        secondValue: false,
+        thirdValue: true,
+        houseSize: '40-80㎡',
+      })
+    }
   },
 
   // 备注
@@ -869,15 +931,19 @@ Page({
 
   // 立即支付
   toPay: function(e) {
+    // debugger
     var that = this;
     // 设置一个开关，点击立即支付的时候，不让下边的合计的价钱回到原价
     that.setData({
       nowPay: true,
       // 点击之后把按钮变灰掉
       crowdStatus: true,
-    })
 
-    // console.log(that.data.bornDay)
+    })
+    // that.setData({
+    // })
+
+    console.log(that.data.bornDay)
     // console.log(that.data.timeSlot)
     // console.log(that.data.houseSize)
 
@@ -892,14 +958,14 @@ Page({
 
     // if (that.data.businessTypeId == '6') {
     if (that.data.showType == '6' || that.data.showType == '18') {
-      if (that.data.bornDay == '请选择日期') {
-        wx.showToast({
-          title: '您还未选择预约日期！',
-          icon: 'none',
-          duration: 2000
-        })
-        return false;
-      }
+      // if (that.data.bornDay == '请选择日期') {
+      //   wx.showToast({
+      //     title: '您还未选择预约日期！',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      //   return false;
+      // }
       // 暂时去掉上下午的选择
       // if (!that.data.timeSlot) {
       //   wx.showToast({
@@ -975,6 +1041,8 @@ Page({
   },
   //调取预支付
   pay: function() {
+    
+    
     var that = this;
 
     var body = that.data.productName
@@ -1012,10 +1080,11 @@ Page({
     // 业务类型是家务，但是展示类型不是家务，那么预约时间为空
     if (that.data.businessTypeId == '6' && that.data.showType != 6) {
       that.setData({
-        bornDay: '',
+        // bornDay: '',
         detailClock: '',
       })
     }
+
 
     if (that.data.businessTypeId == '6') {
     // if (that.data.showType == 6) {
@@ -1025,7 +1094,7 @@ Page({
         area: that.data.address.areaId,
         address: that.data.address.address,
         houseNumber: that.data.address.houseNumber,
-        appointTime: that.data.bornDay + that.data.detailClock,
+        // appointTime: that.data.bornDay + that.data.detailClock,
         houseSize: that.data.houseSize,
         noonType: that.data.timeSlot,
         memo: that.data.memo,

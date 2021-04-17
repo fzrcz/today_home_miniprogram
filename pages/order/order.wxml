@@ -51,8 +51,7 @@
 								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "工作完成"}}' class='btn-style orderbtn' bindtap='confirmComplete' data-index="{{index}}" data-orderdetailid='{{item.oddJobOrders[0].id}}' data-businesstypeid='{{item.businessTypeId}}'>确认完成</view>
 								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "客户已确认"}}' class='btn-style orderbtn' data-serveIndex="{{index}}" bindtap='evaluate' data-orderdetailid='{{item.oddJobOrders[0].id}}' data-orderid='{{item.id}}' data-businesstypeid='{{item.businessTypeId}}' data-hourserve="{{item.hourlyWorkersServe}}">立即评价</view>
 								<view wx:elif='{{item.oddJobOrders[0].orderStatus == "取消订单"}}' class="btn-style-grey orderbtn">取消成功</view>
-								<view class='btn-style orderbtn' bindtap='toMakePhone' wx:if="{{companyId != 2}}" data-phone='{{"400-600-6580"}}'>联系客服</view>
-								<view class='btn-style orderbtn' bindtap='toMakePhone' wx:else data-phone='{{"0591-88771616"}}'>联系客服</view>
+								<view class='btn-style orderbtn' bindtap="toCall">联系客服</view>
 							</view>
 						</view>
 					</view>
@@ -78,10 +77,12 @@
 										<view style="color:#999;">x{{item.orderQuantity}}</view>
 									</view>
 								</view>
+								<view class="font-26" wx:if="{{item.businessTypeId == 6}}" style="text-align:right;color:#999;">未使用次数：{{item.remainTimes}}次</view>
+								<view class="font-26" wx:if="{{item.businessTypeId == 6}}" style="text-align:right;color:#999;">服务已用次数：{{item.usedSource}}次</view>
 								<view class="font-26" style="text-align:right;color:#999;">{{item.hourlyWorkersOrder[0].appointTime==null?'暂未预约时间':item.hourlyWorkersOrder[0].appointTime}}</view>
+								
 							</view>
-							<view class='btn-style orderbtn' bindtap='toMakePhone' wx:if="{{companyId != 2}}" data-phone='{{"400-600-6580"}}'>联系客服</view>
-								<view class='btn-style orderbtn' bindtap='toMakePhone' wx:else data-phone='{{"0591-88771616"}}'>联系客服</view>
+								<view class='btn-style orderbtn' bindtap="toCall">联系客服</view>
 							<view class="flex-x" style="float:right;">
 								<view wx:if='{{item.orderStatusName == "待付款" && (item.activityId == "3" || item.activityId == "5" || item.activityId == "")}}' class='btn-style font-24 orderbtn' style='margin-right:26rpx;' bindtap='toPay' data-index="{{index}}" data-id='{{item.id}}' data-productname='{{item.productName}}'>付款</view>
 								<view wx:else>

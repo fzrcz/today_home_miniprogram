@@ -59,71 +59,83 @@
         <view class="search-input">请输入您要的服务</view>
       </view>
     <view style="position:relative">
-        <image class="larrow" wx:if="{{current==1 && companyId == 1}}" bindtap="tapswip" mode="widthFix" src="/image/Left-2.png"></image>
-        <image class="rarrow" wx:if="{{current==0 && companyId == 1}}" bindtap="tapswip" mode="widthFix" src="/image/Right-2.png"></image>
-        <block wx:if="{{companyId != 2}}">
-          <swiper class="nav-swiper" easing-function="linear " current="{{current}}" autoplay="{{autoplay}}" bindchange="changeswip" indicator-dots="true" indicator-active-color="#ff7f27" interval="3000">
+        <image class="larrow" wx:if="{{menuSize > 8}}" bindtap="tapswip" mode="widthFix" src="/image/Left-2.png"></image>
+        <image class="rarrow" wx:if="{{menuSize > 8}}" bindtap="tapswip" mode="widthFix" src="/image/Right-2.png"></image>
+        <block>
+          <swiper class="nav-swiper" easing-function="linear " current="{{current}}" autoplay="{{autoplay}}" bindchange="changeswip" indicator-dots="{{menuSize > 8}}" indicator-active-color="#ff7f27" interval="3000">
           <!--功能导航功能-->
             <swiper-item>
               <view class="services">
                 <view class="wraper">
                   <block wx:for="{{serverlist}}" wx:key="imageUrl">
-                    <view class="list" bindtap="goServer" data-url='{{item.url}}' data-index="{{index}}">
-                      <image src="{{item.imageUrl}}" mode='aspectFit' style='width:60rpx; height:60rpx;' />
-                      <text class="desc">{{item.description}}</text>
+                    <view class="list" bindtap="menuToList"  data-data-item="{{item}}" data-url='{{item.url}}' data-index="{{index}}">
+                      <image src="{{item.url}}" mode='aspectFit' style='width:60rpx; height:60rpx;' />
+                      <text class="desc">{{item.name}}</text>
                     </view>
                   </block>
                 </view>
               </view>
             </swiper-item>
-            <swiper-item>
+            <swiper-item wx:if="{{menuSize > 8}}">
               <view class="services">
                 <view class="wraper">
-                  <view class="list"wx:for="{{serverlist2}}" wx:key="imageUrl" data-url='{{item.url}}' data-index="{{index}}"  bindtap="goServer">
-                    <image src="{{item.imageUrl}}" mode='aspectFit' style='width:60rpx; height:60rpx;' />
-                    <text class="desc">{{item.description}}</text>
+                  <view class="list" wx:for="{{serverlist2}}" wx:key="imageUrl" data-url='{{item.url}}' data-index="{{index}}"  bindtap="menuToList" data-data-item="{{item}}">
+                    <image src="{{item.url}}" mode='aspectFit' style='width:60rpx; height:60rpx;' />
+                    <text class="desc">{{item.name}}</text>
                   </view>
-                  <!-- <view class="list" bindtap="toDredgePipeline">
-                    <image src="/image/dredgePipeline.png" mode='aspectFit' style='width:60rpx; height:60rpx;' />
-                    <text class="desc">管道疏通</text>
-                  </view>
-                  <view class="list" bindtap="toremoveHCHO">
-                    <image src="/image/removeHCHO.png" mode='aspectFit' style='width:60rpx; height:60rpx;' />
-                    <text class="desc">甲醛治理</text>
-                  </view> -->
                 </view>
               </view>
             </swiper-item>
           </swiper>
         
-        </block>
-        <block wx:else>
-          <swiper class="nav-swiper" easing-function="linear " current="{{current}}" autoplay="{{autoplay}}" bindchange="changeswip" indicator-active-color="#ff7f27" interval="3000">
-          <!--功能导航功能-->
-            <swiper-item>
-              <view class="services">
-                <view class="wraper">
-                  <block wx:for="{{serverlist}}" wx:key="imageUrl">
-                    <view class="list" bindtap="goServer" data-url='{{item.url}}' data-index="{{index}}">
-                      <image src="{{item.imageUrl}}" mode='aspectFit' style='width:60rpx; height:60rpx;' />
-                      <text class="desc">{{item.description}}</text>
-                    </view>
-                  </block>
-                </view>
-              </view>
-            </swiper-item>
-          </swiper>
-
         </block>
         
     </view>
-
-    <view class="find-per" wx:if="{{companyId != 2}}" bindtap="classifyWorkers">
+    <view class="recommend-wrap">
+      <view class="h-title font-40 font-bold">推荐阿姨</view>
+      <view class="recommend-tabs">
+        <i-tabs current="{{ currentSelected }}" color="#ff7f27" bindchange="handleChange">
+            <i-tab key="tab1" title="今日推荐"></i-tab>
+            <i-tab key="tab2" title="优秀保姆"></i-tab>
+        </i-tabs>
+      </view>
+      <view class="recommend-list-wrap">
+        <view class="recommend-list" bindtap="toNannyDetail">
+          <view class="recommend-img">
+            <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/nanny-1.png" style="width:80rpx;height:80rpx"></image>
+          </view>
+          <view>
+            <view class="person-info">
+              <view>
+                <text>杨冬梅 | </text>
+                <text>住家 </text>
+                <text>中级 </text>
+                <text>1单已接</text>
+              </view>
+              <view class="recommend-money">
+                <text>¥4000.00/月</text>
+              </view>
+            </view>
+            <view class="person-record">
+              <text>53岁 | </text>
+              <text>福建 | </text>
+              <text>从业2年 | </text>
+              <text>信用值：100</text>
+            </view>
+            <view class="person-status">
+              <text>空闲</text>
+            </view>
+          </view>
+          
+        </view>
+      </view>
+    </view>
+    <!-- <view class="find-per" wx:if="{{companyId != 2}}" bindtap="classifyWorkers">
       <image mode="widthFix" src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/nanny-1.png"></image>
     </view>
     <view class="find-per" wx:else bindtap="toHdPage">
       <image mode="widthFix" src="https://hr-images-home.oss-cn-shenzhen.aliyuncs.com/20201007/19779.png?v=1"></image>
-    </view>
+    </view> -->
     <view class="tkl-box {{strtime==1?'leavein':''}}">{{str}}</view>
     <!-- 今日特价 图片尺寸为 302*240 -->
     <view>
@@ -131,10 +143,11 @@
       <!-- 循环体 -->
       <view wx:for='{{hotProductList}}' wx:key='id'>
         <view wx:if='{{index < 3}}'>
-          <view class="flex-between product-ad" data-detailurl='{{item.detailUrl}}' bindtap="externalLinks">
+          <!-- bindtap="externalLinks" -->
+          <view class="flex-between product-ad" data-detailurl='{{item.detailUrl}}' bindtap="newToDetail" data-productid='{{item.id}}' data-activityid='{{item.activityId}}'>
             <view class="product-l">
               <view class="product-l-text">
-                <view class="font-bold product-title">{{item.NAME}}</view>
+                <view class="font-bold product-title">{{item.name}}</view>
                 <view class="font-26">
                   <!-- <text class="per-text">首单特惠</text> -->
                   <!-- <text class="per-text" wx:if='{{item.id == 49}}'>品质不减,服务到家</text>
@@ -162,7 +175,7 @@
             </view>
             <view class="product-r">
               <view class="product-r-img">
-                <image src="{{item.productFileH5[0].filePath}}"></image>
+                <image src="{{item.filePath}}"></image>
               </view>
               <!-- <view class="icon-size act-blue">
                 <text class="activity-status">首单</text>
@@ -344,21 +357,16 @@
 
     <!-- 今日到家logo -->
     <view class="logo-3">
-      <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/logo3.png"></image>
+      <image src="{{selectCompany.bottomUrl1}}"></image>
     </view>
-    <view class="sign-t">
-      <image wx:if="{{companyId != 2}}" src="/image/sign-t.png"></image>
-      <image wx:else src="/image/index_axjz.png"></image>
+    <view class="logo-3" style="height:48rpx;margin-top:20rpx">
+      <image src="{{selectCompany.centerUrl1}}"></image>
     </view>
-    <view class="qr-code" wx:if="{{companyId == 2}}" bindtap="previewImage">
-      <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/qrCode/e18aadba-df22-4724-977a-749339c2b6f9.jpg" data-src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/home2.0/qrCode/e18aadba-df22-4724-977a-749339c2b6f9.jpg"></image>
-    </view>
-    <view wx:else class="qr-code" bindtap="previewImage">
-      <image src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/qr-code.png" data-src="https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/qr-code.png"></image>
+    <view class="qr-code" bindtap="previewImage">
+      <image src="{{selectCompany.bottomUrl2}}" data-src="{{selectCompany.bottomUrl2}}"></image>
     </view>
     <view class="hot-line">
-      <view wx:if="{{companyId != 2}}">咨询热线：400-600-6580</view>
-      <view wx:else>咨询热线：0591-88771616</view>
+      <view>咨询热线：{{selectCompany.tel}}</view>
     </view>
   </view>
 

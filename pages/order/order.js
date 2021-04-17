@@ -220,6 +220,14 @@ Page({
       })
     }
   },
+  toCall: function() {
+    wx.makePhoneCall({
+      phoneNumber: wx.getStorageSync('selectCompany').tel
+    })
+    // wx.navigateTo({
+    //   url: 'chat/chat',
+    // })
+  },
 
   //查询订单列表
   loadData: function(e) {

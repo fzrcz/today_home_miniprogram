@@ -1,46 +1,18 @@
-// 代办支付成功
+// pages/recommend/oddjob/confirmOrder/paySuccess/paySuccess.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgSrc: 'https://jrdj.oss-cn-shenzhen.aliyuncs.com/mini-customer/banner-findJob.png',
-    selectCompany: {}
-  },
 
-  /**
-   * 查看详情
-   */
-  toOrderDetail: function () {
-    wx.switchTab({
-      url: '/pages/order/order',
-    })
-  },
-  /**
-   * 返回首页
-   */
-  toRecommend: function () {
-    wx.switchTab({
-      url: '/pages/recommend/recommend',
-    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      selectCompany: wx.getStorageSync('selectCompany')
-    })
 
-  },
-  previewImage: function(e) {
-    var current = e.target.dataset.src;
-    wx.previewImage({
-      current: current,
-      urls: [current]
-    })
   },
 
   /**
@@ -85,4 +57,10 @@ Page({
 
   },
 
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })

@@ -1,57 +1,5 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": true,
-    "es6": true,
-    "enhance": false,
-    "postcss": false,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": true,
-    "coverView": true,
-    "nodeModules": false,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": false,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "bundle": false,
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.12.1",
-  "appid": "wxfb9f738acf040e2f",
-  "projectname": "today_miniprogram",
-  "cloudfunctionTemplateRoot": "",
-  "watchOptions": {
-    "ignore": []
-  },
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {},
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -255,6 +203,43 @@
         {
           "name": "保姆详情",
           "pathName": "pages/recommend/nannyDetail/nannyDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "分类",
+          "pathName": "pages/classification/classification",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/recommend/commission/commission",
+          "pathName": "pages/recommend/commission/commission",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "订单详情",
+          "pathName": "pages/order/oddJobDetail/oddJobDetail",
+          "query": "id=61959902-acf1-4ca4-9593-0a310e8c916d&tab=1&currentTab=0",
+          "scene": null
+        },
+        {
+          "name": "下单成功",
+          "pathName": "pages/recommend/oddjob/orderSuccess/orderSuccess",
+          "query": "id=61959902-acf1-4ca4-9593-0a310e8c916d&tab=1&currentTab=0",
+          "scene": null
+        },
+        {
+          "name": "下单确认",
+          "pathName": "pages/recommend/oddjob/confirmOrder/confirmOrder",
+          "query": "productId=53&businessTypeId=6&showType=6&activityId=&productName=4次×4小时保洁&price=66&serviceNo=4",
+          "scene": null
+        },
+        {
+          "name": "商品详情",
+          "pathName": "pages/recommend/oddjob/productDetail/productDetail",
+          "query": "productId=49&activityId=",
           "scene": null
         }
       ]

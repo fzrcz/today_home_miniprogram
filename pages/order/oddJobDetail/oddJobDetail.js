@@ -7,7 +7,8 @@ Page({
    */
   data: {
     imgList: [],
-    companyId: ''
+    companyId: '',
+
   },
 
   /**
@@ -42,13 +43,29 @@ Page({
       that.data.signStatus = false;
     }
     this.setData({
-      companyId: wx.getStorageSync('selectCompany').id
+      companyId: wx.getStorageSync('selectCompany').id,
+      selectCompany: wx.getStorageSync('selectCompany')
     })
     //************************************** */
     wx.showLoading({
       title: '加载中...',
     })
     that.getOrderDetail();
+  },
+  toCall: function() {
+    wx.makePhoneCall({
+      phoneNumber: wx.getStorageSync('selectCompany').tel
+    })
+    // wx.navigateTo({
+    //   url: 'chat/chat',
+    // })
+  },
+  previewImage: function(e) {
+    var current = e.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: [current]
+    })
   },
 
   // 查询大订单对应的详情页的方法

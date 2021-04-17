@@ -98,15 +98,9 @@ Page({
   },
   //拨打电话
   tocall(e){
-    if(this.data.companyId != 2) {
-      wx.makePhoneCall({
-        phoneNumber: '400-600-6580'
-      })
-    } else {
-      wx.makePhoneCall({
-        phoneNumber: '0591-88771616'
-      })
-    }
+    wx.makePhoneCall({
+      phoneNumber: wx.getStorageSync('selectCompany').tel
+    })
     
   }
 })

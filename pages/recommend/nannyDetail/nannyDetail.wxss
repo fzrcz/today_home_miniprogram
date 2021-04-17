@@ -1,0 +1,196 @@
+page{
+  font-size: 26rpx;
+  background-color: #eee;
+  padding-bottom: 90rpx;
+}
+.nanny-wrap{
+  background-color: #fff;
+  margin-bottom: 15rpx;
+  padding: 15rpx 0;
+}
+
+.nanny-card{
+  width: 94%;
+  padding: 30rpx 15rpx 10rpx;
+  margin: 0 auto;
+  border-radius: 15rpx;
+  box-shadow: -2rpx 4rpx 14rpx #ddd;
+}
+
+.nanny-card .avatar{
+  display: flex;
+  align-items: center;
+}
+
+.nanny-card image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.nanny-card .detail{
+
+}
+
+.nanny-card .detail .name{
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+}
+
+.nanny-card .detail .info{
+  display: flex;
+  margin-bottom: 10rpx;
+  color: #333;
+}
+
+.nanny-card .detail .info text{
+  margin: 0 6rpx;
+}
+
+.basic-info{
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 40rpx;
+
+}
+
+
+.basic-info .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.basic-info .info text:first-child {
+  font-weight: 400;
+}
+
+.basic-info .info text:last-child {
+  color: #333;
+}
+
+.nanny-tag{
+  display: flex;
+  padding-bottom: 10rpx;
+}
+
+.nanny-tag view{
+  background: #eee;
+  color: #666;
+  text-align: center;
+  padding: 10rpx;
+  border-radius: 10rpx;
+  margin-right: 15rpx;
+  font-size: 24rpx;
+}
+
+.certification,
+.profile {
+  padding: 20rpx;
+  background-color: #fff;
+  margin-bottom: 15rpx;
+}
+
+.certification .title,
+.profile .title{
+  font-size: 32rpx;
+  font-weight: 400;
+  padding: 20rpx 0;
+}
+
+.certification-wrap{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.certification-item{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.certification-item .iconfont {
+  font-size: 30px;
+  color: #999;
+  margin-bottom: 4rpx;
+}
+
+.certification-item .iconfont.active {
+  color: #ff7f27;
+}
+
+.certification-item image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 10rpx;
+  margin: 0 auto;
+}
+
+
+.profile .desc{
+  
+}
+
+.profile .desc image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 15rpx;
+  margin-right: 30rpx;
+}
+
+.fixed-bottom{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1rpx solid #eee;
+  background: #fff;
+  height: 100rpx;
+  display: flex;
+  flex: 1;
+}
+
+.fixed-wrap{
+  display: flex;
+}
+.qrcode{
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  text-align: center;
+  padding-left: 15rpx;
+  font-size: 24rpx;
+}
+
+.qrcode .opear {
+  width: 150rpx;
+}
+.qrcode image{
+  width: 80rpx;
+  height: 50rpx;
+  margin-bottom: 4rpx;
+}
+
+.fixed-bottom .btn{
+  flex: 1;
+  display: flex;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+}
+
+fixed-bottom .btn view {
+}
+.fixed-bottom .btn1{
+  width: 100%;
+  background-color: #ff7f27;
+}
+.fixed-bottom .btn2{
+  width: 50%;
+  background-color: #ff7f27;
+}
